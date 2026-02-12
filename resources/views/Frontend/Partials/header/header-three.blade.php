@@ -106,14 +106,12 @@
                     <div class="header__right">
                         <div class="header__right--item">
                             <div id="langSwitcher" class="lang__trigger">
-                                <span class="selected__lang">English</span>
+                                <span class="selected__lang">{{ strtoupper(app()->getLocale()) }}</span>
                                 <i class="fa-light fa-globe"></i>
                                 <div class="translate__lang">
                                     <ul>
-                                        <li><a href="#" class="active">English</a></li>
-                                        <li><a href="#">French</a></li>
-                                        <li><a href="#">Spanish</a></li>
-                                        <li><a href="#">Romanian</a></li>
+                                        <li><a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'active' : '' }}">En</a></li>
+                                        <li><a href="{{ route('lang.switch', 'ar') }}" class="{{ app()->getLocale() == 'ar' ? 'active' : '' }}">Ar</a></li>
                                     </ul>
                                 </div>
                             </div>

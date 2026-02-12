@@ -15,11 +15,11 @@
                     <div class="banner__wrapper--middle">
                         <div class="banner__content">
                             <h6 class="banner__content--sub">
-                               <img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="cap"> knowledge meets innovation
+                               <img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="cap"> {{ __('knowledge meets innovation') }}
                             </h6>
                             <h1 class="banner__content--title">
-                                University
-                                <span> Of Unipix</span>
+                                {{ __('University') }}
+                                <span> {{ __('Of Unipix') }}</span>
                             </h1>
                             <div class="banner__content--circle rts__circle v__2">
                                 <svg class="spinner" viewBox="0 0 100 100">
@@ -37,10 +37,9 @@
                                 </div>
                             </div>
                             <div class="banner__content--description">
-                                <p>Remember to tailor the section names to fit the specific needs and
-                                    structure of your university website.
+                                <p>{{ __('Remember to tailor the section names to fit the specific needs and structure of your university website.') }}
                                 </p>
-                                <a href="{{ route('program-single') }}" class="rts-theme-btn btn-arrow">View Our Program
+                                <a href="{{ route('program-single') }}" class="rts-theme-btn btn-arrow">{{ __('View Our Program') }}
                                     <span><i class="fa-regular fa-arrow-right"></i></span>
                                 </a>
                             </div>
@@ -71,9 +70,9 @@
         <div class="container">
             <div class="row">
                 <div class="rts__section--wrapper">
-                    <h2 class="rts__section--title">Our Programs</h2>
+                    <h2 class="rts__section--title">{{ __('Our Programs') }}</h2>
                     <div class="rts__section--link">
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">more program<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('more program') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
                         </span></a>
                     </div>
                 </div>
@@ -81,17 +80,17 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__1.jpg')}});">
-                        <h5 class="rts__program--item--title">Graduation Program</h5>
-                        <p class="rts__program--item--description">Embark on a journey of knowledge discovery, and growth at  Unipix University.</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <h5 class="rts__program--item--title">{{ __('Graduation Program') }}</h5>
+                        <p class="rts__program--item--description">{{ __('Embark on a journey of knowledge discovery, and growth at Unipix University.') }}</p>
+                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
                         </span></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__2.jpg')}});">
-                        <h5 class="rts__program--item--title">Summer Program</h5>
-                        <p class="rts__program--item--description">Embark on a journey of knowledge discovery, and growth at  Unipix University.</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <h5 class="rts__program--item--title">{{ __('Summer Program') }}</h5>
+                        <p class="rts__program--item--description">{{ __('Embark on a journey of knowledge discovery, and growth at Unipix University.') }}</p>
+                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
                         </span></a>
                     </div>
                 </div>
@@ -105,8 +104,8 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__4.jpg')}});">
-                        <h5 class="rts__program--item--title">Online Program</h5>
-                        <p class="rts__program--item--description">Embark on a journey of knowledge discovery, and growth at  Unipix University.</p>
+                        <h5 class="rts__program--item--title">{{ __('Online Program') }}</h5>
+                        <p class="rts__program--item--description">{{ __('Embark on a journey of knowledge discovery, and growth at Unipix University.') }}</p>
                         <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
                         </span></a>
                     </div>
@@ -122,8 +121,8 @@
             <div class="row">
                 <div class="col-lg-5 col-md-6">
                     <div class="rts__section--wrapper v__2">
-                        <h2 class="rts__section--title">Campus Life</h2>
-                        <p class="rts__section--description">Embark on a journey of knowledge, discovery, and growth at  Unipix University. Our admissions process is designed identify bright, motivated individuals who are eager contribute to our dynamic academic community.</p>
+                        <h2 class="rts__section--title">{{ __('Campus Life') }}</h2>
+                        <p class="rts__section--description">{{ __('Embark on a journey of knowledge, discovery, and growth at Unipix University. Our admissions process is designed identify bright, motivated individuals who are eager contribute to our dynamic academic community.') }}</p>
                         <div class="campus__vector">
                             <img src="{{asset('assets/images/campus/campus__vector.svg')}}" alt="">
                         </div>
@@ -138,8 +137,8 @@
                             </div>
                             <div class="campus__life--single--flex">
                                 <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="{{ route('campus-life') }}">Student Life</a></h4>
-                                    <p class="campus__life--single--description">Building a vibrant community of creative and accomplished people from around.</p>
+                                    <h4 class="campus__life--single--title"><a href="{{ route('campus-life') }}">{{ __('Student Life') }}</a></h4>
+                                    <p class="campus__life--single--description">{{ __('Building a vibrant community of creative and accomplished people from around.') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
                                     <a href="{{ route('campus-life') }}"><i class="fa-sharp fa-regular fa-arrow-right"></i></a>
@@ -154,8 +153,8 @@
                             </div>
                             <div class="campus__life--single--flex">
                                 <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="{{ route('campus-life') }}">Arts & Culture</a></h4>
-                                    <p class="campus__life--single--description">Building a vibrant community of creative and accomplished people from around.</p>
+                                    <h4 class="campus__life--single--title"><a href="{{ route('campus-life') }}">{{ __('Arts & Culture') }}</a></h4>
+                                    <p class="campus__life--single--description">{{ __('Building a vibrant community of creative and accomplished people from around.') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
                                     <a href="{{ route('campus-life') }}"><i class="fa-sharp fa-regular fa-arrow-right"></i></a>
@@ -170,8 +169,8 @@
                             </div>
                             <div class="campus__life--single--flex">
                                 <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="{{ route('athletics') }}">Athletics</a></h4>
-                                    <p class="campus__life--single--description">Building a vibrant community of creative and accomplished people from around.</p>
+                                    <h4 class="campus__life--single--title"><a href="{{ route('athletics') }}">{{ __('Athletics') }}</a></h4>
+                                    <p class="campus__life--single--description">{{ __('Building a vibrant community of creative and accomplished people from around.') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
                                     <a href="{{ route('athletics') }}"><i class="fa-sharp fa-regular fa-arrow-right"></i></a>
@@ -190,9 +189,9 @@
         <div class="container">
             <div class="row">
                 <div class="rts__section--wrapper">
-                    <h2 class="rts__section--title">University Professors</h2>
+                    <h2 class="rts__section--title">{{ __('University Professors') }}</h2>
                     <div class="rts__section--link">
-                        <a href="{{ route('faculty') }}" class="rts-nbg-btn btn-arrow">Find More Professor<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="{{ route('faculty') }}" class="rts-nbg-btn btn-arrow">{{ __('Find More Professor') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
                         </span></a>
                     </div>
                 </div>
@@ -212,7 +211,7 @@
                                 <a href="{{ route('faculty-details') }}">C. Hannah Ueno</a>
                             </h5>
                             <span class="rts__single--member--meta--designation">
-                                Assistant Professor
+                                {{ __('Assistant Professor') }}
                             </span>
                         </div>
                     </div>
@@ -231,7 +230,7 @@
                                 <a href="{{ route('faculty-details') }}">Thomas Fred</a>
                             </h5>
                             <span class="rts__single--member--meta--designation">
-                                Associate Professor of History
+                                {{ __('Associate Professor of History') }}
                             </span>
                         </div>
                     </div>
@@ -250,7 +249,7 @@
                                 <a href="{{ route('faculty-details') }}">Jennifer Aarons</a>
                             </h5>
                             <span class="rts__single--member--meta--designation">
-                                Professor of Art
+                                {{ __('Professor of Art') }}
                             </span>
                         </div>
                     </div>
@@ -269,7 +268,7 @@
                                 <a href="{{ route('faculty-details') }}">Michael McGarvey</a>
                             </h5>
                             <span class="rts__single--member--meta--designation">
-                                Professor of Literature
+                                {{ __('Professor of Literature') }}
                             </span>
                         </div>
                     </div>
@@ -286,8 +285,8 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="rts__section--wrapper v__4">
-                        <h2 class="rts__section--title">Student Feedback</h2>
-                        <p class="rts__section--description">Your opinion matters, and by providing feedback, you contribute to the continuous enhancement of our academic programs, support services, and campus life</p>
+                        <h2 class="rts__section--title">{{ __('Student Feedback') }}</h2>
+                        <p class="rts__section--description">{{ __('Your opinion matters, and by providing feedback, you contribute to the continuous enhancement of our academic programs, support services, and campus life') }}</p>
                         <div class="rts__slider--arrow">
                             <div class="rts__prev slider__btn"><i class="fa-light fa-arrow-left"></i></div>
                             <div class="rts__next slider__btn"><i class="fa-light fa-arrow-right"></i></div>
@@ -337,7 +336,7 @@
                                         <i class="fa-sharp fa-light fa-star"></i>
                                     </div>
                                     <p class="rts__single--testimonial--text">
-                                        I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.
+                                        {{ __("I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.") }}
                                     </p>
                                     <div class="rts__single--testimonial--author">
                                         <div class="rts__single--testimonial--author--meta">
@@ -346,7 +345,7 @@
                                             </div>
                                             <div class="rts__author--info">
                                                 <h5 class="mb-0">Emma Elizabeth</h5>
-                                                <span class="designation">Assistant Teacher</span>
+                                                <span class="designation">{{ __('Assistant Teacher') }}</span>
                                             </div>
                                         </div>
                                         <div class="rts__single--testimonial--quote">
@@ -367,7 +366,7 @@
                                         <i class="fa-sharp fa-light fa-star"></i>
                                     </div>
                                     <p class="rts__single--testimonial--text">
-                                        I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.
+                                        {{ __("I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.") }}
                                     </p>
                                     <div class="rts__single--testimonial--author">
                                         <div class="rts__single--testimonial--author--meta">
@@ -376,7 +375,7 @@
                                             </div>
                                             <div class="rts__author--info">
                                                 <h5 class="mb-0">Emma Elizabeth</h5>
-                                                <span class="designation">Assistant Teacher</span>
+                                                <span class="designation">{{ __('Assistant Teacher') }}</span>
                                             </div>
                                         </div>
                                         <div class="rts__single--testimonial--quote">
@@ -397,7 +396,7 @@
                                         <i class="fa-sharp fa-light fa-star"></i>
                                     </div>
                                     <p class="rts__single--testimonial--text">
-                                        I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.
+                                        {{ __("I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.") }}
                                     </p>
                                     <div class="rts__single--testimonial--author">
                                         <div class="rts__single--testimonial--author--meta">
@@ -406,7 +405,7 @@
                                             </div>
                                             <div class="rts__author--info">
                                                 <h5 class="mb-0">Emma Elizabeth</h5>
-                                                <span class="designation">Assistant Teacher</span>
+                                                <span class="designation">{{ __('Assistant Teacher') }}</span>
                                             </div>
                                         </div>
                                         <div class="rts__single--testimonial--quote">

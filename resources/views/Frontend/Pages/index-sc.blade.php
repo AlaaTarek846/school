@@ -26,15 +26,15 @@
                                 <div class="col-lg-10 col-xl-10 col-md-10 col-sm-12">
                                     <div class="rts-slider">
                                         <div class="rts-slider-content">
-                                            <h6 class="rts-subtitle"><img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="education hat"> knowledge meets innovation</h6>
+                                            <h6 class="rts-subtitle"><img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="education hat"> {{ __('knowledge meets innovation') }}</h6>
                                             <h1 class="rts-slider-title">
-                                                Explore Your Future at Of Unipix
+                                                {{ __('Explore Your Future at Of Unipix') }}
                                             </h1>
                                             <p class="rts-slider-desc">
-                                                Remember to tailor the section names to fit the specific needs and structure.
+                                                {{ __('Remember to tailor the section names to fit the specific needs and structure.') }}
                                             </p>
                                             <div class="rts-slider-btn">
-                                                <a href="{{ route('primary-school') }}" class="rts-theme-btn btn-arrow">View Our Program <span><i class="fa-thin fa-arrow-right"></i></span></a>
+                                                <a href="{{ route('primary-school') }}" class="rts-theme-btn btn-arrow">{{ __('View Our Program') }} <span><i class="fa-thin fa-arrow-right"></i></span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -52,15 +52,15 @@
                                 <div class="col-lg-10 col-xl-10 col-md-10 col-sm-12">
                                     <div class="rts-slider">
                                         <div class="rts-slider-content">
-                                            <h6 class="rts-subtitle"><img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="education hat"> knowledge meets innovation</h6>
+                                            <h6 class="rts-subtitle"><img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="education hat"> {{ __('knowledge meets innovation') }}</h6>
                                             <h1 class="rts-slider-title">
-                                                Explore Your Future at Of Unipix
+                                                {{ __('Explore Your Future at Of Unipix') }}
                                             </h1>
                                             <p class="rts-slider-desc">
-                                                Remember to tailor the section names to fit the specific needs and structure.
+                                                {{ __('Remember to tailor the section names to fit the specific needs and structure.') }}
                                             </p>
                                             <div class="rts-slider-btn">
-                                                <a href="{{ route('primary-school') }}" class="rts-theme-btn btn-arrow">View Our Program <span><i class="fa-thin fa-arrow-right"></i></span></a>
+                                                <a href="{{ route('primary-school') }}" class="rts-theme-btn btn-arrow">{{ __('View Our Program') }} <span><i class="fa-thin fa-arrow-right"></i></span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -81,15 +81,15 @@
                 <div class="col-lg-6">
                     <div class="rts__section--wrapper sc">
                         <h6 class="rts__section--subheading">
-                            <img src="{{asset('assets/images/icon/about-sc.svg')}}" alt=""> about
+                            <img src="{{asset('assets/images/icon/about-sc.svg')}}" alt=""> {{ __('about') }}
                         </h6>
                         <h2 class="rts__section--title mb-0">
-                            About Our <br> unipix School
+                            {{ __('About Our unipix School') }}
                         </h2>
                         <p>
                             At School Unipix, we believe in the transformative power of education and the boundless potential within every individual. Established in 1971, we have been dedicated to fostering intellectual curiosity, academic excellence, and a vibrant campus community.
                         </p>
-                        <a href="{{ route('primary-school') }}" class="rts-nbg-btn btn-arrow">School Overview<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="{{ route('primary-school') }}" class="rts-nbg-btn btn-arrow">{{ __('School Overview') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
                         </span></a>
                     </div>
                 </div>
@@ -108,22 +108,22 @@
                         <div class="single-cta-item">
                             <img src="{{asset('assets/images/icon/student.svg')}}" alt="">
                             <h2 class="single-cta-item__title">20,000</h2>
-                            <p>Students Graduated</p>
+                            <p>{{ __('Students Graduated') }}</p>
                         </div>
                         <div class="single-cta-item">
                             <img src="{{asset('assets/images/icon/class.svg')}}" alt="">
                             <h2 class="single-cta-item__title">40</h2>
-                            <p>Classes</p>
+                            <p>{{ __('Classes') }}</p>
                         </div>
                         <div class="single-cta-item">
                             <img src="{{asset('assets/images/icon/teacher.svg')}}" alt="">
                             <h2 class="single-cta-item__title">120</h2>
-                            <p>Teachers</p>
+                            <p>{{ __('Teachers') }}</p>
                         </div>
                         <div class="single-cta-item">
                             <img src="{{asset('assets/images/icon/current-st.svg')}}" alt="">
                             <h2 class="single-cta-item__title">1230</h2>
-                            <p>Current Students</p>
+                            <p>{{ __('Active Students') }}</p>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                         <h6 class="rts__section--subheading">
                             <img src="{{asset('assets/images/icon/e-cap.svg')}}" alt=""> Academics 
                         </h6>
-                        <h2 class="rts__section--title">Academics at Unipix </h2>
+                        <h2 class="rts__section--title">{{ __('Academics at Unipix') }} </h2>
                     </div>
                     <div class="rts__section--details">
                         <p class="rts__description">
@@ -162,7 +162,7 @@
                         </div>
                         <div class="academy__single__meta">
                             <a href="#">
-                                <h4 class="academy__single__title">Primary Student</h4>
+                                <h4 class="academy__single__title">{{ __('Primary Student') }}</h4>
                             </a>
                             <p class="academy__single__description">Explore the engaging events and activities we offer for children.</p>
                         </div>
@@ -177,7 +177,7 @@
                         </div>
                         <div class="academy__single__meta">
                             <a href="#">
-                                <h4 class="academy__single__title">Secondary Student</h4>
+                                <h4 class="academy__single__title">{{ __('Secondary Student') }}</h4>
                             </a>
                             <p class="academy__single__description">Explore the engaging events and activities we offer for children.</p>
                         </div>
@@ -192,7 +192,7 @@
                         </div>
                         <div class="academy__single__meta">
                             <a href="#">
-                                <h4 class="academy__single__title">Explore Unipix</h4>
+                                <h4 class="academy__single__title">{{ __('Explore Unipix') }}</h4>
                             </a>
                             <p class="academy__single__description">Explore the engaging events and activities we offer for children.</p>
                         </div>
@@ -214,10 +214,10 @@
                         <h6 class="rts__section--subheading">
                             <img src="{{asset('assets/images/icon/about-sc.svg')}}" alt=""> Teacher
                         </h6>
-                        <h2 class="rts__section--title text-capitalize mb-0">University Professors</h2>
+                        <h2 class="rts__section--title text-capitalize mb-0">{{ __('University Professors') }}</h2>
                     </div>
                     <div class="rts__section--link">
-                        <a href="#" class="rts-nbg-btn btn-arrow">Find More Professor<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="#" class="rts-nbg-btn btn-arrow">{{ __('Find More Professor') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
                         </span></a>
                     </div>
                 </div>
@@ -315,7 +315,7 @@
                         <h6 class="rts__section--subheading justify-content-center">
                             <img src="{{asset('assets/images/icon/about-sc.svg')}}" alt=""> Registration
                         </h6>
-                        <h2 class="rts__section--title">Apply for Admission</h2>
+                        <h2 class="rts__section--title">{{ __('Apply for Admission') }}</h2>
                         <p class="rts__section--description w-100 mx-auto mb-0">Welcome to the gateway of possibilities your admission to Unipix University. At Unipix, we understand.</p>
                     </div>
                 </div>
@@ -333,7 +333,7 @@
                 <div class="col-md-11 col-lg-6 col-xl-5">
                     <div class="rts-application-form">
                         <div class="rts-application-form-content sc">
-                            <h5 class="heading-title  mb--25">Admission Form</h5>
+                            <h5 class="heading-title  mb--25">{{ __('Admission Form') }}</h5>
                             <form action="#" class="rts-form">
                                 <div class="rts-input rt-flex">
                                     <div class="single-input">
@@ -406,10 +406,10 @@
                         <h6 class="rts__section--subheading">
                             <img src="{{asset('assets/images/icon/about-sc.svg')}}" alt=""> Gallery
                         </h6>
-                        <h2 class="rts__section--title text-capitalize mb-0">University Reunion Gallery</h2>
+                        <h2 class="rts__section--title text-capitalize mb-0">{{ __('University Reunion Gallery') }}</h2>
                     </div>
                     <div class="rts__section--link">
-                        <a href="#" class="rts-nbg-btn btn-arrow">View All Gallery<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="#" class="rts-nbg-btn btn-arrow">{{ __('View All Gallery') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
                         </span></a>
                     </div>
                 </div>
@@ -473,7 +473,7 @@
                         <h6 class="rts__section--subheading">
                             <img src="{{asset('assets/images/icon/about-sc.svg')}}" alt=""> Gallery
                         </h6>
-                        <h2 class="rts__section--title">Student Feedback</h2>
+                        <h2 class="rts__section--title">{{ __('Student Feedback') }}</h2>
                         <p class="rts__section--description">Your opinion matters, and by providing feedback, you contribute to the continuous enhancement of our academic programs, support services, and campus life</p>
                         <div class="rts__slider--arrow">
                             <div class="rts__prev slider__btn"><i class="fa-light fa-arrow-left"></i></div>

@@ -9,8 +9,7 @@
                         <a href="index"><img src="{{asset('assets/images/logo/logo__white.svg')}}" alt="logo"></a>
                     </div>
                     <p class="footer__widget--description">
-                        We are passionate education dedicated to providing high-quality resources learners
-                        all backgrounds.
+                        {{ __('We are passionate education dedicated to providing high-quality resources learners all backgrounds.') }}
                     </p>
                     <div class="footer__widget--social">
                         <ul class="social">
@@ -24,7 +23,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__widget">
-                    <h6 class="footer__widget--title">Our Campus</h6>
+                    <h6 class="footer__widget--title">{{ __('Our Campus') }}</h6>
                     <div class="footer__widget--menu">
                         <ul>
                             <li><a href="{{ route('academic') }}">Academic</a></li>
@@ -38,7 +37,7 @@
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6">
                 <div class="footer__widget">
-                    <h6 class="footer__widget--title">Our Campus</h6>
+                    <h6 class="footer__widget--title">{{ __('Our Campus') }}</h6>
                     <div class="footer__widget--menu">
                         <ul>
                             <li><a href="{{ route('about') }}">About </a></li>
@@ -52,10 +51,10 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__widget">
-                    <h6 class="footer__widget--title">Quick Button</h6>
+                    <h6 class="footer__widget--title">{{ __('Quick Button') }}</h6>
                     <div class="footer__widget--button">
-                        <a href="{{ route('admission') }}" class="cta__button active">Applying</a>
-                        <a href="{{ route('scholarship') }}" class="cta__button">scholarship</a>
+                        <a href="{{ route('admission') }}" class="cta__button active">{{ __('Applying') }}</a>
+                        <a href="{{ route('scholarship') }}" class="cta__button">{{ __('scholarship') }}</a>
                     </div>
                 </div>
             </div>
@@ -70,7 +69,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="copyright__wrapper">
-                    <p>Copyright &copy; {{ date('Y') }} All Rights Reserved by <a href="#">Unipix</a></p>
+                    <p>{{ __('Copyright') }} &copy; {{ date('Y') }} {{ __('All Rights Reserved by') }} <a href="#">{{ __('Unipix') }}</a></p>
                 </div>
             </div>
         </div>

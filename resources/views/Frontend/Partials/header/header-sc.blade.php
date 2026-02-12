@@ -15,7 +15,7 @@
                                    </div>
                                    <div class="header__content__top__right">
                                         <div class="follow_us">
-                                             <span>Follow Us-</span>
+                                             <span>{{ __('Follow Us-') }}</span>
                                              <div>
                                                   <a href="#"><i class="fa-brands fa-facebook"></i></a>
                                                   <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -28,14 +28,12 @@
                                                   <i class="fa-sharp fa-light fa-magnifying-glass"></i>
                                               </div>
                                              <div id="langSwitcher" class="lang__trigger">
-                                                  <span class="selected__lang">En</span>
+                                                  <span class="selected__lang">{{ strtoupper(app()->getLocale()) }}</span>
                                                   <i class="fa-light fa-globe"></i>
                                                   <div class="translate__lang">
                                                       <ul>
-                                                          <li><a href="#" class="active">En</a></li>
-                                                          <li><a href="#">Fr</a></li>
-                                                          <li><a href="#">Sp</a></li>
-                                                          <li><a href="#">Ru</a></li>
+                                                          <li><a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'active' : '' }}">En</a></li>
+                                                          <li><a href="{{ route('lang.switch', 'ar') }}" class="{{ app()->getLocale() == 'ar' ? 'active' : '' }}">Ar</a></li>
                                                       </ul>
                                                   </div>
                                               </div>

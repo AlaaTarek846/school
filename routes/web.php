@@ -1,7 +1,27 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleCategoryController;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\CounterAboutController;
+use App\Http\Controllers\Admin\CounterController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HomeSliderController;
+use App\Http\Controllers\Admin\OneAboutController;
+use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\ProjectCategoryController;
+use App\Http\Controllers\Admin\ProjectChallengeSolutionController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ServiceFaqController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SubscribeController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\TwoAboutController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +33,80 @@ use App\Http\Controllers\PageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+
+//auth routes
+Route::group([], function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+});
+
+//admin routes
+
+Route::prefix('api')->group(function () {
+
+    // login
+    Route::post('login', [AuthController::class, 'login']);
+
+    Route::group(['middleware' => ['auth']], function () {
+
+        Route::apiResource('home-sliders', HomeSliderController::class);
+        Route::apiResource('partners', PartnerController::class);
+        Route::apiResource('counters', CounterController::class);
+        Route::apiResource('counter-abouts', CounterAboutController::class);
+        Route::apiResource('one-abouts', OneAboutController::class);
+        Route::apiResource('two-abouts', TwoAboutController::class);
+        Route::get('services-dropdown', [ServiceController::class, 'dropdown']);
+        Route::apiResource('services', ServiceController::class);
+        Route::get('projects-dropdown', [ProjectController::class, 'dropdown']);
+        Route::apiResource('projects', ProjectController::class);
+        Route::apiResource('settings', SettingController::class);
+        Route::apiResource('articleCategory', ArticleCategoryController::class);
+        Route::apiResource('service-faqs', ServiceFaqController::class);
+        Route::apiResource('testimonials', TestimonialController::class);
+        Route::apiResource('contact-messages', ContactMessageController::class);
+        Route::apiResource('subscribes', SubscribeController::class);
+        Route::get('project-categories-dropdown', [ProjectCategoryController::class, 'dropdown']);
+        Route::apiResource('project-categories', ProjectCategoryController::class);
+        Route::apiResource('project-challenge-solutions', ProjectChallengeSolutionController::class);
+
+    });
+
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::group(['middleware' => ['auth:web']], function () {
+
+        // dashboard
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::name('page.')->prefix('page')->group(function () {
+
+            Route::get('home-sliders', [HomeSliderController::class, 'indexPage'])->name('home-sliders');
+            Route::get('partners', [PartnerController::class, 'indexPage'])->name('partners');
+            Route::get('counters', [CounterController::class, 'indexPage'])->name('counter');
+            Route::get('services', [ServiceController::class, 'indexPage'])->name('services');
+            Route::get('setting', [SettingController::class, 'indexPage'])->name('setting');
+            Route::get('products', [ProjectController::class, 'indexPage'])->name('projects');
+            Route::get('one-about', [OneAboutController::class, 'indexPage'])->name('one-about');
+            Route::get('two-about', [TwoAboutController::class, 'indexPage'])->name('two-about');
+            Route::get('counter-about', [CounterAboutController::class, 'indexPage'])->name('counter-about');
+            Route::get('article-categories', [ArticleCategoryController::class, 'indexPage'])->name('article-categories');
+            Route::get('service-faqs', [ServiceFaqController::class, 'indexPage'])->name('service-faqs');
+            Route::get('testimonial', [TestimonialController::class, 'indexPage'])->name('testimonial');
+            Route::get('project-categories', [ProjectCategoryController::class, 'indexPage'])->name('project-categories');
+            Route::get('project-challenge-solutions', [ProjectChallengeSolutionController::class, 'indexPage'])->name('project-challenge-solutions');
+            Route::get('contact-messages', [ContactMessageController::class, 'indexPage'])->name('contact-messages');
+            Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');
+        });
+
+        // logout
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    });
+
+});
+
 Route::controller(PageController::class)->group(function (){
     Route::get('/', 'index')->name('index');
     Route::get('index-two', 'indexTwo')->name('index-two');

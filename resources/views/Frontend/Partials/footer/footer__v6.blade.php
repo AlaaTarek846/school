@@ -22,11 +22,11 @@
             </div>
             <div class="col-lg-5 col-xl-5 col-xxl-3">
                 <div class="subscription__form">
-                    <h5 class="subscription__form--title">Subscribe to  newsletter</h5>
+                    <h5 class="subscription__form--title">{{ __('Subscribe to newsletter') }}</h5>
                     
                     <form action="#">
                         <input type="email" placeholder="Enter your email address" required>
-                        <button type="submit" class="cta__button">Subscribe <span><i class="fa-regular fa-arrow-right"></i></span></button>
+                        <button type="submit" class="cta__button">{{ __('Subscribe') }} <span><i class="fa-regular fa-arrow-right"></i></span></button>
                     </form>
                 </div>
             </div>
@@ -43,8 +43,7 @@
                         <a href="index"><img src="{{asset('assets/images/logo/logo__white.svg')}}" alt="logo"></a>
                     </div>
                     <p class="footer__widget--description">
-                        We are passionate education dedicated to providing high-quality resources learners
-                        all backgrounds.
+                        {{ __('We are passionate education dedicated to providing high-quality resources learners all backgrounds.') }}
                     </p>
                     <div class="footer__widget--social">
                         <ul class="social">
@@ -58,7 +57,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__widget">
-                    <h6 class="footer__widget--title">Our Campus</h6>
+                    <h6 class="footer__widget--title">{{ __('Our Campus') }}</h6>
                     <div class="footer__widget--menu">
                         <ul>
                             <li><a href="{{ route('academic') }}">Academic</a></li>
@@ -86,10 +85,10 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__widget">
-                    <h6 class="footer__widget--title">Quick Button</h6>
+                    <h6 class="footer__widget--title">{{ __('Quick Button') }}</h6>
                     <div class="footer__widget--button">
-                        <a href="{{ route('admission') }}" class="cta__button active">Applying</a>
-                        <a href="{{ route('scholarship') }}" class="cta__button">scholarship</a>
+                        <a href="{{ route('admission') }}" class="cta__button active">{{ __('Applying') }}</a>
+                        <a href="{{ route('scholarship') }}" class="cta__button">{{ __('scholarship') }}</a>
                     </div>
                 </div>
             </div>

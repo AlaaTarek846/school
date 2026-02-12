@@ -31,10 +31,10 @@
             </div>
             <div class="col-lg-6 col-md-10">
                 <div class="about__content">
-                    <h2 class="rts__title">About Our University unipix</h2>
-                    <p class="rts__description">At University Unipix, we believe in the transformative power of education and the boundless potential within every individual. Established in 1971, we have been dedicated to fostering intellectual curiosity, academic excellence, and a vibrant campus community.</p>
-                    <div class="stroke__text v__1">EST. 1971</div>
-                    <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">University Overview <span><i class="fa-sharp fa-regular fa-arrow-right"></i></span></a>
+                    <h2 class="rts__title">{{ __('About Our University unipix') }}</h2>
+                    <p class="rts__description">{{ __('At University Unipix, we believe in the transformative power of education and the boundless potential within every individual. Established in 1971, we have been dedicated to fostering intellectual curiosity, academic excellence, and a vibrant campus community.') }}</p>
+                    <div class="stroke__text v__1">{{ __('EST. 1971') }}</div>
+                    <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('University Overview') }} <span><i class="fa-sharp fa-regular fa-arrow-right"></i></span></a>
                 </div>
             </div>
         </div>
@@ -51,13 +51,11 @@
                     </div>
                     <div class="single-cta-item">
                         <h2 class="single-cta-item__title">16,214</h2>
-                        <p>Unipix University Faculty
-                            & Staff</p>
+                        <p>{{ __('Unipix University Faculty & Staff') }}</p>
                     </div>
                     <div class="single-cta-item">
                         <h2 class="single-cta-item__title">300k</h2>
-                        <p>Unipix University alumni
-                            Worldwide</p>
+                        <p>{{ __('Unipix University alumni Worldwide') }}</p>
                     </div>
                     <div class="single-cta-item">
                         <h2 class="single-cta-item__title">20,000</h2>

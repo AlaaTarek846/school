@@ -20,3 +20,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/plugins/jquery-ui.css')}}">
     <!-- custom style css -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    @if(app()->getLocale() == 'ar')
+    <link rel="stylesheet" href="{{asset('assets/css/style-rtl.css')}}">
+    @endif

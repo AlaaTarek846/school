@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="no-js" dir="{{ $dir ?? 'ltr' }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="no-js" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     @include($partials . 'style')
     @yield('css')

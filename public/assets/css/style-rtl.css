@@ -24942,6 +24942,7 @@ body.index-sc h6 {
     gap: 10px;
     position: absolute;
     left: 0;
+    justify-content: end;
     bottom: 0;
 }
 @media screen and (max-width: 576px) {

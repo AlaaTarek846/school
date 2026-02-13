@@ -23,6 +23,9 @@ import gallery from "./pages/admin/gallery/index.vue";
 import videos from "./pages/admin/video/index.vue";
 import HowWeWelcomeChild from "./pages/admin/howWeWelcomeChild/index.vue";
 import CampusTour from "./pages/admin/campusTour/index.vue";
+import PrincipalMessage from "./pages/admin/principalMessage/index.vue";
+import SchoolDisciplinePolicy from "./pages/admin/schoolDisciplinePolicy/index.vue";
+import QualityAssuranceFile from "./pages/admin/qualityAssuranceFile/index.vue";
 
 function Components(app) {
     app.component(`login`, Login);
@@ -50,6 +53,9 @@ function Components(app) {
     app.component(`videos`, videos);
     app.component(`how-we-welcome-child`, HowWeWelcomeChild);
     app.component(`campus-tour`, CampusTour);
+    app.component(`principal-message`, PrincipalMessage);
+    app.component(`school-discipline-policy`, SchoolDisciplinePolicy);
+    app.component(`quality-assurance-file`, QualityAssuranceFile);
 }
 
 

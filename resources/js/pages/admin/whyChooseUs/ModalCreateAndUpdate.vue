@@ -105,7 +105,7 @@
                         </div>
 
                         <div class="col-md-12 mt-3">
-                            <label class="form-label">صورة  (498 * 460)</label>
+                            <label class="form-label">{{ $t('global.image') }} (500 * 460)</label>
                             <div class="row img-div-position">
                                 <div class="col-12 text-end">
                                     <button

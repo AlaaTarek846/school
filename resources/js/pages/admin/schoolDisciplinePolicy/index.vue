@@ -4,14 +4,14 @@
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">
-                        جولة في حرم المدرسة
+                        لائحة الانضباط المدرسي
                     </div>
-<!--                    <div class="prism-toggle">-->
-<!--                        <button @click="openModal" class="btn btn-primary ripple btn-wave waves-effect waves-light">-->
-<!--                            <i class="ri-add-line"></i>-->
-<!--                            {{$t('global.add')}}-->
-<!--                        </button>-->
-<!--                    </div>-->
+                    <div class="prism-toggle">
+                        <button @click="openModal" class="btn btn-primary ripple btn-wave waves-effect waves-light">
+                            <i class="ri-add-line"></i>
+                            {{$t('global.add')}}
+                        </button>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -20,7 +20,6 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">{{$t('global.image')}}</th>
-                                <th scope="col">{{$t('label.title')}}</th>
                                 <th scope="col">{{$t('global.actions')}}</th>
                             </tr>
                             </thead>
@@ -34,18 +33,17 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{ item.title_ar }} / {{ item.title_en }}</td>
                                 <td>
                                     <div class="hstack gap-2 fs-15">
                                         <a @click="edit(item)" class="btn btn-icon btn-sm btn-info-transparent rounded-pill"><i class="ri-edit-line"></i></a>
-<!--                                        <a @click="deleteItem(item.id)" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>-->
+                                        <a @click="deleteItem(item.id)" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>
                                     </div>
                                 </td>
                             </tr>
                             </tbody>
                             <tbody v-else>
                                 <tr>
-                                    <td colspan="4" class="text-center text-danger">{{$t('global.NoDataFound')}}</td>
+                                    <td colspan="3" class="text-center text-danger">{{$t('global.NoDataFound')}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -78,7 +76,7 @@ const loading = ref(false);
 
 const getData = (page = 1) => {
     loading.value = true;
-    adminApi.get(`campus-tour?page=${page}`)
+    adminApi.get(`school-discipline-policy?page=${page}`)
         .then((res) => {
             data.value = res.data.data;
             dataPaginate.value = res.data.pagination;
@@ -94,7 +92,7 @@ const getData = (page = 1) => {
 const openModal = () => {
     type.value = 'create';
     dataRow.value = {};
-    let myModal = new bootstrap.Modal(document.getElementById('campus-tour-model'), {
+    let myModal = new bootstrap.Modal(document.getElementById('school-discipline-policy-model'), {
         keyboard: false
     });
     myModal.show();
@@ -103,7 +101,7 @@ const openModal = () => {
 const edit = (item) => {
     type.value = 'edit';
     dataRow.value = item;
-    let myModal = new bootstrap.Modal(document.getElementById('campus-tour-model'), {
+    let myModal = new bootstrap.Modal(document.getElementById('school-discipline-policy-model'), {
         keyboard: false
     });
     myModal.show();
@@ -120,7 +118,7 @@ const deleteItem = (id) => {
         confirmButtonText: t('global.YesDeleteIt')
     }).then((result) => {
         if (result.isConfirmed) {
-            adminApi.delete(`campus-tour/${id}`)
+            adminApi.delete(`school-discipline-policy/${id}`)
                 .then((res) => {
                     Swal.fire(
                         t('global.Deleted'),

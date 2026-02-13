@@ -78,6 +78,9 @@ Route::prefix('api')->group(function () {
         Route::apiResource('videos', VideoController::class);
         Route::apiResource('how-we-welcome-child', \App\Http\Controllers\Admin\HowWeWelcomeChildController::class);
         Route::apiResource('campus-tour', \App\Http\Controllers\Admin\CampusTourController::class);
+        Route::apiResource('principal-message', \App\Http\Controllers\Admin\PrincipalMessageController::class);
+        Route::apiResource('school-discipline-policy', \App\Http\Controllers\Admin\SchoolDisciplinePolicyController::class);
+        Route::apiResource('quality-assurance-files', \App\Http\Controllers\Admin\QualityAssuranceFileController::class);
 
     });
 
@@ -111,6 +114,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('videos', [VideoController::class, 'indexPage'])->name('videos');
             Route::get('how-we-welcome-child', [\App\Http\Controllers\Admin\HowWeWelcomeChildController::class, 'indexPage'])->name('how-we-welcome-child');
             Route::get('campus-tour', [\App\Http\Controllers\Admin\CampusTourController::class, 'indexPage'])->name('campus-tour');
+            Route::get('principal-message', [\App\Http\Controllers\Admin\PrincipalMessageController::class, 'indexPage'])->name('principal-message');
+            Route::get('school-discipline-policy', [\App\Http\Controllers\Admin\SchoolDisciplinePolicyController::class, 'indexPage'])->name('school-discipline-policy');
+            Route::get('quality-assurance-files', [\App\Http\Controllers\Admin\QualityAssuranceFileController::class, 'indexPage'])->name('quality-assurance-files');
             Route::get('contact-messages', [ContactMessageController::class, 'indexPage'])->name('contact-messages');
             Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');
         });

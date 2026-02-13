@@ -20,6 +20,8 @@ import contactMessage from "./pages/admin/contactMessages/index.vue";
 import subscribes from "./pages/admin/subscribes/index.vue";
 import careerApplications from "./pages/admin/careerApplications/index.vue";
 import studentRegistrations from "./pages/admin/studentRegistrations/index.vue";
+import educationStages from "./pages/admin/educationStage/index.vue";
+import fees from "./pages/admin/fee/index.vue";
 import whyChooseUs from "./pages/admin/whyChooseUs/index.vue";
 import gallery from "./pages/admin/gallery/index.vue";
 import videos from "./pages/admin/video/index.vue";
@@ -52,6 +54,8 @@ function Components(app) {
     app.component(`subscribes`, subscribes);
     app.component(`career-applications`, careerApplications);
     app.component(`student-registrations`, studentRegistrations);
+    app.component(`education-stages`, educationStages);
+    app.component(`fees`, fees);
     app.component(`why-choose-us`, whyChooseUs);
     app.component(`galleries`, gallery);
     app.component(`videos`, videos);

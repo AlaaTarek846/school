@@ -1,0 +1,22 @@
+<?php
+
+return [
+    'gallery' => 'المعرض',
+    'video' => 'الفيديو',
+    'link' => 'الرابط',
+    'image' => 'الصورة',
+    'actions' => 'الإجراءات',
+    'add' => 'إضافة',
+    'save' => 'حفظ',
+    'close' => 'إغلاق',
+    'update' => 'تعديل',
+    'AreYouSure' => 'هل أنت متأكد؟',
+    'YouWontBeAbleToRevertThis' => 'لن تتمكن من التراجع عن هذا!',
+    'YesDeleteIt' => 'نعم، احذفها!',
+    'Deleted' => 'تم الحذف!',
+    'YourFileHasBeenDeleted' => 'تم حذف الملف بنجاح.',
+    'success' => 'نجاح',
+    'AddedSuccessfully' => 'تمت الإضافة بنجاح',
+    'UpdatedSuccessfully' => 'تم التحديث بنجاح',
+    'NoDataFound' => 'لا توجد بيانات',
+];

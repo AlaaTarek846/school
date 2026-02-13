@@ -3,9 +3,9 @@
     @include($header . 'transparent-header-v5')
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg breadcrumb-height-full',
-        'image' => 'breadcrumb-2.jpg')}}',
+        'image' => 'breadcrumb-2.jpg',
         'title' => 'Faculty',
-        'page' => 'Faculty Areas'    
+        'page' => 'Faculty Areas'
     ])
     <!-- content -->
      <div class="rts-faculty-details rts-section-padding">
@@ -534,6 +534,6 @@
         </div>
     </div>
     <!-- blog end -->
-     
+
     @include($footer . 'footer__default', ['class' => 'v__1'])
 @endsection

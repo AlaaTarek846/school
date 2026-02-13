@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ContactMessageController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Admin\SubscribeController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TwoAboutController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\LanguageController;
@@ -147,4 +149,27 @@ Route::controller(PageController::class)->group(function (){
     Route::get('faculty-sub', 'facultySub')->name('faculty-sub');
     Route::get('faculty', 'faculty')->name('faculty');
     Route::get('tution-fee', 'tutionFee')->name('tution-fee');
+
+
 });
+
+Route::controller(AboutController::class)->group(function (){
+    Route::get('principal-message', 'principalMessage')->name('principal-message');
+    Route::get('how-we-welcome-the-child', 'howWeWelcomeTheChild')->name('how-we-welcome-the-child');
+    Route::get('school-discipline-policy', 'schoolDisciplinePolicy')->name('school-discipline-policy');
+    Route::get('parents-meeting', 'parentsMeeting')->name('parents-meeting');
+});
+
+Route::controller(SchoolController::class)->group(function (){
+    Route::get('quality-assurance-files', 'qualityAssuranceFiles')->name('quality-assurance-files');
+    Route::get('social-specialist', 'socialSpecialist')->name('social-specialist');
+    Route::get('mission-and-vision', 'missionAndVision')->name('mission-and-vision');
+    Route::get('journey-of-success-and-excellence', 'journeyOfSuccessAndExcellence')->name('journey-of-success-and-excellence');
+    Route::get('careers', 'careers')->name('careers');
+    Route::get('student-registration', 'studentRegistration')->name('student-registration');
+    Route::get('gallery', 'gallery')->name('gallery');
+    Route::get('videos', 'videos')->name('videos');
+    Route::get('tuition-fees', 'tuitionFees')->name('tuition-fees');
+    Route::get('school-facilities', 'schoolFacilities')->name('school-facilities');
+});
+

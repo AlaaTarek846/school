@@ -19,7 +19,11 @@
                                     </text>
                                 </svg>
                                 <div class="rts__circle--icon">
-                                    <i class="fa-light fa-arrow-right"></i>
+                                    @if(app()->getLocale() == 'ar')
+                                        <i class="fa-light fa-arrow-left"></i>
+                                    @else
+                                        <i class="fa-light fa-arrow-right"></i>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -34,7 +38,13 @@
                     <h2 class="rts__title">{{ __('About Our University unipix') }}</h2>
                     <p class="rts__description">{{ __('At University Unipix, we believe in the transformative power of education and the boundless potential within every individual. Established in 1971, we have been dedicated to fostering intellectual curiosity, academic excellence, and a vibrant campus community.') }}</p>
                     <div class="stroke__text v__1">{{ __('EST. 1971') }}</div>
-                    <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('University Overview') }} <span><i class="fa-sharp fa-regular fa-arrow-right"></i></span></a>
+                    <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('University Overview') }} <span>
+                            @if(app()->getLocale() == 'ar')
+                                <i class="fa-regular fa-arrow-left"></i>
+                            @else
+                                <i class="fa-regular fa-arrow-right"></i>
+                            @endif
+                        </span></a>
                 </div>
             </div>
         </div>

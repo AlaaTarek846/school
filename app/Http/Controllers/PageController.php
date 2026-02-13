@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class PageController extends BaseController
 {
     // homepage one
     public function index(){
+        $testimonials = Testimonial::where('status', 1)->latest()->get();
         return $this->view('index',[
-            'page_title' => 'Lms and University Laravel 12 Template'
+            'page_title' => 'Lms and University Laravel 12 Template',
+            'testimonials' => $testimonials
         ]);
     }
 

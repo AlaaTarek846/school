@@ -40,7 +40,13 @@
                                 <p>{{ __('Remember to tailor the section names to fit the specific needs and structure of your university website.') }}
                                 </p>
                                 <a href="{{ route('program-single') }}" class="rts-theme-btn btn-arrow">{{ __('View Our Program') }}
-                                    <span><i class="fa-regular fa-arrow-right"></i></span>
+                                    <span>
+                                        @if(app()->getLocale() == 'ar')
+                                            <i class="fa-regular fa-arrow-left"></i>
+                                        @else
+                                            <i class="fa-regular fa-arrow-right"></i>
+                                        @endif
+                                    </span>
                                 </a>
                             </div>
                         </div>
@@ -51,7 +57,7 @@
                 </div>
                 <!-- banner animated shape -->
                 <div class="banner__wrapper--shape">
-                    <img src="{{asset('assets/images/banner/banner-svg.svg')}}" alt="banner">
+                    <img src="{{asset('assets/images/banner/banner-svg.svg')}}" style="transform: {{ app()->getLocale() == 'ar'? 'rotate3d(-1, 72, 0, 169deg);':'unset' }};" alt="banner">
                 </div>
             </div>
         </div>
@@ -72,7 +78,12 @@
                 <div class="rts__section--wrapper">
                     <h2 class="rts__section--title">{{ __('Our Programs') }}</h2>
                     <div class="rts__section--link">
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('more program') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('more program') }}<span>
+                                @if(app()->getLocale() == 'ar')
+                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
+                                @else
+                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                @endif
                         </span></a>
                     </div>
                 </div>
@@ -82,7 +93,12 @@
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__1.jpg')}});">
                         <h5 class="rts__program--item--title">{{ __('Graduation Program') }}</h5>
                         <p class="rts__program--item--description">{{ __('Embark on a journey of knowledge discovery, and growth at Unipix University.') }}</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span>
+                                @if(app()->getLocale() == 'ar')
+                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
+                                @else
+                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                @endif
                         </span></a>
                     </div>
                 </div>
@@ -90,7 +106,12 @@
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__2.jpg')}});">
                         <h5 class="rts__program--item--title">{{ __('Summer Program') }}</h5>
                         <p class="rts__program--item--description">{{ __('Embark on a journey of knowledge discovery, and growth at Unipix University.') }}</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span>
+                                @if(app()->getLocale() == 'ar')
+                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
+                                @else
+                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                @endif
                         </span></a>
                     </div>
                 </div>
@@ -98,7 +119,12 @@
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__3.jpg')}});">
                         <h5 class="rts__program--item--title">Undergraduate</h5>
                         <p class="rts__program--item--description">Embark on a journey of knowledge discovery, and growth at  Unipix University.</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">Learn More<span>
+                                @if(app()->getLocale() == 'ar')
+                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
+                                @else
+                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                @endif
                         </span></a>
                     </div>
                 </div>
@@ -106,7 +132,12 @@
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__4.jpg')}});">
                         <h5 class="rts__program--item--title">{{ __('Online Program') }}</h5>
                         <p class="rts__program--item--description">{{ __('Embark on a journey of knowledge discovery, and growth at Unipix University.') }}</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">Learn More<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">Learn More<span>
+                                @if(app()->getLocale() == 'ar')
+                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
+                                @else
+                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                @endif
                         </span></a>
                     </div>
                 </div>
@@ -124,7 +155,7 @@
                         <h2 class="rts__section--title">{{ __('Campus Life') }}</h2>
                         <p class="rts__section--description">{{ __('Embark on a journey of knowledge, discovery, and growth at Unipix University. Our admissions process is designed identify bright, motivated individuals who are eager contribute to our dynamic academic community.') }}</p>
                         <div class="campus__vector">
-                            <img src="{{asset('assets/images/campus/campus__vector.svg')}}" alt="">
+                            <img src="{{asset('assets/images/campus/campus__vector.svg')}}" style="transform: {{ app()->getLocale() == 'ar'? 'rotate3d(-1, 72, 0, 169deg);':'unset' }};" alt="">
                         </div>
                     </div>
                 </div>
@@ -141,7 +172,13 @@
                                     <p class="campus__life--single--description">{{ __('Building a vibrant community of creative and accomplished people from around.') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
-                                    <a href="{{ route('campus-life') }}"><i class="fa-sharp fa-regular fa-arrow-right"></i></a>
+                                    <a href="{{ route('campus-life') }}">
+                                        @if(app()->getLocale() == 'ar')
+                                            <i class="fa-sharp fa-regular fa-arrow-left"></i>
+                                        @else
+                                            <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                        @endif
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +194,13 @@
                                     <p class="campus__life--single--description">{{ __('Building a vibrant community of creative and accomplished people from around.') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
-                                    <a href="{{ route('campus-life') }}"><i class="fa-sharp fa-regular fa-arrow-right"></i></a>
+                                    <a href="{{ route('campus-life') }}">
+                                        @if(app()->getLocale() == 'ar')
+                                            <i class="fa-sharp fa-regular fa-arrow-left"></i>
+                                        @else
+                                            <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                        @endif
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +216,13 @@
                                     <p class="campus__life--single--description">{{ __('Building a vibrant community of creative and accomplished people from around.') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
-                                    <a href="{{ route('athletics') }}"><i class="fa-sharp fa-regular fa-arrow-right"></i></a>
+                                    <a href="{{ route('athletics') }}">
+                                        @if(app()->getLocale() == 'ar')
+                                            <i class="fa-regular fa-arrow-left"></i>
+                                        @else
+                                            <i class="fa-regular fa-arrow-right"></i>
+                                        @endif
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +240,12 @@
                 <div class="rts__section--wrapper">
                     <h2 class="rts__section--title">{{ __('University Professors') }}</h2>
                     <div class="rts__section--link">
-                        <a href="{{ route('faculty') }}" class="rts-nbg-btn btn-arrow">{{ __('Find More Professor') }}<span><i class="fa-sharp fa-regular fa-arrow-right"></i>
+                        <a href="{{ route('faculty') }}" class="rts-nbg-btn btn-arrow">{{ __('Find More Professor') }}<span>
+                                @if(app()->getLocale() == 'ar')
+                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
+                                @else
+                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                @endif
                         </span></a>
                     </div>
                 </div>
@@ -337,96 +391,31 @@
                         }
                     }'>
                         <div class="swiper-wrapper">
+                            @foreach($testimonials as $testimonial)
                             <!-- single slide -->
                             <div class="swiper-slide">
                                 <div class="rts__single--testimonial">
-                                    <div class="rts__rating--star">
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-light fa-star"></i>
-                                    </div>
                                     <p class="rts__single--testimonial--text">
-                                        {{ __("I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.") }}
+                                        {{ app()->getLocale() == 'ar' ? $testimonial->description_ar : $testimonial->description_en }}
                                     </p>
                                     <div class="rts__single--testimonial--author">
                                         <div class="rts__single--testimonial--author--meta">
                                             <div class="rts__author--img">
-                                                <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
+                                                <img src="{{ $testimonial->media ? asset($testimonial->media->url) : asset('assets/images/testimonial/author-1.png') }}" alt="author">
                                             </div>
                                             <div class="rts__author--info">
-                                                <h5 class="mb-0">Emma Elizabeth</h5>
-                                                <span class="designation">{{ __('Assistant Teacher') }}</span>
+                                                <h5 class="mb-0">{{ $testimonial->name }}</h5>
+                                                <span class="designation">{{ app()->getLocale() == 'ar' ? $testimonial->job_ar : $testimonial->job_en }}</span>
                                             </div>
                                         </div>
                                         <div class="rts__single--testimonial--quote">
-                                            <img src="{{asset('assets/images/testimonial/quote.svg')}}" alt="quote">
+                                            <img src="{{asset('assets/images/testimonial/quote.svg')}}" style="transform: {{ app()->getLocale() == 'ar'? 'rotate(180deg)':'unset' }};" alt="quote">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- single slide end -->
-                            <!-- single slide -->
-                            <div class="swiper-slide">
-                                <div class="rts__single--testimonial">
-                                    <div class="rts__rating--star">
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-light fa-star"></i>
-                                    </div>
-                                    <p class="rts__single--testimonial--text">
-                                        {{ __("I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.") }}
-                                    </p>
-                                    <div class="rts__single--testimonial--author">
-                                        <div class="rts__single--testimonial--author--meta">
-                                            <div class="rts__author--img">
-                                                <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
-                                            </div>
-                                            <div class="rts__author--info">
-                                                <h5 class="mb-0">Emma Elizabeth</h5>
-                                                <span class="designation">{{ __('Assistant Teacher') }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="rts__single--testimonial--quote">
-                                            <img src="{{asset('assets/images/testimonial/quote.svg')}}" alt="quote">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single slide end -->
-                            <!-- single slide -->
-                            <div class="swiper-slide">
-                                <div class="rts__single--testimonial">
-                                    <div class="rts__rating--star">
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-light fa-star"></i>
-                                    </div>
-                                    <p class="rts__single--testimonial--text">
-                                        {{ __("I can't recommend The Gourmet Haven enough. It's a place for special date in nights, or whenever you're in the mood for a culinary.") }}
-                                    </p>
-                                    <div class="rts__single--testimonial--author">
-                                        <div class="rts__single--testimonial--author--meta">
-                                            <div class="rts__author--img">
-                                                <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
-                                            </div>
-                                            <div class="rts__author--info">
-                                                <h5 class="mb-0">Emma Elizabeth</h5>
-                                                <span class="designation">{{ __('Assistant Teacher') }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="rts__single--testimonial--quote">
-                                            <img src="{{asset('assets/images/testimonial/quote.svg')}}" alt="quote">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single slide end -->
+                            @endforeach
                         </div>
                     </div>
                 </div>

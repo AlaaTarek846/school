@@ -84,6 +84,8 @@ Route::prefix('api')->group(function () {
         Route::apiResource('principal-message', \App\Http\Controllers\Admin\PrincipalMessageController::class);
         Route::apiResource('school-discipline-policy', \App\Http\Controllers\Admin\SchoolDisciplinePolicyController::class);
         Route::apiResource('quality-assurance-files', \App\Http\Controllers\Admin\QualityAssuranceFileController::class);
+        Route::apiResource('education-stages', \App\Http\Controllers\Admin\EducationStageController::class);
+        Route::apiResource('fees', \App\Http\Controllers\Admin\FeeController::class);
 
     });
 
@@ -120,6 +122,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('principal-message', [\App\Http\Controllers\Admin\PrincipalMessageController::class, 'indexPage'])->name('principal-message');
             Route::get('school-discipline-policy', [\App\Http\Controllers\Admin\SchoolDisciplinePolicyController::class, 'indexPage'])->name('school-discipline-policy');
             Route::get('quality-assurance-files', [\App\Http\Controllers\Admin\QualityAssuranceFileController::class, 'indexPage'])->name('quality-assurance-files');
+    Route::get('education-stages', [\App\Http\Controllers\Admin\EducationStageController::class, 'indexPage'])->name('education-stages');
+    Route::get('fees', [\App\Http\Controllers\Admin\FeeController::class, 'indexPage'])->name('fees');
             Route::get('contact-messages', [ContactMessageController::class, 'indexPage'])->name('contact-messages');
             Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');
             Route::get('career-applications', [CareerApplicationController::class, 'indexPage'])->name('career-applications');

@@ -26,6 +26,9 @@ class SchoolDisciplinePolicyController extends Controller
         if ($request->hasFile('image')) {
             $data['image'] = saveFile($request->image, 'school_discipline_policies');
         }
+        if ($request->hasFile('image_en')) {
+            $data['image_en'] = saveFile($request->image_en, 'school_discipline_policies');
+        }
         SchoolDisciplinePolicy::create($data);
         return responseJson([], 'Added Successfully', 200);
     }
@@ -42,6 +45,13 @@ class SchoolDisciplinePolicyController extends Controller
             $data['image'] = saveFile($request->image, 'school_discipline_policies');
         }
 
+        if ($request->hasFile('image_en')) {
+            if ($record->image_en) {
+                unlink_image_by_path($record->image_en);
+            }
+            $data['image_en'] = saveFile($request->image_en, 'school_discipline_policies');
+        }
+
         $record->update($data);
         return responseJson([], 'Updated Successfully', 200);
     }
@@ -51,6 +61,9 @@ class SchoolDisciplinePolicyController extends Controller
         $record = SchoolDisciplinePolicy::findOrFail($id);
         if ($record->image) {
             unlink_image_by_path($record->image);
+        }
+        if ($record->image_en) {
+            unlink_image_by_path($record->image_en);
         }
         $record->delete();
         return responseJson([], 'Deleted Successfully', 200);

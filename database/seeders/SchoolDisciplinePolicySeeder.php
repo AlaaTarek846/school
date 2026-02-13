@@ -19,11 +19,20 @@ class SchoolDisciplinePolicySeeder extends Seeder
             '/storage/school_discipline_policies/لائحة-الانضباط-المدرسي-1-1o-scaled.jpg',
             '/storage/school_discipline_policies/لائحة-الانضباط-المدرسي-1-1-scaled.jpg',
             '/storage/school_discipline_policies/لائحة-الانضباط-المدرسي-31-1-scaled.jpg',
+
+        ];
+        $images_en = [
+            '/storage/school_discipline_policies/لائحة-الانضباط-المدرسي-إنجليزي-1-scaled (1).jpg',
+            '/storage/school_discipline_policies/لائحة-الانضباط-المدرسي-إنجليزي-1-scaled.jpg',
+            '/storage/school_discipline_policies/1232-scaled.jpg',
         ];
 
-        foreach ($images as $image) {
+
+        foreach ($images as $index => $image) {
             SchoolDisciplinePolicy::create([
-                'image' => $image,
+                'image' => $images[$index],
+                'image_en' => $images_en[$index],
+
             ]);
         }
     }

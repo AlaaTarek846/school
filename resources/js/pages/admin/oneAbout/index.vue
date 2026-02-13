@@ -13,11 +13,11 @@
 <!--                        class="w-full w-100"-->
 <!--                ></Select>-->
               </div>
-              <div class="prism-toggle">
-<!--                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#area-model">-->
+<!--              <div class="prism-toggle">-->
+<!--                <button @click="showModelCreate"  class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#area-model">-->
 <!--                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}-->
 <!--                </button>-->
-              </div>
+<!--              </div>-->
             </div>
             <div class="card-body">
               <div class="table-responsive mb-2">

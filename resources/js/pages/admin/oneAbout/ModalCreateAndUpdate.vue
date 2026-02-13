@@ -11,28 +11,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                      <div class="col-md-6 mb-2" v-for="lang in languages">
-                        <label class="form-label">{{ $t('label.title') }} فرعي ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                        <input type="text" class="form-control form-control-lg"  v-model="v$[`title_color_${lang}`].$model"
-                               :class="{'is-invalid': v$[`title_color_${lang}`].$error || errors[`title_color_${lang}`],
-                                   'is-valid': !v$[`title_color_${lang}`].$invalid && !errors[`title_color_${lang}`]}">
-
-                        <div class="invalid-feedback">
-                          <span v-if="v$[`title_color_${lang}`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
-                          <span v-if="v$[`title_color_${lang}`].minLength.$invalid">{{ $t('validation.TitleIsMustHaveAtLeast') }} {{
-                              v$[`title_color_${lang}`].minLength.$params.min
-                            }} {{ $t('validation.Letters') }} <br />
-                                </span>
-                          <span v-if="v$[`title_color_${lang}`].maxLength.$invalid">{{ $t('validation.TitleIsMustHaveAtMost') }} {{
-                              v$[`title_color_${lang}`].maxLength.$params.max
-                            }} {{ $t('validation.Letters') }}
-                                </span></div>
-                        <template v-if="errors[`title_color_${lang}`]">
-                          <error-message v-for="(errorMessage, index) in errors[`title_color_${lang}`]" :key="index">
-                            {{ errorMessage }}
-                          </error-message>
-                        </template>
-                      </div>
 
                       <div class="col-md-6 mb-2" v-for="lang in languages">
                         <label class="form-label">{{ $t('label.title') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
@@ -56,45 +34,10 @@
                           </error-message>
                         </template>
                       </div>
-                      <div class="col-md-6 mb-2">
-                        <label class="form-label">عدد العملاء  </label>
-                        <input type="number" class="form-control form-control-lg"  v-model="v$.years_experience.$model"
-                               :class="{'is-invalid': v$.years_experience.$error || errors[`years_experience`],
-                                   'is-valid': !v$.years_experience.$invalid && !errors[`years_experience`]}">
 
-                        <div class="invalid-feedback">
-                          <span v-if="v$.years_experience.required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
-                          <template v-if="errors[`years_experience`]">
-                            <error-message v-for="(errorMessage, index) in errors[`years_experience`]" :key="index">
-                              {{ errorMessage }}
-                            </error-message>
-                          </template>
-                        </div>
-                      </div>
-                      <div class="col-md-6 mb-2">
-                        <label class="form-label">لنك يوتيوب</label>
-                        <input type="text" class="form-control form-control-lg"  v-model="v$.url.$model"
-                               :class="{'is-invalid': v$.url.$error || errors[`url`],
-                                     'is-valid': !v$.url.$invalid && !errors[`url`]}">
-
-                        <div class="invalid-feedback">
-                          <span v-if="v$.url.required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
-                          <template v-if="errors[`url`]">
-                            <error-message v-for="(errorMessage, index) in errors[`url`]" :key="index">
-                              {{ errorMessage }}
-                            </error-message>
-                          </template>
-                        </div>
-                      </div>
-                      <div class="col-md-6 mt-3" v-for="lang in languages">
+                      <div class="col-md-12 mt-3" v-for="lang in languages">
                         <label class="form-label">{{ $t('label.description') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                        <textarea
-                            class="form-control summernote"
-                            rows="4"
-                            v-model.trim="v$[`description_${lang}`].$model"
-                            :class="{'is-invalid': v$[`description_${lang}`].$error ||errors[`description_${lang}`],
-                                    'is-valid':!v$[`description_${lang}`].$invalid && !errors[`description_${lang}`]}">
-                            </textarea>
+                         <Editor ref="descRef" :modules="customModules" v-model="v$[`description_${lang}`].$model"></Editor>
                         <template v-if="errors[`description_${lang}`]">
                           <error-message v-for="(errorMessage, index) in errors[`description_${lang}`]" :key="index">
                             {{ errorMessage }}
@@ -102,8 +45,8 @@
                         </template>
                       </div>
                         <h4 class="my-2">التفاصيل</h4>
-                        <div class="row" v-for="(detail, index) in submitData.data.details" :key="index">
-                          <div class="col-xl-5 mt-1" v-for="lang in languages">
+                        <div class="row border p-2 mb-2" v-for="(detail, index) in submitData.data.details" :key="index">
+                          <div class="col-md-6 mt-1" v-for="lang in languages">
                             <label class="form-label">{{ $t('label.title') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
                             <input type="text" class="form-control form-control-lg"  v-model="submitData.data.details[index][`title_${lang}`]"
                                    :class="{ 'is-invalid': v$.details.$each.$response.$data[index][`title_${lang}`].$error || errors[`details[${index}][title_${lang}]`],
@@ -119,7 +62,34 @@
                               </error-message>
                             </template>
                           </div>
-                          <div class="col-md-2 mt-1" style="line-height: 85px;">
+
+                          <div class="col-md-6 mt-1">
+                              <label class="form-label">العدد</label>
+                              <input type="number" class="form-control form-control-lg" v-model="submitData.data.details[index].count"
+                                     :class="{ 'is-invalid': v$.details.$each.$response.$data[index].count.$error || errors[`details[${index}][count]`],
+                                      'is-valid': !v$.details.$each.$response.$data[index].count.$invalid && !errors[`details[${index}][count]`] }">
+                                <div class="invalid-feedback">
+                                    <span v-if="v$.details.$each.$response.$data[index].count.required.$invalid">{{
+                                        $t('global.ThisFieldIsRequired') }}<br />
+                                    </span>
+                                     <span v-if="v$.details.$each.$response.$data[index].count.integer.$invalid">{{
+                                        $t('validation.MustBeInteger') }}<br />
+                                    </span>
+                                </div>
+                          </div>
+
+                          <div class="col-md-6 mt-1">
+                              <label class="form-label">صورة</label>
+                              <input class="form-control" type="file" @change="previewDetailImage($event, index)" accept="image/*">
+                              <div :id="`container-images-${index}`" class="row justify-content-center mt-2">
+                                  <figure class="col-3" v-if="submitData.data.details[index].image && typeof submitData.data.details[index].image == 'string'">
+                                    <img :src="submitData.data.details[index].image" class="img-fluid rounded h-100 w-100 m-1 bg-dark" />
+                                  </figure>
+                              </div>
+                          </div>
+
+
+                          <div class="col-md-12 mt-2 text-end">
                             <button
                                 type="button" class="btn btn-danger btn-sm mx-1"
                                 @click="removeSize(index)"
@@ -139,7 +109,7 @@
                           </div>
                         </div>
                         <div class="col-md-12 mt-3">
-                          <label class="form-label">صورة  (498 * 460)</label>
+                          <label class="form-label">صورة  (850 * 528)</label>
                           <div class="row img-div-position">
                             <div class="col-12 text-end">
                               <button
@@ -208,10 +178,36 @@
 <script setup>
   import {computed, onMounted, reactive, ref, toRefs, watch, nextTick, defineEmits} from "vue";
   import {useI18n} from "vue-i18n";
-  import {maxLength, minLength, required, numeric, requiredIf, minValue, helpers, url} from "@vuelidate/validators";
+  import {maxLength, minLength, required, numeric, requiredIf, minValue, helpers, url, integer} from "@vuelidate/validators";
   import useVuelidate from "@vuelidate/core";
   import adminApi from "../../../api/adminAxios";
   import {useStore} from "vuex";
+  import Editor from 'primevue/editor';
+
+  const components = { Editor };
+
+  const customModules = ref({
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                        // text direction
+
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+
+      ['clean']                                         // remove formatting button
+    ],
+    theme: 'bubble',
+  })
 
   const props = defineProps({
       type: {default: 'create'},
@@ -251,23 +247,26 @@
     submitData.data.description_ar = '';
     submitData.data.description_en = '';
     submitData.data.title_ar = '';
-    submitData.data.title_color_ar = '';
     submitData.data.title_en = '';
-    submitData.data.title_color_en = '';
     submitData.data.status = true;
     submitData.data.first_photo = '';
-    submitData.data.years_experience = 0;
-    submitData.data.url = '';
     submitData.data.details = [{}];
+    if(languages.value.length == 0){
+        languages.value = store.state.lang.languages;
+    }
     let langSize = {};
     languages.value.forEach((el)=>{
         let title = `title_${el}`;
         submitData.data.details[0][title] = '';
         langSize[title] = {minLength: minLength(1),maxLength:maxLength(200), required};
      });
+    submitData.data.details[0].count = 0;
+    submitData.data.details[0].image = '';
+
     langValidation2.value = {
         $each: helpers.forEach({
           ...langSize,
+          count: {required, integer}
         })
     };
     is_disabled.value = false;
@@ -289,14 +288,10 @@
               loading.value = true;
               let l = res.data.data;
               imageUpload.value = l.first_photo;
-              submitData.data.years_experience = l.years_experience;
               submitData.data.description_ar = l.description_ar;
               submitData.data.description_en = l.description_en;
               submitData.data.title_en = l.title_en;
-              submitData.data.title_color_en = l.title_color_en;
               submitData.data.title_ar = l.title_ar;
-              submitData.data.title_color_ar = l.title_color_ar;
-              submitData.data.url  = l.url;
               submitData.data.details = [];
               l.details.forEach((el,index) => {
                 submitData.data.details.push({});
@@ -304,6 +299,8 @@
                   let title = `title_${n}`;
                   submitData.data.details[index][title] = el[title];
                 });
+                submitData.data.details[index].count = el.count;
+                submitData.data.details[index].image = el.image;
               });
             })
             .catch((err) => {
@@ -326,12 +323,8 @@
       description_en: '',
       title_en: '',
       title_ar: '',
-      title_color_en: '',
-      title_color_ar: '',
       status: true,
       first_photo: '',
-      years_experience: '',
-      url: '',
       details: []
     }
   });
@@ -339,13 +332,9 @@
   const rules = computed(() => {
     return {
       title_ar: {minLength: minLength(1),maxLength:maxLength(100),required,},
-      title_color_ar: {minLength: minLength(1),maxLength:maxLength(100),required,},
       title_en: {minLength: minLength(1),maxLength:maxLength(100),required,},
-      title_color_en: {minLength: minLength(1),maxLength:maxLength(100),required,},
-      description_ar: {minLength: minLength(1),maxLength:maxLength(200),required,},
-      description_en: {minLength: minLength(1),maxLength:maxLength(200),required,},
-      years_experience: { required, minValue: minValue(0) },
-      url: { required, url },
+      description_ar: {minLength: minLength(1),required,},
+      description_en: {minLength: minLength(1),required,},
       details: {
         ...langValidation2.value,
       },
@@ -366,12 +355,8 @@
       let formData = new FormData();
       formData.append('title_ar', submitData.data.title_ar);
       formData.append('title_en', submitData.data.title_en);
-      formData.append('title_color_ar', submitData.data.title_color_ar);
-      formData.append('title_color_en', submitData.data.title_color_en);
       formData.append('description_ar', submitData.data.description_ar);
       formData.append('description_en', submitData.data.description_en);
-      formData.append(`years_experience`, submitData.data.years_experience);
-      formData.append(`url`, submitData.data.url);
       if(submitData.data.first_photo) {
         formData.append('first_photo', submitData.data.first_photo);
       }
@@ -379,6 +364,12 @@
         languages.value.forEach((e)=>{
           formData.append(`details[${index}][title_${e}]`, submitData.data.details[index][`title_${e}`]);
         });
+        formData.append(`details[${index}][count]`, submitData.data.details[index].count);
+        if(submitData.data.details[index].image && typeof submitData.data.details[index].image != 'string'){
+            formData.append(`details[${index}][image]`, submitData.data.details[index].image);
+        } else if (submitData.data.details[index].image && typeof submitData.data.details[index].image == 'string') {
+             formData.append(`details[${index}][old_image]`, submitData.data.details[index].image);
+        }
       });
 
       if (props.type !== 'edit') {
@@ -462,6 +453,28 @@
 
   };
 
+  const previewDetailImage = (e, index) => {
+      let containerImages = document.querySelector(`#container-images-${index}`);
+      containerImages.innerHTML = "";
+
+      if(e) {
+          submitData.data.details[index].image = e.target.files[0];
+          let reader = new FileReader();
+          let figure = document.createElement('figure');
+          figure.className = 'col-3';
+
+          reader.onload = () => {
+              let img = document.createElement('img');
+              img.className = 'img-fluid rounded h-100 w-100 m-1 bg-dark';
+              img.setAttribute('src', reader.result);
+              figure.appendChild(img);
+          }
+
+          containerImages.appendChild(figure);
+          reader.readAsDataURL(submitData.data.details[index].image);
+      }
+  }
+
   function removeSize(index) {
     submitData.data.details.splice(index, 1);
   }
@@ -470,6 +483,8 @@
     languages.value.forEach((el)=>{
       submitData.data.details[submitData.data.details.length - 1][`title_${el}`] = '';
     });
+    submitData.data.details[submitData.data.details.length - 1].count = 0;
+    submitData.data.details[submitData.data.details.length - 1].image = '';
   }
 </script>
 
@@ -491,7 +506,7 @@
   margin: auto;
 }
 
-input[type="file"] {
+.waves-effect input[type="file"] {
   position: absolute;
   top: 0;
   right: 0;

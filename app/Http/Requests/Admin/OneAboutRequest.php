@@ -22,17 +22,16 @@ class OneAboutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title_ar" => "required|string|max:200",
-            "title_en" => "required|string|max:200",
-            "title_color_en" => "required|string|max:200",
-            "title_color_ar" => "required|string|max:200",
-            "description_ar" => "required|string|max:300",
-            "description_en" => "required|string|max:200",
-            "years_experience" => "required|min:0|max:300",
-            "url" => "required|string|url",
-            "details" => "required",
+            "title_ar" => "required|string",
+            "title_en" => "required|string",
+            "description_ar" => "required|string",
+            "description_en" => "required|string",
+            "details" => "required|array",
             "details.*.title_ar" => "required|string|max:200",
             "details.*.title_en" => "required|string|max:200",
+            "details.*.count" => "required|integer",
+            "details.*.image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
+            "details.*.old_image" => "nullable|string",
             'first_photo' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
         ];
     }

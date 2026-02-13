@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Testimonial extends Model
 {
-    use HasFactory,TranslationsTrait;
+    use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = ['name_ar', 'job_ar', 'job_en', 'description_ar', 'description_en', 'status', 'rating'];
 
     protected $table = 'testimonials';
 

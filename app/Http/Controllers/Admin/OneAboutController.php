@@ -36,6 +36,22 @@ class OneAboutController extends Controller
         return responseJson($oneAbout,'Data exited successfully',200);
     }
 
+    public function store(OneAboutRequest $request)
+    {
+        $data = $request->validated();
+        $oneAbout = OneAbout::create(Arr::except($data,['details','first_photo']));
+        if(isset($data['first_photo'])) {
+            saveFiles($data['first_photo'], $oneAbout, 'oneAbout', "first_photo",'create');
+        }
+        foreach ($data['details'] as $detail) {
+            if(isset($detail['image']) && is_file($detail['image'])){
+                $detail['image'] = saveFile($detail['image'], 'oneAboutDetails');
+            }
+            $d = AboutDetail::create(array_merge(['one_about_id' => $oneAbout->id],$detail));
+        }
+        return responseJson([],'Added Successfully',200);
+    }
+
     public function update(OneAboutRequest $request, OneAbout $oneAbout)
     {
         $data = $request->validated();
@@ -44,11 +60,18 @@ class OneAboutController extends Controller
         }
 
         $oneAbout->update(Arr::except($data,['details','first_photo']));
-        foreach ($oneAbout->details() as $detail) {
+        // Delete old details
+        foreach ($oneAbout->details as $detail) {
             $detail->delete();
         }
-        $oneAbout->details()->delete();
+        // Save new details
         foreach ($data['details'] as $detail) {
+            if(isset($detail['image']) && is_file($detail['image'])){
+                $detail['image'] = saveFile($detail['image'], 'oneAboutDetails');
+            } elseif (isset($detail['old_image'])) {
+                $detail['image'] = $detail['old_image'];
+                unset($detail['old_image']);
+            }
             $d = AboutDetail::create(array_merge(['one_about_id' => $oneAbout->id],$detail));
         }
         return responseJson([],'Updated Successfully',200);

@@ -18,8 +18,10 @@ import projectCategory from "./pages/admin/projectCategory/index.vue";
 import projectChallengeSolution from "./pages/admin/projectChallengeSolution/index.vue";
 import contactMessage from "./pages/admin/contactMessages/index.vue";
 import subscribes from "./pages/admin/subscribes/index.vue";
+import careerApplications from "./pages/admin/careerApplications/index.vue";
+import studentRegistrations from "./pages/admin/studentRegistrations/index.vue";
 
-function Components (app) {
+function Components(app) {
     app.component(`login`, Login);
     app.component(`home-slider`, homeSlider);
     app.component(`faq`, faq);
@@ -40,7 +42,8 @@ function Components (app) {
     app.component(`project-challenge-solution`, projectChallengeSolution);
     app.component(`contact-messages`, contactMessage);
     app.component(`subscribes`, subscribes);
+    app.component(`career-applications`, careerApplications);
+    app.component(`student-registrations`, studentRegistrations);
 }
-
 
 export default Components;

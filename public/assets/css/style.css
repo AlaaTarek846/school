@@ -10261,7 +10261,7 @@ input[type=radio] ~ label::after {
   transition: var(--transition);
   padding: 0 20px;
   background-color: var(--color-lightest);
-  border: 1px solid transparent;
+  border: 1px solid #0000003b;
   transition: var(--transition);
 }
 .form-group input:focus {
@@ -10277,7 +10277,7 @@ input[type=radio] ~ label::after {
   font-size: var(--p-s);
   transition: var(--transition);
   background-color: var(--color-lightest);
-  border: 1px solid transparent;
+  border: 1px solid #0000003b;
 }
 .form-group textarea:focus {
   border-color: var(--rt-primary);
@@ -10336,6 +10336,7 @@ input[type=submit]:hover {
 
 iframe {
   width: 100%;
+  height: 100%;
 }
 
 /*===============================

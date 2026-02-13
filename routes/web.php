@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\ArticleCategoryController;
-use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\CareerApplicationController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\CounterAboutController;
 use App\Http\Controllers\Admin\CounterController;
@@ -17,13 +17,14 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceFaqController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubscribeController;
+use App\Http\Controllers\Admin\StudentRegistrationController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TwoAboutController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,12 +38,12 @@ use App\Http\Controllers\LanguageController;
 */
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
-//auth routes
+// auth routes
 Route::group([], function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 });
 
-//admin routes
+// admin routes
 
 Route::prefix('api')->group(function () {
 
@@ -67,6 +68,8 @@ Route::prefix('api')->group(function () {
         Route::apiResource('testimonials', TestimonialController::class);
         Route::apiResource('contact-messages', ContactMessageController::class);
         Route::apiResource('subscribes', SubscribeController::class);
+        Route::apiResource('career-applications', CareerApplicationController::class);
+        Route::apiResource('student-registrations', StudentRegistrationController::class);
         Route::get('project-categories-dropdown', [ProjectCategoryController::class, 'dropdown']);
         Route::apiResource('project-categories', ProjectCategoryController::class);
         Route::apiResource('project-challenge-solutions', ProjectChallengeSolutionController::class);
@@ -100,6 +103,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('project-challenge-solutions', [ProjectChallengeSolutionController::class, 'indexPage'])->name('project-challenge-solutions');
             Route::get('contact-messages', [ContactMessageController::class, 'indexPage'])->name('contact-messages');
             Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');
+            Route::get('career-applications', [CareerApplicationController::class, 'indexPage'])->name('career-applications');
+            Route::get('student-registrations', [StudentRegistrationController::class, 'indexPage'])->name('student-registrations');
         });
 
         // logout
@@ -109,7 +114,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 });
 
-Route::controller(PageController::class)->group(function (){
+Route::controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('index-two', 'indexTwo')->name('index-two');
     Route::get('index-three', 'indexThree')->name('index-three');
@@ -141,6 +146,9 @@ Route::controller(PageController::class)->group(function (){
     Route::get('notice-details', 'noticeDetails')->name('notice-details');
     Route::get('campus-life', 'campusLife')->name('campus-life');
     Route::get('contact', 'contact')->name('contact');
+    Route::post('contact-message', [\App\Http\Controllers\Frontend\ContactMessageController::class, 'store'])->name('contact-message.store');
+    Route::post('/career-apply', [\App\Http\Controllers\Frontend\CareerApplicationController::class, 'store'])->name('career-apply');
+    Route::post('/student-registration-apply', [\App\Http\Controllers\Frontend\StudentRegistrationController::class, 'store'])->name('student-registration-apply');
     Route::get('department-details', 'departmentDetails')->name('department-details');
     Route::get('event-details', 'eventDetails')->name('event-details');
     Route::get('event', 'event')->name('event');
@@ -150,17 +158,16 @@ Route::controller(PageController::class)->group(function (){
     Route::get('faculty', 'faculty')->name('faculty');
     Route::get('tution-fee', 'tutionFee')->name('tution-fee');
 
-
 });
 
-Route::controller(AboutController::class)->group(function (){
+Route::controller(AboutController::class)->group(function () {
     Route::get('principal-message', 'principalMessage')->name('principal-message');
     Route::get('how-we-welcome-the-child', 'howWeWelcomeTheChild')->name('how-we-welcome-the-child');
     Route::get('school-discipline-policy', 'schoolDisciplinePolicy')->name('school-discipline-policy');
     Route::get('parents-meeting', 'parentsMeeting')->name('parents-meeting');
 });
 
-Route::controller(SchoolController::class)->group(function (){
+Route::controller(SchoolController::class)->group(function () {
     Route::get('quality-assurance-files', 'qualityAssuranceFiles')->name('quality-assurance-files');
     Route::get('social-specialist', 'socialSpecialist')->name('social-specialist');
     Route::get('mission-and-vision', 'missionAndVision')->name('mission-and-vision');
@@ -172,4 +179,3 @@ Route::controller(SchoolController::class)->group(function (){
     Route::get('tuition-fees', 'tuitionFees')->name('tuition-fees');
     Route::get('school-facilities', 'schoolFacilities')->name('school-facilities');
 });
-

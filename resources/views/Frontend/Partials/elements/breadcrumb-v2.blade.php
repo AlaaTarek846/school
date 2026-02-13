@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="breadcrumb-content">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ __('Home') }}</a></li>
                         <li class="breadcrumb-item"><a href="#">{{ $parent ?? '' }}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ $page ?? '' }}</li>
                     </ul>

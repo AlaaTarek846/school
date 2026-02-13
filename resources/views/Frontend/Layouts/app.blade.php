@@ -11,6 +11,7 @@
 
         @include($partials . 'scripts')
         @yield('script')
+        @stack('scripts')
     </body>
 </html>
 

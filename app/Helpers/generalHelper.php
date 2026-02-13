@@ -135,3 +135,10 @@ function getExcerpt($html, $length = 150)
     return $text;
 }
 
+function saveFile($file, $folder)
+{
+    $image = time() . "-" . rand(0, 9999999) . '.' . $file->getClientOriginalName();
+    Storage::disk("public")->put($folder."/".$image, $file->getContent());
+    return Storage::url($folder."/".$image);
+}
+

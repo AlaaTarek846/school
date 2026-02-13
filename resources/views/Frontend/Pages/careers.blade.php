@@ -18,7 +18,7 @@
                     <div class="rts-ap-section">
                         <h3 class="rts-section-title mb--30">{{ __('Application Details') }}</h3>
                         <div class="rts-application-form">
-                            <form id="career-form" action="{{ route('career.store') }}" method="POST" enctype="multipart/form-data">
+                            <form id="career-form" action="{{ route('career-apply') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="single-form-part">
                                     <h5 class="form-title">{{ __('Personal Information') }}</h5>
@@ -100,6 +100,9 @@
                 data: formData,
                 processData: false,
                 contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 success: function(response) {
                     Swal.fire({
                         icon: 'success',

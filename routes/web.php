@@ -7,8 +7,11 @@ use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\CounterAboutController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\OneAboutController;
+use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\ProjectChallengeSolutionController;
@@ -57,6 +60,7 @@ Route::prefix('api')->group(function () {
         Route::apiResource('counters', CounterController::class);
         Route::apiResource('counter-abouts', CounterAboutController::class);
         Route::apiResource('one-abouts', OneAboutController::class);
+        Route::apiResource('why-choose-us', WhyChooseUsController::class);
         Route::apiResource('two-abouts', TwoAboutController::class);
         Route::get('services-dropdown', [ServiceController::class, 'dropdown']);
         Route::apiResource('services', ServiceController::class);
@@ -73,6 +77,10 @@ Route::prefix('api')->group(function () {
         Route::get('project-categories-dropdown', [ProjectCategoryController::class, 'dropdown']);
         Route::apiResource('project-categories', ProjectCategoryController::class);
         Route::apiResource('project-challenge-solutions', ProjectChallengeSolutionController::class);
+        Route::apiResource('galleries', GalleryController::class);
+        Route::apiResource('videos', VideoController::class);
+        Route::apiResource('how-we-welcome-child', \App\Http\Controllers\Admin\HowWeWelcomeChildController::class);
+        Route::apiResource('campus-tour', \App\Http\Controllers\Admin\CampusTourController::class);
 
     });
 
@@ -94,6 +102,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('setting', [SettingController::class, 'indexPage'])->name('setting');
             Route::get('products', [ProjectController::class, 'indexPage'])->name('projects');
             Route::get('one-about', [OneAboutController::class, 'indexPage'])->name('one-about');
+            Route::get('why-choose-us', [WhyChooseUsController::class, 'indexPage'])->name('why-choose-us');
             Route::get('two-about', [TwoAboutController::class, 'indexPage'])->name('two-about');
             Route::get('counter-about', [CounterAboutController::class, 'indexPage'])->name('counter-about');
             Route::get('article-categories', [ArticleCategoryController::class, 'indexPage'])->name('article-categories');
@@ -101,6 +110,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('testimonial', [TestimonialController::class, 'indexPage'])->name('testimonial');
             Route::get('project-categories', [ProjectCategoryController::class, 'indexPage'])->name('project-categories');
             Route::get('project-challenge-solutions', [ProjectChallengeSolutionController::class, 'indexPage'])->name('project-challenge-solutions');
+            Route::get('galleries', [GalleryController::class, 'indexPage'])->name('galleries');
+            Route::get('videos', [VideoController::class, 'indexPage'])->name('videos');
+            Route::get('how-we-welcome-child', [\App\Http\Controllers\Admin\HowWeWelcomeChildController::class, 'indexPage'])->name('how-we-welcome-child');
+            Route::get('campus-tour', [\App\Http\Controllers\Admin\CampusTourController::class, 'indexPage'])->name('campus-tour');
             Route::get('contact-messages', [ContactMessageController::class, 'indexPage'])->name('contact-messages');
             Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');
             Route::get('career-applications', [CareerApplicationController::class, 'indexPage'])->name('career-applications');
@@ -175,7 +188,9 @@ Route::controller(SchoolController::class)->group(function () {
     Route::get('careers', 'careers')->name('careers');
     Route::get('student-registration', 'studentRegistration')->name('student-registration');
     Route::get('gallery', 'gallery')->name('gallery');
+    Route::get('api/galleries', 'getGalleries')->name('api.galleries');
     Route::get('videos', 'videos')->name('videos');
+    Route::get('api/videos', 'getVideos')->name('api.videos');
     Route::get('tuition-fees', 'tuitionFees')->name('tuition-fees');
     Route::get('school-facilities', 'schoolFacilities')->name('school-facilities');
 });

@@ -42,7 +42,6 @@
                                             <input type="tel" name="phone" id="phone" placeholder="{{ __('Phone Number') }}" required>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="single-form-part">
                                     <div class="single-input-item">
@@ -72,24 +71,18 @@
                 <div class="col-lg-4 sticky-coloum-item">
                     <div class="program-sidebar">
 
-                        <!-- contact info -->
+                        <!-- download application buttons -->
                         <div class="program-info">
-                            <h5>Department Contact Info</h5>
-                            <p>B.A. in Africana Studies</p>
-                            <div class="contact-info">
-                                <h5>Contact:</h5>
-                                <a href="mailto:barry.Unipix@info.com">barry.Unipix@info.com</a>
-                                <a href="callto:121">664-254-251</a>
-                            </div>
-                            <div class="social-info">
-                                <h5>Social Info:</h5>
-                                <div class="social-info-link">
-                                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                                </div>
+                            <h5 class="mb--20">{{ __('Download Application Form') }}</h5>
+                            <div class="d-grid gap-3">
+                                <a href="#" class="rts-theme-btn primary with-arrow w-100 justify-content-center">
+                                    {{ __('Download Application (Arabic)') }}
+                                    <span><i class="fa-thin fa-file-pdf"></i></span>
+                                </a>
+                                <a href="#" class="rts-theme-btn primary with-arrow w-100 justify-content-center">
+                                    {{ __('Download Application (English)') }}
+                                    <span><i class="fa-thin fa-file-pdf"></i></span>
+                                </a>
                             </div>
                         </div>
 
@@ -123,6 +116,9 @@ $(document).ready(function() {
             data: formData,
             processData: false,
             contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success: function(response) {
                 Swal.fire({
                     icon: 'success',

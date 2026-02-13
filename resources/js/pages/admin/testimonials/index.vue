@@ -41,7 +41,7 @@
                         </span>
                       </div>
                     </td>
-                    <td>{{item.name}}</td>
+                    <td>{{item.name_ar}}</td>
                     <td>
                       <span class="badge rounded-pill bg-success-transparent" v-if="item.status">{{$t('global.activated')}}</span>
                       <span class="badge rounded-pill bg-danger-transparent" v-else>{{$t('global.Inactive')}}</span>

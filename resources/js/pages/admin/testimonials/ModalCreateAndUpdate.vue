@@ -14,59 +14,72 @@
 
                       <div class="col-md-6 mb-2">
                         <label class="form-label">الاسم</label>
-                        <input type="text" class="form-control form-control-lg"  v-model="v$.name.$model"
-                               :class="{'is-invalid': v$.name.$error || errors[`name`],
-                                     'is-valid': !v$[`name`].$invalid && !errors[`name`]}">
-
+                        <input type="text" class="form-control form-control-lg"  v-model="v$.name_ar.$model"
+                               :class="{'is-invalid': v$.name_ar.$error || errors[`name_ar`],
+                                     'is-valid': !v$[`name_ar`].$invalid && !errors[`name_ar`]}">
                         <div class="invalid-feedback">
-                          <span v-if="v$[`name`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
-                          <span v-if="v$.job.maxLength.$invalid">{{ $t('validation.NameMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                          <span v-if="v$[`name_ar`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
+                           <span v-if="v$.name_ar.maxLength.$invalid">{{ $t('validation.NameMustHaveAtLeast', { max: 200 }) }}<br /></span>
                         </div>
-
-                        <template v-if="errors[`name`]">
-                          <error-message v-for="(errorMessage, index) in errors[`name`]" :key="index">
-                            {{ errorMessage }}
-                          </error-message>
-                        </template>
                       </div>
 
+                        <div class="col-md-6 mt-2">
+                            <label class="form-label">التقييم (1-5)</label>
+                            <input type="number" min="1" max="5" class="form-control form-control-lg" v-model="v$.rating.$model"
+                                   :class="{'is-invalid': v$.rating.$error || errors['rating'],
+                                     'is-valid': !v$.rating.$invalid && !errors['rating']}">
+                            <div class="invalid-feedback">
+                                <span v-if="v$.rating.required.$invalid">{{ $t('validation.fieldRequired') }}<br /></span>
+                                <span v-if="v$.rating.integer.$invalid">{{ $t('validation.MustBeInteger') }}<br /></span>
+                                <span v-if="v$.rating.minValue.$invalid || v$.rating.maxValue.$invalid">يجب أن يكون التقييم بين 1 و 5<br /></span>
+                            </div>
+                        </div>
+
+
                       <div class="col-md-6 mb-2">
-                          <label class="form-label">الوظيفة</label>
-                          <input type="text" class="form-control form-control-lg"  v-model="v$.job.$model"
-                                 :class="{'is-invalid': v$.job.$error || errors[`job`],
-                                     'is-valid': !v$[`job`].$invalid && !errors[`job`]}">
-                        <div class="invalid-feedback">
-                          <span v-if="v$.job.maxLength.$invalid">{{ $t('validation.JobMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                          <label class="form-label">الوظيفة (عربي)</label>
+                          <input type="text" class="form-control form-control-lg"  v-model="v$.job_ar.$model"
+                                 :class="{'is-invalid': v$.job_ar.$error || errors[`job_ar`],
+                                     'is-valid': !v$[`job_ar`].$invalid && !errors[`job_ar`]}">
+                           <div class="invalid-feedback">
+                               <span v-if="v$.job_ar.maxLength.$invalid">{{ $t('validation.JobMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                           </div>
                         </div>
 
+                      <div class="col-md-6 mb-2">
+                          <label class="form-label">الوظيفة (English)</label>
+                          <input type="text" class="form-control form-control-lg"  v-model="v$.job_en.$model"
+                                 :class="{'is-invalid': v$.job_en.$error || errors[`job_en`],
+                                     'is-valid': !v$[`job_en`].$invalid && !errors[`job_en`]}">
+                          <div class="invalid-feedback">
+                              <span v-if="v$.job_en.maxLength.$invalid">{{ $t('validation.JobMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                          </div>
+                      </div>
 
-                          <template v-if="errors[`job`]">
-                            <error-message v-for="(errorMessage, index) in errors[`job`]" :key="index">
-                              {{ errorMessage }}
-                            </error-message>
-                          </template>
-                        </div>
                       <div class="col-md-12 mb-2">
-                        <label class="form-label">التعليق</label>
-                        <textarea type="text" class="form-control form-control-lg"  v-model="v$.description.$model"
-                                  :class="{'is-invalid': v$.description.$error || errors[`description`],
-                                     'is-valid': !v$[`description`].$invalid && !errors[`description`]}"> </textarea>
-
+                        <label class="form-label">التعليق (عربي)</label>
+                        <textarea type="text" class="form-control form-control-lg"  v-model="v$.description_ar.$model"
+                                  :class="{'is-invalid': v$.description_ar.$error || errors[`description_ar`],
+                                     'is-valid': !v$[`description_ar`].$invalid && !errors[`description_ar`]}"> </textarea>
                         <div class="invalid-feedback">
-                          <span v-if="v$[`description`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
-                          <span v-if="v$.job.maxLength.$invalid">{{ $t('validation.CommentMustHaveAtLeast', { max: 200 }) }}<br /></span>
-
+                          <span v-if="v$[`description_ar`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
+                           <span v-if="v$.description_ar.maxLength.$invalid">{{ $t('validation.CommentMustHaveAtLeast', { max: 200 }) }}<br /></span>
                         </div>
-                        <template v-if="errors[`description`]">
-                          <error-message v-for="(errorMessage, index) in errors[`description`]" :key="index">
-                            {{ errorMessage }}
-                          </error-message>
-                        </template>
+                      </div>
+
+                      <div class="col-md-12 mb-2">
+                          <label class="form-label">التعليق (English)</label>
+                          <textarea type="text" class="form-control form-control-lg"  v-model="v$.description_en.$model"
+                                    :class="{'is-invalid': v$.description_en.$error || errors[`description_en`],
+                                     'is-valid': !v$[`description_en`].$invalid && !errors[`description_en`]}"> </textarea>
+                          <div class="invalid-feedback">
+                              <span v-if="v$.description_en.maxLength.$invalid">{{ $t('validation.CommentMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                          </div>
                       </div>
 
                       <div class="col-md-6 mb-2"></div>
                         <div class="col-md-12 mt-3">
-                          <label class="form-label">صورة  (71 * 70)</label>
+                          <label class="form-label">صورة  (50 * 50)</label>
                           <div class="row img-div-position">
                             <div class="col-12 text-end">
                               <button
@@ -113,6 +126,7 @@
                             </div>
                           </div>
                         </div>
+
                         <div class="col-md-6 mt-2">
                             <div class="custom-toggle-switch d-flex align-items-center mt-4">
                                 <input id="toggleswitchPrimary" v-model="submitData.data.status" type="checkbox">
@@ -146,7 +160,7 @@
 <script setup>
   import {computed, onMounted, reactive, ref, toRefs, watch, nextTick, defineEmits} from "vue";
   import {useI18n} from "vue-i18n";
-  import {maxLength, minLength, required, numeric, requiredIf, integer} from "@vuelidate/validators";
+  import {maxLength, minLength, required, numeric, requiredIf, integer, minValue, maxValue} from "@vuelidate/validators";
   import useVuelidate from "@vuelidate/core";
   import adminApi from "../../../api/adminAxios";
   import {useStore} from "vuex";
@@ -186,9 +200,13 @@
   function defaultData(){
     submitData.data.status = true;
     submitData.data.image = '';
-    submitData.data.name = '';
-    submitData.data.description = '';
-    submitData.data.job = '';
+    submitData.data.name_ar = '';
+    submitData.data.rating = 5;
+
+    submitData.data.description_ar = '';
+    submitData.data.description_en = '';
+    submitData.data.job_ar = '';
+    submitData.data.job_en = '';
     is_disabled.value = false;
     loading.value = false;
     errors.value = [];
@@ -207,10 +225,14 @@
             .then((res) => {
               loading.value = true;
               let l = res.data.data;
-              submitData.data.description = l.description;
-              submitData.data.name = l.name;
-              submitData.data.job = l.job;
+              submitData.data.description_ar = l.description_ar;
+              submitData.data.description_en = l.description_en;
+              submitData.data.name_ar = l.name_ar;
+              // submitData.data.name_en = l.name_en;
+              submitData.data.job_ar = l.job_ar;
+              submitData.data.job_en = l.job_en;
               submitData.data.status = l.status == 1;
+              submitData.data.rating = l.rating;
               imageUpload.value = l.media;
             })
             .catch((err) => {
@@ -231,21 +253,29 @@
     data:{
       status: true,
       image: '',
-      description: '',
-      name: '',
-      job: '',
+      description_ar: '',
+      description_en: '',
+      name_ar: '',
+      // name_en: '',
+      job_ar: '',
+      job_en: '',
+      rating: 5,
     }
   });
 
   const rules = computed(() => {
     return {
-      name: {minLength: minLength(1),maxLength:maxLength(100),required,},
-      description: {minLength: minLength(1),maxLength:maxLength(200),required,},
-      job: {maxLength:maxLength(200)},
+      name_ar: {minLength: minLength(1),maxLength:maxLength(200),required,},
+      // name_en: {maxLength:maxLength(200)},
+      description_ar: {minLength: minLength(1),maxLength:maxLength(300),required,},
+      description_en: {maxLength:maxLength(300)},
+      job_ar: {maxLength:maxLength(200)},
+      job_en: {maxLength:maxLength(200)},
       image: {required: requiredIf( (value) => {
           return props.type == 'create' || !imageUpload.value;
         })
       },
+      rating: {required, integer, minValue: minValue(1), maxValue: maxValue(5)},
     }
   });
 
@@ -257,10 +287,14 @@
       errors.value = {};
 
       let formData = new FormData();
-      formData.append('name', submitData.data.name);
-      formData.append('description', submitData.data.description);
-      formData.append('job', submitData.data.job);
+      formData.append('name_ar', submitData.data.name_ar);
+      // formData.append('name_en', submitData.data.name_en || '');
+      formData.append('description_ar', submitData.data.description_ar);
+      formData.append('description_en', submitData.data.description_en || '');
+      formData.append('job_ar', submitData.data.job_ar || '');
+      formData.append('job_en', submitData.data.job_en || '');
       formData.append('status', submitData.data.status ? 1 : 0);
+      formData.append('rating', submitData.data.rating);
       if(submitData.data.image) {
         formData.append('image', submitData.data.image);
       }

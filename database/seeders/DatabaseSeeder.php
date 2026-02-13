@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             CampusTourSeeder::class,
             HowWeWelcomeChildSeeder::class,
             TestimonialSeeder::class,
+            PrincipalMessageSeeder::class,
+            SchoolDisciplinePolicySeeder::class,
+            QualityAssuranceFileSeeder::class,
         ]);
     }
 }

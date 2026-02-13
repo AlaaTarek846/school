@@ -54,9 +54,9 @@
 
     <!-- Start::home -->
     <li
-        class="slide has-sub {{ request()->routeIs('admin.page.one-about')   || request()->routeIs('admin.page.why-choose-us') || request()->routeIs('admin.page.how-we-welcome-child') || request()->routeIs('admin.page.campus-tour')   ? 'active open' : '' }}">
+        class="slide has-sub {{ request()->routeIs('admin.page.one-about')   || request()->routeIs('admin.page.why-choose-us') || request()->routeIs('admin.page.how-we-welcome-child') || request()->routeIs('admin.page.campus-tour') || request()->routeIs('admin.page.principal-message') || request()->routeIs('admin.page.school-discipline-policy') || request()->routeIs('admin.page.quality-assurance-files') ? 'active open' : '' }}">
         <a href="javascript:void(0);"
-           class="side-menu__item {{ request()->routeIs('admin.page.one-about') ||  request()->routeIs('admin.page.why-choose-us')  || request()->routeIs('admin.page.how-we-welcome-child') || request()->routeIs('admin.page.campus-tour') ? 'active' : '' }}">
+           class="side-menu__item {{ request()->routeIs('admin.page.one-about') ||  request()->routeIs('admin.page.why-choose-us')  || request()->routeIs('admin.page.how-we-welcome-child') || request()->routeIs('admin.page.campus-tour') || request()->routeIs('admin.page.principal-message') || request()->routeIs('admin.page.school-discipline-policy') || request()->routeIs('admin.page.quality-assurance-files') ? 'active' : '' }}">
             <i class="bi bi-map side-menu__icon"></i>
             <span class="side-menu__label">الصفحة من نحن</span>
             <i class="fe fe-chevron-right side-menu__angle"></i>
@@ -87,6 +87,24 @@
                 <a href="{{ route('admin.page.campus-tour') }}"
                    class="side-menu__item {{ request()->routeIs('admin.page.campus-tour') ? 'active' : '' }}">
                     جولة في حرم المدرسة
+                </a>
+            </li>
+            <li class="slide">
+                <a href="{{ route('admin.page.principal-message') }}"
+                   class="side-menu__item {{ request()->routeIs('admin.page.principal-message') ? 'active' : '' }}">
+                    كلمة المدير
+                </a>
+            </li>
+            <li class="slide">
+                <a href="{{ route('admin.page.school-discipline-policy') }}"
+                   class="side-menu__item {{ request()->routeIs('admin.page.school-discipline-policy') ? 'active' : '' }}">
+                    لائحة الانضباط المدرسي
+                </a>
+            </li>
+            <li class="slide">
+                <a href="{{ route('admin.page.quality-assurance-files') }}"
+                   class="side-menu__item {{ request()->routeIs('admin.page.quality-assurance-files') ? 'active' : '' }}">
+                    ملفات ضمان الجودة
                 </a>
             </li>
 

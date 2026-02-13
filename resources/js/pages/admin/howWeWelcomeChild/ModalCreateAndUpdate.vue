@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="col-md-12 mt-3">
-                            <label class="form-label">{{ $t('global.image') }}</label>
+                            <label class="form-label">{{ $t('global.image') }} (500 * 300)</label>
                             <div class="row img-div-position">
                                 <div class="col-12 text-end">
                                     <button type="button" class="btn btn-danger btn-sm" @click="removeImage" v-if="imageUpload">

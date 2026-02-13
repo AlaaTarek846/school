@@ -4,14 +4,14 @@
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">
-                        جولة في حرم المدرسة
+                        ملفات ضمان الجودة
                     </div>
-<!--                    <div class="prism-toggle">-->
-<!--                        <button @click="openModal" class="btn btn-primary ripple btn-wave waves-effect waves-light">-->
-<!--                            <i class="ri-add-line"></i>-->
-<!--                            {{$t('global.add')}}-->
-<!--                        </button>-->
-<!--                    </div>-->
+                    <div class="prism-toggle">
+                        <button @click="openModal" class="btn btn-primary ripple btn-wave waves-effect waves-light">
+                            <i class="ri-add-line"></i>
+                            {{$t('global.add')}}
+                        </button>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -21,6 +21,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">{{$t('global.image')}}</th>
                                 <th scope="col">{{$t('label.title')}}</th>
+                                <th scope="col">PDF</th>
                                 <th scope="col">{{$t('global.actions')}}</th>
                             </tr>
                             </thead>
@@ -36,16 +37,21 @@
                                 </td>
                                 <td>{{ item.title_ar }} / {{ item.title_en }}</td>
                                 <td>
+                                    <a v-if="item.pdf" :href="item.pdf" target="_blank" class="btn btn-sm btn-outline-danger">
+                                        <i class="ri-file-pdf-line"></i> PDF
+                                    </a>
+                                </td>
+                                <td>
                                     <div class="hstack gap-2 fs-15">
                                         <a @click="edit(item)" class="btn btn-icon btn-sm btn-info-transparent rounded-pill"><i class="ri-edit-line"></i></a>
-<!--                                        <a @click="deleteItem(item.id)" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>-->
+                                        <a @click="deleteItem(item.id)" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>
                                     </div>
                                 </td>
                             </tr>
                             </tbody>
                             <tbody v-else>
                                 <tr>
-                                    <td colspan="4" class="text-center text-danger">{{$t('global.NoDataFound')}}</td>
+                                    <td colspan="5" class="text-center text-danger">{{$t('global.NoDataFound')}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -78,7 +84,7 @@ const loading = ref(false);
 
 const getData = (page = 1) => {
     loading.value = true;
-    adminApi.get(`campus-tour?page=${page}`)
+    adminApi.get(`quality-assurance-files?page=${page}`)
         .then((res) => {
             data.value = res.data.data;
             dataPaginate.value = res.data.pagination;
@@ -94,7 +100,7 @@ const getData = (page = 1) => {
 const openModal = () => {
     type.value = 'create';
     dataRow.value = {};
-    let myModal = new bootstrap.Modal(document.getElementById('campus-tour-model'), {
+    let myModal = new bootstrap.Modal(document.getElementById('quality-assurance-file-model'), {
         keyboard: false
     });
     myModal.show();
@@ -103,7 +109,7 @@ const openModal = () => {
 const edit = (item) => {
     type.value = 'edit';
     dataRow.value = item;
-    let myModal = new bootstrap.Modal(document.getElementById('campus-tour-model'), {
+    let myModal = new bootstrap.Modal(document.getElementById('quality-assurance-file-model'), {
         keyboard: false
     });
     myModal.show();
@@ -120,7 +126,7 @@ const deleteItem = (id) => {
         confirmButtonText: t('global.YesDeleteIt')
     }).then((result) => {
         if (result.isConfirmed) {
-            adminApi.delete(`campus-tour/${id}`)
+            adminApi.delete(`quality-assurance-files/${id}`)
                 .then((res) => {
                     Swal.fire(
                         t('global.Deleted'),

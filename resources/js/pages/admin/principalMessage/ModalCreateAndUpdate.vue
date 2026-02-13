@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="campus-tour-model" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="principal-message-model" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -26,15 +26,7 @@
                         </div>
 
                         <div class="col-md-12 mt-3">
-                            <label class="form-label">{{ $t('global.link') }}</label>
-                            <input type="text" class="form-control" v-model="v$.link.$model" :class="{'is-invalid': v$.link.$error}">
-                            <div class="invalid-feedback" v-if="v$.link.$error">
-                                {{ $t('validation.url') }}
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 mt-3">
-                            <label class="form-label">{{ $t('global.image') }} (1200 * 500)</label>
+                            <label class="form-label">{{ $t('global.image') }}</label>
                             <div class="row img-div-position">
                                 <div class="col-12 text-end">
                                     <button type="button" class="btn btn-danger btn-sm" @click="removeImage" v-if="imageUpload">
@@ -48,7 +40,7 @@
                                             <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
                                         </span>
                                         <input type="file" @change="previewImage" accept="image/*">
-                                        <div id="container-images-campus" class="row justify-content-center h-100"></div>
+                                        <div id="container-images-principal" class="row justify-content-center h-100"></div>
                                         <div v-if="imageUpload" class="row justify-content-center h-100">
                                             <figure class="col-3" v-if="imageUpload.url">
                                                 <img :src="imageUpload.url" class="img-fluid rounded h-100 w-100 m-1" />
@@ -79,7 +71,7 @@
 <script setup>
 import { ref, reactive, computed, watch, defineEmits, defineProps, onMounted } from "vue";
 import useVuelidate from "@vuelidate/core";
-import { required, requiredIf, url } from "@vuelidate/validators";
+import { required, requiredIf } from "@vuelidate/validators";
 import adminApi from "../../../api/adminAxios";
 import Swal from "sweetalert2";
 import { useI18n } from "vue-i18n";
@@ -113,7 +105,6 @@ const state = reactive({
     title_en: '',
     description_ar: '',
     description_en: '',
-    link: '',
     image: null
 });
 
@@ -123,7 +114,6 @@ const rules = computed(() => {
         title_en: { required },
         description_ar: { required },
         description_en: { required },
-        link: { url },
         image: { required: requiredIf(() => props.type === 'create' && !imageUpload.value) }
     };
 });
@@ -143,7 +133,6 @@ watch(() => props.dataRow, (newVal) => {
         state.title_en = newVal.title_en;
         state.description_ar = newVal.description_ar;
         state.description_en = newVal.description_en;
-        state.link = newVal.link;
         imageUpload.value = newVal.image ? { url: newVal.image } : '';
         state.image = newVal.image;
     } else {
@@ -156,17 +145,16 @@ const resetForm = () => {
     state.title_en = '';
     state.description_ar = '';
     state.description_en = '';
-    state.link = '';
     state.image = null;
     imageFile.value = null;
     imageUpload.value = '';
     v$.value.$reset();
-    let container = document.querySelector("#container-images-campus");
+    let container = document.querySelector("#container-images-principal");
     if(container) container.innerHTML = "";
 };
 
 const previewImage = (e) => {
-    let container = document.querySelector("#container-images-campus");
+    let container = document.querySelector("#container-images-principal");
     container.innerHTML = "";
     imageUpload.value = '';
 
@@ -194,7 +182,7 @@ const removeImage = () => {
     imageUpload.value = '';
     imageFile.value = null;
     state.image = null;
-    let container = document.querySelector("#container-images-campus");
+    let container = document.querySelector("#container-images-principal");
     if(container) container.innerHTML = "";
 }
 
@@ -208,18 +196,17 @@ const submit = async () => {
     formData.append('title_en', state.title_en);
     formData.append('description_ar', state.description_ar);
     formData.append('description_en', state.description_en);
-    if(state.link) formData.append('link', state.link);
-
+    
     if (imageFile.value) {
         formData.append('image', imageFile.value);
     }
 
     if (props.type === 'create') {
-        adminApi.post('campus-tour', formData)
+        adminApi.post('principal-message', formData)
             .then(() => {
                 Swal.fire(t('global.success'), t('global.AddedSuccessfully'), 'success');
                 emit('created');
-                let modalEl = document.getElementById('campus-tour-model');
+                let modalEl = document.getElementById('principal-message-model');
                 let modal = bootstrap.Modal.getInstance(modalEl);
                 modal.hide();
                 resetForm();
@@ -230,11 +217,11 @@ const submit = async () => {
             .finally(() => loading.value = false);
     } else {
         formData.append('_method', 'PUT');
-        adminApi.post(`campus-tour/${props.dataRow.id}`, formData)
+        adminApi.post(`principal-message/${props.dataRow.id}`, formData)
             .then(() => {
                 Swal.fire(t('global.success'), t('global.UpdatedSuccessfully'), 'success');
                 emit('created');
-                let modalEl = document.getElementById('campus-tour-model');
+                let modalEl = document.getElementById('principal-message-model');
                 let modal = bootstrap.Modal.getInstance(modalEl);
                 modal.hide();
             })

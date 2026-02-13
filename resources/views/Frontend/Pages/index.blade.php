@@ -288,8 +288,20 @@
                         <h2 class="rts__section--title">{{ __('Student Feedback') }}</h2>
                         <p class="rts__section--description">{{ __('Your opinion matters, and by providing feedback, you contribute to the continuous enhancement of our academic programs, support services, and campus life') }}</p>
                         <div class="rts__slider--arrow">
-                            <div class="rts__prev slider__btn"><i class="fa-light fa-arrow-left"></i></div>
-                            <div class="rts__next slider__btn"><i class="fa-light fa-arrow-right"></i></div>
+                            <div class="rts__prev slider__btn">
+                                @if(app()->getLocale() == 'en')
+                                    <i class="fa-light fa-arrow-left"></i>
+                                @else
+                                    <i class="fa-light fa-arrow-right"></i>
+                                @endif
+                            </div>
+                            <div class="rts__next slider__btn">
+                                @if(app()->getLocale() == 'en')
+                                    <i class="fa-light fa-arrow-right"></i>
+                                @else
+                                    <i class="fa-light fa-arrow-left"></i>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>

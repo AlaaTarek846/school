@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="campus-tour-model" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="quality-assurance-file-model" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -17,24 +17,8 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 mt-3" v-for="lang in languages" :key="'desc'+lang">
-                            <label class="form-label">{{ $t('label.description') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                            <Editor :modules="customModules" v-model="v$[`description_${lang}`].$model" />
-                            <div class="text-danger" v-if="v$[`description_${lang}`].$error">
-                                {{ $t('validation.fieldRequired') }}
-                            </div>
-                        </div>
-
                         <div class="col-md-12 mt-3">
-                            <label class="form-label">{{ $t('global.link') }}</label>
-                            <input type="text" class="form-control" v-model="v$.link.$model" :class="{'is-invalid': v$.link.$error}">
-                            <div class="invalid-feedback" v-if="v$.link.$error">
-                                {{ $t('validation.url') }}
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 mt-3">
-                            <label class="form-label">{{ $t('global.image') }} (1200 * 500)</label>
+                            <label class="form-label">{{ $t('global.image') }}</label>
                             <div class="row img-div-position">
                                 <div class="col-12 text-end">
                                     <button type="button" class="btn btn-danger btn-sm" @click="removeImage" v-if="imageUpload">
@@ -48,7 +32,7 @@
                                             <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
                                         </span>
                                         <input type="file" @change="previewImage" accept="image/*">
-                                        <div id="container-images-campus" class="row justify-content-center h-100"></div>
+                                        <div id="container-images-qa" class="row justify-content-center h-100"></div>
                                         <div v-if="imageUpload" class="row justify-content-center h-100">
                                             <figure class="col-3" v-if="imageUpload.url">
                                                 <img :src="imageUpload.url" class="img-fluid rounded h-100 w-100 m-1" />
@@ -58,6 +42,37 @@
                                     <div class="col-md-12 my-1" v-if="v$.image.$error">
                                         <span class="text-danger">{{ $t('validation.fieldRequired') }}</span>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mt-3">
+                            <label class="form-label">PDF</label>
+                            <div class="row img-div-position">
+                                <div class="col-12 text-end">
+                                    <button type="button" class="btn btn-danger btn-sm" @click="removePdf" v-if="pdfUpload">
+                                        {{ $t('global.deleteImage') }}
+                                    </button>
+                                </div>
+                                <div class="col-md-12 mt-3 d-flex flex-wrap flex-fill h-100">
+                                    <div class="btn btn-outline-light waves-effect" style="width: 100%; height:90%">
+                                        <span v-if="!pdfUpload" style="margin-top:35%;">
+                                            <br><i class="bi bi-file-earmark-pdf fs-40" style="font-size: 85px;"></i>
+                                            <i class="fas fa-file-pdf ml-3" aria-hidden="true"></i>
+                                        </span>
+                                        <input type="file" @change="previewPdf" accept="application/pdf">
+                                        
+                                        <div v-if="pdfUpload" class="row justify-content-center h-100">
+                                            <figure class="col-3">
+                                                 <!-- Simple PDF icon or text -->
+                                                 <div style="font-size: 50px; text-align: center; margin-top: 10px;">
+                                                     <i class="bi bi-file-pdf text-danger"></i>
+                                                     <p class="fs-6">{{ pdfUpload.name || 'PDF Selected' }}</p>
+                                                 </div>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                    <!-- No validation required for PDF, nullable? User said fields: title, image, pdf. Assuming optional on edit, maybe required on create? -->
                                 </div>
                             </div>
                         </div>
@@ -79,12 +94,11 @@
 <script setup>
 import { ref, reactive, computed, watch, defineEmits, defineProps, onMounted } from "vue";
 import useVuelidate from "@vuelidate/core";
-import { required, requiredIf, url } from "@vuelidate/validators";
+import { required, requiredIf } from "@vuelidate/validators";
 import adminApi from "../../../api/adminAxios";
 import Swal from "sweetalert2";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
-import Editor from 'primevue/editor';
 
 const { t } = useI18n();
 const store = useStore();
@@ -95,25 +109,12 @@ const languages = ref([]);
 const loading = ref(false);
 const imageUpload = ref('');
 const imageFile = ref(null);
-
-const customModules = ref({
-    toolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'direction': 'rtl' }],
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        [{ 'color': [] }, { 'background': [] }],
-        [{ 'align': [] }],
-        ['clean']
-    ]
-})
+const pdfUpload = ref('');
+const pdfFile = ref(null);
 
 const state = reactive({
     title_ar: '',
     title_en: '',
-    description_ar: '',
-    description_en: '',
-    link: '',
     image: null
 });
 
@@ -121,9 +122,6 @@ const rules = computed(() => {
     return {
         title_ar: { required },
         title_en: { required },
-        description_ar: { required },
-        description_en: { required },
-        link: { url },
         image: { required: requiredIf(() => props.type === 'create' && !imageUpload.value) }
     };
 });
@@ -141,11 +139,10 @@ watch(() => props.dataRow, (newVal) => {
     if (props.type === 'edit' && newVal) {
         state.title_ar = newVal.title_ar;
         state.title_en = newVal.title_en;
-        state.description_ar = newVal.description_ar;
-        state.description_en = newVal.description_en;
-        state.link = newVal.link;
         imageUpload.value = newVal.image ? { url: newVal.image } : '';
         state.image = newVal.image;
+        pdfUpload.value = newVal.pdf ? { url: newVal.pdf, name: 'Current PDF' } : '';
+        // pdfFile.value = null; // Reset file object
     } else {
         resetForm();
     }
@@ -154,19 +151,18 @@ watch(() => props.dataRow, (newVal) => {
 const resetForm = () => {
     state.title_ar = '';
     state.title_en = '';
-    state.description_ar = '';
-    state.description_en = '';
-    state.link = '';
     state.image = null;
     imageFile.value = null;
     imageUpload.value = '';
+    pdfFile.value = null;
+    pdfUpload.value = '';
     v$.value.$reset();
-    let container = document.querySelector("#container-images-campus");
+    let container = document.querySelector("#container-images-qa");
     if(container) container.innerHTML = "";
 };
 
 const previewImage = (e) => {
-    let container = document.querySelector("#container-images-campus");
+    let container = document.querySelector("#container-images-qa");
     container.innerHTML = "";
     imageUpload.value = '';
 
@@ -194,8 +190,21 @@ const removeImage = () => {
     imageUpload.value = '';
     imageFile.value = null;
     state.image = null;
-    let container = document.querySelector("#container-images-campus");
+    let container = document.querySelector("#container-images-qa");
     if(container) container.innerHTML = "";
+}
+
+const previewPdf = (e) => {
+    if (e.target.files && e.target.files[0]) {
+        const file = e.target.files[0];
+        pdfFile.value = file;
+        pdfUpload.value = { name: file.name };
+    }
+};
+
+const removePdf = () => {
+    pdfUpload.value = '';
+    pdfFile.value = null;
 }
 
 const submit = async () => {
@@ -206,20 +215,20 @@ const submit = async () => {
     let formData = new FormData();
     formData.append('title_ar', state.title_ar);
     formData.append('title_en', state.title_en);
-    formData.append('description_ar', state.description_ar);
-    formData.append('description_en', state.description_en);
-    if(state.link) formData.append('link', state.link);
-
+    
     if (imageFile.value) {
         formData.append('image', imageFile.value);
     }
+    if (pdfFile.value) {
+        formData.append('pdf', pdfFile.value);
+    }
 
     if (props.type === 'create') {
-        adminApi.post('campus-tour', formData)
+        adminApi.post('quality-assurance-files', formData)
             .then(() => {
                 Swal.fire(t('global.success'), t('global.AddedSuccessfully'), 'success');
                 emit('created');
-                let modalEl = document.getElementById('campus-tour-model');
+                let modalEl = document.getElementById('quality-assurance-file-model');
                 let modal = bootstrap.Modal.getInstance(modalEl);
                 modal.hide();
                 resetForm();
@@ -230,11 +239,11 @@ const submit = async () => {
             .finally(() => loading.value = false);
     } else {
         formData.append('_method', 'PUT');
-        adminApi.post(`campus-tour/${props.dataRow.id}`, formData)
+        adminApi.post(`quality-assurance-files/${props.dataRow.id}`, formData)
             .then(() => {
                 Swal.fire(t('global.success'), t('global.UpdatedSuccessfully'), 'success');
                 emit('created');
-                let modalEl = document.getElementById('campus-tour-model');
+                let modalEl = document.getElementById('quality-assurance-file-model');
                 let modal = bootstrap.Modal.getInstance(modalEl);
                 modal.hide();
             })

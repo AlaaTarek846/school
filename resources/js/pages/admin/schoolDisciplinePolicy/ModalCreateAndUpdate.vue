@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="campus-tour-model" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="school-discipline-policy-model" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -8,33 +8,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6 mb-2" v-for="lang in languages" :key="lang">
-                            <label class="form-label">{{ $t('label.title') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                            <input type="text" class="form-control" v-model="v$[`title_${lang}`].$model"
-                                   :class="{'is-invalid': v$[`title_${lang}`].$error}">
-                            <div class="invalid-feedback" v-if="v$[`title_${lang}`].$error">
-                                {{ $t('validation.fieldRequired') }}
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 mt-3" v-for="lang in languages" :key="'desc'+lang">
-                            <label class="form-label">{{ $t('label.description') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                            <Editor :modules="customModules" v-model="v$[`description_${lang}`].$model" />
-                            <div class="text-danger" v-if="v$[`description_${lang}`].$error">
-                                {{ $t('validation.fieldRequired') }}
-                            </div>
-                        </div>
 
                         <div class="col-md-12 mt-3">
-                            <label class="form-label">{{ $t('global.link') }}</label>
-                            <input type="text" class="form-control" v-model="v$.link.$model" :class="{'is-invalid': v$.link.$error}">
-                            <div class="invalid-feedback" v-if="v$.link.$error">
-                                {{ $t('validation.url') }}
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 mt-3">
-                            <label class="form-label">{{ $t('global.image') }} (1200 * 500)</label>
+                            <label class="form-label">{{ $t('global.image') }}</label>
                             <div class="row img-div-position">
                                 <div class="col-12 text-end">
                                     <button type="button" class="btn btn-danger btn-sm" @click="removeImage" v-if="imageUpload">
@@ -48,7 +24,7 @@
                                             <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
                                         </span>
                                         <input type="file" @change="previewImage" accept="image/*">
-                                        <div id="container-images-campus" class="row justify-content-center h-100"></div>
+                                        <div id="container-images-discipline" class="row justify-content-center h-100"></div>
                                         <div v-if="imageUpload" class="row justify-content-center h-100">
                                             <figure class="col-3" v-if="imageUpload.url">
                                                 <img :src="imageUpload.url" class="img-fluid rounded h-100 w-100 m-1" />
@@ -79,12 +55,11 @@
 <script setup>
 import { ref, reactive, computed, watch, defineEmits, defineProps, onMounted } from "vue";
 import useVuelidate from "@vuelidate/core";
-import { required, requiredIf, url } from "@vuelidate/validators";
+import { required, requiredIf } from "@vuelidate/validators";
 import adminApi from "../../../api/adminAxios";
 import Swal from "sweetalert2";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
-import Editor from 'primevue/editor';
 
 const { t } = useI18n();
 const store = useStore();
@@ -96,34 +71,12 @@ const loading = ref(false);
 const imageUpload = ref('');
 const imageFile = ref(null);
 
-const customModules = ref({
-    toolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'direction': 'rtl' }],
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        [{ 'color': [] }, { 'background': [] }],
-        [{ 'align': [] }],
-        ['clean']
-    ]
-})
-
 const state = reactive({
-    title_ar: '',
-    title_en: '',
-    description_ar: '',
-    description_en: '',
-    link: '',
     image: null
 });
 
 const rules = computed(() => {
     return {
-        title_ar: { required },
-        title_en: { required },
-        description_ar: { required },
-        description_en: { required },
-        link: { url },
         image: { required: requiredIf(() => props.type === 'create' && !imageUpload.value) }
     };
 });
@@ -139,11 +92,6 @@ onMounted(() => {
 
 watch(() => props.dataRow, (newVal) => {
     if (props.type === 'edit' && newVal) {
-        state.title_ar = newVal.title_ar;
-        state.title_en = newVal.title_en;
-        state.description_ar = newVal.description_ar;
-        state.description_en = newVal.description_en;
-        state.link = newVal.link;
         imageUpload.value = newVal.image ? { url: newVal.image } : '';
         state.image = newVal.image;
     } else {
@@ -152,21 +100,16 @@ watch(() => props.dataRow, (newVal) => {
 });
 
 const resetForm = () => {
-    state.title_ar = '';
-    state.title_en = '';
-    state.description_ar = '';
-    state.description_en = '';
-    state.link = '';
     state.image = null;
     imageFile.value = null;
     imageUpload.value = '';
     v$.value.$reset();
-    let container = document.querySelector("#container-images-campus");
+    let container = document.querySelector("#container-images-discipline");
     if(container) container.innerHTML = "";
 };
 
 const previewImage = (e) => {
-    let container = document.querySelector("#container-images-campus");
+    let container = document.querySelector("#container-images-discipline");
     container.innerHTML = "";
     imageUpload.value = '';
 
@@ -194,7 +137,7 @@ const removeImage = () => {
     imageUpload.value = '';
     imageFile.value = null;
     state.image = null;
-    let container = document.querySelector("#container-images-campus");
+    let container = document.querySelector("#container-images-discipline");
     if(container) container.innerHTML = "";
 }
 
@@ -204,22 +147,17 @@ const submit = async () => {
 
     loading.value = true;
     let formData = new FormData();
-    formData.append('title_ar', state.title_ar);
-    formData.append('title_en', state.title_en);
-    formData.append('description_ar', state.description_ar);
-    formData.append('description_en', state.description_en);
-    if(state.link) formData.append('link', state.link);
-
+    
     if (imageFile.value) {
         formData.append('image', imageFile.value);
     }
 
     if (props.type === 'create') {
-        adminApi.post('campus-tour', formData)
+        adminApi.post('school-discipline-policy', formData)
             .then(() => {
                 Swal.fire(t('global.success'), t('global.AddedSuccessfully'), 'success');
                 emit('created');
-                let modalEl = document.getElementById('campus-tour-model');
+                let modalEl = document.getElementById('school-discipline-policy-model');
                 let modal = bootstrap.Modal.getInstance(modalEl);
                 modal.hide();
                 resetForm();
@@ -230,11 +168,11 @@ const submit = async () => {
             .finally(() => loading.value = false);
     } else {
         formData.append('_method', 'PUT');
-        adminApi.post(`campus-tour/${props.dataRow.id}`, formData)
+        adminApi.post(`school-discipline-policy/${props.dataRow.id}`, formData)
             .then(() => {
                 Swal.fire(t('global.success'), t('global.UpdatedSuccessfully'), 'success');
                 emit('created');
-                let modalEl = document.getElementById('campus-tour-model');
+                let modalEl = document.getElementById('school-discipline-policy-model');
                 let modal = bootstrap.Modal.getInstance(modalEl);
                 modal.hide();
             })

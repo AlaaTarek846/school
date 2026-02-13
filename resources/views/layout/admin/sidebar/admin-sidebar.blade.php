@@ -147,6 +147,26 @@
         </li>
     <!-- End::contact-messages -->
 
+    <!-- Start::career-applications -->
+    <li class="slide">
+        <a href="{{ route('admin.page.career-applications') }}"
+           class="side-menu__item {{ request()->routeIs('admin.page.career-applications') ? 'active' : '' }}">
+            <i class="bi bi-map side-menu__icon"></i>
+            <span class="side-menu__label">طلبات التوظيف</span>
+        </a>
+    </li>
+    <!-- End::career-applications -->
+
+    <!-- Start::student-registrations -->
+    <li class="slide">
+        <a href="{{ route('admin.page.student-registrations') }}"
+           class="side-menu__item {{ request()->routeIs('admin.page.student-registrations') ? 'active' : '' }}">
+            <i class="bi bi-map side-menu__icon"></i>
+            <span class="side-menu__label">طلبات تسجيل الطلاب</span>
+        </a>
+    </li>
+    <!-- End::student-registrations -->
+
     <!-- Start::subscribes -->
     <li class="slide">
         <a href="{{ route('admin.page.subscribes') }}"

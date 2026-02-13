@@ -18,6 +18,8 @@ import projectCategory from "./pages/admin/projectCategory/index.vue";
 import projectChallengeSolution from "./pages/admin/projectChallengeSolution/index.vue";
 import contactMessage from "./pages/admin/contactMessages/index.vue";
 import subscribes from "./pages/admin/subscribes/index.vue";
+import careerApplications from "./pages/admin/careerApplications/index.vue";
+import studentRegistrations from "./pages/admin/studentRegistrations/index.vue";
 import whyChooseUs from "./pages/admin/whyChooseUs/index.vue";
 import gallery from "./pages/admin/gallery/index.vue";
 import videos from "./pages/admin/video/index.vue";
@@ -48,6 +50,8 @@ function Components(app) {
     app.component(`project-challenge-solution`, projectChallengeSolution);
     app.component(`contact-messages`, contactMessage);
     app.component(`subscribes`, subscribes);
+    app.component(`career-applications`, careerApplications);
+    app.component(`student-registrations`, studentRegistrations);
     app.component(`why-choose-us`, whyChooseUs);
     app.component(`galleries`, gallery);
     app.component(`videos`, videos);
@@ -57,6 +61,5 @@ function Components(app) {
     app.component(`school-discipline-policy`, SchoolDisciplinePolicy);
     app.component(`quality-assurance-file`, QualityAssuranceFile);
 }
-
 
 export default Components;

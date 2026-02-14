@@ -118,4 +118,12 @@ class SchoolController extends BaseController
             'fee' => $fee
         ]);
     }
+
+    // فكر و تعلم
+    public function studentInfo()
+    {
+        return $this->view('student-info', [
+            'page_title' => 'student-info',
+        ]);
+    }
 }

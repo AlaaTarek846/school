@@ -46,13 +46,9 @@
                         </div>
 
                         <div class="payment-schedule mt--60 text-center" style="background: #f8f9fa; padding: 30px; border-radius: 10px; border: 1px dashed #2b3a8e;">
-                            <h4 style="color: #2b3a8e; margin-bottom: 20px;">* {{ app()->getLocale() == 'ar' ? 'مواعيد دفع الرسوم الدراسية' : 'Tuition Fees Payment Schedule' }} :</h4>
-                            <p style="font-size: 1.2rem; font-weight: 500;">
-                                {{ app()->getLocale() == 'ar' ? 'القسط الأول: 1 يوليو حتى نهاية سبتمبر.' : 'First Installment: July 1st until the end of September.' }}
-                            </p>
-                            <p style="font-size: 1.2rem; font-weight: 500;">
-                                {{ app()->getLocale() == 'ar' ? 'القسط الثاني: 1 ديسمبر حتى نهاية يناير.' : 'Second Installment: December 1st until the end of January.' }}
-                            </p>
+                            <div style="font-size: 1.2rem; font-weight: 500; white-space: pre-line; color: #2b3a8e;">
+                                {{ $fee ? (app()->getLocale() == 'ar' ? $fee->note_ar : $fee->note_en) : '' }}
+                            </div>
                         </div>
 
                     </div>

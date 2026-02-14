@@ -4,8 +4,9 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-        'title' => 'About Unipix University',
-        'page' => 'about'
+         'title' => __('Kobry El Galaa School'),
+        'page' => __('Parents Meeting'),
+
     ])
 
     <!-- admission page content -->
@@ -16,124 +17,63 @@
                     <div class="admission-content-top">
 
                         <div class="application-deadline">
-                            <h3 class="rts-section-title">Application Deadlines</h3>
+                            <h3 class="rts-section-title">{{ __('Parents Meeting') }}</h3>
                             <div class="application-deadline__content">
                                 <div class="application-deadline__content--table">
                                     <table class="table">
                                         <thead class="table-theme">
                                         <tr>
-                                            <td>Event</td>
-                                            <td>Restrictive Early Action</td>
-                                            <td>Regular Decision</td>
+                                            <td>{{ __('Day') }}</td>
+                                            <td>{{ __('Class') }}</td>
+                                            <td>{{ __('Time') }}</td>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>Standard Application Deadline</td>
-                                            <td>November 1</td>
-                                            <td>January 10</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Notification of Missing Documents</td>
-                                            <td>Mid-November</td>
-                                            <td>Mid-February</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Decision Released By</td>
-                                            <td>Mid-December</td>
-                                            <td>Early April</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Student Reply Date</td>
-                                            <td>May 1</td>
-                                            <td>May 1</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                                            <td>{{ __('Sunday') }}
+                                            </td>
+                                            <td>
+                                                K.GI B
+                                            </br>
+                                                K.GI B
+                                            </td>
 
-                        <div class="application-deadline">
-                            <h3 class="rts-section-title">Application Deadlines</h3>
-                            <div class="application-deadline__content">
-                                <div class="application-deadline__content--table">
-                                    <table class="table">
-                                        <thead class="table-theme">
-                                        <tr>
-                                            <td>Event</td>
-                                            <td>Restrictive Early Action</td>
-                                            <td>Regular Decision</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Standard Application Deadline</td>
-                                            <td>November 1</td>
-                                            <td>January 10</td>
+                                            <td >{{ __('am') }} :10:5  9:45</td>
                                         </tr>
                                         <tr>
-                                            <td>Notification of Missing Documents</td>
-                                            <td>Mid-November</td>
-                                            <td>Mid-February</td>
+                                            <td>{{ __('Monday') }}</td>
+                                            <td>
+                                                K.GI A
+                                                </br>
+                                                K.GII D
+                                            </td>
+                                            <td >{{ __('am') }} :10:5  9:45</td>
+
                                         </tr>
                                         <tr>
-                                            <td>Decision Released By</td>
-                                            <td>Mid-December</td>
-                                            <td>Early April</td>
+                                            <td>{{ __('Tuesday') }}</td>
+                                            <td>
+                                                K.GI / D
+                                                </br>
+                                                K.GII / C
+                                            </td>
+                                            <td >{{ __('am') }} :10:5  9:45</td>
+
                                         </tr>
                                         <tr>
-                                            <td>Student Reply Date</td>
-                                            <td>May 1</td>
-                                            <td>May 1</td>
+                                            <td>{{ __('Wednesday') }}</td>
+                                            <td>
+                                                K.GI / C
+                                                </br>
+                                                K.GII /A
+                                            </td>
+                                            <td >{{ __('am') }} :10:5  9:45</td>
+
                                         </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
-                                <p> Unipix reserves the right to evaluate an application and render a final decision even if all pieces of the application have not been received.</p>
-                                <p class="w-95 mx-0">Applicants are limited to a total of three applications for undergraduate admission, whether for first-year admission, transfer admission or a <br>combination of both. If you have submitted fewer than three applications to Unipix, you may reapply.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="application-deadline">
-                            <h3 class="rts-section-title">Application Deadlines</h3>
-                            <div class="application-deadline__content">
-                                <div class="application-deadline__content--table">
-                                    <table class="table">
-                                        <thead class="table-theme">
-                                        <tr>
-                                            <td>Event</td>
-                                            <td>Restrictive Early Action</td>
-                                            <td>Regular Decision</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Standard Application Deadline</td>
-                                            <td>November 1</td>
-                                            <td>January 10</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Notification of Missing Documents</td>
-                                            <td>Mid-November</td>
-                                            <td>Mid-February</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Decision Released By</td>
-                                            <td>Mid-December</td>
-                                            <td>Early April</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Student Reply Date</td>
-                                            <td>May 1</td>
-                                            <td>May 1</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p> Unipix reserves the right to evaluate an application and render a final decision even if all pieces of the application have not been received.</p>
-                                <p class="w-95 mx-0">Applicants are limited to a total of three applications for undergraduate admission, whether for first-year admission, transfer admission or a <br>combination of both. If you have submitted fewer than three applications to Unipix, you may reapply.
-                                </p>
                             </div>
                         </div>
                     </div>

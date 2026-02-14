@@ -14,13 +14,13 @@ class SchoolDisciplinePolicyRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_en' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'image_en' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ];
 
         if ($this->isMethod('post')) {
-            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
-            $rules['image_en'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif';
+            $rules['image_en'] = 'required|image|mimes:jpeg,png,jpg,gif';
         }
 
         return $rules;

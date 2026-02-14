@@ -25,7 +25,7 @@ class CounterSectionRequest extends FormRequest
             "translations"         => "nullable|array",
             "translations.*.title" => "required|string|max:200",
             "count" => "required|min:0|max:10000000000",
-            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
+            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
         ];
     }
 }

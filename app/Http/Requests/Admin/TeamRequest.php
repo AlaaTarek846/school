@@ -24,7 +24,7 @@ class TeamRequest extends FormRequest
         return [
             "name" => "required|string|max:200",
             "job" => "required|string|max:200",
-            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
+            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
         ];
     }
 }

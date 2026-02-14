@@ -203,4 +203,5 @@ Route::controller(SchoolController::class)->group(function () {
     Route::get('api/videos', 'getVideos')->name('api.videos');
     Route::get('tuition-fees', 'tuitionFees')->name('tuition-fees');
     Route::get('school-facilities', 'schoolFacilities')->name('school-facilities');
+    Route::get('student-info', 'studentInfo')->name('student-info');
 });

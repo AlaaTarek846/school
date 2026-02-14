@@ -16,7 +16,7 @@ class QualityAssuranceFileRequest extends FormRequest
         $rules = [
             'title_ar' => 'nullable|string|max:255',
             'title_en' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'pdf' => 'nullable|mimes:pdf|max:10000',
         ];
 
@@ -32,7 +32,7 @@ class QualityAssuranceFileRequest extends FormRequest
             // But I'll make it nullable to avoid blocking if they want text only?
             // User said "image (upload)" specifically.
             // HowWeWelcomeChildRequest forced image on POST.
-            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif';
             // PDF? User said "pdf (upload)". nullable or required?
             // "Fields: ... pdf". I'll make it nullable.
         }

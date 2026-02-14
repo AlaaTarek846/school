@@ -32,9 +32,9 @@ class ProjectRequest extends FormRequest
             "overview_en"                => "nullable|string|min:5",
             "overview_ar"                => "nullable|string|min:5",
             "sort"                       => 'required|integer|unique:projects,sort'.($this->project?','.$this->project->id:''),
-            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
-            'pdf'                        => [$this->method() == "PUT" ? 'nullable':'nullable','file','mimes:pdf'],
-            
+            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
+            'pdf'                        => [$this->method() == "PUT" ? 'nullable':'nullable','file'],
+
         ];
     }
 }

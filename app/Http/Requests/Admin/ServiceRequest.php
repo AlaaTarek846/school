@@ -28,14 +28,14 @@ class ServiceRequest extends FormRequest
             "description_en"             => "required|string|min:5",
             "status"                     => "required|boolean",
             'sort'                       => 'required|integer|between:1,15|unique:services,sort'.($this->service?','.$this->service->id:''),
-            'image'                      => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
-            'image1'                      => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
+            'image'                      => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
+            'image1'                      => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
             'pdf'                        => [$this->method() == "PUT" ? 'nullable':'nullable','file','mimes:pdf','max:2048'],
             "quote_ar"                   => "required|string|min:5",
             "quote_en"                   => "required|string|min:5",
         ];
     }
 
-   
+
 
 }

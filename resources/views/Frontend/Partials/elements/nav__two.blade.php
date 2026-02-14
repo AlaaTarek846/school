@@ -43,7 +43,7 @@
                 <a href="{{ route('contact') }}" class="navigation__menu--item__link">{{ __('Contact') }}</a>
             </li>
             <li class="navigation__menu--item">
-                <a href="{{ route('contact') }}" class="navigation__menu--item__link">فكر و تعلم</a>
+                <a href="{{ route('student-info') }}" class="navigation__menu--item__link">فكر و تعلم</a>
             </li>
         </ul>
     </nav>

@@ -22,7 +22,7 @@ class ArticleRequest extends FormRequest
     public function rules(): array
     {
         $articleId = $this->method() == 'PUT' && isset($this->article) ? $this->article->id : null;
-        
+
         return [
             // Basic fields
             "title_ar" => "required|string|max:200",
@@ -31,8 +31,8 @@ class ArticleRequest extends FormRequest
             "content_en" => "required|string",
             "status" => "required|boolean",
             "category_id" => "required|exists:article_categories,id",
-            'image' => [$this->method() == "PUT" ? 'nullable' : 'required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            
+            'image' => [$this->method() == "PUT" ? 'nullable' : 'required', 'image', 'mimes:jpeg,png,jpg,gif'],
+
             // Legacy SEO fields (for backward compatibility)
             "focus_keyphrase" => "nullable|string|max:255",
             "seo_title" => "nullable|string|max:255",
@@ -41,7 +41,7 @@ class ArticleRequest extends FormRequest
             "tags" => "nullable|array",
             "tags.*" => "string|max:100",
             "synonyms_keyphrase" => "nullable|string|max:255",
-            
+
             // Bilingual SEO fields - Arabic
             "focus_keyphrase_ar" => "nullable|string|max:255",
             "seo_title_ar" => "nullable|string|max:255",
@@ -61,7 +61,7 @@ class ArticleRequest extends FormRequest
             "tags_ar.*" => "string|max:100",
             "synonyms_keyphrase_ar" => "nullable|string|max:255",
             "canonical_url_ar" => "nullable|url|max:500",
-            
+
             // Bilingual SEO fields - English
             "focus_keyphrase_en" => "nullable|string|max:255",
             "seo_title_en" => "nullable|string|max:255",
@@ -91,11 +91,11 @@ class ArticleRequest extends FormRequest
     {
         $column = $locale === 'ar' ? 'slug_ar' : 'slug_en';
         $query = \App\Models\Article::where($column, $slug);
-        
+
         if ($excludeId) {
             $query->where('id', '!=', $excludeId);
         }
-        
+
         return !$query->exists();
     }
 }

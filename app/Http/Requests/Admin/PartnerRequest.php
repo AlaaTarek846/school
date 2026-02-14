@@ -24,7 +24,7 @@ class PartnerRequest extends FormRequest
         return [
             "url" => "nullable|string|url",
             "status" =>  "required|boolean",
-            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
+            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
         ];
     }
 }

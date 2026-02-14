@@ -14,6 +14,12 @@
                     </div>
                     <div class="header__right">
                         <div class="header__right--item">
+                            <div class="lang-switch-container">
+                                <a href="{{ route('lang.switch', app()->getLocale() == 'en' ? 'ar' : 'en') }}" class="lang-switch-btn">
+                                    <i class="fa-light fa-globe"></i>
+                                    <span>{{ app()->getLocale() == 'en' ? 'AR' : 'EN' }}</span>
+                                </a>
+                            </div>
                             <div id="menu-btn" class="menu__trigger">
                                 <img src="{{asset('assets/images/icon/menu__bar-2.svg')}}" alt="bar">
                             </div>

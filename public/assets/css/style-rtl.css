@@ -16836,7 +16836,7 @@ body.index-sc h6 {
 .navigation__menu ul {
     display: flex;
     max-width: max-content;
-    gap: 60px;
+    gap: 50px;
     position: relative;
     padding: 0;
     margin: 0;
@@ -17113,6 +17113,7 @@ body.index-sc h6 {
     font-family: var(--fontawesome) !important;
     font-size: 16px;
     left: 0;
+    right: unset;
     font-weight: 400;
     top: 5px;
     padding: 8px 13px;

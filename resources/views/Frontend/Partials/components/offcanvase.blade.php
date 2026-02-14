@@ -38,66 +38,48 @@
         <nav class="nav-main mainmenu-nav mt--30">
             <ul class="mainmenu metismenu" id="mobile-menu-active">
 
-                <li class="has-droupdown">
-                    <a href="#" class="main">{{ __('Homepages') }}</a>
-                    <ul class="submenu mm-collapse">
-                        <li><a class="mobile-menu-link" href="{{ route('index') }}">{{ __('Home Style One') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('index-two') }}">{{ __('Home Style Two') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('index-three') }}">{{ __('Home Style Three') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('index-four') }}">{{ __('Home Style Four') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('index-five') }}">{{ __('Home Style Five') }}</a></li>
-                    </ul>
+                <li>
+                    <a href="{{ route('index') }}" class="main">{{ __('Home') }}</a>
                 </li>
                 <li class="has-droupdown">
-                    <a href="#" class="main">{{ __('Pages') }}</a>
+                    <a href="#" class="main">{{ __('About Us') }}</a>
                     <ul class="submenu mm-collapse">
                         <li><a class="mobile-menu-link" href="{{ route('about') }}">{{ __('About Us') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('athletics') }}">{{ __('Athletics') }}</a></li>
-                        <li class="has-dropdown third-lvl">
-                            <a href="javascript:void(0);">{{ __('Faculty') }}</a>
-                            <ul class="submenu third-lvl base">
-                                <li><a class="mobile-menu-link" href="{{ route('faculty-sub') }}">{{ __('Faculty') }}</a></li>
-                            <li><a class="mobile-menu-link" href="{{ route('faculty-sub-details') }}">{{ __('Faculty Details') }}</a></li>
-                                <li><a class="mobile-menu-link" href="{{ route('faculty') }}">{{ __('Faculty') }}</a></li>
-                                <li><a class="mobile-menu-link" href="{{ route('faculty-details') }}">{{ __('Faculty Staff details') }}</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="mobile-menu-link" href="{{ route('research') }}">{{ __('Research') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('principal-message') }}">{{ __("Principal's Message") }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('school-discipline-policy') }}">{{ __('School Discipline Policy') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('parents-meeting') }}">{{ __("KG Parents' Meeting") }}</a></li>
                     </ul>
                 </li>
                 <li class="has-droupdown">
-                    <a href="#" class="main">{{ __('Academics') }}</a>
+                    <a href="#" class="main">{{ __('About School') }}</a>
                     <ul class="submenu mm-collapse">
-                        <li><a class="mobile-menu-link" href="{{ route('academic') }}">{{ __('Academic') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('admission') }}">{{ __('Admission') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('academic-area') }}">{{ __('Academic Area') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('campus-life') }}">{{ __('Campus Life') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('scholarship') }}">{{ __('Scholarship') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('tution-fee') }}">{{ __('Tution Fee') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('alumni') }}">{{ __('Alumni') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('program-single') }}">{{ __('Program Single') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('department-details') }}">{{ __('Department Details') }}</a></li>
-                    </ul>
-                </li>
-
-                <li class="has-droupdown">
-                    <a href="#" class="main">{{ __('Events') }}</a>
-                    <ul class="submenu mm-collapse">
-                        <li><a class="mobile-menu-link" href="{{ route('event') }}">{{ __('Event') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('event-details') }}">{{ __('Event Details') }}</a></li>
-                    </ul>
-                </li>
-                <li class="has-droupdown">
-                    <a href="#" class="main">{{ __('Blog') }}</a>
-                    <ul class="submenu mm-collapse">
-                        <li><a class="mobile-menu-link" href="{{ route('blog') }}">{{ __('Blog') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('blog-grid') }}">{{ __('Blog Grid') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('blog-list') }}">{{ __('Blog List') }}</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('blog-details') }}">{{ __('Blog Details') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('quality-assurance-files') }}">{{ __('Quality Assurance Files') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('social-specialist') }}">{{ __('Social Specialist') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('mission-and-vision') }}">{{ __('Mission and Vision') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('journey-of-success-and-excellence') }}">{{ __('Journey of Success and Excellence') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('careers') }}">{{ __('Careers') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('student-registration') }}">{{ __('Student Registration') }}</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ route('contact') }}" class="main">{{ __('Contact Us') }}</a>
+                    <a href="{{ route('school-facilities') }}" class="main">{{ __('School Facilities') }}</a>
+                </li>
+                <li>
+                    <a href="{{ route('tuition-fees') }}" class="main">{{ __('Tuition Fees') }}</a>
+                </li>
+
+                <li class="has-droupdown">
+                    <a href="#" class="main">{{ __('Gallery') }}</a>
+                    <ul class="submenu mm-collapse">
+                        <li><a class="mobile-menu-link" href="{{ route('gallery') }}">{{ __('Gallery') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('videos') }}">{{ __('Videos') }}</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ route('contact') }}" class="main">{{ __('Contact') }}</a>
+                </li>
+                <li>
+                    <a href="{{ route('contact') }}" class="main">{{ __('Think and Learn') }}</a>
                 </li>
             </ul>
         </nav>

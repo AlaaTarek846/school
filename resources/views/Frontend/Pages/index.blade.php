@@ -395,6 +395,15 @@
                             <!-- single slide -->
                             <div class="swiper-slide">
                                 <div class="rts__single--testimonial">
+                                    <div class="rts__rating--star">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $testimonial->rating)
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            @else
+                                                <i class="fa-sharp fa-light fa-star"></i>
+                                            @endif
+                                        @endfor
+                                    </div>
                                     <p class="rts__single--testimonial--text">
                                         {{ app()->getLocale() == 'ar' ? $testimonial->description_ar : $testimonial->description_en }}
                                     </p>
@@ -404,7 +413,7 @@
                                                 <img src="{{ $testimonial->media ? asset($testimonial->media->url) : asset('assets/images/testimonial/author-1.png') }}" alt="author">
                                             </div>
                                             <div class="rts__author--info">
-                                                <h5 class="mb-0">{{ $testimonial->name }}</h5>
+                                                <h5 class="mb-0">{{ app()->getLocale() == 'ar' ? $testimonial->name_ar : $testimonial->name_en }}</h5>
                                                 <span class="designation">{{ app()->getLocale() == 'ar' ? $testimonial->job_ar : $testimonial->job_en }}</span>
                                             </div>
                                         </div>

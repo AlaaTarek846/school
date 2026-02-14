@@ -27,6 +27,22 @@
                                     <!-- single testimonial -->
                                     <div class="swiper-slide">
                                         <div class="single-testimonial">
+                                            <div class="rt-between mb--50">
+                                                <div class="rt-icon">
+                                                    <img src="{{asset('assets/images/testimonial/quote.svg')}}" alt="quote icon">
+                                                </div>
+                                                <div class="rt-review">
+                                                    <div class="rating-star mb--10">
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            @if ($i <= $testimonial->rating)
+                                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                                            @else
+                                                                <i class="fa-sharp fa-light fa-star"></i>
+                                                            @endif
+                                                        @endfor
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <p class="testimonial-text">
                                                 {!! app()->getLocale() == 'ar' ? $testimonial->description_ar : $testimonial->description_en !!}
                                             </p>

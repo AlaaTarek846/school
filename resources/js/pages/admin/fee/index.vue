@@ -6,14 +6,14 @@
                     <div class="card-title">
                         قائمة المصروفات
                     </div>
-                    <div class="d-flex flex-wrap gap-2">
-                        <button
-                            @click="openModal()"
-                            class="btn btn-primary btn-wave waves-effect waves-light"
-                        >
-                            <i class="bi bi-plus-circle"></i> {{ $t("global.add") }}
-                        </button>
-                    </div>
+<!--                    <div class="d-flex flex-wrap gap-2">-->
+<!--                        <button-->
+<!--                            @click="openModal()"-->
+<!--                            class="btn btn-primary btn-wave waves-effect waves-light"-->
+<!--                        >-->
+<!--                            <i class="bi bi-plus-circle"></i> {{ $t("global.add") }}-->
+<!--                        </button>-->
+<!--                    </div>-->
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -48,12 +48,12 @@
                                         >
                                             <i class="ri-edit-line"></i>
                                         </button>
-                                        <button
-                                            @click="deleteItem(item.id)"
-                                            class="btn btn-danger btn-sm rounded-pill"
-                                        >
-                                            <i class="ri-delete-bin-line"></i>
-                                        </button>
+<!--                                        <button-->
+<!--                                            @click="deleteItem(item.id)"-->
+<!--                                            class="btn btn-danger btn-sm rounded-pill"-->
+<!--                                        >-->
+<!--                                            <i class="ri-delete-bin-line"></i>-->
+<!--                                        </button>-->
                                     </div>
                                 </td>
                             </tr>

@@ -26,7 +26,7 @@ class WhyChooseUsRequest extends FormRequest
             "title_en" => "required|string",
             "description_ar" => "required|string",
             "description_en" => "required|string",
-            "image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
+            "image" => "nullable|image|mimes:jpeg,png,jpg,gif",
             "details" => "required|array",
             "details.*.title_ar" => "required|string|max:200",
             "details.*.title_en" => "required|string|max:200",

@@ -32,7 +32,7 @@ class OneAboutRequest extends FormRequest
             "details.*.count" => "required|integer",
             "details.*.image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
             "details.*.old_image" => "nullable|string",
-            'first_photo' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
+            'first_photo' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
         ];
     }
 }

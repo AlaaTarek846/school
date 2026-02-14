@@ -19121,7 +19121,7 @@ body.index-sc h6 {
     .left-side
     .single-timeline-item
     p {
-    max-width: 330px;
+    max-width: 500px;
     margin-left: 0;
 }
 @media screen and (max-width: 576px) {
@@ -19322,7 +19322,7 @@ body.index-sc h6 {
     .right-side
     .single-timeline-item
     p {
-    max-width: 330px;
+    max-width: 500px;
     margin-right: 0;
     margin-bottom: 30px;
 }
@@ -24510,7 +24510,7 @@ body.index-sc h6 {
     max-width: 160px;
     position: relative;
 }
-.rts-funfact-wrapper .single-cta-item:not(:last-child):after {
+.rts-funfact-wrapper .single-cta-item:not(:last-child):before {
     position: absolute;
     height: 100%;
     width: 1px;
@@ -24519,38 +24519,43 @@ body.index-sc h6 {
     top: 0;
     left: -70px;
 }
+.rts-funfact-wrapper .single-cta-item:not(:last-child):after {
+    position: absolute;
+    content: "";
+    display: none;
+}
 @media screen and (max-width: 1200px) {
-    .rts-funfact-wrapper .single-cta-item:not(:last-child):after {
+    .rts-funfact-wrapper .single-cta-item:not(:last-child):before {
         left: -40px;
     }
 }
 @media screen and (max-width: 992px) {
-    .rts-funfact-wrapper .single-cta-item:not(:last-child):after {
+    .rts-funfact-wrapper .single-cta-item:not(:last-child):before {
         left: -15px;
     }
 }
 @media screen and (min-width: 850px) and (max-width: 991px) {
-    .rts-funfact-wrapper .single-cta-item:not(:last-child):after {
+    .rts-funfact-wrapper .single-cta-item:not(:last-child):before {
         left: -40px;
     }
 }
 @media screen and (min-width: 992px) and (max-width: 1075px) {
-    .rts-funfact-wrapper .single-cta-item:not(:last-child):after {
+    .rts-funfact-wrapper .single-cta-item:not(:last-child):before {
         left: -30px;
     }
 }
 @media screen and (max-width: 768px) {
-    .rts-funfact-wrapper .single-cta-item:not(:last-child):after {
+    .rts-funfact-wrapper .single-cta-item:not(:last-child):before {
         left: -20px;
     }
 }
 @media screen and (min-width: 575px) and (max-width: 685px) {
-    .rts-funfact-wrapper .single-cta-item:not(:last-child):after {
+    .rts-funfact-wrapper .single-cta-item:not(:last-child):before {
         display: none;
     }
 }
 @media screen and (max-width: 576px) {
-    .rts-funfact-wrapper .single-cta-item:not(:last-child):after {
+    .rts-funfact-wrapper .single-cta-item:not(:last-child):before {
         display: none;
     }
 }

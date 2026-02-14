@@ -23,26 +23,31 @@
                                         }
                                 }'>
                                 <div class="swiper-wrapper">
+                                    @foreach($testimonials as $testimonial)
                                     <!-- single testimonial -->
                                     <div class="swiper-slide">
                                         <div class="single-testimonial">
                                             <p class="testimonial-text">
-                                                I would highly recommend Michael Richard to anyone interested the subject matter. It has provided me with invaluable knowledge & a newfound passion topic. My only suggestion would be to add more live.
+                                                {!! app()->getLocale() == 'ar' ? $testimonial->description_ar : $testimonial->description_en !!}
                                             </p>
                                             <div class="rt-testimonial-author mt--50">
                                                 <div class="rt-author-meta rt-flex rt-gap-20">
                                                     <div class="rt-author-img">
-                                                        <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
+                                                        @if($testimonial->media->first())
+                                                            <img src="{{asset($testimonial->media->first()->url)}}" alt="author">
+                                                        @else
+                                                            <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
+                                                        @endif
                                                     </div>
                                                     <div class="rt-author-info">
-                                                        <h5 class="mb-1">David Jhon</h5>
-                                                        <p>Artist and Instructor</p>
+                                                        <h5 class="mb-1">{{ app()->getLocale() == 'ar' ? $testimonial->name_ar : $testimonial->name_en }}</h5>
+                                                        <p>{{ app()->getLocale() == 'ar' ? $testimonial->job_ar : $testimonial->job_en }}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- single testimonial -->
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- rts arrow -->

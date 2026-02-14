@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Models\Testimonial;
+use App\Models\OneAbout;
+use App\Models\WhyChooseUs;
+use App\Models\HowWeWelcomeChild;
+use App\Models\CampusTour;
 use Illuminate\Http\Request;
 
 class PageController extends BaseController
@@ -117,8 +121,19 @@ class PageController extends BaseController
 
     // About page
     public function about(){
+        $one_about = OneAbout::with(['details','firstPhoto'])->first();
+        $why_choose_us = WhyChooseUs::with(['details'])->first();
+        $welcome_child = HowWeWelcomeChild::get();
+        $campus_tour = CampusTour::first();
+        $testimonials = Testimonial::where('status', 1)->latest()->get();
+
         return $this->view('about',[
-            'page_title' => 'About Page Template'
+            'page_title' => 'About Page Template',
+            'one_about' => $one_about,
+            'why_choose_us' => $why_choose_us,
+            'welcome_child' => $welcome_child,
+            'campus_tour' => $campus_tour,
+            'testimonials' => $testimonials
         ]);
     }
 

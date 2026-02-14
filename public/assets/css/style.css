@@ -18739,7 +18739,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   }
 }
 .rts-mission .rts-timeline-section .rts-timeline-content .left-side .single-timeline-item p {
-  max-width: 330px;
+  max-width: 500px;
   margin-right: 0;
 }
 @media screen and (max-width: 576px) {
@@ -18859,7 +18859,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   }
 }
 .rts-mission .rts-timeline-section .rts-timeline-content .right-side .single-timeline-item p {
-  max-width: 330px;
+  max-width: 500px;
   margin-left: 0;
   margin-bottom: 30px;
 }

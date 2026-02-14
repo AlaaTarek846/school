@@ -9,8 +9,8 @@
                 <div class="modal-body">
                     <div class="row">
 
-                        <div class="col-md-12 mt-3">
-                            <label class="form-label">{{ $t('global.image') }}</label>
+                        <div class="col-md-6 mt-3">
+                            <label class="form-label">{{ $t('global.image') }} (Ar)</label>
                             <div class="row img-div-position">
                                 <div class="col-12 text-end">
                                     <button type="button" class="btn btn-danger btn-sm" @click="removeImage" v-if="imageUpload">
@@ -32,6 +32,35 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 my-1" v-if="v$.image.$error">
+                                        <span class="text-danger">{{ $t('validation.fieldRequired') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                            <label class="form-label">{{ $t('global.image') }} (En)</label>
+                            <div class="row img-div-position">
+                                <div class="col-12 text-end">
+                                    <button type="button" class="btn btn-danger btn-sm" @click="removeImageEn" v-if="imageUploadEn">
+                                        {{ $t('global.deleteImage') }}
+                                    </button>
+                                </div>
+                                <div class="col-md-12 mt-3 d-flex flex-wrap flex-fill h-100">
+                                    <div class="btn btn-outline-light waves-effect" style="width: 100%; height:90%">
+                                        <span v-if="!imageUploadEn" style="margin-top:35%;">
+                                            <br><i class="bi bi-cloud-upload fs-40" style="font-size: 85px;"></i>
+                                            <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
+                                        </span>
+                                        <input type="file" @change="previewImageEn" accept="image/*">
+                                        <div id="container-images-discipline-en" class="row justify-content-center h-100"></div>
+                                        <div v-if="imageUploadEn" class="row justify-content-center h-100">
+                                            <figure class="col-3" v-if="imageUploadEn.url">
+                                                <img :src="imageUploadEn.url" class="img-fluid rounded h-100 w-100 m-1" />
+                                            </figure>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 my-1" v-if="v$.image_en.$error">
                                         <span class="text-danger">{{ $t('validation.fieldRequired') }}</span>
                                     </div>
                                 </div>
@@ -70,14 +99,18 @@ const languages = ref([]);
 const loading = ref(false);
 const imageUpload = ref('');
 const imageFile = ref(null);
+const imageUploadEn = ref('');
+const imageFileEn = ref(null);
 
 const state = reactive({
-    image: null
+    image: null,
+    image_en: null
 });
 
 const rules = computed(() => {
     return {
-        image: { required: requiredIf(() => props.type === 'create' && !imageUpload.value) }
+        image: { required: requiredIf(() => props.type === 'create' && !imageUpload.value) },
+        image_en: { required: requiredIf(() => props.type === 'create' && !imageUploadEn.value) }
     };
 });
 
@@ -94,6 +127,8 @@ watch(() => props.dataRow, (newVal) => {
     if (props.type === 'edit' && newVal) {
         imageUpload.value = newVal.image ? { url: newVal.image } : '';
         state.image = newVal.image;
+        imageUploadEn.value = newVal.image_en ? { url: newVal.image_en } : '';
+        state.image_en = newVal.image_en;
     } else {
         resetForm();
     }
@@ -103,9 +138,16 @@ const resetForm = () => {
     state.image = null;
     imageFile.value = null;
     imageUpload.value = '';
+    
+    state.image_en = null;
+    imageFileEn.value = null;
+    imageUploadEn.value = '';
+
     v$.value.$reset();
     let container = document.querySelector("#container-images-discipline");
     if(container) container.innerHTML = "";
+    let containerEn = document.querySelector("#container-images-discipline-en");
+    if(containerEn) containerEn.innerHTML = "";
 };
 
 const previewImage = (e) => {
@@ -141,6 +183,39 @@ const removeImage = () => {
     if(container) container.innerHTML = "";
 }
 
+const previewImageEn = (e) => {
+    let container = document.querySelector("#container-images-discipline-en");
+    container.innerHTML = "";
+    imageUploadEn.value = '';
+
+    if (e.target.files && e.target.files[0]) {
+        const file = e.target.files[0];
+        state.image_en = file;
+        imageFileEn.value = file;
+
+        let reader = new FileReader();
+        let figure = document.createElement('figure');
+        figure.className = 'col-3';
+
+        reader.onload = () => {
+             let img = document.createElement('img');
+             img.className = 'img-fluid rounded h-100 w-100 m-1';
+             img.setAttribute('src', reader.result);
+             figure.appendChild(img);
+        }
+        container.appendChild(figure);
+        reader.readAsDataURL(file);
+    }
+};
+
+const removeImageEn = () => {
+    imageUploadEn.value = '';
+    imageFileEn.value = null;
+    state.image_en = null;
+    let container = document.querySelector("#container-images-discipline-en");
+    if(container) container.innerHTML = "";
+}
+
 const submit = async () => {
     const result = await v$.value.$validate();
     if (!result) return;
@@ -150,6 +225,9 @@ const submit = async () => {
     
     if (imageFile.value) {
         formData.append('image', imageFile.value);
+    }
+    if (imageFileEn.value) {
+        formData.append('image_en', imageFileEn.value);
     }
 
     if (props.type === 'create') {

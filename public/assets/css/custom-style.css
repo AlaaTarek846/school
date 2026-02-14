@@ -832,3 +832,61 @@
         border: none !important;
     }
 }
+
+/* Language Toggle Button Styles */
+.lang-switch-container {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.lang-switch-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--rt-primary);
+    color: #fff !important;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.header__sticky.sticky .lang-switch-btn,
+.v__5 .lang-switch-btn,
+.v__6 .lang-switch-btn {
+    background: var(--rt-primary);
+    color: #fff !important;
+}
+
+.v__1:not(.sticky) .lang-switch-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lang-switch-btn:hover {
+    background: var(--rt-secondary) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.lang-switch-btn i {
+    font-size: 16px;
+}
+
+[dir="rtl"] .lang-switch-container {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+@media (max-width: 767px) {
+    .lang-switch-btn span {
+        display: block;
+    }
+    .lang-switch-container {
+        margin-right: 10px;
+    }
+}

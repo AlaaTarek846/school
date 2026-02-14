@@ -24,15 +24,11 @@
                                               </div>
                                         </div>
                                         <div class="header__right--item">
-                                             <div id="langSwitcher" class="lang__trigger">
-                                                  <span class="selected__lang">{{ strtoupper(app()->getLocale()) }}</span>
-                                                  <i class="fa-light fa-globe"></i>
-                                                  <div class="translate__lang">
-                                                      <ul>
-                                                          <li><a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'active' : '' }}">En</a></li>
-                                                          <li><a href="{{ route('lang.switch', 'ar') }}" class="{{ app()->getLocale() == 'ar' ? 'active' : '' }}">Ar</a></li>
-                                                      </ul>
-                                                  </div>
+                                              <div class="lang-switch-container">
+                                                   <a href="{{ route('lang.switch', app()->getLocale() == 'en' ? 'ar' : 'en') }}" class="lang-switch-btn">
+                                                        <i class="fa-light fa-globe"></i>
+                                                        <span>{{ app()->getLocale() == 'en' ? 'AR' : 'EN' }}</span>
+                                                   </a>
                                               </div>
                                               
                                         </div>

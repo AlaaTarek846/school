@@ -4,8 +4,8 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-        'title' => 'Faculty Areas',
-        'page' => 'Faculty'
+        'title' => __('Quality Assurance Files'),
+        'page' => __('Quality Assurance Files')
     ])
     <!-- faculty directory -->
     <section class="rts-faculty rts-section-padding">
@@ -13,22 +13,19 @@
             <div class="row g-5">
                 @foreach($files as $file)
                     <!-- single item -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 text-center">
-                        <div class="single-cat-item">
-                            @if($file->image)
-                                <div class="cat-thumb">
-                                    <img src="{{asset($file->image)}}" alt="file-thumbnail">
-                                </div>
-                            @endif
-                            <div class="cat-meta">
-                                <div class="cat-title">
-                                    <h5 class="title">{{ app()->getLocale() == 'ar' ? $file->title_ar : $file->title_en }}</h5>
-                                </div>
-                                <div class="cat-link">
-                                    <a href="{{ asset($file->pdf) }}" download class="rts-theme-btn primary-2 py-2 px-4 mt-3" style="width: 100%;">
-                                        {{ app()->getLocale() == 'ar' ? 'تحميل' : 'Download' }} PDF
-                                    </a>
-                                </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="file-card text-center">
+                            <div class="icon-box">
+                                <i class="fa-light fa-file-pdf"></i>
+                            </div>
+                            <div class="file-title">
+                                {{ app()->getLocale() == 'ar' ? $file->title_ar : $file->title_en }}
+                            </div>
+                            <div class="cat-link">
+                                <a href="{{ asset($file->pdf) }}" download class="download-btn">
+                                    <i class="fa-light fa-download"></i>
+                                    {{ app()->getLocale() == 'ar' ? 'تحميل' : 'Download' }}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -36,7 +33,7 @@
             </div>
             @if($files->count() > 12)
                 <div class="rts-load-more-btn rt-center mt--60">
-                    <a href="{{ route('faculty-details') }}" class="rts-theme-btn primary lh-100">Load More</a>
+                    <a href="#" class="rts-theme-btn primary lh-100">Load More</a>
                 </div>
             @endif
         </div>

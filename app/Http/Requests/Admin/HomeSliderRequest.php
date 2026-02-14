@@ -27,7 +27,7 @@ class HomeSliderRequest extends FormRequest
             "title_color_en" => "required|string|max:200",
             "title_color_ar" => "required|string|max:200",
             "status" =>  "required|boolean",
-            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
+            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
         ];
     }
 }

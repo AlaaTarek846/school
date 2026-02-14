@@ -76,69 +76,38 @@
         <div class="container">
             <div class="row">
                 <div class="rts__section--wrapper">
-                    <h2 class="rts__section--title">{{ __('Our Educational Stages') }}</h2>
-                    <div class="rts__section--link">
-                        <a href="{{ route('about') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
-                    </div>
+
+                    <h2 class="rts__section--title">{{ __('Larose de Lisieux Stages') }}
+                    </h2>
+
                 </div>
             </div>
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__1.jpg')}});">
                         <h5 class="rts__program--item--title">{{ __('Kindergarten') }}</h5>
-                        <p class="rts__program--item--description">{{ __('A safe and nurturing environment for your child\'s first steps in education.') }}</p>
-                        <a href="{{ route('about') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
+
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__2.jpg')}});">
-                        <h5 class="rts__program--item--title">{{ __('Primary School') }}</h5>
-                        <p class="rts__program--item--description">{{ __('Building strong foundations for lifelong learning and personal growth.') }}</p>
-                        <a href="{{ route('primary-school') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
+
+                        <h5 class="rts__program--item--title">{{ __('Primary Stage') }}</h5>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__3.jpg')}});">
-                        <h5 class="rts__program--item--title">{{ __('Middle School') }}</h5>
-                        <p class="rts__program--item--description">{{ __('Fostering critical thinking and independence during crucial development years.') }}</p>
-                        <a href="{{ route('middle-school') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
+
+                        <h5 class="rts__program--item--title"> {{ __('Preparatory Stage') }}</h5>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__4.jpg')}});">
-                        <h5 class="rts__program--item--title">{{ __('High School') }}</h5>
-                        <p class="rts__program--item--description">{{ __('Preparing students for university and future career success.') }}</p>
-                        <a href="{{ route('senior-school') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
+
+                        <h5 class="rts__program--item--title">{{ __('Secondary Stage') }}  </h5>
                     </div>
                 </div>
             </div>
@@ -152,7 +121,7 @@
             <div class="row">
                 <div class="col-lg-5 col-md-6">
                     <div class="rts__section--wrapper v__2">
-                        <h2 class="rts__section--title">{{ __('Campus Life') }}</h2>
+                        <h2 class="rts__section--title"><a href="#">{{ __('Campus Life') }}</a></h2>
                         <p class="rts__section--description">{{ __('Embark on a journey of knowledge and growth at Kobery Al-Galaa School. We nurture bright minds to contribute to our dynamic community.') }}</p>
                         <div class="campus__vector">
                             <img src="{{asset('assets/images/campus/campus__vector.svg')}}" style="transform: {{ app()->getLocale() == 'ar'? 'rotate3d(-1, 72, 0, 169deg);':'unset' }};" alt="">
@@ -168,7 +137,7 @@
                             </div>
                             <div class="campus__life--single--flex">
                                 <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="{{ route('campus-life') }}">{{ __('Student Activities') }}</a></h4>
+                                    <h4 class="campus__life--single--title"><a href="#">{{ __('Student Activities') }}</a></h4>
                                     <p class="campus__life--single--description">{{ __('Engaging clubs and events to foster creativity and teamwork.') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
@@ -190,17 +159,10 @@
                             </div>
                             <div class="campus__life--single--flex">
                                 <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="{{ route('campus-life') }}">{{ __('Arts & Music') }}</a></h4>
-                                    <p class="campus__life--single--description">{{ __('Developing artistic talents through drawing, music, and theater.') }}</p>
+                                    <h4 class="campus__life--single--title"><a href="#">{{ __('Prestigious Institution') }}</a></h4>
+                                    <p class="campus__life--single--description">{{ __('The school is considered one of the greatest and most prestigious educational institutions in Giza Governorate') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
-{{--                                    <a href="{{ route('campus-life') }}">--}}
-{{--                                        @if(app()->getLocale() == 'ar')--}}
-{{--                                            <i class="fa-sharp fa-regular fa-arrow-left"></i>--}}
-{{--                                        @else--}}
-{{--                                            <i class="fa-sharp fa-regular fa-arrow-right"></i>--}}
-{{--                                        @endif--}}
-{{--                                    </a>--}}
                                 </div>
                             </div>
                         </div>
@@ -212,17 +174,10 @@
                             </div>
                             <div class="campus__life--single--flex">
                                 <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="{{ route('athletics') }}">{{ __('Sports & Fitness') }}</a></h4>
-                                    <p class="campus__life--single--description">{{ __('Promoting physical health and team spirit through various sports.') }}</p>
+                                    <h4 class="campus__life--single--title"><a href="#">{{ __('Activities & Community Service') }}</a></h4>
+                                    <p class="campus__life--single--description">{{ __('The school excels in participating in all local activities and competitions, achieving advanced positions in all activities, community engagement, and environmental service') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
-{{--                                    <a href="{{ route('athletics') }}">--}}
-{{--                                        @if(app()->getLocale() == 'ar')--}}
-{{--                                            <i class="fa-regular fa-arrow-left"></i>--}}
-{{--                                        @else--}}
-{{--                                            <i class="fa-regular fa-arrow-right"></i>--}}
-{{--                                        @endif--}}
-{{--                                    </a>--}}
                                 </div>
                             </div>
                         </div>
@@ -258,13 +213,11 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="rts__single--member">
                         <div class="rts__single--member--thumb">
-                            <a href="{{ route('faculty-details') }}">
                                 <img src="{{ $team->media ? asset($team->media->url) : asset('assets/images/speaker/teacher__1.jpg') }}" onerror="{{asset('assets/images/research/03.jpg')}}" alt="">
-                            </a>
                         </div>
                         <div class="rts__single--member--meta">
                             <h5 class="rts__single--member--meta--title">
-                                <a href="{{ route('faculty-details') }}">{{ $team->name }}</a>
+                                {{ $team->name }}
                             </h5>
                             <span class="rts__single--member--meta--designation">
                                 {{ __($team->job) }}
@@ -285,7 +238,7 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="rts__section--wrapper v__4">
-                        <h2 class="rts__section--title">{{ __('Student Feedback') }}</h2>
+                        <h2 class="rts__section--title">{{ __("Parents' opinions") }}</h2>
                         <p class="rts__section--description">{{ __('Your opinion matters, and by providing feedback, you contribute to the continuous enhancement of our academic programs, support services, and campus life') }}</p>
                         <div class="rts__slider--arrow">
                             <div class="rts__prev slider__btn">

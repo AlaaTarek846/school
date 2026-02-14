@@ -43,7 +43,8 @@
                 <a href="{{ route('contact') }}" class="navigation__menu--item__link">{{ __('Contact') }}</a>
             </li>
             <li class="navigation__menu--item">
-                <a href="{{ route('contact') }}" class="navigation__menu--item__link">{{ __('Think and Learn') }}</a>
+
+                <a href="{{ route('student-info') }}" class="navigation__menu--item__link">{{ __('Think and Learn') }}</a>
             </li>
         </ul>
     </nav>

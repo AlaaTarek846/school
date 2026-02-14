@@ -49,24 +49,41 @@
                     success: function(response) {
                         let html = '';
                         response.data.forEach(function(item) {
-                            let videoId = getYouTubeId(item.link);
-                            let embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : item.link;
+                            let videoContent = '';
                             
-                            html += `
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="single-video-item shadow-sm p-3 rounded bg-white">
-                                        <div class="video-thumb position-relative" style="padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                                            <iframe 
-                                                src="${embedUrl}" 
-                                                frameborder="0" 
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                                allowfullscreen
-                                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
-                                            </iframe>
+                            if (item.link) {
+                                let videoId = getYouTubeId(item.link);
+                                let embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : item.link;
+                                videoContent = `
+                                    <iframe 
+                                        src="${embedUrl}" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
+                                    </iframe>
+                                `;
+                            } else if (item.video) {
+                                videoContent = `
+                                    <video 
+                                        src="/${item.video}" 
+                                        controls 
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
+                                    </video>
+                                `;
+                            }
+
+                            if (videoContent) {
+                                html += `
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="single-video-item shadow-sm p-3 rounded bg-white">
+                                            <div class="video-thumb position-relative" style="padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                                                ${videoContent}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            `;
+                                `;
+                            }
                         });
 
                         $('#video-container').append(html);

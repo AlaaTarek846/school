@@ -30,7 +30,7 @@ class TestimonialRequest extends FormRequest
             "job_en" => "nullable|string|max:200",
             "status" =>  "required|boolean",
             "rating" => "required|integer|min:1|max:5",
-            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
+            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
         ];
     }
 }

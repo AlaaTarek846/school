@@ -15639,7 +15639,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   background: rgba(0, 0, 0, 0.6);
 }
 .campus__life--single--content {
-  max-width: 340px;
+  max-width: 100%;
   transition: var(--transition);
 }
 .campus__life--single--title {

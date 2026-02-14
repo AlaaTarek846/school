@@ -85,22 +85,22 @@
 
 
                             <div class="col-md-12 mt-2 text-end">
-                                <button
-                                    type="button" class="btn btn-danger btn-sm mx-1"
-                                    @click="removeSize(index)"
-                                    :title="$t('global.Delete')"
-                                    v-if="submitData.data.details.length > 1"
-                                >
-                                    <i class="ri-delete-bin-line"></i>
-                                </button>
-                                <button
-                                    type="button" class="btn btn-success btn-sm"
-                                    :title="$t('global.addLine')"
-                                    v-if="(submitData.data.details.length - 1) == index"
-                                    @click="addSizeDetail"
-                                >
-                                    <i class="ri-add-line"></i>
-                                </button>
+<!--                                <button-->
+<!--                                    type="button" class="btn btn-danger btn-sm mx-1"-->
+<!--                                    @click="removeSize(index)"-->
+<!--                                    :title="$t('global.Delete')"-->
+<!--                                    v-if="submitData.data.details.length > 1"-->
+<!--                                >-->
+<!--                                    <i class="ri-delete-bin-line"></i>-->
+<!--                                </button>-->
+<!--                                <button-->
+<!--                                    type="button" class="btn btn-success btn-sm"-->
+<!--                                    :title="$t('global.addLine')"-->
+<!--                                    v-if="(submitData.data.details.length - 1) == index"-->
+<!--                                    @click="addSizeDetail"-->
+<!--                                >-->
+<!--                                    <i class="ri-add-line"></i>-->
+<!--                                </button>-->
                             </div>
                         </div>
 
@@ -357,7 +357,7 @@ const AddSubmit = () =>  {
     if(submitData.data.image){
         formData.append('image', submitData.data.image);
     }
-    
+
     submitData.data.details.forEach((el,index)=>{
         languages.value.forEach((e)=>{
             formData.append(`details[${index}][title_${e}]`, submitData.data.details[index][`title_${e}`]);
@@ -421,7 +421,7 @@ const preview = (e) => {
     if(e) {
         submitData.data.image = {};
         submitData.data.image = e.target.files[0];
-        
+
         let reader = new FileReader();
         let figure = document.createElement('figure');
         figure.className = 'col-3';

@@ -15894,7 +15894,7 @@ body.index-sc h6 {
     background: rgba(0, 0, 0, 0.6);
 }
 .campus__life--single--content {
-    max-width: 340px;
+    max-width: 100%;
     transition: var(--transition);
 }
 .campus__life--single--title {

@@ -19,4 +19,7 @@ return [
     'AddedSuccessfully' => 'Added Successfully',
     'UpdatedSuccessfully' => 'Updated Successfully',
     'NoDataFound' => 'No Data Found',
+    'ViewVideo' => 'View Video',
+    'name' => 'Name',
+    'job' => 'Job Title',
 ];

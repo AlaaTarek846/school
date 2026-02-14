@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             PrincipalMessageSeeder::class,
             SchoolDisciplinePolicySeeder::class,
             QualityAssuranceFileSeeder::class,
+            TeamSeeder::class,
         ]);
     }
 }

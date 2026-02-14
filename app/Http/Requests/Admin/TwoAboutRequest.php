@@ -26,7 +26,7 @@ class TwoAboutRequest extends FormRequest
             "translations.*.title" => "required|string|max:200",
             "translations.*.description" => "required|string|max:1000",
             "link" => "required|string|url|max:500",
-            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
+            'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif'],
         ];
     }
 }

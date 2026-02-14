@@ -15894,7 +15894,7 @@ body.index-sc h6 {
     background: rgba(0, 0, 0, 0.6);
 }
 .campus__life--single--content {
-    max-width: 340px;
+    max-width: 100%;
     transition: var(--transition);
 }
 .campus__life--single--title {
@@ -18058,7 +18058,7 @@ body.index-sc h6 {
     }
 }
 .banner .banner__content--title {
-    font-size: 103px;
+    font-size: 75px;
     font-weight: 400;
     text-transform: uppercase;
     color: var(--rt-white);
@@ -19405,7 +19405,7 @@ body.index-sc h6 {
     }
 }
 .about__content .rts__title {
-    max-width: 465px;
+    max-width: 500px;
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 40px;

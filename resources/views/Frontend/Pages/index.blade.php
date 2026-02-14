@@ -15,11 +15,11 @@
                     <div class="banner__wrapper--middle">
                         <div class="banner__content">
                             <h6 class="banner__content--sub">
-                               <img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="cap"> {{ __('knowledge meets innovation') }}
+                               <img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="cap"> {{ __('Welcome to') }}
                             </h6>
                             <h1 class="banner__content--title">
-                                {{ __('University') }}
-                                <span> {{ __('Of Unipix') }}</span>
+                                {{ __('Kobery Al-Galaa') }}
+                                <span> {{ __('School') }}</span>
                             </h1>
                             <div class="banner__content--circle rts__circle v__2">
                                 <svg class="spinner" viewBox="0 0 100 100">
@@ -27,7 +27,7 @@
                                         <path id="circle" d="M50,50 m-37,0a37,37 0 1,1 74,0a37,37 0 1,1 -74,0"></path>
                                     </defs>
                                     <text>
-                                        <textPath xlink:href="#circle">Unipix University * Estd. 1971 * Explore Future *</textPath>
+                                        <textPath xlink:href="#circle">Kobery Al-Galaa School * Estd. 1988 * Explore Future *</textPath>
                                     </text>
                                 </svg>
                                 <div class="rts__circle--icon save-from-hidden">
@@ -37,9 +37,9 @@
                                 </div>
                             </div>
                             <div class="banner__content--description">
-                                <p>{{ __('Remember to tailor the section names to fit the specific needs and structure of your university website.') }}
+                                <p>{{ __('Empowering students for a bright future through excellence in education and character building.') }}
                                 </p>
-                                <a href="{{ route('program-single') }}" class="rts-theme-btn btn-arrow">{{ __('View Our Program') }}
+                                <a href="{{ route('contact') }}" class="rts-theme-btn btn-arrow">{{ __('Contact Us') }}
                                     <span>
                                         @if(app()->getLocale() == 'ar')
                                             <i class="fa-regular fa-arrow-left"></i>
@@ -76,6 +76,7 @@
         <div class="container">
             <div class="row">
                 <div class="rts__section--wrapper">
+
                     <h2 class="rts__section--title">{{ __('Larose de Lisieux Stages') }}
                     </h2>
 
@@ -86,22 +87,26 @@
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__1.jpg')}});">
                         <h5 class="rts__program--item--title">{{ __('Kindergarten') }}</h5>
 
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__2.jpg')}});">
+
                         <h5 class="rts__program--item--title">{{ __('Primary Stage') }}</h5>
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__3.jpg')}});">
+
                         <h5 class="rts__program--item--title"> {{ __('Preparatory Stage') }}</h5>
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__4.jpg')}});">
+
                         <h5 class="rts__program--item--title">{{ __('Secondary Stage') }}  </h5>
                     </div>
                 </div>
@@ -116,8 +121,8 @@
             <div class="row">
                 <div class="col-lg-5 col-md-6">
                     <div class="rts__section--wrapper v__2">
-                        <h2 class="rts__section--title">{{ __('Campus Life') }}</h2>
-                        <p class="rts__section--description">{{ __('Embark on a journey of knowledge, discovery, and growth at Unipix University. Our admissions process is designed identify bright, motivated individuals who are eager contribute to our dynamic academic community.') }}</p>
+                        <h2 class="rts__section--title"><a href="#">{{ __('Campus Life') }}</a></h2>
+                        <p class="rts__section--description">{{ __('Embark on a journey of knowledge and growth at Kobery Al-Galaa School. We nurture bright minds to contribute to our dynamic community.') }}</p>
                         <div class="campus__vector">
                             <img src="{{asset('assets/images/campus/campus__vector.svg')}}" style="transform: {{ app()->getLocale() == 'ar'? 'rotate3d(-1, 72, 0, 169deg);':'unset' }};" alt="">
                         </div>
@@ -132,17 +137,17 @@
                             </div>
                             <div class="campus__life--single--flex">
                                 <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="{{ route('campus-life') }}">{{ __('Student Life') }}</a></h4>
-                                    <p class="campus__life--single--description">{{ __('Building a vibrant community of creative and accomplished people from around.') }}</p>
+                                    <h4 class="campus__life--single--title"><a href="#">{{ __('Student Activities') }}</a></h4>
+                                    <p class="campus__life--single--description">{{ __('Engaging clubs and events to foster creativity and teamwork.') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
-                                    <a href="{{ route('campus-life') }}">
-                                        @if(app()->getLocale() == 'ar')
-                                            <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                        @else
-                                            <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                        @endif
-                                    </a>
+{{--                                    <a href="{{ route('campus-life') }}">--}}
+{{--                                        @if(app()->getLocale() == 'ar')--}}
+{{--                                            <i class="fa-sharp fa-regular fa-arrow-left"></i>--}}
+{{--                                        @else--}}
+{{--                                            <i class="fa-sharp fa-regular fa-arrow-right"></i>--}}
+{{--                                        @endif--}}
+{{--                                    </a>--}}
                                 </div>
                             </div>
                         </div>
@@ -154,17 +159,10 @@
                             </div>
                             <div class="campus__life--single--flex">
                                 <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="{{ route('campus-life') }}">{{ __('Arts & Culture') }}</a></h4>
-                                    <p class="campus__life--single--description">{{ __('Building a vibrant community of creative and accomplished people from around.') }}</p>
+                                    <h4 class="campus__life--single--title"><a href="#">{{ __('Prestigious Institution') }}</a></h4>
+                                    <p class="campus__life--single--description">{{ __('The school is considered one of the greatest and most prestigious educational institutions in Giza Governorate') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
-                                    <a href="{{ route('campus-life') }}">
-                                        @if(app()->getLocale() == 'ar')
-                                            <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                        @else
-                                            <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                        @endif
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -176,17 +174,10 @@
                             </div>
                             <div class="campus__life--single--flex">
                                 <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="{{ route('athletics') }}">{{ __('Athletics') }}</a></h4>
-                                    <p class="campus__life--single--description">{{ __('Building a vibrant community of creative and accomplished people from around.') }}</p>
+                                    <h4 class="campus__life--single--title"><a href="#">{{ __('Activities & Community Service') }}</a></h4>
+                                    <p class="campus__life--single--description">{{ __('The school excels in participating in all local activities and competitions, achieving advanced positions in all activities, community engagement, and environmental service') }}</p>
                                 </div>
                                 <div class="campus__life--single--button">
-                                    <a href="{{ route('athletics') }}">
-                                        @if(app()->getLocale() == 'ar')
-                                            <i class="fa-regular fa-arrow-left"></i>
-                                        @else
-                                            <i class="fa-regular fa-arrow-right"></i>
-                                        @endif
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -202,96 +193,40 @@
         <div class="container">
             <div class="row">
                 <div class="rts__section--wrapper">
-                    <h2 class="rts__section--title">{{ __('University Professors') }}</h2>
+                    <h2 class="rts__section--title">{{ __('Our Teachers') }}</h2>
                     <div class="rts__section--link">
-                        <a href="{{ route('faculty') }}" class="rts-nbg-btn btn-arrow">{{ __('Find More Professor') }}<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
+{{--                        <a href="{{ route('faculty') }}" class="rts-nbg-btn btn-arrow">{{ __('View All Teachers') }}<span>--}}
+{{--                                @if(app()->getLocale() == 'ar')--}}
+{{--                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>--}}
+{{--                                @else--}}
+{{--                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>--}}
+{{--                                @endif--}}
+{{--                        </span>--}}
+{{--                        </a>--}}
                     </div>
                 </div>
             </div>
             <!-- team member area -->
             <div class="row g-5">
+                @foreach($teams as $team)
                 <!-- single team -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="rts__single--member">
                         <div class="rts__single--member--thumb">
-                            <a href="{{ route('faculty-details') }}">
-                                <img src="{{asset('assets/images/speaker/teacher__1.jpg')}}" alt="">
-                            </a>
+                                <img src="{{ $team->media ? asset($team->media->url) : asset('assets/images/speaker/teacher__1.jpg') }}" onerror="{{asset('assets/images/research/03.jpg')}}" alt="">
                         </div>
                         <div class="rts__single--member--meta">
                             <h5 class="rts__single--member--meta--title">
-                                <a href="{{ route('faculty-details') }}">C. Hannah Ueno</a>
+                                {{ $team->name }}
                             </h5>
                             <span class="rts__single--member--meta--designation">
-                                {{ __('Assistant Professor') }}
+                                {{ __($team->job) }}
                             </span>
                         </div>
                     </div>
                 </div>
                 <!-- single team end -->
-                <!-- single team -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="rts__single--member">
-                        <div class="rts__single--member--thumb">
-                            <a href="{{ route('faculty-details') }}">
-                                <img src="{{asset('assets/images/speaker/teacher__2.jpg')}}" alt="">
-                            </a>
-                        </div>
-                        <div class="rts__single--member--meta">
-                            <h5 class="rts__single--member--meta--title">
-                                <a href="{{ route('faculty-details') }}">Thomas Fred</a>
-                            </h5>
-                            <span class="rts__single--member--meta--designation">
-                                {{ __('Associate Professor of History') }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- single team end -->
-                <!-- single team -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="rts__single--member">
-                        <div class="rts__single--member--thumb">
-                            <a href="{{ route('faculty-details') }}">
-                                <img src="{{asset('assets/images/speaker/teacher__3.jpg')}}" alt="">
-                            </a>
-                        </div>
-                        <div class="rts__single--member--meta">
-                            <h5 class="rts__single--member--meta--title">
-                                <a href="{{ route('faculty-details') }}">Jennifer Aarons</a>
-                            </h5>
-                            <span class="rts__single--member--meta--designation">
-                                {{ __('Professor of Art') }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- single team end -->
-                <!-- single team -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="rts__single--member">
-                        <div class="rts__single--member--thumb">
-                            <a href="{{ route('faculty-details') }}">
-                                <img src="{{asset('assets/images/speaker/teacher__4.jpg')}}" alt="">
-                            </a>
-                        </div>
-                        <div class="rts__single--member--meta">
-                            <h5 class="rts__single--member--meta--title">
-                                <a href="{{ route('faculty-details') }}">Michael McGarvey</a>
-                            </h5>
-                            <span class="rts__single--member--meta--designation">
-                                {{ __('Professor of Literature') }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- single team end -->
+                @endforeach
             </div>
             <!-- team member area end -->
         </div>
@@ -303,7 +238,7 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="rts__section--wrapper v__4">
-                        <h2 class="rts__section--title">مراحل لاروز دي ليزيه</h2>
+                        <h2 class="rts__section--title">{{ __("Parents' opinions") }}</h2>
                         <p class="rts__section--description">{{ __('Your opinion matters, and by providing feedback, you contribute to the continuous enhancement of our academic programs, support services, and campus life') }}</p>
                         <div class="rts__slider--arrow">
                             <div class="rts__prev slider__btn">

@@ -15639,7 +15639,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   background: rgba(0, 0, 0, 0.6);
 }
 .campus__life--single--content {
-  max-width: 340px;
+  max-width: 100%;
   transition: var(--transition);
 }
 .campus__life--single--title {
@@ -17713,7 +17713,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   }
 }
 .banner .banner__content--title {
-  font-size: 120px;
+  font-size: 75px;
   font-weight: 400;
   text-transform: uppercase;
   color: var(--rt-white);
@@ -18935,7 +18935,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   }
 }
 .about__content .rts__title {
-  max-width: 465px;
+  max-width: 500px;
   font-weight: 400;
   text-transform: uppercase;
   margin-bottom: 40px;

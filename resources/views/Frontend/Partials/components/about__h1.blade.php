@@ -15,7 +15,7 @@
                                         <path id="circle-2" d="M50,50 m-37,0a37,37 0 1,1 74,0a37,37 0 1,1 -74,0"></path>
                                     </defs>
                                     <text>
-                                        <textPath xlink:href="#circle-2">Unipix University * Estd. 1971 * Explore Future *</textPath>
+                                        <textPath xlink:href="#circle-2">Kobery Al-Galaa School * Estd. 1988 * Explore Future *</textPath>
                                     </text>
                                 </svg>
                                 <div class="rts__circle--icon">
@@ -35,10 +35,10 @@
             </div>
             <div class="col-lg-6 col-md-10">
                 <div class="about__content">
-                    <h2 class="rts__title">{{ __('About Our University unipix') }}</h2>
-                    <p class="rts__description">{{ __('At University Unipix, we believe in the transformative power of education and the boundless potential within every individual. Established in 1971, we have been dedicated to fostering intellectual curiosity, academic excellence, and a vibrant campus community.') }}</p>
+                    <h2 class="rts__title">{{ app()->getLocale() == 'ar' ? $one_about->title_ar : $one_about->title_en }}</h2>
+                    <p class="rts__description">{!! app()->getLocale() == 'ar' ? $one_about->description_ar : $one_about->description_en !!}</p>
                     <div class="stroke__text v__1">{{ __('EST. 1971') }}</div>
-                    <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('University Overview') }} <span>
+                    <a href="{{ route('about') }}" class="rts-nbg-btn btn-arrow">{{ __('Read More') }} <span>
                             @if(app()->getLocale() == 'ar')
                                 <i class="fa-regular fa-arrow-left"></i>
                             @else
@@ -54,24 +54,28 @@
         <div class="row justify-content-center">
             <div class="col-lg-12 rts-funfact v__1">
                 <div class="rts-funfact-wrapper">
-                    <div class="single-cta-item">
-                        <h2 class="single-cta-item__title">20,000</h2>
-                        <p>undergraduate & graduate
-                            students</p>
-                    </div>
-                    <div class="single-cta-item">
-                        <h2 class="single-cta-item__title">16,214</h2>
-                        <p>{{ __('Unipix University Faculty & Staff') }}</p>
-                    </div>
-                    <div class="single-cta-item">
-                        <h2 class="single-cta-item__title">300k</h2>
-                        <p>{{ __('Unipix University alumni Worldwide') }}</p>
-                    </div>
-                    <div class="single-cta-item">
-                        <h2 class="single-cta-item__title">20,000</h2>
-                        <p>undergraduate & graduate
-                            students</p>
-                    </div>
+                    @if($one_about->details)
+                        @foreach($one_about->details as $detail)
+                        <div class="single-cta-item">
+                            <h2 class="single-cta-item__title">{{ $detail->count }}</h2>
+                            <p>{{ app()->getLocale() == 'ar' ? $detail->title_ar : $detail->title_en }}</p>
+                        </div>
+                        @endforeach
+                    @else
+                        <!-- Fallback if no details -->
+                        <div class="single-cta-item">
+                            <h2 class="single-cta-item__title">1000+</h2>
+                            <p>{{ __('Students') }}</p>
+                        </div>
+                         <div class="single-cta-item">
+                            <h2 class="single-cta-item__title">50+</h2>
+                            <p>{{ __('Teachers') }}</p>
+                        </div>
+                         <div class="single-cta-item">
+                            <h2 class="single-cta-item__title">50+</h2>
+                            <p>{{ __('Years of Excellence') }}</p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

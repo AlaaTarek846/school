@@ -18,36 +18,46 @@ class TeamSeeder extends Seeder
 
         $teams = [
             [
-                'name' => " جون برادشو",
-                'job' => "Senior Advisor",
-                'url' => '/storage/team/team-2-1.jpg',
+                'name_ar' => "سي. هانا أوينو",
+                'name_en' => "C. Hannah Ueno",
+                'job_ar' => "أستاذ مساعد",
+                'job_en' => "Assistant Professor",
+                'url' => '/storage/team/teacher__1.jpg',
             ],
             [
-                'name' => " نيك باول",
-                'job' => "Leader",
-                'url' => '/storage/team/team-2-2.jpg',
+                'name_ar' => "توماس فريد",
+                'name_en' => "Thomas Fred",
+                'job_ar' => "أستاذ مشارك في التاريخ",
+                'job_en' => "Associate Professor of History",
+                'url' => '/storage/team/teacher__2.jpg',
             ],
             [
-                'name' => " إليزابيث ليلى",
-                'job' => "Designer",
-                'url' => '/storage/team/team-2-3.jpg',
+                'name_ar' => "جينيفر آرونز",
+                'name_en' => "Jennifer Aarons",
+                'job_ar' => "أستاذ الفنون",
+                'job_en' => "Professor of Art",
+                'url' => '/storage/team/teacher__3.jpg',
             ],
             [
-                'name' => " بول ووكر",
-                'job' => "Director",
-                'url' => '/storage/team/team-2-4.jpg',
+                'name_ar' => "مايكل ماكغارفي",
+                'name_en' => "Michael McGarvey",
+                'job_ar' => "أستاذ الأدب",
+                'job_en' => "Professor of Literature",
+                'url' => '/storage/team/teacher__4.jpg',
             ],
         ];
 
         foreach ($teams as $team) {
             $model = Team::create([
-                'name' => $team['name'],
-                'job' => $team['job'],
+                'name_ar' => $team['name_ar'],
+                'name_en' => $team['name_en'],
+                'job_ar' => $team['job_ar'],
+                'job_en' => $team['job_en'],
             ]);
             $model->media()->create([
-                'name' =>  $team['name'],
+                'name' =>  $team['name_en'],
                 'size' => 444,
-                'mime_type' => 'sdd',
+                'mime_type' => 'image/jpeg',
                 'identifier' => null,
                 'uploaded_by' =>  1,
                 'url' => $team['url'],

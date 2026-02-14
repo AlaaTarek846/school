@@ -76,69 +76,33 @@
         <div class="container">
             <div class="row">
                 <div class="rts__section--wrapper">
-                    <h2 class="rts__section--title">{{ __('Our Programs') }}</h2>
-                    <div class="rts__section--link">
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('more program') }}<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
-                    </div>
+                    <h2 class="rts__section--title">{{ __('Larose de Lisieux Stages') }}
+                    </h2>
+
                 </div>
             </div>
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__1.jpg')}});">
-                        <h5 class="rts__program--item--title">{{ __('Graduation Program') }}</h5>
-                        <p class="rts__program--item--description">{{ __('Embark on a journey of knowledge discovery, and growth at Unipix University.') }}</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
+                        <h5 class="rts__program--item--title">{{ __('Kindergarten') }}</h5>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__2.jpg')}});">
-                        <h5 class="rts__program--item--title">{{ __('Summer Program') }}</h5>
-                        <p class="rts__program--item--description">{{ __('Embark on a journey of knowledge discovery, and growth at Unipix University.') }}</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">{{ __('Learn More') }}<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
+                        <h5 class="rts__program--item--title">{{ __('Primary Stage') }}</h5>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__3.jpg')}});">
-                        <h5 class="rts__program--item--title">Undergraduate</h5>
-                        <p class="rts__program--item--description">Embark on a journey of knowledge discovery, and growth at  Unipix University.</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">Learn More<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
+                        <h5 class="rts__program--item--title"> {{ __('Preparatory Stage') }}</h5>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__4.jpg')}});">
-                        <h5 class="rts__program--item--title">{{ __('Online Program') }}</h5>
-                        <p class="rts__program--item--description">{{ __('Embark on a journey of knowledge discovery, and growth at Unipix University.') }}</p>
-                        <a href="{{ route('program-single') }}" class="rts-nbg-btn btn-arrow">Learn More<span>
-                                @if(app()->getLocale() == 'ar')
-                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                                @else
-                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                                @endif
-                        </span></a>
+                        <h5 class="rts__program--item--title">{{ __('Secondary Stage') }}  </h5>
                     </div>
                 </div>
             </div>
@@ -339,7 +303,7 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="rts__section--wrapper v__4">
-                        <h2 class="rts__section--title">{{ __('Student Feedback') }}</h2>
+                        <h2 class="rts__section--title">مراحل لاروز دي ليزيه</h2>
                         <p class="rts__section--description">{{ __('Your opinion matters, and by providing feedback, you contribute to the continuous enhancement of our academic programs, support services, and campus life') }}</p>
                         <div class="rts__slider--arrow">
                             <div class="rts__prev slider__btn">

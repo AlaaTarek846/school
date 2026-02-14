@@ -4,7 +4,7 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-         'title' => __('Kobry El Galaa School'),
+         'title' => __('Parents Meeting'),
         'page' => __('Parents Meeting'),
 
     ])
@@ -35,7 +35,7 @@
                                             <td>
                                                 K.GI B
                                             </br>
-                                                K.GI B
+                                                K.GII B
                                             </td>
 
                                             <td >{{ __('am') }} :10:5  9:45</td>

@@ -4,7 +4,7 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-        'title' => __('Kobry El Galaa School'),
+        'title' => __('School Facilities'),
         'page' => __('School Facilities')
     ])
     <!-- program content -->

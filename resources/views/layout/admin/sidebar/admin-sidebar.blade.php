@@ -10,49 +10,6 @@
     </li>
 
     <!-- Start::home -->
-        <li
-            class="slide has-sub {{ request()->routeIs('admin.page.home-sliders')   || request()->routeIs('admin.page.partners')   ? 'active open' : '' }}">
-            <a href="javascript:void(0);"
-                class="side-menu__item {{ request()->routeIs('admin.page.home-sliders') ||  request()->routeIs('admin.page.partners')  || request()->routeIs('admin.page.team') ? 'active' : '' }}">
-                <i class="bi bi-map side-menu__icon"></i>
-                <span class="side-menu__label">الصفحة الرئيسية</span>
-                <i class="fe fe-chevron-right side-menu__angle"></i>
-            </a>
-            <ul class="slide-menu child1">
-                <li class="slide side-menu__label1">
-                    <a href="javascript:void(0)">الصفحة الرئيسية</a>
-                </li>
-                <li class="slide">
-                    <a href="{{ route('admin.page.home-sliders') }}"
-                        class="side-menu__item {{ request()->routeIs('admin.page.home-sliders') ? 'active' : '' }}">
-                        السكشن المتحرك
-                    </a>
-                </li>
-
-                <li class="slide">
-                    <a href="{{ route('admin.page.partners') }}"
-                        class="side-menu__item {{ request()->routeIs('admin.page.partners') ? 'active' : '' }}">
-                        فيديو تعرفي
-                    </a>
-                </li>
-{{--                <li class="slide">--}}
-{{--                    <a href="{{ route('admin.page.team') }}"--}}
-{{--                        class="side-menu__item {{ request()->routeIs('admin.page.team') ? 'active' : '' }}">--}}
-{{--                        اعضاء الشركة--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-                <li class="slide">
-                    <a href="{{ route('admin.page.testimonial') }}"
-                        class="side-menu__item {{ request()->routeIs('admin.page.testimonial') ? 'active' : '' }}">
-                        اراء العملاء
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-    <!-- End::home -->
-
-    <!-- Start::home -->
     <li
         class="slide has-sub {{ request()->routeIs('admin.page.one-about')   || request()->routeIs('admin.page.why-choose-us') || request()->routeIs('admin.page.how-we-welcome-child') || request()->routeIs('admin.page.campus-tour') || request()->routeIs('admin.page.principal-message') || request()->routeIs('admin.page.school-discipline-policy') || request()->routeIs('admin.page.quality-assurance-files') ? 'active open' : '' }}">
         <a href="javascript:void(0);"
@@ -113,29 +70,40 @@
         </ul>
     </li>
 
-
-
-
-
+    <!-- Start::Education Fees System -->
+    <li class="slide has-sub {{ request()->routeIs('admin.page.education-stages')  || request()->routeIs('admin.page.fees') ? 'active open' : '' }}">
+        <a href="javascript:void(0);" class="side-menu__item {{ request()->routeIs('admin.page.education-stages')  || request()->routeIs('admin.page.fees') ? 'active' : '' }}">
+            <i class="bi bi-mortarboard side-menu__icon"></i>
+            <span class="side-menu__label">نظام المصروفات</span>
+            <i class="fe fe-chevron-right side-menu__angle"></i>
+        </a>
+        <ul class="slide-menu child1">
+            <li class="slide side-menu__label1">
+                <a href="javascript:void(0)">نظام المصروفات</a>
+            </li>
+            <li class="slide">
+                <a href="{{ route('admin.page.education-stages') }}" class="side-menu__item {{ request()->routeIs('admin.page.education-stages')  ? 'active' : '' }}">
+                    مراحل التعليم
+                </a>
+            </li>
+            <li class="slide">
+                <a href="{{ route('admin.page.fees') }}" class="side-menu__item {{ request()->routeIs('admin.page.fees') ? 'active' : '' }}">
+                    المصروفات الدراسية
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!-- End::Education Fees System -->
     <!-- Start::service -->
-        <li class="slide">
-            <a href="{{ route('admin.page.services') }}"
-               class="side-menu__item {{ request()->routeIs('admin.page.services') ? 'active' : '' }}">
-                <i class="bi bi-map side-menu__icon"></i>
-                <span class="side-menu__label">صفحة الخدمات</span>
-            </a>
-        </li>
-    <!-- End::service -->
+    <li class="slide">
+        <a href="{{ route('admin.page.testimonial') }}"
+           class="side-menu__item {{ request()->routeIs('admin.page.testimonial') ? 'active' : '' }}">
+            <i class="bi bi-map side-menu__icon"></i>
+            <span class="side-menu__label"> اراء العملاء</span>
+        </a>
+    </li>
 
-    <!-- Start::projects -->
-        <li class="slide">
-            <a href="{{ route('admin.page.projects') }}"
-               class="side-menu__item {{ request()->routeIs('admin.page.projects') ? 'active' : '' }}">
-                <i class="bi bi-map side-menu__icon"></i>
-                <span class="side-menu__label">صفحة المنتجات</span>
-            </a>
-        </li>
-    <!-- End::projects -->
+
 
     <!-- Start::contact-messages -->
         <li class="slide">
@@ -168,13 +136,13 @@
     <!-- End::student-registrations -->
 
     <!-- Start::subscribes -->
-    <li class="slide">
-        <a href="{{ route('admin.page.subscribes') }}"
-           class="side-menu__item {{ request()->routeIs('admin.page.subscribes') ? 'active' : '' }}">
-            <i class="bi bi-map side-menu__icon"></i>
-            <span class="side-menu__label">المشتركين</span>
-        </a>
-    </li>
+{{--    <li class="slide">--}}
+{{--        <a href="{{ route('admin.page.subscribes') }}"--}}
+{{--           class="side-menu__item {{ request()->routeIs('admin.page.subscribes') ? 'active' : '' }}">--}}
+{{--            <i class="bi bi-map side-menu__icon"></i>--}}
+{{--            <span class="side-menu__label">المشتركين</span>--}}
+{{--        </a>--}}
+{{--    </li>--}}
     <!-- End::subscribes -->
 
     <!-- Start::faq -->
@@ -219,29 +187,14 @@
         </li>
     <!-- End::setting -->
 
-    <!-- Start::Education Fees System -->
-    <li class="slide has-sub {{ request()->routeIs('admin.page.education-stages') ? 'active open' : '' }}">
-        <a href="javascript:void(0);" class="side-menu__item {{ request()->routeIs('admin.page.education-stages') ? 'active' : '' }}">
-            <i class="bi bi-mortarboard side-menu__icon"></i>
-            <span class="side-menu__label">نظام المصروفات</span>
-            <i class="fe fe-chevron-right side-menu__angle"></i>
+    <!-- Start::teams -->
+    <li class="slide">
+        <a href="{{ route('admin.page.teams') }}"
+           class="side-menu__item {{ request()->routeIs('admin.page.teams') ? 'active' : '' }}">
+            <i class="bi bi-people side-menu__icon"></i>
+            <span class="side-menu__label">فريق العمل</span>
         </a>
-        <ul class="slide-menu child1">
-            <li class="slide side-menu__label1">
-                <a href="javascript:void(0)">نظام المصروفات</a>
-            </li>
-            <li class="slide">
-                <a href="{{ route('admin.page.education-stages') }}" class="side-menu__item {{ request()->routeIs('admin.page.education-stages') ? 'active' : '' }}">
-                    مراحل التعليم
-                </a>
-            </li>
-            <li class="slide">
-                <a href="{{ route('admin.page.fees') }}" class="side-menu__item {{ request()->routeIs('admin.page.fees') ? 'active' : '' }}">
-                    المصروفات الدراسية
-                </a>
-            </li>
-        </ul>
     </li>
-    <!-- End::Education Fees System -->
+    <!-- End::teams -->
 
 </ul>

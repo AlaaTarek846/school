@@ -22,20 +22,35 @@ class VideoController extends Controller
 
     public function store(VideoRequest $request)
     {
-        Video::create($request->validated());
+        $data = $request->validated();
+        if ($request->hasFile('video')) {
+            $data['video'] = saveFile($request->file('video'), 'videos');
+        }
+        Video::create($data);
         return responseJson([], 'Added Successfully', 200);
     }
 
     public function update(VideoRequest $request, $id)
     {
         $video = Video::findOrFail($id);
-        $video->update($request->validated());
+        $data = $request->validated();
+        if ($request->hasFile('video')) {
+            if ($video->video) {
+                unlink_image_by_path($video->video);
+            }
+            $data['video'] = saveFile($request->file('video'), 'videos');
+        }
+        $video->update($data);
         return responseJson([], 'Updated Successfully', 200);
     }
 
     public function destroy($id)
     {
-        Video::findOrFail($id)->delete();
+        $video = Video::findOrFail($id);
+        if ($video->video) {
+            unlink_image_by_path($video->video);
+        }
+        $video->delete();
         return responseJson([], 'Deleted Successfully', 200);
     }
 }

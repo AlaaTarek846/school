@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceFaqController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubscribeController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\StudentRegistrationController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TwoAboutController;
@@ -86,6 +87,7 @@ Route::prefix('api')->group(function () {
         Route::apiResource('quality-assurance-files', \App\Http\Controllers\Admin\QualityAssuranceFileController::class);
         Route::apiResource('education-stages', \App\Http\Controllers\Admin\EducationStageController::class);
         Route::apiResource('fees', \App\Http\Controllers\Admin\FeeController::class);
+        Route::apiResource('teams', TeamController::class);
 
     });
 
@@ -128,6 +130,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');
             Route::get('career-applications', [CareerApplicationController::class, 'indexPage'])->name('career-applications');
             Route::get('student-registrations', [StudentRegistrationController::class, 'indexPage'])->name('student-registrations');
+            Route::get('teams', [TeamController::class, 'indexPage'])->name('teams');
         });
 
         // logout

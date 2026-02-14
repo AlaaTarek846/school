@@ -22,7 +22,8 @@ class VideoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'link' => 'required|url',
+            'link' => 'nullable|url',
+            'video' => 'nullable|file|mimes:mp4,mov,ogg,qt',
         ];
     }
 }

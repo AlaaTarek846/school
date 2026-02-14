@@ -18,5 +18,8 @@ return [
     'success' => 'نجاح',
     'AddedSuccessfully' => 'تمت الإضافة بنجاح',
     'UpdatedSuccessfully' => 'تم التحديث بنجاح',
-    'NoDataFound' => 'لا توجد بيانات',
+    'NoDataFound' => 'لا يوجد بيانات',
+    'ViewVideo' => 'عرض الفيديو',
+    'name' => 'الاسم',
+    'job' => 'الوظيفة',
 ];

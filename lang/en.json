@@ -1,4 +1,11 @@
 {
+    "global.name": "Name",
+    "global.job": "Job Title",
+    "Larose de Lisieux Stages": "School Stages at Kobry El Galaa School",
+    "Kindergarten": "Kindergarten",
+    "Primary Stage": "Primary Stage",
+    "Preparatory Stage": "Preparatory Stage",
+    "Secondary Stage": "Secondary Stage",
     "Contact Us": "Contact Us",
     "Full Name": "Full Name",
     "Country": "Country",
@@ -174,6 +181,8 @@
     "Tuesday": "Tuesday",
     "Wednesday": "Wednesday",
     "am": "am",
+    "Video": "Video",
+    "View Video": "View Video",
     "About Us": "About Us",
     "Principal's Message": "Principal's Message",
     "School Discipline Policy": "School Discipline Policy",
@@ -203,6 +212,7 @@
     "Role Point 7": "Organizing the Public Service Group that focuses on projects supporting positive values, such as environmental care and school beautification.",
     "Role Point 8": "Activating the role of the Board of Trustees, parents, and teachers to enhance the educational process and educational activities.",
     "Role Point 9": "Working on community participation through volunteering in development efforts, whether by opinion, work, or financing, to support the educational process.",
+
     "Role Point 10": "Forming the Red Crescent team, holding scientific lectures, and conducting visits to nearby hospitals to foster a spirit of cooperation.",
     "School Goals Title": "School Goals",
     "Goal 1": "Preparing a good citizen for himself and society.",

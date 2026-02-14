@@ -27,7 +27,10 @@
                             <tr v-for="(item,index) in data" :key="item.id">
                                 <td>{{index + 1}}</td>
                                 <td>
-                                    <a :href="item.link" target="_blank">{{ item.link }}</a>
+                                    <a v-if="item.link" :href="item.link" target="_blank">{{ item.link }}</a>
+                                    <a v-else-if="item.video" :href="'/' + item.video" target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="ri-video-line"></i> {{ $t('global.ViewVideo') }}
+                                    </a>
                                 </td>
                                 <td>
                                     <div class="hstack gap-2 fs-15">
@@ -45,7 +48,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" v-if="dataPaginate && dataPaginate.current_page">
                     <Pagination :data="dataPaginate" @pagination-change-page="getData" />
                 </div>
             </div>
@@ -53,11 +56,11 @@
     </div>
 
     <!-- Modal -->
-    <ModalCreateAndUpdate :type="type" :dataRow="dataRow" @created="getData(1)" />
+    <ModalCreateAndUpdate :type="type" :dataRow="dataRow" :key="type + (dataRow?.id || 'new')" @created="getData(1)" />
 </template>
 
 <script setup>
-import {ref, onMounted} from "vue";
+import {ref, onMounted, nextTick} from "vue";
 import adminApi from "../../../api/adminAxios";
 import Swal from "sweetalert2";
 import ModalCreateAndUpdate from "./ModalCreateAndUpdate.vue";
@@ -85,21 +88,19 @@ const getData = (page = 1) => {
         });
 }
 
-const openModal = () => {
+const openModal = async () => {
     type.value = 'create';
     dataRow.value = {};
-    let myModal = new bootstrap.Modal(document.getElementById('video-model'), {
-        keyboard: false
-    });
+    await nextTick();
+    let myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('video-model'));
     myModal.show();
 }
 
-const edit = (item) => {
+const edit = async (item) => {
     type.value = 'edit';
     dataRow.value = item;
-    let myModal = new bootstrap.Modal(document.getElementById('video-model'), {
-        keyboard: false
-    });
+    await nextTick();
+    let myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('video-model'));
     myModal.show();
 }
 

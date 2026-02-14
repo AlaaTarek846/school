@@ -59,7 +59,11 @@
             <div class="row g-5 justify-content-md-center justify-content-start align-items-center">
                 <div class="col-lg-6 col-md-11">
                     <div class="rts-history-image">
+                        @if($why_choose_us->image)
+                            <img src="{{ $why_choose_us->image }}" alt="history">
+                        @else
                         <img src="{{asset('assets/images/about/history.jpg')}}" alt="history">
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-11">
@@ -106,37 +110,22 @@
             <!-- mission -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="rts-timeline-section">
-                        <div class="rts-timeline-content">
-                            @php
-                                $left_side = $welcome_child->filter(fn($item, $key) => $key % 2 == 0);
-                                $right_side = $welcome_child->filter(fn($item, $key) => $key % 2 != 0);
-                            @endphp
-                                <div class="left-side">
-                                    @foreach($left_side as $item)
-                                    <div class="single-timeline-item" style="word-wrap: break-word;">
-                                        <h5 class="timeline-title">{{ app()->getLocale() == 'ar' ? $item->title_ar : $item->title_en }}</h5>
-                                        <p>{!! app()->getLocale() == 'ar' ? $item->description_ar : $item->description_en !!}</p>
-                                        @if($item->image)
-                                            <img src="{{asset($item->image)}}" alt="mission">
-                                        @endif
-                                    </div>
-                                    @endforeach
+                    <div class="rts-timeline-container d-flex flex-column">
+                        <div class="rts-timeline-line-gradient"></div>
+                        @foreach($welcome_child as $index => $item)
+                        <div class="timeline-row {{ $index % 2 == 0 ? 'left' : 'right' }}">
+                            <div class="timeline-dot"></div>
+                            <div class="single-timeline-item">
+                                <h5 class="timeline-title">{{ app()->getLocale() == 'ar' ? $item->title_ar : $item->title_en }}</h5>
+                                <div class="timeline-desc">
+                                    {!! app()->getLocale() == 'ar' ? $item->description_ar : $item->description_en !!}
                                 </div>
-                                <div class="separator">
-                                </div>
-                                <div class="right-side">
-                                    @foreach($right_side as $item)
-                                    <div class="single-timeline-item" style="word-wrap: break-word;">
-                                        <h5 class="timeline-title">{{ app()->getLocale() == 'ar' ? $item->title_ar : $item->title_en }}</h5>
-                                        <p>{!! app()->getLocale() == 'ar' ? $item->description_ar : $item->description_en !!}</p>
-                                        @if($item->image)
-                                            <img src="{{asset($item->image)}}" alt="mission">
-                                        @endif
-                                    </div>
-                                    @endforeach
-                                </div>
+                                @if($item->image)
+                                    <img src="{{asset($item->image)}}" alt="mission">
+                                @endif
+                            </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

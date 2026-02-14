@@ -18,9 +18,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap");
 :root {
   --rt-theme: #09A24F;
-  --rt-primary: #890C25;
-  --rt-primary-1: #B71A34;
-  --rt-primary-2: #890C25;
+  --rt-primary: #c71d63;
+  --rt-primary-1: #c71d63;
+  --rt-primary-2: #c71d63;
   --rt-secondary: #110C2D;
   --rt-footer: #181818;
   --rt-body: #737477;
@@ -16695,7 +16695,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   background: var(--rt-white);
 }
 .header__sticky.fixed .header__logo--link img {
-  filter: invert(100);
+  filter: unset;
 }
 .header__sticky.fixed .header__right--item .menu__trigger img {
   filter: invert(100);
@@ -18739,7 +18739,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   }
 }
 .rts-mission .rts-timeline-section .rts-timeline-content .left-side .single-timeline-item p {
-  max-width: 330px;
+  max-width: 500px;
   margin-right: 0;
 }
 @media screen and (max-width: 576px) {
@@ -18859,7 +18859,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   }
 }
 .rts-mission .rts-timeline-section .rts-timeline-content .right-side .single-timeline-item p {
-  max-width: 330px;
+  max-width: 500px;
   margin-left: 0;
   margin-bottom: 30px;
 }
@@ -23546,7 +23546,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   position: absolute;
   height: 100%;
   width: 1px;
-  background: #AF2944;
+  background: #fff;
   content: "";
   top: 0;
   right: -70px;

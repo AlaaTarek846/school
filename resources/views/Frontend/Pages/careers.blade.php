@@ -52,7 +52,7 @@
                                         <input type="file" name="cv" id="sub" accept=".pdf,.doc,.docx" required>
                                     </div>
 
-                                    <div class="d-flex align-items-center single-checkbox mt--20">
+                                    <div class="d-flex align-items-center single-checkbox mt--20" style="position: relative;">
                                         <input type="checkbox" id="exampleCheck1" required>
                                         <label for="exampleCheck1">{{ __('By submitting this form, you agree to the Unipix University Privacy Notice') }}</label>
                                     </div>

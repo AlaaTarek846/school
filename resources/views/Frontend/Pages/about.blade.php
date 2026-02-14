@@ -4,8 +4,8 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-        'title' => 'About Unipix University',
-        'page' => 'about'    
+        'title' => __('About Al-Galaa Kobery School'),
+        'page' => __('About')
     ])
 
     <!-- about university -->
@@ -14,11 +14,11 @@
             <div class="row">
                 <div class="rts-section">
                     <div class="col-lg-4 col-md-5">
-                        <h3 class="rts-section-title">About University</h3>
+                        <h3 class="rts-section-title">{{ app()->getLocale() == 'ar' ? $one_about->title_ar : $one_about->title_en }}</h3>
                     </div>
-                    <div class="col-lg-8 col-md-7">
+                    <div class="col-lg-8 col-md-7" style="word-wrap: break-word;">
                         <p class="rts-section-description">
-                            Welcome to Unipix University, where knowledge meets inspiration, and every individual's educational journey is valued. Established in 1971 Establishment, our university has been a bastion of learning, innovation, and community for 51 years years.
+                            {!! app()->getLocale() == 'ar' ? $one_about->description_ar : $one_about->description_en !!}
                         </p>
                     </div>
                 </div>
@@ -26,38 +26,26 @@
             <div class="row g-5 justify-content-md-center justify-content-start">
                 <div class="col-lg-7 col-xl-8 col-md-11">
                     <div class="rts-about-section">
-                        <img src="{{asset('assets/images/about/about-01.jpg')}}" alt="">
+                        @if($one_about->firstPhoto)
+                            <img src="{{ asset($one_about->firstPhoto->url) }}" alt="about">
+                        @else
+                            <img src="{{asset('assets/images/about/about-01.jpg')}}" alt="">
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-5 col-xl-4 col-md-11">
                     <div class="rts-about-details">
+                        @foreach($one_about->details as $index => $detail)
                         <div class="single-about-info">
                             <div class="content">
-                                <h3 class="title">20,000</h3>
-                                <img src="{{asset('assets/images/icon/11.svg')}}" alt="">
+                                <h3 class="title">{{ $detail->count }}</h3>
+                                <img src="{{asset('assets/images/icon/'.(11+$index).'.svg')}}" alt="">
                             </div>
                             <div class="desc">
-                                <p>undergraduate and graduate students</p>
+                                <p>{{ app()->getLocale() == 'ar' ? $detail->title_ar : $detail->title_en }}</p>
                             </div>
                         </div>
-                        <div class="single-about-info">
-                            <div class="content">
-                                <h3 class="title">16,214</h3>
-                                <img src="{{asset('assets/images/icon/12.svg')}}" alt="">
-                            </div>
-                            <div class="desc">
-                                <p>Unipix University Faculty and Staff</p>
-                            </div>
-                        </div>
-                        <div class="single-about-info">
-                            <div class="content">
-                                <h3 class="title">300k</h3>
-                                <img src="{{asset('assets/images/icon/13.svg')}}" alt="">
-                            </div>
-                            <div class="desc">
-                                <p>Unipix Alumni Worldwide</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -75,12 +63,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-11">
-                    <div class="rts-history-section">
-                        <h4 class="rts-section-title mb--40">The history of Unipix</h4>
+                    <div class="rts-history-section" style="word-wrap: break-word;">
+                        <h4 class="rts-section-title mb--40">{{ app()->getLocale() == 'ar' ? $why_choose_us->title_ar : $why_choose_us->title_en }}</h4>
                         <p>
-                            On September 8, 1971, Unipix, the first college in the American colonies, was founded in Cambridge, Massachusetts. Unipix University was officially founded by a vote by the Great and General Court of the Massachusetts Bay Colony.  
-                            <span class="d-block mb--30"></span>
-                            Unipix endowment started with John Unipix initial donation of 400 books and half his estate, but in 1721, Thomas Hollis began the now standard practice of requiring that a donation be used for a specific purpose when he donated money for “a Divinity Professor, to read lectures in the Halls to the students.”
+                            {!! app()->getLocale() == 'ar' ? $why_choose_us->description_ar : $why_choose_us->description_en !!}
                         </p>
                     </div>
                 </div>
@@ -95,18 +81,12 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 ">
                     <div class="rts-funfact-wrapper">
-                        <div class="single-cta-item">
-                            <h2 class="single-cta-item__title">90%</h2>
-                            <p>post-graduation success rate</p>
+                        @foreach($why_choose_us->details as $detail)
+                        <div class="single-cta-item" style="word-wrap: break-word;">
+                            <h2 class="single-cta-item__title">{{ $detail->count }}%</h2>
+                            <p>{!! app()->getLocale() == 'ar' ? $detail->title : $detail->title !!}</p>
                         </div>
-                        <div class="single-cta-item">
-                            <h2 class="single-cta-item__title">Top 10</h2>
-                            <p>Colleges that Create Futures</p>
-                        </div>
-                        <div class="single-cta-item">
-                            <h2 class="single-cta-item__title">No. 1</h2>
-                            <p>in the nation for materials R&amp;D</p>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -120,7 +100,7 @@
         <div class="container">
             <div class="row justify-content-center rt-center">
                 <div class="rts-section mb--50">
-                    <h2 class="rts-section-title">Mission and Values</h2>
+                    <h2 class="rts-section-title">{{ __('How does the child receive') }}</h2>
                 </div>
             </div>
             <!-- mission -->
@@ -128,39 +108,33 @@
                 <div class="col-lg-12">
                     <div class="rts-timeline-section">
                         <div class="rts-timeline-content">
+                            @php
+                                $left_side = $welcome_child->filter(fn($item, $key) => $key % 2 == 0);
+                                $right_side = $welcome_child->filter(fn($item, $key) => $key % 2 != 0);
+                            @endphp
                                 <div class="left-side">
-                                    <div class="single-timeline-item">
-                                        <h5 class="timeline-title">Diversity</h5>
-                                        <p> Celebrating a rich tapestry of backgrounds,
-                                            perspectives, and talents
-                                        </p>
-                                        <img src="{{asset('assets/images/about/mission-1.jpg')}}" alt="">
+                                    @foreach($left_side as $item)
+                                    <div class="single-timeline-item" style="word-wrap: break-word;">
+                                        <h5 class="timeline-title">{{ app()->getLocale() == 'ar' ? $item->title_ar : $item->title_en }}</h5>
+                                        <p>{!! app()->getLocale() == 'ar' ? $item->description_ar : $item->description_en !!}</p>
+                                        @if($item->image)
+                                            <img src="{{asset($item->image)}}" alt="mission">
+                                        @endif
                                     </div>
-                                    <div class="single-timeline-item">
-                                        <h5 class="timeline-title">Innovation</h5>
-                                        <p> Encouraging creativity, critical thinking, and a
-                                            spirit of innovation.
-                                        </p>
-                                        <img src="{{asset('assets/images/about/mission-2.jpg')}}" alt="">
-                                    </div>
+                                    @endforeach
                                 </div>
                                 <div class="separator">
                                 </div>
                                 <div class="right-side">
-                                    <div class="single-timeline-item">
-                                        <h5 class="timeline-title">Excellence</h5>
-                                        <p> Striving for academic and research excellence
-                                            in all endeavors.
-                                        </p>
-                                        <img src="{{asset('assets/images/about/mission-3.jpg')}}" alt="">
+                                    @foreach($right_side as $item)
+                                    <div class="single-timeline-item" style="word-wrap: break-word;">
+                                        <h5 class="timeline-title">{{ app()->getLocale() == 'ar' ? $item->title_ar : $item->title_en }}</h5>
+                                        <p>{!! app()->getLocale() == 'ar' ? $item->description_ar : $item->description_en !!}</p>
+                                        @if($item->image)
+                                            <img src="{{asset($item->image)}}" alt="mission">
+                                        @endif
                                     </div>
-                                    <div class="single-timeline-item">
-                                        <h5 class="timeline-title">Academic Excellence</h5>
-                                        <p> Our commitment to academic excellence is reflected in
-                                            the diverse range
-                                        </p>
-                                        <img src="{{asset('assets/images/about/mission-4.jpg')}}" alt="">
-                                    </div>
+                                    @endforeach
                                 </div>
                         </div>
                     </div>
@@ -170,7 +144,7 @@
     </section>
     <!-- mission end-->
 
-    @include($components . 'campus-tour', ['class' => 'rts-section-padding'])
-    @include($components . 'testimonial-v3', ['class' => 'rts-section-padding'])
+    @include($components . 'campus-tour', ['class' => 'rts-section-padding', 'campus_tour' => $campus_tour])
+    @include($components . 'testimonial-v3', ['class' => 'rts-section-padding', 'testimonials' => $testimonials])
     @include($footer . 'footer__default', ['class' => 'v__1'])
 @endsection

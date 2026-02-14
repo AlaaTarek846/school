@@ -90,22 +90,22 @@
 
 
                           <div class="col-md-12 mt-2 text-end">
-                            <button
-                                type="button" class="btn btn-danger btn-sm mx-1"
-                                @click="removeSize(index)"
-                                :title="$t('global.Delete')"
-                                v-if="submitData.data.details.length > 1"
-                            >
-                              <i class="ri-delete-bin-line"></i>
-                            </button>
-                            <button
-                                type="button" class="btn btn-success btn-sm"
-                                :title="$t('global.addLine')"
-                                v-if="(submitData.data.details.length - 1) == index"
-                                @click="addSizeDetail"
-                            >
-                              <i class="ri-add-line"></i>
-                            </button>
+<!--                            <button-->
+<!--                                type="button" class="btn btn-danger btn-sm mx-1"-->
+<!--                                @click="removeSize(index)"-->
+<!--                                :title="$t('global.Delete')"-->
+<!--                                v-if="submitData.data.details.length > 1"-->
+<!--                            >-->
+<!--                              <i class="ri-delete-bin-line"></i>-->
+<!--                            </button>-->
+<!--                            <button-->
+<!--                                type="button" class="btn btn-success btn-sm"-->
+<!--                                :title="$t('global.addLine')"-->
+<!--                                v-if="(submitData.data.details.length - 1) == index"-->
+<!--                                @click="addSizeDetail"-->
+<!--                            >-->
+<!--                              <i class="ri-add-line"></i>-->
+<!--                            </button>-->
                           </div>
                         </div>
                         <div class="col-md-12 mt-3">

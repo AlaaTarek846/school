@@ -6,12 +6,12 @@
                     <div class="card-title">
                         كلمة المدير
                     </div>
-                    <div class="prism-toggle">
-                        <button @click="openModal" class="btn btn-primary ripple btn-wave waves-effect waves-light">
-                            <i class="ri-add-line"></i>
-                            {{$t('global.add')}}
-                        </button>
-                    </div>
+<!--                    <div class="prism-toggle">-->
+<!--                        <button @click="openModal" class="btn btn-primary ripple btn-wave waves-effect waves-light">-->
+<!--                            <i class="ri-add-line"></i>-->
+<!--                            {{$t('global.add')}}-->
+<!--                        </button>-->
+<!--                    </div>-->
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -38,7 +38,7 @@
                                 <td>
                                     <div class="hstack gap-2 fs-15">
                                         <a @click="edit(item)" class="btn btn-icon btn-sm btn-info-transparent rounded-pill"><i class="ri-edit-line"></i></a>
-                                        <a @click="deleteItem(item.id)" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>
+<!--                                        <a @click="deleteItem(item.id)" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>-->
                                     </div>
                                 </td>
                             </tr>

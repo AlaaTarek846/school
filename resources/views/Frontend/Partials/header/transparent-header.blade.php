@@ -25,9 +25,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div id="search-btn" class="search__trigger">
-                                <i class="fa-sharp fa-light fa-magnifying-glass"></i>
-                            </div>
                             <div id="menu-btn" class="menu__trigger">
                                 <img src="{{asset('assets/images/icon/bar__line.svg')}}" alt="bar">
                             </div>

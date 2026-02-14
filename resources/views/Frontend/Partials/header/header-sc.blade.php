@@ -11,22 +11,19 @@
                          <div class="header__content">
                               <div class="header__content__top">
                                    <div class="header__content__top__left">
-                                        <a href="#"><i class="fa-classic fa-light fa-location-dot"></i> 2702 Memory Lane, Chicago, IL 60605</a>
+                                        <a href="#"><i class="fa-classic fa-light fa-location-dot"></i> {!! $shareSetting->address ?? '' !!}</a>
                                    </div>
                                    <div class="header__content__top__right">
                                         <div class="follow_us">
                                              <span>{{ __('Follow Us-') }}</span>
                                              <div>
-                                                  <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                                                  <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                                  <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                                                  <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                                             </div>
+                                                  <a href="{{ $shareSetting->facebook ?? '#' }}"><i class="fa-brands fa-facebook"></i></a>
+                                                  <a href="{{ $shareSetting->twitter ?? '#' }}"><i class="fa-brands fa-twitter"></i></a>
+                                                  <a href="{{ $shareSetting->linkedin ?? '#' }}"><i class="fa-brands fa-linkedin"></i></a>
+                                                  <a href="{{ $shareSetting->instagram ?? '#' }}"><i class="fa-brands fa-instagram"></i></a>
+                                              </div>
                                         </div>
                                         <div class="header__right--item">
-                                             <div id="search-btn" class="search__trigger">
-                                                  <i class="fa-sharp fa-light fa-magnifying-glass"></i>
-                                              </div>
                                              <div id="langSwitcher" class="lang__trigger">
                                                   <span class="selected__lang">{{ strtoupper(app()->getLocale()) }}</span>
                                                   <i class="fa-light fa-globe"></i>

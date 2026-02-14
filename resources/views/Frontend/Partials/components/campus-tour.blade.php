@@ -17,13 +17,6 @@
             <div class="col-lg-8">
                 <div class="rts-video-section-text rt-center mx-3" style="word-wrap: break-word;">
                     <p>{!! app()->getLocale() == 'ar' ? ($campus_tour->description_ar ?? '') : ($campus_tour->description_en ?? '') !!}</p>
-                    <a href="{{ route('campus-life') }}" class="mt--15 about-btn rts-nbg-btn btn-arrow">{{ __('Visit Campus') }} <span>
-                        @if(app()->getLocale() == 'ar')
-                            <i class="fa-sharp fa-regular fa-arrow-left"></i>
-                        @else
-                            <i class="fa-sharp fa-regular fa-arrow-right"></i>
-                        @endif
-                    </span></a>
                 </div>
             </div>
         </div>

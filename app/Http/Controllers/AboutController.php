@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Models\PrincipalMessage;
-use Illuminate\Http\Request;
+use App\Models\SchoolDisciplinePolicy;
 
 class AboutController extends BaseController
 {
@@ -25,8 +25,10 @@ class AboutController extends BaseController
 
     // homepage three
     public function schoolDisciplinePolicy(){
+        $policies = SchoolDisciplinePolicy::get();
         return $this->view('school-discipline-policy', [
-            'page_title' => 'School discipline policy'
+            'page_title' => 'School discipline policy',
+            'policies' => $policies
         ]);
     }
 

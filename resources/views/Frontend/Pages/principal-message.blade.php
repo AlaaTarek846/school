@@ -4,8 +4,8 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-        'title' => 'About Unipix University',
-        'page' => 'about'
+        'title' => (app()->getLocale() == 'ar' ? $principal_message->title_ar : $principal_message->title_en),
+        'page' => __('About')
     ])
 
     <!-- content -->
@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="rts-section mb--60">
-                    <h3 class="rts-section-title">{{ app()->getLocale() == 'ar' ? 'رسالة من العميد' : 'Message from Dean' }}</h3>
+                    <h3 class="rts-section-title">{{ app()->getLocale() == 'ar' ? 'رسالة من المدير' : 'Message from manager' }}</h3>
                 </div>
             </div>
             <div class="row">

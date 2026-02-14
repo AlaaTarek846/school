@@ -6,7 +6,8 @@
                 <div class="header__wrapper">
                     <div class="header__logo">
                         <a href="{{ route('index') }}" class="header__logo--link">
-                            <img src="{{asset('assets/images/logo/logo__white.svg')}}" alt="unipix">
+                            <img src="{{asset('assets/images/logo/logo-white.png')}}" class="logo-white" alt="unipix">
+                            <img src="{{asset('assets/images/logo/logo-color.png')}}" class="logo-color" alt="unipix">
                         </a>
                     </div>
                     <div class="header__menu">

@@ -6,13 +6,18 @@ use App\Models\Gallery;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
+use App\Models\QualityAssuranceFile;
+use App\Models\Fee;
+
 class SchoolController extends BaseController
 {
     //  ملفات ضمان الجودة
     public function qualityAssuranceFiles()
     {
+        $files = QualityAssuranceFile::get();
         return $this->view('quality-assurance-files', [
             'page_title' => 'quality-assurance-files',
+            'files' => $files
         ]);
     }
 
@@ -107,8 +112,10 @@ class SchoolController extends BaseController
     // المصروفات
     public function tuitionFees()
     {
+        $fee = Fee::with('details.educationStage')->latest()->first();
         return $this->view('tuition-fees', [
             'page_title' => 'tuition-fees',
+            'fee' => $fee
         ]);
     }
 }

@@ -4,8 +4,8 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-        'title' => 'About Unipix University',
-        'page' => 'about'
+        'title' => __('About Al-Galaa Kobery School'),
+        'page' => __('About')
     ])
 
     <!-- about university -->
@@ -100,7 +100,7 @@
         <div class="container">
             <div class="row justify-content-center rt-center">
                 <div class="rts-section mb--50">
-                    <h2 class="rts-section-title">Mission and Values</h2>
+                    <h2 class="rts-section-title">{{ __('How does the child receive') }}</h2>
                 </div>
             </div>
             <!-- mission -->

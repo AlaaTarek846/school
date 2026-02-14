@@ -8,7 +8,11 @@
 }
 
 .rts-mission .rts-timeline-section .rts-timeline-content .separator::before {
-    background: linear-gradient(to bottom, var(--rt-primary-2) 0%, var(--rt-primary-1) 100%);
+    background: linear-gradient(
+        to bottom,
+        var(--rt-primary-2) 0%,
+        var(--rt-primary-1) 100%
+    );
     width: 3px;
     height: 100%;
     left: 50%;
@@ -67,7 +71,7 @@
 
 /* Dots on the line */
 .single-timeline-item::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 24px;
     height: 24px;
@@ -123,7 +127,8 @@
     .rts-mission .rts-timeline-section .rts-timeline-content .separator {
         display: none;
     }
-    .left-side, .right-side {
+    .left-side,
+    .right-side {
         width: 100% !important;
         margin: 0 !important;
     }
@@ -160,4 +165,20 @@
 [dir="rtl"] .right-side .single-timeline-item::after {
     left: auto;
     right: -58px;
+}
+
+/* Logo switching logic */
+.header .logo-color {
+    display: none;
+}
+.header.fixed .logo-white {
+    display: none;
+}
+.header.fixed .logo-color {
+    display: block;
+}
+
+.header__logo--link img {
+    max-height: 70px;
+    width: auto;
 }

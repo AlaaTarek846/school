@@ -12,15 +12,12 @@
 
 ========================================*/
 /* Default  */
-@import url("../css/vendor/canela-font.css");
-@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 :root {
     --rt-theme: #09a24f;
-    --rt-primary: #890c25;
-    --rt-primary-1: #b71a34;
-    --rt-primary-2: #890c25;
+    --rt-primary: #c71d63;
+    --rt-primary-1: #c71d63;
+    --rt-primary-2: #c71d63;
     --rt-secondary: #110c2d;
     --rt-footer: #181818;
     --rt-body: #737477;
@@ -58,11 +55,11 @@
     --f-black: 900;
     --translate: translate(-50%, -50%);
     --transition: all 0.4s ease;
-    --font-primary: "Inter", sans-serif;
-    --font-secondary: "Canela trial";
-    --font-hind: "Hind", sans-serif;
+    --font-primary: "Rubik", sans-serif;
+    --font-secondary: "Rubik", sans-serif;
+    --font-hind: "Rubik", sans-serif;
     --fontawesome: "fontawesome", sans-serif;
-    --rufina: "Rufina", serif;
+    --rufina: "Rubik", sans-serif;
     --line-height-b1: 26px;
     --line-height-b2: 26px;
     --line-height-b3: 1.7;
@@ -17002,7 +16999,7 @@ body.index-sc h6 {
     background: var(--rt-white);
 }
 .header__sticky.fixed .header__logo--link img {
-    filter: invert(100);
+    filter: unset;
 }
 .header__sticky.fixed .header__right--item .menu__trigger img {
     filter: invert(100);
@@ -18060,7 +18057,7 @@ body.index-sc h6 {
     }
 }
 .banner .banner__content--title {
-    font-size: 120px;
+    font-size: 103px;
     font-weight: 400;
     text-transform: uppercase;
     color: var(--rt-white);
@@ -24514,7 +24511,7 @@ body.index-sc h6 {
     position: absolute;
     height: 100%;
     width: 1px;
-    background: #af2944;
+    background: #fff;
     content: "";
     top: 0;
     left: -70px;

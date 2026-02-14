@@ -4,8 +4,8 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-        'title' => 'About Unipix University',
-        'page' => 'about'
+        'title' => __('School expenses'),
+        'page' => __('Expenses')
     ])
 
     <!-- admission page content -->
@@ -16,126 +16,45 @@
                     <div class="admission-content-top">
 
                         <div class="application-deadline">
-                            <h3 class="rts-section-title">Application Deadlines</h3>
+                            <h3 class="rts-section-title">{{ $fee ? (app()->getLocale() == 'ar' ? $fee->title_ar : $fee->title_en) : (app()->getLocale() == 'ar' ? 'المصروفات الدراسية' : 'Tuition Fees') }}</h3>
                             <div class="application-deadline__content">
                                 <div class="application-deadline__content--table">
                                     <table class="table">
                                         <thead class="table-theme">
                                         <tr>
-                                            <td>Event</td>
-                                            <td>Restrictive Early Action</td>
-                                            <td>Regular Decision</td>
+                                            <td>{{ app()->getLocale() == 'ar' ? 'المرحلة الدراسية' : 'Education Stage' }}</td>
+                                            <td>{{ app()->getLocale() == 'ar' ? 'إجمالي المصروفات' : 'Total Fees' }}</td>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Standard Application Deadline</td>
-                                            <td>November 1</td>
-                                            <td>January 10</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Notification of Missing Documents</td>
-                                            <td>Mid-November</td>
-                                            <td>Mid-February</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Decision Released By</td>
-                                            <td>Mid-December</td>
-                                            <td>Early April</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Student Reply Date</td>
-                                            <td>May 1</td>
-                                            <td>May 1</td>
-                                        </tr>
+                                        @if($fee && $fee->details)
+                                            @foreach($fee->details as $detail)
+                                                <tr>
+                                                    <td>{{ app()->getLocale() == 'ar' ? $detail->educationStage->title_ar : $detail->educationStage->title_en }}</td>
+                                                    <td>{{ number_format($detail->price, 2) }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="2" class="text-center">{{ app()->getLocale() == 'ar' ? 'لا يوجد بيانات' : 'No data available' }}</td>
+                                            </tr>
+                                        @endif
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="application-deadline">
-                            <h3 class="rts-section-title">Application Deadlines</h3>
-                            <div class="application-deadline__content">
-                                <div class="application-deadline__content--table">
-                                    <table class="table">
-                                        <thead class="table-theme">
-                                        <tr>
-                                            <td>Event</td>
-                                            <td>Restrictive Early Action</td>
-                                            <td>Regular Decision</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Standard Application Deadline</td>
-                                            <td>November 1</td>
-                                            <td>January 10</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Notification of Missing Documents</td>
-                                            <td>Mid-November</td>
-                                            <td>Mid-February</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Decision Released By</td>
-                                            <td>Mid-December</td>
-                                            <td>Early April</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Student Reply Date</td>
-                                            <td>May 1</td>
-                                            <td>May 1</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p> Unipix reserves the right to evaluate an application and render a final decision even if all pieces of the application have not been received.</p>
-                                <p class="w-95 mx-0">Applicants are limited to a total of three applications for undergraduate admission, whether for first-year admission, transfer admission or a <br>combination of both. If you have submitted fewer than three applications to Unipix, you may reapply.
-                                </p>
-                            </div>
+                        <div class="payment-schedule mt--60 text-center" style="background: #f8f9fa; padding: 30px; border-radius: 10px; border: 1px dashed #2b3a8e;">
+                            <h4 style="color: #2b3a8e; margin-bottom: 20px;">* {{ app()->getLocale() == 'ar' ? 'مواعيد دفع الرسوم الدراسية' : 'Tuition Fees Payment Schedule' }} :</h4>
+                            <p style="font-size: 1.2rem; font-weight: 500;">
+                                {{ app()->getLocale() == 'ar' ? 'القسط الأول: 1 يوليو حتى نهاية سبتمبر.' : 'First Installment: July 1st until the end of September.' }}
+                            </p>
+                            <p style="font-size: 1.2rem; font-weight: 500;">
+                                {{ app()->getLocale() == 'ar' ? 'القسط الثاني: 1 ديسمبر حتى نهاية يناير.' : 'Second Installment: December 1st until the end of January.' }}
+                            </p>
                         </div>
-                        <div class="application-deadline">
-                            <h3 class="rts-section-title">Application Deadlines</h3>
-                            <div class="application-deadline__content">
-                                <div class="application-deadline__content--table">
-                                    <table class="table">
-                                        <thead class="table-theme">
-                                        <tr>
-                                            <td>Event</td>
-                                            <td>Restrictive Early Action</td>
-                                            <td>Regular Decision</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Standard Application Deadline</td>
-                                            <td>November 1</td>
-                                            <td>January 10</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Notification of Missing Documents</td>
-                                            <td>Mid-November</td>
-                                            <td>Mid-February</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Decision Released By</td>
-                                            <td>Mid-December</td>
-                                            <td>Early April</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Student Reply Date</td>
-                                            <td>May 1</td>
-                                            <td>May 1</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p> Unipix reserves the right to evaluate an application and render a final decision even if all pieces of the application have not been received.</p>
-                                <p class="w-95 mx-0">Applicants are limited to a total of three applications for undergraduate admission, whether for first-year admission, transfer admission or a <br>combination of both. If you have submitted fewer than three applications to Unipix, you may reapply.
-                                </p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

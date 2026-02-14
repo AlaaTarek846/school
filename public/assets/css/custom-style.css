@@ -275,3 +275,145 @@
     max-height: 70px;
     width: auto;
 }
+
+/* Social Specialist Page Styles */
+.rts-social-specialist {
+    background: #fdfdfd;
+}
+
+.section-title-area .title-line {
+    width: 60px;
+    height: 4px;
+    background: var(--rt-primary);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.prep-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.prep-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border-color: var(--rt-primary);
+}
+
+.prep-card .card-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(199, 29, 99, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--rt-primary);
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.prep-card:hover .card-icon {
+    background: var(--rt-primary);
+    color: #fff;
+}
+
+.prep-card .card-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+.separator-custom {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #eee, transparent);
+}
+
+.role-image-container {
+    position: relative;
+    padding-right: 20px;
+}
+
+.image-overlay-badge {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    background: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+}
+
+.image-overlay-badge i {
+    color: var(--rt-primary);
+    font-size: 24px;
+}
+
+.image-overlay-badge span {
+    font-weight: 700;
+    color: var(--rt-heading);
+    font-size: 16px;
+}
+
+.role-points-list {
+    padding-left: 20px;
+}
+
+.role-point-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    align-items: flex-start;
+}
+
+.role-point-item .point-number {
+    background: rgba(199, 29, 99, 0.1);
+    color: var(--rt-primary);
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.role-point-item .point-text p {
+    margin: 0;
+    font-size: 16px;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* RTL Support Social Specialist */
+[dir="rtl"] .role-image-container {
+    padding-right: 0;
+    padding-left: 20px;
+}
+
+[dir="rtl"] .image-overlay-badge {
+    right: auto;
+    left: 0;
+}
+
+[dir="rtl"] .role-points-list {
+    padding-left: 0;
+    padding-right: 20px;
+}

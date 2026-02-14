@@ -40,33 +40,47 @@
             <ul class="mainmenu metismenu" id="mobile-menu-active">
 
                 <li>
-                    <a href="{{ route('index-sc') }}" class="main">Homepages</a>
+                    <a href="{{ route('index') }}" class="main">{{ __('Home') }}</a>
                 </li>
                 <li class="has-droupdown">
-                    <a href="#" class="main">Program</a>
+                    <a href="#" class="main">{{ __('About Us') }}</a>
                     <ul class="submenu mm-collapse">
-                        <li><a class="mobile-menu-link" href="{{ route('primary-school') }}">Primary School</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('middle-school') }}">Secondary School</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('six-form') }}">Sixth Form</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('senior-school') }}">Senior School</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('about') }}">{{ __('About Us') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('principal-message') }}">{{ __("Principal's Message") }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('school-discipline-policy') }}">{{ __('School Discipline Policy') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('parents-meeting') }}">{{ __("KG Parents' Meeting") }}</a></li>
+                    </ul>
+                </li>
+                <li class="has-droupdown">
+                    <a href="#" class="main">{{ __('About School') }}</a>
+                    <ul class="submenu mm-collapse">
+                        <li><a class="mobile-menu-link" href="{{ route('quality-assurance-files') }}">{{ __('Quality Assurance Files') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('social-specialist') }}">{{ __('Social Specialist') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('mission-and-vision') }}">{{ __('Mission and Vision') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('journey-of-success-and-excellence') }}">{{ __('Journey of Success and Excellence') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('careers') }}">{{ __('Careers') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('student-registration') }}">{{ __('Student Registration') }}</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ route('campuslife-sc') }}" class="main">School Life</a>
+                    <a href="{{ route('school-facilities') }}" class="main">{{ __('School Facilities') }}</a>
                 </li>
-               
+                <li>
+                    <a href="{{ route('tuition-fees') }}" class="main">{{ __('Tuition Fees') }}</a>
+                </li>
+
                 <li class="has-droupdown">
-                    <a href="#" class="main">Academics</a>
+                    <a href="#" class="main">{{ __('Gallery') }}</a>
                     <ul class="submenu mm-collapse">
-                        <li><a class="mobile-menu-link" href="{{ route('tutionfee-sc') }}">Tution Fee</a></li>
-                        <li><a class="mobile-menu-link" href="{{ route('admission-sc') }}">Apply Admission</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('gallery') }}">{{ __('Gallery') }}</a></li>
+                        <li><a class="mobile-menu-link" href="{{ route('videos') }}">{{ __('Videos') }}</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ route('single-resource') }}" class="main">Resource</a>
+                    <a href="{{ route('contact') }}" class="main">{{ __('Contact') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('about-sc') }}" class="main">About</a>
+                    <a href="{{ route('contact') }}" class="main">{{ __('Think and Learn') }}</a>
                 </li>
             </ul>
         </nav>

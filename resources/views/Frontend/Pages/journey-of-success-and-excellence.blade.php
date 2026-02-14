@@ -4,68 +4,111 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-        'title' => 'Tution Fees',
-        'page' => 'Tuition and Fees'
+        'title' => __('Journey title'),
+        'page' => __('Journey title')
     ])
 
-    <!-- tution fee -->
-    <div class="page-content-top pt--120 pt__md--80">
+    <!-- Journey of Success Content -->
+    <section class="rts-journey-success rts-section-padding">
         <div class="container">
-            <div class="row align-items-center justify-content-md-center">
-                <div class="col-lg-6 col-md-11">
-                    <div class="faculty-content-text me-5">
-                        <h4 class="font-32 mb-4">Mission</h4>
-                        <p>Create innovative knowledge through intellectual practice, critical engagement, and creative endeavor. It is dedicated to providing students with enriched curriculum that fosters deeper understanding and appreciation of societies, cultures, languages, literatures, and artistic trends to address the contemporary global and local challenges.</p>
-                        <h4 class="font-32 mb-4 mt-5">Vision</h4>
-                        <p>Create innovative knowledge through intellectual practice, critical engagement, and creative endeavor. It is dedicated to providing students with enriched curriculum that fosters deeper understanding and appreciation of societies, cultures, languages, literatures, and artistic trends to address the contemporary global and local challenges.</p>
+            <!-- Recitation & Innovation Section -->
+            <div class="row mb--80">
+                <div class="col-lg-12">
+                    <div class="section-title-wrapper text-center mb--60">
+                        <h2 class="rts-section-title">{{ __('Recitation & Innovation') }}</h2>
+                        <div class="title-line"></div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-11">
-                    <figure class="mt-5 mt-lg-0">
-                        <img class="mw-100" src="{{asset('assets/images/faculty/09.jpg')}}" alt="">
-                    </figure>
-                </div>
-            </div>
-            <div class="border-top my-60"></div>
-
-            <div class="row">
-                <h3 class="rts-section-title">About Tuition & Fees</h3>
-                <p class="desc">Tuition rates for the Fall and Spring semesters are approved at the Board of Trustees meeting in July prior to the beginning of the academic year. Summer tuition rates are approved at the Board of Trustees meeting in February before the term begins. Course registration dates can be found on the . See Important Dates for payment due dates and other deadlines.
-                </p>
-                <h5>Undergraduate Students</h5>
-                <p class="desc">Part-time undergraduate students (registered for less than 12 credits) or undergraduate students registered for credits over 20 in the Fall or Spring semester are charged the per credit rate based on residency. Undergraduate students taking between 12 and 20 credits in the Fall or Spring term are charged a flat rate tuition. Flat rate tuition is not available in the Summer. Undergraduate students registering for courses in the Summer term are charged a discounted per credit rate based on residency.</p>
-            </div>
-
-            <div class="border-top my-60"></div>
-
-            <div class="row align-items-center justify-content-md-center">
-                <div class="col-lg-6 col-md-11">
-                    <figure class="mt-5 mt-lg-0">
-                        <img class="mw-100" src="{{asset('assets/images/faculty/09.jpg')}}" alt="">
-                    </figure>
-                </div>
-                <div class="col-lg-6 col-md-11">
-                    <div class="faculty-content-text me-5">
-                        <h4 class="font-32 mb-4">Mission</h4>
-                        <p>Create innovative knowledge through intellectual practice, critical engagement, and creative endeavor. It is dedicated to providing students with enriched curriculum that fosters deeper understanding and appreciation of societies, cultures, languages, literatures, and artistic trends to address the contemporary global and local challenges.</p>
-                        <h4 class="font-32 mb-4 mt-5">Vision</h4>
-                        <p>Create innovative knowledge through intellectual practice, critical engagement, and creative endeavor. It is dedicated to providing students with enriched curriculum that fosters deeper understanding and appreciation of societies, cultures, languages, literatures, and artistic trends to address the contemporary global and local challenges.</p>
+                <div class="col-lg-12">
+                    <div class="row g-5">
+                        @for($i = 1; $i <= 3; $i++)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="achievement-card">
+                                <div class="card-icon">
+                                    <i class="fa-light {{ $i == 3 ? 'fa-lightbulb-on' : 'fa-microphone-stand' }}"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p>{{ __('Achievement ' . $i) }}</p>
+                                </div>
+                                <div class="achievement-badge">
+                                    <i class="fa-solid fa-trophy"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @endfor
                     </div>
                 </div>
-
             </div>
-            <div class="border-top my-60"></div>
 
+            <!-- Sports Excellence Section -->
+            <div class="row mb--80">
+                <div class="col-lg-12">
+                    <div class="section-title-wrapper text-center mb--60">
+                        <h2 class="rts-section-title">{{ __('Sports Excellence') }}</h2>
+                        <div class="title-line"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row g-5">
+                        @for($i = 4; $i <= 7; $i++)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="achievement-card sports">
+                                <div class="card-icon">
+                                    <i class="fa-light {{ $i == 4 ? 'fa-table-tennis-paddle-ball' : ($i == 6 ? 'fa-basketball' : 'fa-person-swimming') }}"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p>{{ __('Achievement ' . $i) }}</p>
+                                </div>
+                                <div class="achievement-badge-medal">
+                                    <i class="fa-solid fa-medal"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @endfor
+                    </div>
+                </div>
+            </div>
+
+            <!-- School Pride Section -->
             <div class="row">
-                <h3 class="rts-section-title">About Tuition & Fees</h3>
-                <p class="desc">Tuition rates for the Fall and Spring semesters are approved at the Board of Trustees meeting in July prior to the beginning of the academic year. Summer tuition rates are approved at the Board of Trustees meeting in February before the term begins. Course registration dates can be found on the . See Important Dates for payment due dates and other deadlines.
-                </p>
-                <h5>Undergraduate Students</h5>
-                <p class="desc">Part-time undergraduate students (registered for less than 12 credits) or undergraduate students registered for credits over 20 in the Fall or Spring semester are charged the per credit rate based on residency. Undergraduate students taking between 12 and 20 credits in the Fall or Spring term are charged a flat rate tuition. Flat rate tuition is not available in the Summer. Undergraduate students registering for courses in the Summer term are charged a discounted per credit rate based on residency.</p>
+                <div class="col-lg-12">
+                    <div class="section-title-wrapper text-center mb--60">
+                        <div class="title-line"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row g-5 justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="pride-card large">
+                                <div class="card-visual">
+                                    <img src="{{ asset('assets/images/about/history.jpeg') }}" alt="sports display" class="img-fluid rounded-4">
+                                    <div class="visual-overlay">
+                                        <i class="fa-solid fa-crown"></i>
+                                        <span>{{ __('1st Place') }}</span>
+                                    </div>
+                                </div>
+                                <div class="card-text">
+                                    <h4>{{ __('Sports Display 2022') }}</h4>
+                                    <p>{{ __('School Award 1') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="pride-card large highlight">
+                                <div class="card-text h-100 d-flex flex-column justify-content-center">
+                                    <div class="icon-circle mb-4">
+                                        <i class="fa-light fa-users-medical"></i>
+                                    </div>
+                                    <h4>{{ __('Community & Activities') }}</h4>
+                                    <p>{{ __('School Award 2') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
+    </section>
 
     @include($footer . 'footer__default', ['class' => 'v__1'])
 @endsection

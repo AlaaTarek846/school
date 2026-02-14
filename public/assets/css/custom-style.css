@@ -417,3 +417,418 @@
     padding-left: 0;
     padding-right: 20px;
 }
+
+/* Mission and Vision Page Styles */
+.vision-mission-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+    height: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid #f5f5f5;
+    position: relative;
+    overflow: hidden;
+}
+
+.vision-mission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.vision-mission-card.vision {
+    border-left: 5px solid var(--rt-primary);
+}
+
+.vision-mission-card.mission {
+    border-left: 5px solid var(--rt-secondary);
+}
+
+.vision-mission-card .card-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(199, 29, 99, 0.05);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-size: 32px;
+    color: var(--rt-primary);
+}
+
+.vision-mission-card.mission .card-icon {
+    background: rgba(4, 151, 104, 0.05);
+    color: var(--rt-secondary);
+}
+
+.vision-mission-card .title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.mission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mission-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.mission-item i {
+    color: var(--rt-secondary);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.mission-item span {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #444;
+}
+
+/* School Goals */
+.goal-item-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    border: 1px solid #f0f0f0;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.goal-item-card:hover {
+    border-color: var(--rt-primary);
+    background: var(--rt-primary);
+}
+
+.goal-item-card:hover p {
+    color: #fff;
+}
+
+.goal-item-card .goal-number {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 40px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.goal-item-card:hover .goal-number {
+    color: rgba(255,255,255,0.2);
+    transform: scale(1.1);
+}
+
+.goal-item-card p {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #333;
+    padding-top: 10px;
+}
+
+/* Highlight Box */
+.highlight-box {
+    background: rgba(199, 29, 99, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-right: 4px solid var(--rt-primary);
+}
+
+.highlight-box i {
+    font-size: 40px;
+    color: var(--rt-primary);
+}
+
+.highlight-box span {
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--rt-heading);
+}
+
+/* Quality & Activities Dark Section */
+.text-gray {
+    color: #bbb;
+}
+
+.text-primary {
+    color: var(--rt-primary) !important;
+}
+
+.border-end-custom {
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.accreditation-timeline {
+    border-left: 2px solid rgba(255,255,255,0.1);
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.acc-item {
+    position: relative;
+}
+
+.acc-item::before {
+    content: '';
+    position: absolute;
+    left: -37px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--rt-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(199, 29, 99, 0.2);
+}
+
+.acc-item .year {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--rt-primary);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.acc-item p {
+    margin: 0;
+    font-size: 15px;
+    color: #eee;
+}
+
+.alumni-highlight .italic {
+    font-style: italic;
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid var(--rt-secondary);
+}
+
+/* RTL Support Mission and Vision */
+[dir="rtl"] .vision-mission-card.vision,
+[dir="rtl"] .vision-mission-card.mission {
+    border-left: none;
+    border-right: 5px solid;
+}
+
+[dir="rtl"] .vision-mission-card.vision {
+    border-right-color: var(--rt-primary);
+}
+
+[dir="rtl"] .vision-mission-card.mission {
+    border-right-color: var(--rt-secondary);
+}
+
+[dir="rtl"] .goal-item-card .goal-number {
+    right: auto;
+    left: 20px;
+}
+
+[dir="rtl"] .highlight-box {
+    border-right: none;
+    border-left: 4px solid var(--rt-primary);
+}
+
+[dir="rtl"] .border-end-custom {
+    border-right: none;
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+[dir="rtl"] .accreditation-timeline {
+    border-left: none;
+    border-right: 2px solid rgba(255,255,255,0.1);
+    padding-left: 0;
+    padding-right: 30px;
+}
+
+/* Journey of Success & Excellence Styles */
+.achievement-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border-color: var(--rt-primary);
+}
+
+.achievement-card.sports:hover {
+    border-color: var(--rt-secondary);
+}
+
+.achievement-card .card-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(199, 29, 99, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--rt-primary);
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.achievement-card.sports .card-icon {
+    background: rgba(4, 151, 104, 0.05);
+    color: var(--rt-secondary);
+}
+
+.achievement-card:hover .card-icon {
+    background: var(--rt-primary);
+    color: #fff;
+}
+
+.achievement-card.sports:hover .card-icon {
+    background: var(--rt-secondary);
+}
+
+.achievement-card .card-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+.achievement-badge, .achievement-badge-medal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 18px;
+    opacity: 0.1;
+    transition: all 0.3s ease;
+}
+
+.achievement-badge { color: #ffd700; }
+.achievement-badge-medal { color: #c0c0c0; }
+
+.achievement-card:hover .achievement-badge,
+.achievement-card:hover .achievement-badge-medal {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.pride-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+    height: 100%;
+    border: 1px solid #f5f5f5;
+    transition: all 0.3s ease;
+}
+
+.pride-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.pride-card.highlight {
+    background: linear-gradient(135deg, var(--rt-primary), #a21a52);
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+}
+
+.pride-card.highlight .icon-circle {
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 32px;
+}
+
+.pride-card.highlight h4 { color: #fff; }
+.pride-card.highlight p { color: rgba(255,255,255,0.8); }
+
+.card-visual {
+    position: relative;
+    overflow: hidden;
+}
+
+.visual-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--rt-secondary);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.pride-card .card-text {
+    padding: 30px;
+}
+
+.pride-card .card-text h4 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* RTL Support Journey */
+[dir="rtl"] .achievement-badge, 
+[dir="rtl"] .achievement-badge-medal {
+    right: auto;
+    left: 15px;
+}
+
+[dir="rtl"] .visual-overlay {
+    left: auto;
+    right: 20px;
+}
+
+[dir="rtl"] .accreditation-timeline {
+    border-right: 2px solid rgba(255,255,255,0.1);
+}
+
+[dir="rtl"] .acc-item::before {
+    left: auto;
+    right: -37px;
+}
+
+[dir="rtl"] .alumni-highlight .italic {
+    border-left: none;
+    border-right: 4px solid var(--rt-secondary);
+}
+
+@media (max-width: 991px) {
+    .border-end-custom {
+        border: none !important;
+    }
+}

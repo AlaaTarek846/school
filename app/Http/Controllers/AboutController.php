@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
+use App\Models\PrincipalMessage;
 use Illuminate\Http\Request;
 
 class AboutController extends BaseController
 {
     // homepage one
     public function principalMessage(){
+        $principal_message = PrincipalMessage::first();
         return $this->view('principal-message',[
-            'page_title' => 'principal-message'
+            'page_title' => 'principal-message',
+            'principal_message' => $principal_message
         ]);
     }
 

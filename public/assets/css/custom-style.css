@@ -1,0 +1,163 @@
+/* Mission Section Redesign Styles */
+
+.rts-mission .rts-timeline-section .rts-timeline-content {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 60px 0;
+}
+
+.rts-mission .rts-timeline-section .rts-timeline-content .separator::before {
+    background: linear-gradient(to bottom, var(--rt-primary-2) 0%, var(--rt-primary-1) 100%);
+    width: 3px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+}
+
+.single-timeline-item {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.07);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    z-index: 10;
+    margin-bottom: 60px !important;
+}
+
+.single-timeline-item:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    border-color: var(--rt-primary-2);
+}
+
+.single-timeline-item .timeline-title {
+    color: var(--rt-primary-2);
+    font-weight: 800;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: start;
+    transition: color 0.3s ease;
+}
+
+.single-timeline-item p {
+    color: var(--rt-body);
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 0 !important;
+}
+
+.single-timeline-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-top: 25px;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.single-timeline-item:hover img {
+    transform: scale(1.03);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Dots on the line */
+.single-timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border: 5px solid var(--rt-primary-2);
+    border-radius: 50%;
+    top: 40px;
+    z-index: 12;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 8px rgba(var(--rt-primary-2-rgb, 0, 107, 255), 0.1);
+}
+
+.single-timeline-item:hover::after {
+    background: var(--rt-primary-2);
+    transform: scale(1.2);
+}
+
+.left-side .single-timeline-item::after {
+    right: -58px;
+}
+
+.right-side .single-timeline-item::after {
+    left: -58px;
+}
+
+/* Alignment Specifics */
+.left-side .single-timeline-item {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.right-side .single-timeline-item {
+    text-align: left;
+    margin-left: 20px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1200px) {
+    .left-side .single-timeline-item::after {
+        right: -38px;
+    }
+    .right-side .single-timeline-item::after {
+        left: -38px;
+    }
+}
+
+@media (max-width: 991px) {
+    .rts-mission .rts-timeline-section .rts-timeline-content {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+    }
+    .rts-mission .rts-timeline-section .rts-timeline-content .separator {
+        display: none;
+    }
+    .left-side, .right-side {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    .single-timeline-item {
+        text-align: center !important;
+        margin: 0 0 40px 0 !important;
+    }
+    .single-timeline-item::after {
+        display: none;
+    }
+    .single-timeline-item p {
+        max-width: 100% !important;
+    }
+}
+
+/* RTL Support in custom-style.css (if needed based on logic) */
+[dir="rtl"] .left-side .single-timeline-item {
+    text-align: left;
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+[dir="rtl"] .right-side .single-timeline-item {
+    text-align: right;
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+[dir="rtl"] .left-side .single-timeline-item::after {
+    right: auto;
+    left: -58px;
+}
+
+[dir="rtl"] .right-side .single-timeline-item::after {
+    left: auto;
+    right: -58px;
+}

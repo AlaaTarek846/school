@@ -23,121 +23,52 @@
                                         }
                                 }'>
                                 <div class="swiper-wrapper">
+                                    @foreach($testimonials as $testimonial)
                                     <!-- single testimonial -->
                                     <div class="swiper-slide">
                                         <div class="single-testimonial">
-                                            <div class="rt-between mb--50">
-                                                <div class="rt-icon">
-                                                    <img src="{{asset('assets/images/testimonial/quote.svg')}}" alt="quote icon">
-                                                </div>
-                                                <div class="rt-review">
-                                                    <div class="rating-star mb--10">
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-light fa-star"></i>
-                                                    </div>
-                                                    <p class="rt-secondary rt-medium --p-s">4.5 ( 112 Review)</p>
-                                                </div>
-                                            </div>
                                             <p class="testimonial-text">
-                                                I would highly recommend Michael Richard to anyone interested the subject matter. It has provided me with invaluable knowledge & a newfound passion topic. My only suggestion would be to add more live.
+                                                {!! app()->getLocale() == 'ar' ? $testimonial->description_ar : $testimonial->description_en !!}
                                             </p>
                                             <div class="rt-testimonial-author mt--50">
                                                 <div class="rt-author-meta rt-flex rt-gap-20">
                                                     <div class="rt-author-img">
-                                                        <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
+                                                        @if($testimonial->media->first())
+                                                            <img src="{{asset($testimonial->media->first()->url)}}" alt="author">
+                                                        @else
+                                                            <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
+                                                        @endif
                                                     </div>
                                                     <div class="rt-author-info">
-                                                        <h5 class="mb-1">David Jhon</h5>
-                                                        <p>Artist and Instructor</p>
+                                                        <h5 class="mb-1">{{ app()->getLocale() == 'ar' ? $testimonial->name_ar : $testimonial->name_en }}</h5>
+                                                        <p>{{ app()->getLocale() == 'ar' ? $testimonial->job_ar : $testimonial->job_en }}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- single testimonial -->
-                                    <div class="swiper-slide">
-                                        <div class="single-testimonial">
-                                            <div class="rt-between mb--50">
-                                                <div class="rt-icon">
-                                                    <img src="{{asset('assets/images/testimonial/quote.svg')}}" alt="quote icon">
-                                                </div>
-                                                <div class="rt-review">
-                                                    <div class="rating-star mb--10">
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-light fa-star"></i>
-                                                    </div>
-                                                    <p class="rt-secondary rt-medium --p-s">4.5 ( 112 Review)</p>
-                                                </div>
-                                            </div>
-                                            <p class="testimonial-text">
-                                                I would highly recommend Michael Richard to anyone interested the subject matter. It has provided me with invaluable knowledge & a newfound passion topic. My only suggestion would be to add more live.
-                                            </p>
-                                            <div class="rt-testimonial-author mt--50">
-                                                <div class="rt-author-meta rt-flex rt-gap-20">
-                                                    <div class="rt-author-img">
-                                                        <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
-                                                    </div>
-                                                    <div class="rt-author-info">
-                                                        <h5 class="mb-1">David Jhon</h5>
-                                                        <p>Artist and Instructor</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- single testimonial -->
-                                    <div class="swiper-slide">
-                                        <div class="single-testimonial">
-                                            <div class="rt-between mb--50">
-                                                <div class="rt-icon">
-                                                    <img src="{{asset('assets/images/testimonial/quote.svg')}}" alt="quote icon">
-                                                </div>
-                                                <div class="rt-review">
-                                                    <div class="rating-star mb--10">
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                                        <i class="fa-sharp fa-light fa-star"></i>
-                                                    </div>
-                                                    <p class="rt-secondary rt-medium --p-s">4.5 ( 112 Review)</p>
-                                                </div>
-                                            </div>
-                                            <p class="testimonial-text">
-                                                I would highly recommend Michael Richard to anyone interested the subject matter. It has provided me with invaluable knowledge & a newfound passion topic. My only suggestion would be to add more live.
-                                            </p>
-                                            <div class="rt-testimonial-author mt--50">
-                                                <div class="rt-author-meta rt-flex rt-gap-20">
-                                                    <div class="rt-author-img">
-                                                        <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
-                                                    </div>
-                                                    <div class="rt-author-info">
-                                                        <h5 class="mb-1">David Jhon</h5>
-                                                        <p>Artist and Instructor</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- rts arrow -->
                             <div class="rts-slider-arrow testimonial-arrow">
                                 <div class="rt-slider-btn rt-next">
-                                    <i class="fa-solid fa-chevron-left"></i>
+                                    @if(app()->getLocale() == 'ar')
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    @else
+                                        <i class="fa-solid fa-chevron-left"></i>
+                                    @endif
                                 </div>
                                 <div class="rt-slider-btn rt-prev">
-                                    <i class="fa-solid fa-chevron-right"></i>
+                                    @if(app()->getLocale() == 'ar')
+                                        <i class="fa-solid fa-chevron-left"></i>
+                                    @else
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

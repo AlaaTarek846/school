@@ -84,28 +84,28 @@
             </div>
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
-                    <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__1.jpg')}});">
+                    <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__1.jpeg')}});">
                         <h5 class="rts__program--item--title">{{ __('Kindergarten') }}</h5>
 
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
-                    <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__2.jpg')}});">
+                    <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__2.jpeg')}});">
 
                         <h5 class="rts__program--item--title">{{ __('Primary Stage') }}</h5>
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
-                    <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__3.jpg')}});">
+                    <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__3.jpeg')}});">
 
                         <h5 class="rts__program--item--title"> {{ __('Preparatory Stage') }}</h5>
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
-                    <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__4.jpg')}});">
+                    <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__4.jpeg')}});">
 
                         <h5 class="rts__program--item--title">{{ __('Secondary Stage') }}  </h5>
                     </div>

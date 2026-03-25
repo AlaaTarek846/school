@@ -16414,7 +16414,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   }
 }
 .header.v__6 .navigation__menu ul {
-  gap: 50px;
+  gap: 35px;
 }
 .header.v__6 .navigation__menu ul .navigation__menu--item.has-arrow::before {
   color: var(--rt-heading);
@@ -16532,7 +16532,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
 .navigation__menu ul {
   display: flex;
   max-width: max-content;
-  gap: 50px;
+  gap: 35px;
   position: relative;
   padding: 0;
   margin: 0;
@@ -16546,7 +16546,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
 }
 .navigation__menu--item__link {
   position: relative;
-  font-size: 15px;
+  font-size: 14px;
   font-family: var(--font-primary);
   font-weight: 500;
   text-transform: uppercase;

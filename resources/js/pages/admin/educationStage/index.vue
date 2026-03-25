@@ -23,6 +23,8 @@
                                 <th scope="col">#</th>
                                 <th scope="col">العنوان (عربي)</th>
                                 <th scope="col">Title (En)</th>
+                                <th scope="col">عدد المواد</th>
+                                <th scope="col">عدد الفصول</th>
                                 <th scope="col">{{ $t("global.actions") }}</th>
                             </tr>
                             </thead>
@@ -32,7 +34,27 @@
                                 <td>{{ item.title_ar }}</td>
                                 <td>{{ item.title_en }}</td>
                                 <td>
+                                    <span class="badge bg-primary-transparent">{{ item.subjects ? item.subjects.length : 0 }}</span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary-transparent">{{ item.school_classes ? item.school_classes.length : 0 }}</span>
+                                </td>
+                                <td>
                                     <div class="hstack gap-2 flex-wrap">
+                                        <button
+                                            @click="showDetails(item, 'subjects')"
+                                            class="btn btn-primary-light btn-sm rounded-pill"
+                                            title="عرض المواد"
+                                        >
+                                            <i class="ri-book-open-line"></i> المواد
+                                        </button>
+                                        <button
+                                            @click="showDetails(item, 'classes')"
+                                            class="btn btn-secondary-light btn-sm rounded-pill"
+                                            title="عرض الفصول"
+                                        >
+                                            <i class="ri-layout-grid-line"></i> الفصول
+                                        </button>
                                         <button
                                             @click="edit(item)"
                                             class="btn btn-info btn-sm rounded-pill"
@@ -51,7 +73,7 @@
                             </tbody>
                             <tbody v-else>
                             <tr>
-                                <td colspan="4" class="text-center">
+                                <td colspan="6" class="text-center">
                                     {{ $t("global.NoDataFound") }}
                                 </td>
                             </tr>
@@ -76,15 +98,26 @@
         @close="closeModal"
         @refresh="getResults"
     />
+
+    <modal-show-details
+        v-if="isShowDetailsVisible"
+        :isVisible="isShowDetailsVisible"
+        :title="detailsTitle"
+        :items="detailsItems"
+        :type="detailsType"
+        @close="closeDetailsModal"
+    />
 </template>
 
 <script>
 import adminApi from "../../../api/adminAxios";
 import ModalCreateAndUpdate from "./ModalCreateAndUpdate.vue";
+import ModalShowDetails from "./ModalShowDetails.vue";
 
 export default {
     components: {
         ModalCreateAndUpdate,
+        ModalShowDetails,
     },
     data() {
         return {
@@ -93,6 +126,11 @@ export default {
             isVisible: false,
             currentItem: null,
             search: "",
+            // Details Modal State
+            isShowDetailsVisible: false,
+            detailsTitle: "",
+            detailsItems: [],
+            detailsType: "",
         };
     },
     mounted() {
@@ -120,6 +158,20 @@ export default {
         },
         closeModal() {
             this.isVisible = false;
+        },
+        showDetails(item, type) {
+            this.detailsType = type;
+            if (type === 'subjects') {
+                this.detailsTitle = "المواد الدراسية - " + item.title_ar;
+                this.detailsItems = item.subjects || [];
+            } else {
+                this.detailsTitle = "فصول المرحلة - " + item.title_ar;
+                this.detailsItems = item.school_classes || [];
+            }
+            this.isShowDetailsVisible = true;
+        },
+        closeDetailsModal() {
+            this.isShowDetailsVisible = false;
         },
         async deleteItem(id) {
             try {

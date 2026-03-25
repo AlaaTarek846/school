@@ -801,8 +801,26 @@
     margin-bottom: 15px;
 }
 
+/* Language Switcher Scroll Fix */
+.header.header__sticky.fixed .lang-switch-btn {
+    color: var(--rt-heading);
+}
+
+.header.header__sticky.fixed .lang-switch-btn i,
+.header.header__sticky.fixed .lang-switch-btn span {
+    color: var(--rt-heading);
+}
+
+.header.header__sticky.fixed .lang-switch-btn:hover {
+    color: #fff !important;
+}
+
+/* Ensure menu trigger is visible on scroll (if needed) */
+.header.header__sticky.fixed .menu__trigger img {
+    filter: invert(1) brightness(0.2); /* Adjust filter to make white icon dark */
+}
 /* RTL Support Journey */
-[dir="rtl"] .achievement-badge, 
+[dir="rtl"] .achievement-badge,
 [dir="rtl"] .achievement-badge-medal {
     right: auto;
     left: 15px;
@@ -868,7 +886,7 @@
 }
 
 .lang-switch-btn:hover {
-    background: var(--rt-secondary) !important;
+    /*background: var(--rt-secondary) !important;*/
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -890,3 +908,6 @@
         margin-right: 10px;
     }
 }
+
+
+

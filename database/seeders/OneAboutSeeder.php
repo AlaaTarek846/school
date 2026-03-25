@@ -26,8 +26,8 @@ class OneAboutSeeder extends Seeder
         $oneAbout = OneAbout::create([
             'title_ar' => 'عن المدرسة',
             'title_en' => 'About the School',
-            'description_ar' => 'مرحبًا بكم في مدرسة يونيبيكس، حيث يلتقي العلم بالإلهام، وتُقدَّر رحلة كل طالب التعليمية. تأسست مدرستنا عام 1971، وقد كانت على مدار 51 عامًا صرحًا للتعليم المتميز والابتكار وخدمة المجتمع.',
-            'description_en' => 'Welcome to Unipix School, where knowledge meets inspiration and every student’s educational journey is valued. Established in 1971, our school has been a cornerstone of excellence in education, innovation, and community service for 51 years.',
+            'description_ar' => 'مرحبًا بكم في مدرسة كوبري الجلاء، حيث يلتقي العلم بالإلهام، وتُقدَّر رحلة كل طالب التعليمية. تأسست مدرستنا عام 1988، وقد كانت على مدار 36 عامًا صرحًا للتعليم المتميز والابتكار وخدمة المجتمع.',
+            'description_en' => 'Welcome to Kobery El Galaa School, where knowledge meets inspiration and every student’s educational journey is valued. Established in 1988, our school has been a cornerstone of excellence in education, innovation, and community service for 36 years.',
             'title_color_ar' => 'يونيبيكس',
             'title_color_en' => 'Unipix',
             'years_experience' => '51',
@@ -38,7 +38,7 @@ class OneAboutSeeder extends Seeder
         // Need a user for uploaded_by. Assuming ID 1 exists or created elsewhere.
         // We can fetch first user.
         $user = \App\Models\User::first();
-        $userId = $user ? $user->id : 1; 
+        $userId = $user ? $user->id : 1;
 
         File::create([
             'url' => '/storage/oneAbout/about-01.jpg',

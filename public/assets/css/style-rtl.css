@@ -15894,7 +15894,7 @@ body.index-sc h6 {
     background: rgba(0, 0, 0, 0.6);
 }
 .campus__life--single--content {
-    max-width: 340px;
+    max-width: 100%;
     transition: var(--transition);
 }
 .campus__life--single--title {
@@ -16715,7 +16715,7 @@ body.index-sc h6 {
     }
 }
 .header.v__6 .navigation__menu ul {
-    gap: 50px;
+    gap: 35px;
 }
 .header.v__6 .navigation__menu ul .navigation__menu--item.has-arrow::before {
     color: var(--rt-heading);
@@ -16836,7 +16836,7 @@ body.index-sc h6 {
 .navigation__menu ul {
     display: flex;
     max-width: max-content;
-    gap: 50px;
+    gap: 35px;
     position: relative;
     padding: 0;
     margin: 0;
@@ -16850,7 +16850,7 @@ body.index-sc h6 {
 }
 .navigation__menu--item__link {
     position: relative;
-    font-size: 15px;
+    font-size: 14px;
     font-family: var(--font-primary);
     font-weight: 500;
     text-transform: uppercase;
@@ -18014,6 +18014,7 @@ body.index-sc h6 {
     display: inline-block;
     top: -130px;
     left: 110px;
+    right: unset;
 }
 @media screen and (max-width: 992px) {
     .banner__wrapper--right {
@@ -18058,7 +18059,7 @@ body.index-sc h6 {
     }
 }
 .banner .banner__content--title {
-    font-size: 103px;
+    font-size: 75px;
     font-weight: 400;
     text-transform: uppercase;
     color: var(--rt-white);
@@ -19405,7 +19406,7 @@ body.index-sc h6 {
     }
 }
 .about__content .rts__title {
-    max-width: 465px;
+    max-width: 500px;
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 40px;

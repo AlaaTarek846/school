@@ -13,6 +13,16 @@ class EducationStage extends Model
         'title_en',
     ];
 
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
+    }
+
+    public function schoolClasses()
+    {
+        return $this->hasMany(SchoolClass::class);
+    }
+
     public function feeDetails()
     {
         return $this->hasMany(FeeDetail::class);

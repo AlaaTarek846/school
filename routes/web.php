@@ -86,6 +86,11 @@ Route::prefix('api')->group(function () {
         Route::apiResource('school-discipline-policy', \App\Http\Controllers\Admin\SchoolDisciplinePolicyController::class);
         Route::apiResource('quality-assurance-files', \App\Http\Controllers\Admin\QualityAssuranceFileController::class);
         Route::apiResource('education-stages', \App\Http\Controllers\Admin\EducationStageController::class);
+        Route::apiResource('academic-years', \App\Http\Controllers\Admin\AcademicYearController::class);
+        Route::get('exams-data', [\App\Http\Controllers\Admin\ExamController::class, 'getInitialData']);
+        Route::get('exams-semesters/{id}', [\App\Http\Controllers\Admin\ExamController::class, 'getSemesters']);
+        Route::get('exams-stage-data/{id}', [\App\Http\Controllers\Admin\ExamController::class, 'getStageData']);
+        Route::apiResource('exams', \App\Http\Controllers\Admin\ExamController::class);
         Route::apiResource('fees', \App\Http\Controllers\Admin\FeeController::class);
         Route::apiResource('teams', TeamController::class);
 
@@ -125,6 +130,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('school-discipline-policy', [\App\Http\Controllers\Admin\SchoolDisciplinePolicyController::class, 'indexPage'])->name('school-discipline-policy');
             Route::get('quality-assurance-files', [\App\Http\Controllers\Admin\QualityAssuranceFileController::class, 'indexPage'])->name('quality-assurance-files');
     Route::get('education-stages', [\App\Http\Controllers\Admin\EducationStageController::class, 'indexPage'])->name('education-stages');
+    Route::get('academic-years', [\App\Http\Controllers\Admin\AcademicYearController::class, 'indexPage'])->name('academic-years');
+    Route::get('exams', [\App\Http\Controllers\Admin\ExamController::class, 'indexPage'])->name('exams');
     Route::get('fees', [\App\Http\Controllers\Admin\FeeController::class, 'indexPage'])->name('fees');
             Route::get('contact-messages', [ContactMessageController::class, 'indexPage'])->name('contact-messages');
             Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');

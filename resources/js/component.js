@@ -30,6 +30,8 @@ import CampusTour from "./pages/admin/campusTour/index.vue";
 import PrincipalMessage from "./pages/admin/principalMessage/index.vue";
 import SchoolDisciplinePolicy from "./pages/admin/schoolDisciplinePolicy/index.vue";
 import QualityAssuranceFile from "./pages/admin/qualityAssuranceFile/index.vue";
+import AcademicYears from "./pages/admin/academicYear/index.vue";
+import Exams from "./pages/admin/exams/index.vue";
 
 function Components(app) {
     app.component(`login`, Login);
@@ -55,6 +57,8 @@ function Components(app) {
     app.component(`career-applications`, careerApplications);
     app.component(`student-registrations`, studentRegistrations);
     app.component(`education-stages`, educationStages);
+    app.component(`academic-years`, AcademicYears);
+    app.component(`exams`, Exams);
     app.component(`fees`, fees);
     app.component(`why-choose-us`, whyChooseUs);
     app.component(`galleries`, gallery);

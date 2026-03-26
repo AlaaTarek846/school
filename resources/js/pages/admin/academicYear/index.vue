@@ -4,7 +4,7 @@
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">
-                        مراحل التعليم
+                        السنوات الدراسية
                     </div>
                     <div class="d-flex flex-wrap gap-2">
                         <button
@@ -21,9 +21,9 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">العنوان (عربي)</th>
-                                <th scope="col">Title (En)</th>
-                                <th scope="col">عدد المواد</th>
+                                <th scope="col">العنوان</th>
+                                <th scope="col">البداية</th>
+                                <th scope="col">النهاية</th>
                                 <th scope="col">عدد الفصول</th>
                                 <th scope="col">{{ $t("global.actions") }}</th>
                             </tr>
@@ -31,29 +31,20 @@
                             <tbody v-if="records.length > 0">
                             <tr v-for="(item, index) in records" :key="item.id">
                                 <td>{{ index + 1 }}</td>
-                                <td>{{ item.title_ar }}</td>
-                                <td>{{ item.title_en }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.start_date }}</td>
+                                <td>{{ item.end_date }}</td>
                                 <td>
-                                    <span class="badge bg-primary-transparent">{{ item.subjects ? item.subjects.length : 0 }}</span>
-                                </td>
-                                <td>
-                                    <span class="badge bg-secondary-transparent">{{ item.school_classes ? item.school_classes.length : 0 }}</span>
+                                    <span class="badge bg-primary-transparent">{{ item.semesters ? item.semesters.length : 0 }}</span>
                                 </td>
                                 <td>
                                     <div class="hstack gap-2 flex-wrap">
                                         <button
-                                            @click="showDetails(item, 'subjects')"
+                                            @click="showDetails(item)"
                                             class="btn btn-primary-light btn-sm rounded-pill"
-                                            title="عرض المواد"
-                                        >
-                                            <i class="ri-book-open-line"></i> المواد
-                                        </button>
-                                        <button
-                                            @click="showDetails(item, 'classes')"
-                                            class="btn btn-secondary-light btn-sm rounded-pill"
                                             title="عرض الفصول"
                                         >
-                                            <i class="ri-layout-grid-line"></i> الفصول
+                                            <i class="ri-calendar-line"></i> الفصول
                                         </button>
                                         <button
                                             @click="edit(item)"
@@ -73,7 +64,7 @@
                             </tbody>
                             <tbody v-else>
                             <tr>
-                                <td colspan="6" class="text-center">
+                                <td colspan="7" class="text-center">
                                     {{ $t("global.NoDataFound") }}
                                 </td>
                             </tr>
@@ -104,7 +95,7 @@
         :isVisible="isShowDetailsVisible"
         :title="detailsTitle"
         :items="detailsItems"
-        :type="detailsType"
+        type="subjects" 
         @close="closeDetailsModal"
     />
 </template>
@@ -112,7 +103,7 @@
 <script>
 import adminApi from "../../../api/adminAxios";
 import ModalCreateAndUpdate from "./ModalCreateAndUpdate.vue";
-import ModalShowDetails from "./ModalShowDetails.vue";
+import ModalShowDetails from "../educationStage/ModalShowDetails.vue";
 import Swal from "sweetalert2";
 
 export default {
@@ -131,7 +122,6 @@ export default {
             isShowDetailsVisible: false,
             detailsTitle: "",
             detailsItems: [],
-            detailsType: "",
         };
     },
     mounted() {
@@ -141,12 +131,12 @@ export default {
         async getResults(page = 1) {
             try {
                 const response = await adminApi.get(
-                    `/education-stages?page=${page}&search=${this.search}`
+                    `/academic-years?page=${page}&search=${this.search}`
                 );
                 this.records = response.data.data;
                 this.pagination = response.data.pagination;
             } catch (error) {
-                console.error("Error fetching education stages:", error);
+                console.error("Error fetching academic years:", error);
             }
         },
         openModal() {
@@ -160,15 +150,9 @@ export default {
         closeModal() {
             this.isVisible = false;
         },
-        showDetails(item, type) {
-            this.detailsType = type;
-            if (type === 'subjects') {
-                this.detailsTitle = "المواد الدراسية - " + item.title_ar;
-                this.detailsItems = item.subjects || [];
-            } else {
-                this.detailsTitle = "فصول المرحلة - " + item.title_ar;
-                this.detailsItems = item.school_classes || [];
-            }
+        showDetails(item) {
+            this.detailsTitle = "الفصول الدراسية - " + item.name;
+            this.detailsItems = item.semesters || [];
             this.isShowDetailsVisible = true;
         },
         closeDetailsModal() {
@@ -187,7 +171,7 @@ export default {
                 });
 
                 if (result.isConfirmed) {
-                    await adminApi.delete(`/education-stages/${id}`);
+                    await adminApi.delete(`/academic-years/${id}`);
                     this.getResults();
                     Swal.fire(
                         this.$t("global.Deleted"),

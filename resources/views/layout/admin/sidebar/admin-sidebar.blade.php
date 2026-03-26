@@ -71,8 +71,8 @@
     </li>
 
     <!-- Start::Education Fees System -->
-    <li class="slide has-sub {{ request()->routeIs('admin.page.education-stages')  || request()->routeIs('admin.page.fees') ? 'active open' : '' }}">
-        <a href="javascript:void(0);" class="side-menu__item {{ request()->routeIs('admin.page.education-stages')  || request()->routeIs('admin.page.fees') ? 'active' : '' }}">
+    <li class="slide has-sub {{ request()->routeIs('admin.page.academic-years') || request()->routeIs('admin.page.education-stages')  || request()->routeIs('admin.page.fees') ? 'active open' : '' }}">
+        <a href="javascript:void(0);" class="side-menu__item {{ request()->routeIs('admin.page.academic-years') || request()->routeIs('admin.page.education-stages')  || request()->routeIs('admin.page.fees') ? 'active' : '' }}">
             <i class="bi bi-mortarboard side-menu__icon"></i>
             <span class="side-menu__label">نظام المصروفات</span>
             <i class="fe fe-chevron-right side-menu__angle"></i>
@@ -80,6 +80,16 @@
         <ul class="slide-menu child1">
             <li class="slide side-menu__label1">
                 <a href="javascript:void(0)">نظام المصروفات</a>
+            </li>
+            <li class="slide">
+                <a href="{{ route('admin.page.academic-years') }}" class="side-menu__item {{ request()->routeIs('admin.page.academic-years')  ? 'active' : '' }}">
+                    السنوات الدراسية
+                </a>
+            </li>
+            <li class="slide">
+                <a href="{{ route('admin.page.exams') }}" class="side-menu__item {{ request()->routeIs('admin.page.exams')  ? 'active' : '' }}">
+                    إدارة الامتحانات
+                </a>
             </li>
             <li class="slide">
                 <a href="{{ route('admin.page.education-stages') }}" class="side-menu__item {{ request()->routeIs('admin.page.education-stages')  ? 'active' : '' }}">

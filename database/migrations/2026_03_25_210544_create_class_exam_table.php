@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('academic_years', function (Blueprint $table) {
+        Schema::create('class_exam', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('is_active')->default(true);
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->foreignId('class_id')->constrained('school_classes')->cascadeOnDelete();
+            $table->foreignId('exam_id')->constrained('exams')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('academic_years');
+        Schema::dropIfExists('class_exam');
     }
 };

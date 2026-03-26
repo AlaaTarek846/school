@@ -135,6 +135,16 @@
     </li>
     <!-- End::student-registrations -->
 
+    <!-- Start::students -->
+    <li class="slide">
+        <a href="{{ route('admin.page.students') }}"
+           class="side-menu__item {{ request()->routeIs('admin.page.students') ? 'active' : '' }}">
+            <i class="bi bi-people-fill side-menu__icon"></i>
+            <span class="side-menu__label">{{ __('admin.students') ?? 'الطلاب' }}</span>
+        </a>
+    </li>
+    <!-- End::students -->
+
     <!-- Start::subscribes -->
 {{--    <li class="slide">--}}
 {{--        <a href="{{ route('admin.page.subscribes') }}"--}}

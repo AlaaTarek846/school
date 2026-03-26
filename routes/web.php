@@ -87,6 +87,11 @@ Route::prefix('api')->group(function () {
         Route::apiResource('quality-assurance-files', \App\Http\Controllers\Admin\QualityAssuranceFileController::class);
         Route::apiResource('education-stages', \App\Http\Controllers\Admin\EducationStageController::class);
         Route::apiResource('fees', \App\Http\Controllers\Admin\FeeController::class);
+        Route::get('students/form-data', [\App\Http\Controllers\Admin\StudentController::class, 'getFormData']);
+        Route::get('students/get-semesters/{academicYearId}', [\App\Http\Controllers\Admin\StudentController::class, 'getSemesters']);
+        Route::get('students/get-classes/{educationStageId}', [\App\Http\Controllers\Admin\StudentController::class, 'getClasses']);
+        Route::post('students/import', [\App\Http\Controllers\Admin\StudentController::class, 'import']);
+        Route::apiResource('students', \App\Http\Controllers\Admin\StudentController::class);
         Route::apiResource('teams', TeamController::class);
 
     });
@@ -130,6 +135,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');
             Route::get('career-applications', [CareerApplicationController::class, 'indexPage'])->name('career-applications');
             Route::get('student-registrations', [StudentRegistrationController::class, 'indexPage'])->name('student-registrations');
+            Route::get('students', [\App\Http\Controllers\Admin\StudentController::class, 'indexPage'])->name('students');
             Route::get('teams', [TeamController::class, 'indexPage'])->name('teams');
         });
 

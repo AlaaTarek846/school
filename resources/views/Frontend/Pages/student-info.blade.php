@@ -38,7 +38,16 @@
                                         <label for="exampleCheck1">{{ __('Keep me logged in') }}</label>
                                     </div>
                                 </div>
-                                <button type="submit" class="rts-theme-btn primary with-arrow">{{ __('Login') }}<span><i class="fa-thin fa-arrow-right"></i></span></button>
+                                <button type="submit" class="rts-theme-btn primary with-arrow">
+                                    {{ __('Login') }}
+                                    <span>
+                                        @if(app()->getLocale() == 'ar')
+                                            <i class="fa-thin fa-arrow-left"></i>
+                                        @else
+                                            <i class="fa-thin fa-arrow-right"></i>
+                                        @endif
+                                    </span>
+                                </button>
                             </form>
 
                         </div>

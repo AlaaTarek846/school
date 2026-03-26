@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\EducationStageRequest;
 use App\Models\EducationStage;
+use App\Models\Subject;
+use App\Models\SchoolClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,16 +56,49 @@ class EducationStageController extends Controller
                 'title_en' => $data['title_en'],
             ]);
 
-            // Simple approach: delete and recreate children for simplicity in this case
-            // Or use more advanced sync logic if IDs are provided
-            $record->subjects()->delete();
-            if (!empty($data['subjects'])) {
-                $record->subjects()->createMany($data['subjects']);
+            // Smart sync subjects
+            $existingSubjects = $record->subjects()->get();
+            $incomingSubjectIds = collect($data['subjects'])->pluck('id')->filter()->toArray();
+
+            foreach ($existingSubjects as $existingSubject) {
+                if (!in_array($existingSubject->id, $incomingSubjectIds)) {
+                    if (!$existingSubject->exams()->exists()) {
+                        $existingSubject->delete();
+                    }
+                }
             }
 
-            $record->schoolClasses()->delete();
-            if (!empty($data['school_classes'])) {
-                $record->schoolClasses()->createMany($data['school_classes']);
+            foreach ($data['subjects'] as $subjectData) {
+                if (isset($subjectData['id'])) {
+                    Subject::where('id', $subjectData['id'])->update([
+                        'title_ar' => $subjectData['title_ar'],
+                        'title_en' => $subjectData['title_en'],
+                    ]);
+                } else {
+                    $record->subjects()->create($subjectData);
+                }
+            }
+
+            // Smart sync classes
+            $existingClasses = $record->schoolClasses()->get();
+            $incomingClassIds = collect($data['school_classes'])->pluck('id')->filter()->toArray();
+
+            foreach ($existingClasses as $existingClass) {
+                if (!in_array($existingClass->id, $incomingClassIds)) {
+                    if (!$existingClass->exams()->exists() && !$existingClass->enrollments()->exists()) {
+                        $existingClass->delete();
+                    }
+                }
+            }
+
+            foreach ($data['school_classes'] as $classData) {
+                if (isset($classData['id'])) {
+                    SchoolClass::where('id', $classData['id'])->update([
+                        'name' => $classData['name'],
+                    ]);
+                } else {
+                    $record->schoolClasses()->create($classData);
+                }
             }
         });
 
@@ -72,8 +107,21 @@ class EducationStageController extends Controller
 
     public function destroy($id)
     {
-        $record = EducationStage::findOrFail($id);
-        $record->delete();
+        $record = EducationStage::withCount(['exams', 'feeDetails'])->findOrFail($id);
+        
+        $hasReferencedSubjects = $record->subjects()->whereHas('exams')->exists();
+        $hasReferencedClasses = $record->schoolClasses()->whereHas('exams')->orWhereHas('enrollments')->exists();
+
+        if ($record->exams_count > 0 || $record->fee_details_count > 0 || $hasReferencedSubjects || $hasReferencedClasses) {
+            return responseJson([], 'لا يمكن مسح هذه المرحلة لارتباطها ببيانات أخرى (امتحانات، مصروفات، أو طلاب)', 422);
+        }
+
+        DB::transaction(function () use ($record) {
+            $record->subjects()->delete();
+            $record->schoolClasses()->delete();
+            $record->delete();
+        });
+
         return responseJson([], 'Deleted Successfully', 200);
     }
 }

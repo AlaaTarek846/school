@@ -3,6 +3,8 @@ import { createApp } from "vue";
 import i18n from "./translation/web.js";
 import jq from "jquery";
 $ = window.$ = window.jQuery = jq;
+import Quill from "quill";
+window.Quill = Quill;
 
 window.axios.defaults.headers.common["lang"] = "XMLHttpRequest";
 
@@ -15,8 +17,10 @@ import ErrorMessage from "./components/ErrorMessage.vue";
 import store from "./store/index.js";
 import components from "./component.js";
 import Select from "primevue/select";
+import MultiSelect from "primevue/multiselect";
 import Editor from "primevue/editor";
 import Chips from "primevue/chips";
+import "quill/dist/quill.snow.css";
 import "vue-tel-input/vue-tel-input.css";
 import { Bootstrap5Pagination } from 'laravel-vue-pagination';
 import SearchAndFiltersVue from './components/SearchAndFilters.vue';
@@ -27,6 +31,7 @@ const globalOptions = {
 
 app.use(i18n);
 app.component("Select", Select);
+app.component("MultiSelect", MultiSelect);
 app.component("Editor", Editor);
 app.component("Chips", Chips);
 app.component('Pagination', Bootstrap5Pagination);

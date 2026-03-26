@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             TwoAboutSeeder::class,
             WhyChooseUsSeeder::class,
             EducationStageSeeder::class,
+            AcademicYearSeeder::class,
             FeeSeeder::class,
             CampusTourSeeder::class,
             HowWeWelcomeChildSeeder::class,

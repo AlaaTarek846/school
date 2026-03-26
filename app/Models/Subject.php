@@ -12,4 +12,9 @@ class Subject extends Model
         'is_active',
         'education_stage_id',
     ];
+
+    public function exams()
+    {
+        return $this->hasMany(Exam::class);
+    }
 }

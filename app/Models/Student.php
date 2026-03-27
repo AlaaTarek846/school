@@ -2,12 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\SearchFilterTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Student extends Model
+class Student extends Authenticatable
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes, Notifiable, SearchFilterTrait;
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     protected $fillable = [
         'username',

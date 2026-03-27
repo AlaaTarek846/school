@@ -19,9 +19,13 @@ class StudentResource extends JsonResource
             'academic_year_id' => $this->currentEnrollment?->academic_year_id,
             'semester_id' => $this->currentEnrollment?->semester_id,
             'school_class_id' => $this->currentEnrollment?->school_class_id,
+            'education_stage_id' => $this->currentEnrollment?->education_stage_id,
             'academic_year_name' => $this->currentEnrollment?->academicYear?->name,
             'semester_name' => $this->currentEnrollment?->semester?->name,
+            'education_stage_name' => $this->currentEnrollment?->educationStage?->title,
             'school_class_name' => $this->currentEnrollment?->schoolClass?->name,
+            'total_score' => $this->currentEnrollment?->total_score,
+            'is_passed' => $this->currentEnrollment?->is_passed,
             'created_at' => $this->created_at?->format('Y-m-d'),
         ];
     }

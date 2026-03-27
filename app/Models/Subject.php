@@ -12,4 +12,15 @@ class Subject extends Model
         'is_active',
         'education_stage_id',
     ];
+
+    public function getTitleAttribute(){
+        $locale = app()->getLocale();
+        $title = $locale == 'ar' ? $this->getRawOriginal('title_ar') : $this->getRawOriginal('title_en');
+        return (string) ($title ?? '');
+    }
+
+    public function exams()
+    {
+        return $this->hasMany(Exam::class);
+    }
 }

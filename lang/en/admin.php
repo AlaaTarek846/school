@@ -27,4 +27,10 @@ return [
     'error_occurred' => 'An error occurred, please try again',
     'validation_error' => 'Validation Error',
     'error_in_import' => 'Error in import',
+    'education_stage' => 'Education Stage',
+    'is_completed' => 'Data Completed',
+    'manage_score' => 'Manage Score',
+    'total_score' => 'Total Score',
+    'enter_score' => 'Enter Score',
+    'is_passed' => 'Passed',
 ];

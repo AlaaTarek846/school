@@ -44,4 +44,9 @@ class StudentEnrollment extends Model
     {
         return $this->belongsTo(SchoolClass::class);
     }
+
+    public function educationStage()
+    {
+        return $this->belongsTo(EducationStage::class);
+    }
 }

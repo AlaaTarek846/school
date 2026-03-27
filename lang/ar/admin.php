@@ -27,4 +27,10 @@ return [
     'error_occurred' => 'حدث خطأ يرجى المحاولة مرة أخرى',
     'validation_error' => 'خطأ في التحقق من البيانات',
     'error_in_import' => 'خطأ في استيراد الملف',
+    'education_stage' => 'المرحلة التعليمية',
+    'is_completed' => 'مكتمل البيانات',
+    'manage_score' => 'إدارة الدرجات',
+    'total_score' => 'المجموع الكلي',
+    'enter_score' => 'أدخل الدرجة',
+    'is_passed' => 'ناجح',
 ];

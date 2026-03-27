@@ -113,6 +113,7 @@
 import adminApi from "../../../api/adminAxios";
 import ModalCreateAndUpdate from "./ModalCreateAndUpdate.vue";
 import ModalShowDetails from "./ModalShowDetails.vue";
+import Swal from "sweetalert2";
 
 export default {
     components: {
@@ -196,7 +197,11 @@ export default {
                 }
             } catch (error) {
                 console.error("Error deleting item:", error);
-                Swal.fire("Error", "Something went wrong", "error");
+                if (error.response && error.response.status === 422) {
+                    Swal.fire("تنبيه", error.response.data.message || "لا يمكن مسح بيانات مرتبطة", "warning");
+                } else {
+                    Swal.fire("Error", "Something went wrong", "error");
+                }
             }
         },
     },

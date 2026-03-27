@@ -25,16 +25,19 @@ class StudentController extends Controller
 
     public function index(Request $request)
     {
-        $students = Student::with(['currentEnrollment.academicYear', 'currentEnrollment.semester', 'currentEnrollment.schoolClass'])
-            ->latest()
-            ->paginate(10);
-            
+        $students = Student::searchAndFilter()
+        ->with(['currentEnrollment' => function ($q) {
+            $q->with(['academicYear','semester','educationStage','schoolClass']);
+        }])
+        ->latest()
+        ->paginate(20);
+
         return responseJson(StudentResource::collection($students->items()), '', 200, getPaginates($students));
     }
 
     public function getFormData()
     {
-        $academicYears = AcademicYear::where('is_active', true)->get();
+        $academicYears = AcademicYear::where('is_active', true)->latest()->get();
         $educationStages = \App\Models\EducationStage::all();
 
         return responseJson([
@@ -85,7 +88,7 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = Student::with(['currentEnrollment'])->find($id);
-        
+
         $data = $student->toArray();
         $data['academic_year_id'] = $student->currentEnrollment?->academic_year_id;
         $data['semester_id'] = $student->currentEnrollment?->semester_id;
@@ -136,9 +139,29 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $student->delete();
-        return responseJson([], __('admin.deleted_successfully'), 200);
+        return responseJson(null, 'Student deleted successfully', 200);
     }
 
+    public function updateScore(Request $request, Student $student)
+    {
+        $request->validate([
+            'total_score' => 'required|numeric',
+            'is_passed' => 'required|boolean',
+        ]);
+
+        $enrollment = $student->currentEnrollment;
+
+        if (!$enrollment) {
+            return responseJson(null, 'No default enrollment found for this student', 422);
+        }
+
+        $enrollment->update([
+            'total_score' => $request->total_score,
+            'is_passed' => $request->is_passed,
+        ]);
+
+        return responseJson(new StudentResource($student), 'Score updated successfully', 200);
+    }
     public function import(Request $request)
     {
         $request->validate([

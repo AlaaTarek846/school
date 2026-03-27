@@ -24,10 +24,12 @@ class EducationStageRequest extends FormRequest
         return [
             'title_ar' => 'required|string|max:255',
             'title_en' => 'required|string|max:255',
-            'subjects' => 'nullable|array',
+            'subjects' => 'required|array|min:1',
+            'subjects.*.id' => 'nullable|exists:subjects,id',
             'subjects.*.title_ar' => 'required|string|max:255',
             'subjects.*.title_en' => 'required|string|max:255',
-            'school_classes' => 'nullable|array',
+            'school_classes' => 'required|array|min:1',
+            'school_classes.*.id' => 'nullable|exists:school_classes,id',
             'school_classes.*.name' => 'required|string|max:255',
         ];
     }

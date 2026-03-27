@@ -13,6 +13,12 @@ class EducationStage extends Model
         'title_en',
     ];
 
+    public function getTitleAttribute(){
+        $locale = app()->getLocale();
+        $title = $locale == 'ar' ? $this->getRawOriginal('title_ar') : $this->getRawOriginal('title_en');
+        return (string) ($title ?? '');
+    }
+
     public function subjects()
     {
         return $this->hasMany(Subject::class);
@@ -27,4 +33,11 @@ class EducationStage extends Model
     {
         return $this->hasMany(FeeDetail::class);
     }
+
+    public function exams()
+    {
+        return $this->hasMany(Exam::class);
+    }
+
+
 }

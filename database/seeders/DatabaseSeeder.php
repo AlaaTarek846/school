@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             TwoAboutSeeder::class,
             WhyChooseUsSeeder::class,
             EducationStageSeeder::class,
+            AcademicYearSeeder::class,
             FeeSeeder::class,
             CampusTourSeeder::class,
             HowWeWelcomeChildSeeder::class,
@@ -31,6 +32,8 @@ class DatabaseSeeder extends Seeder
             SchoolDisciplinePolicySeeder::class,
             QualityAssuranceFileSeeder::class,
             TeamSeeder::class,
+            StudentSeeder::class,
+            ExamSeeder::class,
         ]);
     }
 }

@@ -141,8 +141,8 @@ const activeTab = ref('basic');
 const form = reactive({
     title_ar: "",
     title_en: "",
-    subjects: [{ title_ar: "", title_en: "" }],
-    school_classes: [{ name: "" }],
+    subjects: [{ id: null, title_ar: "", title_en: "" }],
+    school_classes: [{ id: null, name: "" }],
 });
 
 const rules = computed(() => {
@@ -155,7 +155,7 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules, form);
 
 const addSubject = () => {
-    form.subjects.push({ title_ar: "", title_en: "" });
+    form.subjects.push({ id: null, title_ar: "", title_en: "" });
 };
 
 const removeSubject = (index) => {
@@ -163,7 +163,7 @@ const removeSubject = (index) => {
 };
 
 const addClass = () => {
-    form.school_classes.push({ name: "" });
+    form.school_classes.push({ id: null, name: "" });
 };
 
 const removeClass = (index) => {
@@ -173,8 +173,8 @@ const removeClass = (index) => {
 const resetForm = () => {
     form.title_ar = "";
     form.title_en = "";
-    form.subjects = [{ title_ar: "", title_en: "" }];
-    form.school_classes = [{ name: "" }];
+    form.subjects = [{ id: null, title_ar: "", title_en: "" }];
+    form.school_classes = [{ id: null, name: "" }];
     activeTab.value = 'basic';
     v$.value.$reset();
 };
@@ -183,8 +183,12 @@ watch(() => props.item, (newItem) => {
     if (newItem) {
         form.title_ar = newItem.title_ar;
         form.title_en = newItem.title_en;
-        form.subjects = newItem.subjects && newItem.subjects.length > 0 ? [...newItem.subjects] : [{ title_ar: "", title_en: "" }];
-        form.school_classes = newItem.school_classes && newItem.school_classes.length > 0 ? [...newItem.school_classes] : [{ name: "" }];
+        form.subjects = newItem.subjects && newItem.subjects.length > 0 
+            ? newItem.subjects.map(s => ({ id: s.id, title_ar: s.title_ar, title_en: s.title_en })) 
+            : [{ id: null, title_ar: "", title_en: "" }];
+        form.school_classes = newItem.school_classes && newItem.school_classes.length > 0 
+            ? newItem.school_classes.map(c => ({ id: c.id, name: c.name })) 
+            : [{ id: null, name: "" }];
     } else {
         resetForm();
     }
@@ -234,7 +238,11 @@ const submitForm = async () => {
         );
     } catch (error) {
         console.error("Error saving education stage:", error);
-        Swal.fire("Error", "Something went wrong", "error");
+        if (error.response && error.response.status === 422) {
+            Swal.fire("تنبيه", error.response.data.message || "لا يمكن مسح بيانات مرتبطة", "warning");
+        } else {
+            Swal.fire("Error", "Something went wrong", "error");
+        }
     } finally {
         loading.value = false;
     }

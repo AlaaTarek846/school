@@ -7,21 +7,25 @@ const webApi = axios.create({
     baseURL: `${window.location.origin}/api/`
 });
 
-let lang = document.querySelector('meta[name="language"]').getAttribute('content');
 webApi.interceptors.request.use(
     function (config) {
+        let lang = document.querySelector('meta[name="language"]')?.getAttribute('content') || 'ar';
+        let csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+        
         config.headers['lang'] = lang;
         config.headers['Accept-Language'] = lang;
-        config.headers['Authorization'] = "Bearer " + (Cookies.get("token") || '');
+        if (csrfToken) {
+            config.headers['X-CSRF-TOKEN'] = csrfToken;
+        }
         return config;
     },
     function (error) {
         return Promise.reject(error);
     }
 );
+
 webApi.defaults.headers.common['Accept'] = 'application/json';
-webApi.defaults.headers.common['lang'] = lang;
-webApi.defaults.headers.common['Accept-Language'] = lang;
+webApi.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 webApi.interceptors.response.use(function (response) {
     return response;

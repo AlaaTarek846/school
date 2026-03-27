@@ -58,7 +58,7 @@ trait SearchFilterTrait
         ->where(function ($q) {
             $q->when(request()->filterColumns, function ($q) {
                 foreach (request()->filterColumns['columns'] ?? [] as $row) {
-                    if(isset($row['value'])){
+                    if(isset($row['value']) && $row['value'] !== ''){
                         if($row['searchType'] == 'whereIn')
                             $q->whereIn($row['column'], $row['value']);
                         elseif($row['searchType'] == 'date')

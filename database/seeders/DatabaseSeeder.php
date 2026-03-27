@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             SchoolDisciplinePolicySeeder::class,
             QualityAssuranceFileSeeder::class,
             TeamSeeder::class,
+            StudentSeeder::class,
+            ExamSeeder::class,
         ]);
     }
 }

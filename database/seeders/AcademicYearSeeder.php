@@ -5,13 +5,16 @@ namespace Database\Seeders;
 use App\Models\AcademicYear;
 use App\Models\Semester;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class AcademicYearSeeder extends Seeder
 {
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
         AcademicYear::truncate();
         Semester::truncate();
+        Schema::enableForeignKeyConstraints();
 
         $years = [
             ['name' => '2021-2022', 'start_date' => '2021-09-01', 'end_date' => '2022-06-30'],

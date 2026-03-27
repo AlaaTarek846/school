@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title_ar');
             $table->string('title_en');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->boolean('is_active')->default(true);
             $table->foreignId('academic_year_id')->constrained('academic_years')->cascadeOnDelete();
             $table->timestamps();

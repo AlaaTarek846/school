@@ -43,6 +43,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
 // auth routes
+Route::get('/', function () {
+    return view('Frontend.Home.index');
+});
+
+Route::get('change-language/{locale}', function ($locale) {
+    if (in_array($locale, ['ar', 'en'])) {
+        session()->put('applocale', $locale);
+    }
+    return redirect()->back();
+})->name('change.language');
 Route::group([], function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 });
@@ -91,7 +101,17 @@ Route::prefix('api')->group(function () {
         Route::get('exams-semesters/{id}', [\App\Http\Controllers\Admin\ExamController::class, 'getSemesters']);
         Route::get('exams-stage-data/{id}', [\App\Http\Controllers\Admin\ExamController::class, 'getStageData']);
         Route::apiResource('exams', \App\Http\Controllers\Admin\ExamController::class);
+        
+        Route::get('exam-answers-data', [\App\Http\Controllers\Admin\StudentExamAnswerController::class, 'getInitialData']);
+        Route::apiResource('exam-answers', \App\Http\Controllers\Admin\StudentExamAnswerController::class)->only(['index', 'update']);
+        
         Route::apiResource('fees', \App\Http\Controllers\Admin\FeeController::class);
+        Route::get('students/form-data', [\App\Http\Controllers\Admin\StudentController::class, 'getFormData']);
+        Route::get('students/get-semesters/{academicYearId}', [\App\Http\Controllers\Admin\StudentController::class, 'getSemesters']);
+        Route::get('students/get-classes/{educationStageId}', [\App\Http\Controllers\Admin\StudentController::class, 'getClasses']);
+        Route::post('students/import', [\App\Http\Controllers\Admin\StudentController::class, 'import']);
+        Route::put('students/{student}/update-score', [\App\Http\Controllers\Admin\StudentController::class, 'updateScore']);
+        Route::apiResource('students', \App\Http\Controllers\Admin\StudentController::class);
         Route::apiResource('teams', TeamController::class);
 
     });
@@ -132,11 +152,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('education-stages', [\App\Http\Controllers\Admin\EducationStageController::class, 'indexPage'])->name('education-stages');
     Route::get('academic-years', [\App\Http\Controllers\Admin\AcademicYearController::class, 'indexPage'])->name('academic-years');
     Route::get('exams', [\App\Http\Controllers\Admin\ExamController::class, 'indexPage'])->name('exams');
+    Route::get('exam-answers', [\App\Http\Controllers\Admin\StudentExamAnswerController::class, 'indexPage'])->name('exam-answers');
     Route::get('fees', [\App\Http\Controllers\Admin\FeeController::class, 'indexPage'])->name('fees');
             Route::get('contact-messages', [ContactMessageController::class, 'indexPage'])->name('contact-messages');
             Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');
             Route::get('career-applications', [CareerApplicationController::class, 'indexPage'])->name('career-applications');
             Route::get('student-registrations', [StudentRegistrationController::class, 'indexPage'])->name('student-registrations');
+            Route::get('students', [\App\Http\Controllers\Admin\StudentController::class, 'indexPage'])->name('students');
             Route::get('teams', [TeamController::class, 'indexPage'])->name('teams');
         });
 
@@ -214,4 +236,30 @@ Route::controller(SchoolController::class)->group(function () {
     Route::get('tuition-fees', 'tuitionFees')->name('tuition-fees');
     Route::get('school-facilities', 'schoolFacilities')->name('school-facilities');
     Route::get('student-info', 'studentInfo')->name('student-info');
+});
+
+// Student Auth & Dashboard Routes
+Route::prefix('student')->name('student.')->group(function () {
+    Route::post('/login', [App\Http\Controllers\Frontend\StudentAuthController::class, 'login'])->name('login.post');
+    Route::get('/logout', [App\Http\Controllers\Frontend\StudentAuthController::class, 'logout'])->name('logout');
+
+    Route::group(['middleware' => ['auth:student']], function () {
+        Route::get('/complete-profile', [App\Http\Controllers\Frontend\StudentAuthController::class, 'showCompleteProfile'])->name('complete_profile');
+        Route::post('/complete-profile', [App\Http\Controllers\Frontend\StudentAuthController::class, 'updateProfile'])->name('complete_profile.post');
+
+        Route::group(['middleware' => ['student.completed']], function () {
+            Route::get('dashboard', [\App\Http\Controllers\Frontend\StudentDashboardController::class, 'index'])->name('dashboard');
+            Route::get('courses', [\App\Http\Controllers\Frontend\StudentCourseController::class, 'index'])->name('courses');
+            
+            // Exams
+            Route::get('exams', [\App\Http\Controllers\Frontend\StudentExamController::class, 'index'])->name('exams');
+            Route::get('exam-results', [\App\Http\Controllers\Frontend\StudentExamController::class, 'results'])->name('exams.results');
+            
+            Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+                Route::get('exams', [\App\Http\Controllers\Frontend\StudentExamController::class, 'getExams'])->name('exams');
+                Route::get('exam-results', [\App\Http\Controllers\Frontend\StudentExamController::class, 'apiResults'])->name('exams.results');
+                Route::post('exams/upload', [\App\Http\Controllers\Frontend\StudentExamController::class, 'uploadAnswer'])->name('exams.upload');
+            });
+        });
+    });
 });

@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \App\Http\Middleware\SetLocale::class,
         ]);
+
+        $middleware->alias([
+            'student.completed' => \App\Http\Middleware\CheckStudentProfileCompleted::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -122,6 +122,10 @@ class SchoolController extends BaseController
     // فكر و تعلم
     public function studentInfo()
     {
+        if (auth()->guard('student')->check()) {
+            return redirect()->route('student.dashboard');
+        }
+
         return $this->view('student-info', [
             'page_title' => 'student-info',
         ]);

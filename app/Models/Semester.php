@@ -11,7 +11,15 @@ class Semester extends Model
         'title_en',
         'is_active',
         'academic_year_id',
+        'start_date',
+        'end_date',
     ];
+
+    public function getTitleAttribute(){
+        $locale = app()->getLocale();
+        $title = $locale == 'ar' ? $this->getRawOriginal('title_ar') : $this->getRawOriginal('title_en');
+        return (string) ($title ?? '');
+    }
 
     public function exams()
     {

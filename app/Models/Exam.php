@@ -13,7 +13,6 @@ class Exam extends Model
         'subject_id',
         'academic_year_id',
         'semester_id',
-        'type',
         'start_date',
         'end_date',
         'total_score',

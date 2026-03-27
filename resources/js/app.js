@@ -6,7 +6,7 @@ $ = window.$ = window.jQuery = jq;
 import Quill from "quill";
 window.Quill = Quill;
 
-window.axios.defaults.headers.common["lang"] = "XMLHttpRequest";
+// window.axios.defaults.headers.common["lang"] = "XMLHttpRequest";
 
 const app = createApp({});
 

@@ -3,6 +3,17 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.axios.interceptors.request.use(function (config) {
+    let lang = document.querySelector('meta[name="language"]')?.getAttribute('content') || 'ar';
+    let csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+    
+    config.headers['lang'] = lang;
+    if (csrfToken) {
+        config.headers['X-CSRF-TOKEN'] = csrfToken;
+    }
+    return config;
+});
+
 
 
 /**

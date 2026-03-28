@@ -14,6 +14,10 @@
                 <button class="btn btn-sm btn-success-light" data-bs-toggle="modal" data-bs-target="#import-model">
                   <i class="ri-upload-2-line me-1 fw-semibold align-middle"></i>{{ $t('admin.import_excel') }}
                 </button>
+                <button v-if="selectedIds.length > 0" class="btn btn-sm btn-info-light animate__animated animate__fadeIn" data-bs-toggle="modal" data-bs-target="#bulk-score-model">
+                  <i class="ri-clipboard-line me-1 fw-semibold align-middle"></i>{{ $t('translation.bulk_manage_score') }}
+                  <span class="badge bg-info ms-1">{{ selectedIds.length }}</span>
+                </button>
               </div>
 
               <div class="flex-fill">
@@ -42,6 +46,9 @@
               <table class="table text-nowrap table-striped">
                 <thead>
                   <tr>
+                    <th scope="col" style="width: 40px;">
+                      <input class="form-check-input" type="checkbox" @change="toggleSelectAll" :checked="isAllSelected">
+                    </th>
                     <th scope="col">#</th>
                     <th scope="col">{{ $t('global.name') }}</th>
                     <th scope="col">{{ $t('admin.code') }}</th>
@@ -54,14 +61,19 @@
                   </tr>
                 </thead>
                 <tbody v-if="data && data.length">
-                  <tr v-for="(item,index) in data" :key="item.id">
+                  <tr v-for="(item,index) in data" :key="item.id" :class="{'table-primary-transparent': selectedIds.includes(item.id)}">
+                    <td>
+                      <input class="form-check-input" type="checkbox" :value="item.id" v-model="selectedIds">
+                    </td>
                     <td scope="row">{{index + 1}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.code}}</td>
+                    <td class="fw-medium text-primary">{{item.name}}</td>
+                    <td><span class="badge bg-light text-dark border">{{item.code}}</span></td>
                     <td>{{ $t('admin.' + item.gender) }}</td>
                     <td>{{item.education_stage_name}}</td>
                     <td>{{item.school_class_name}}</td>
-                    <td>{{item.total_score}}</td>
+                    <td>
+                      <span class="fw-bold">{{item.total_score}}</span>
+                    </td>
                     <td>
                       <span :class="item.is_active ? 'badge bg-success-transparent' : 'badge bg-danger-transparent'">
                         {{ item.is_active ? $t('admin.active') : $t('admin.inactive') }}
@@ -70,17 +82,12 @@
                     <td>
                       <div class="hstack gap-2 fs-15">
                         <button
-                          @click.prevent="openScoreModal(item)"
-                          data-bs-toggle="modal" data-bs-target="#score-model"
-                          class="btn btn-icon btn-sm btn-primary-transparent rounded-pill"><i
-                            class="ri-clipboard-line"></i></button>
-                        <button
                           @click.prevent="showEditMode(item)"
                           data-bs-toggle="modal" data-bs-target="#area-model"
-                          class="btn btn-icon btn-sm btn-info-transparent rounded-pill"><i
+                          class="btn btn-icon btn-sm btn-info-transparent rounded-pill shadow-sm"><i
                             class="ri-edit-line"></i></button>
                         <a href="#" @click.prevent="deleteData(item.id, index)"
-                           class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i
+                           class="btn btn-icon btn-sm btn-danger-transparent rounded-pill shadow-sm"><i
                             class="ri-delete-bin-line"></i></a>
                       </div>
                     </td>
@@ -88,7 +95,7 @@
                 </tbody>
                 <tbody v-else>
                   <tr>
-                    <th class="text-center" colspan="8">{{ $t('global.NoDataFound') }}</th>
+                    <th class="text-center" colspan="10">{{ $t('global.NoDataFound') }}</th>
                   </tr>
                 </tbody>
               </table>
@@ -109,7 +116,7 @@
 
     <ModalCreateAndUpdate v-model="modalShow" :type="type" :dataRow="dataRow" @created="getData(pagePaginate)" />
     <ModalImport @imported="getData(pagePaginate)" />
-    <ModalUpdateScore :studentData="selectedStudentForScore" @updated="getData(pagePaginate)" />
+    <BulkScoreModal :selectedStudents="selectedStudents" @updated="handleBulkUpdated" />
 
   </div>
 </template>
@@ -117,9 +124,9 @@
 <script>
 import ModalCreateAndUpdate from "./ModalCreateAndUpdate.vue";
 import ModalImport from "./ModalImport.vue";
-import ModalUpdateScore from "./ModalUpdateScore.vue";
+import BulkScoreModal from "./BulkScoreModal.vue";
 import crud from "../../../composable/crud_structure";
-import {onMounted, ref, watch} from "vue";
+import {onMounted, ref, watch, computed} from "vue";
 import {useI18n} from "vue-i18n";
 import adminApi from "../../../api/adminAxios";
 
@@ -128,7 +135,7 @@ export default {
   components:{
     ModalCreateAndUpdate,
     ModalImport,
-    ModalUpdateScore
+    BulkScoreModal
   },
   setup(){
     const {getData, loading, data, filterColumns, dataPaginate, step, uri, showModelCreate, showEditMode, deleteData, search, type, dataRow, modalShow, pagePaginate} = crud();
@@ -138,7 +145,28 @@ export default {
     const schoolClasses = ref([]);
     const selectedStage = ref('');
     const selectedClass = ref('');
-    const selectedStudentForScore = ref(null);
+    const selectedIds = ref([]);
+
+    const selectedStudents = computed(() => {
+      return data.value.filter(s => selectedIds.value.includes(s.id));
+    });
+
+    const isAllSelected = computed(() => {
+      return data.value.length > 0 && selectedIds.value.length === data.value.length;
+    });
+
+    const toggleSelectAll = () => {
+      if (isAllSelected.value) {
+        selectedIds.value = [];
+      } else {
+        selectedIds.value = data.value.map(s => s.id);
+      }
+    };
+
+    const handleBulkUpdated = () => {
+      selectedIds.value = [];
+      getData(pagePaginate.value);
+    };
 
     search.value = {
       searchKey : '',
@@ -235,17 +263,28 @@ export default {
       filterColumns.value.columns = filters;
     };
 
-    const openScoreModal = (student) => {
-      selectedStudentForScore.value = student;
-    };
-
     return {
       getData, loading, data, dataPaginate, type, dataRow, modalShow, pagePaginate,
       search, filterColumns, deleteData, showEditMode, showModelCreate,
       educationStages, schoolClasses, selectedStage, selectedClass,
       handleStageChange, handleClassChange,
-      selectedStudentForScore, openScoreModal
+      selectedIds, selectedStudents, isAllSelected, toggleSelectAll, handleBulkUpdated
     };
   }
 }
 </script>
+
+<style scoped>
+.table-primary-transparent {
+    background-color: rgba(var(--bs-primary-rgb), 0.05) !important;
+}
+.form-check-input {
+    cursor: pointer;
+}
+.card-header .btn {
+    transition: all 0.3s ease;
+}
+tr {
+    transition: background-color 0.2s ease;
+}
+</style>

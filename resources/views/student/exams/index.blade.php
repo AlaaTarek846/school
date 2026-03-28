@@ -88,7 +88,7 @@
                     <p class="mt-2 text-muted">{{ __('translation.Loading exams...') }}</p>
                 </div>
             </div>
-            
+
             <!-- Pagination -->
             <div id="paginationContainer" class="d-flex justify-content-center mt-4"></div>
         </div>
@@ -126,9 +126,9 @@ $(document).ready(function() {
         $('#loader').show();
         $('#examsContainer').find('.exam-card-item').remove();
         $('#paginationContainer').empty();
-        
+
         let formData = $('#filterForm').serialize() + '&page=' + page;
-        
+
         $.ajax({
             url: "{{ route('student.api.exams') }}",
             type: "GET",
@@ -139,14 +139,14 @@ $(document).ready(function() {
                 currentExams = exams; // Store globally
                 let pagination = response.pagination;
                 let html = '';
-                
+
                 if (!exams || exams.length === 0) {
                     html = '<div class="col-12 text-center py-5 exam-card-item"><div class="text-muted"><i class="fas fa-folder-open fa-3x mb-3"></i><p>{{ __("translation.No exams found") }}</p></div></div>';
                 } else {
                     exams.forEach(exam => {
                         let statusClass = '';
                         let statusText = '';
-                        
+
                         if (exam.is_available) {
                             statusClass = 'bg-success';
                             statusText = "{{ __('translation.Available') }}";
@@ -157,16 +157,16 @@ $(document).ready(function() {
                             statusClass = 'bg-warning';
                             statusText = "{{ __('translation.Upcoming') }}";
                         }
-                        
+
                         let submittedHtml = '';
                         if (exam.student_answers && exam.student_answers.length > 0) {
                             submittedHtml = `<span class="badge bg-info-subtle text-info rounded-pill px-3 py-1 small ms-2 animate__animated animate__pulse animate__infinite"><i class="fas fa-check-circle me-1"></i> {{ __('translation.Submitted') }}</span>`;
                         }
-                        
+
                         let locale = "{{ app()->getLocale() }}";
                         let title = locale === 'ar' ? exam.title_ar : exam.title_en;
                         let subjectName = locale === 'ar' ? (exam.subject ? exam.subject.title_ar : '') : (exam.subject ? exam.subject.title_en : '');
-                        
+
                         function formatTime(dt) {
                             if (!dt || !dt.includes(' ')) return '--:--';
                             return dt.split(' ')[1].substring(0, 5);
@@ -187,19 +187,19 @@ $(document).ready(function() {
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3">
                                                 <li><a class="dropdown-item py-2 view-exam" href="#" data-id="${exam.id}"><i class="fas fa-eye me-2 text-primary"></i> {{ __('translation.View Details') }}</a></li>
-                                                ${exam.pdf ? `<li><a class="dropdown-item py-2" href="${exam.pdf}" target="_blank"><i class="fas fa-download me-2 text-success"></i> {{ __('translation.Download Exam') }}</a></li>` : ''}
+                                                ${exam.pdf ? `<li><a class="dropdown-item py-2" href="/storage/${exam.pdf}" target="_blank"><i class="fas fa-download me-2 text-success"></i> {{ __('translation.Download Exam') }}</a></li>` : ''}
                                             </ul>
                                         </div>
                                     </div>
                                     <h5 class="fw-bold mb-1 text-dark text-truncate">${title}</h5>
                                     <p class="text-primary small fw-bold mb-3">${subjectName}</p>
-                                    
+
                                     <div class="mb-3 small text-muted">
                                         <div class="d-flex align-items-center mb-1">
                                             <i class="far fa-calendar-alt mx-1"></i> ${exam.start_date.split(' ')[0]} - ${exam.end_date.split(' ')[0]}
                                         </div>
                                     </div>
-                                    
+
                                     <div class="mt-auto d-flex gap-2">
                                         <button class="btn btn-primary-light flex-grow-1 border-0 rounded-pill py-2 small fw-bold view-exam" data-id="${exam.id}">
                                             {{ __('translation.View Details') }}
@@ -223,9 +223,9 @@ $(document).ready(function() {
 
     function renderPagination(pagination) {
         if (!pagination || pagination.last_page <= 1) return;
-        
+
         let html = '<nav aria-label="Page navigation"><ul class="pagination pagination-md mb-0">';
-        
+
         // Prev button
         html += `
         <li class="page-item ${pagination.current_page === 1 ? 'disabled' : ''}">
@@ -233,19 +233,19 @@ $(document).ready(function() {
                 <i class="fas fa-chevron-${"{{ app()->getLocale() }}" === 'ar' ? 'right' : 'left'}"></i>
             </a>
         </li>`;
-        
+
         // Page numbers (limited range for clean look)
         let start = Math.max(1, pagination.current_page - 2);
         let end = Math.min(pagination.last_page, start + 4);
         if (end - start < 4) start = Math.max(1, end - 4);
-        
+
         for (let i = start; i <= end; i++) {
             html += `
             <li class="page-item ${pagination.current_page === i ? 'active' : ''}">
                 <a class="page-link border-0 px-3 shadow-none ${pagination.current_page === i ? '' : 'bg-light text-dark'}" href="#" data-page="${i}">${i}</a>
             </li>`;
         }
-        
+
         // Next button
         html += `
         <li class="page-item ${pagination.current_page === pagination.last_page ? 'disabled' : ''}">
@@ -253,7 +253,7 @@ $(document).ready(function() {
                 <i class="fas fa-chevron-${"{{ app()->getLocale() }}" === 'ar' ? 'left' : 'right'}"></i>
             </a>
         </li>`;
-        
+
         html += '</ul></nav>';
         $('#paginationContainer').html(html);
     }
@@ -275,14 +275,14 @@ $(document).ready(function() {
         e.preventDefault();
         let examId = $(this).data('id');
         let exam = currentExams.find(ex => ex.id == examId);
-        
+
         if (!exam) return;
 
         let locale = "{{ app()->getLocale() }}";
         let title = locale === 'ar' ? exam.title_ar : exam.title_en;
         let subjectName = locale === 'ar' ? (exam.subject ? exam.subject.title_ar : '') : (exam.subject ? exam.subject.title_en : '');
         let notes = exam.notes || "{{ __('translation.No notes provided') }}";
-        
+
         let answersHtml = '';
         if(exam.student_answers && exam.student_answers.length > 0) {
             answersHtml = '<div class="mt-4"><h6 class="fw-bold mb-3"><i class="fas fa-history me-2"></i> {{ __("translation.Your Submissions") }}</h6><div class="list-group rounded-3">';
@@ -381,7 +381,7 @@ $(document).ready(function() {
         </div>`;
         $('#modalBody').html(body);
         $('#examModal').modal('show');
-        
+
         $('#examFiles').off('change').on('change', function() {
             let files = this.files;
             let html = '';
@@ -402,9 +402,9 @@ $(document).ready(function() {
             e.preventDefault();
             let btn = $(this).find('button[type="submit"]');
             btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2"></span> {{ __("translation.Uploading...") }}');
-            
+
             let formData = new FormData(this);
-            
+
             $.ajax({
                 url: "{{ route('student.api.exams.upload') }}",
                 type: "POST",

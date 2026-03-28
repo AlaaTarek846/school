@@ -1,7 +1,7 @@
 <template>
     <div class="shadow opacity-50"></div>
     <div class="main">
-        <img src="/assets/images/media/loader.svg" alt="">
+        <img src="/dashboard/images/media/loader.svg" alt="">
     </div>
 </template>
 

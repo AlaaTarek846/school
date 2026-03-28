@@ -80,10 +80,10 @@
                                 <span class="input-group-text bg-white border-end-0">
                                     <i class="bi bi-search text-muted"></i>
                                 </span>
-                                <input 
-                                    type="text" 
-                                    v-model="filters.search" 
-                                    class="form-control border-start-0" 
+                                <input
+                                    type="text"
+                                    v-model="filters.search"
+                                    class="form-control border-start-0"
                                     :placeholder="$t('translation.Search by name or code')"
                                     @keyup.enter="applyFilters"
                                 />
@@ -148,6 +148,19 @@
                                 </td>
                                 <td>
                                     <div class="hstack gap-2 justify-content-center">
+                                        <div class="dropdown" v-if="item.files && item.files.length > 0">
+                                            <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" :title="$t('translation.Answer Files')">
+                                                <i class="ri-download-line"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                                                <li v-for="(file, index) in item.files" :key="file.id">
+                                                    <a class="dropdown-item d-flex align-items-center py-2" :href="'/storage/' + file.pdf" target="_blank">
+                                                        <i class="ri-file-download-line me-2 text-primary"></i>
+                                                        <span class="fw-medium">{{ $t('translation.File') }} {{ index + 1 }}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                         <button @click="viewDetails(item)" class="btn btn-sm btn-icon btn-primary-light rounded-circle shadow-sm" :title="$t('translation.View Details')">
                                             <i class="ri-eye-line"></i>
                                         </button>
@@ -169,7 +182,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        
+
                         <div class="d-flex justify-content-between align-items-center mt-4">
                             <p class="text-muted small mb-0">
                                 {{ $t('translation.showing') }} {{ records.length }} {{ $t('translation.of') }} {{ pagination.total }} {{ $t('translation.records') }}
@@ -247,10 +260,10 @@ export default {
                 const response = await adminApi.get("/exam-answers-data");
                 this.filterData.academicYears = response.data.data.academic_years;
                 this.filterData.educationStages = response.data.data.education_stages;
-                
+
                 // Set current year
                 if (this.filterData.academicYears.length > 0) {
-                    const currentYear = this.filterData.academicYears.find(y => y.is_active) || this.filterData.academicYears[0];
+                    const currentYear = this.filterData.academicYears[this.filterData.academicYears.length - 1]  || this.filterData.academicYears[0];
                     this.filters.academic_year_id = currentYear.id;
                     await this.onYearChange();
                 }

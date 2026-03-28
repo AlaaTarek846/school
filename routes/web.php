@@ -111,6 +111,7 @@ Route::prefix('api')->group(function () {
         Route::get('students/get-classes/{educationStageId}', [\App\Http\Controllers\Admin\StudentController::class, 'getClasses']);
         Route::post('students/import', [\App\Http\Controllers\Admin\StudentController::class, 'import']);
         Route::put('students/{student}/update-score', [\App\Http\Controllers\Admin\StudentController::class, 'updateScore']);
+        Route::post('students/bulk-update-score', [\App\Http\Controllers\Admin\StudentController::class, 'bulkUpdateScore']);
         Route::apiResource('students', \App\Http\Controllers\Admin\StudentController::class);
         Route::apiResource('teams', TeamController::class);
 
@@ -259,6 +260,7 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::get('exams', [\App\Http\Controllers\Frontend\StudentExamController::class, 'getExams'])->name('exams');
                 Route::get('exam-results', [\App\Http\Controllers\Frontend\StudentExamController::class, 'apiResults'])->name('exams.results');
                 Route::post('exams/upload', [\App\Http\Controllers\Frontend\StudentExamController::class, 'uploadAnswer'])->name('exams.upload');
+                Route::get('dashboard-statistics', [\App\Http\Controllers\Frontend\StudentDashboardController::class, 'apiStatistics'])->name('dashboard.statistics');
             });
         });
     });

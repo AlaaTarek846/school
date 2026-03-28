@@ -62,7 +62,7 @@ class ExamSeeder extends Seeder
                     'end_date' => Carbon::now()->addDays(rand(31, 60)),
                     'total_score' => 100,
                     'pass_score' => 50,
-                    'pdf' => '/storage/exams/exam.pdf',
+                    'pdf' => 'exam/exam.pdf',
                     'is_active' => true,
                     'notes' => 'Seeded exam for ' . $subject->title_en,
                 ]);

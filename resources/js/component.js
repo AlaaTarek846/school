@@ -34,6 +34,7 @@ import students from "./pages/admin/students/index.vue";
 import AcademicYears from "./pages/admin/academicYear/index.vue";
 import Exams from "./pages/admin/exams/index.vue";
 import ExamAnswers from "./pages/admin/exam_answers/index.vue";
+import StudentDashboard from "./pages/student/dashboard/index.vue";
 
 function Components(app) {
     app.component(`login`, Login);
@@ -72,6 +73,7 @@ function Components(app) {
     app.component(`school-discipline-policy`, SchoolDisciplinePolicy);
     app.component(`quality-assurance-file`, QualityAssuranceFile);
     app.component(`students`, students);
+    app.component(`student-dashboard`, StudentDashboard);
 }
 
 export default Components;

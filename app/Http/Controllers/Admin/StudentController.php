@@ -30,14 +30,14 @@ class StudentController extends Controller
             $q->with(['academicYear','semester','educationStage','schoolClass']);
         }])
         ->latest()
-        ->paginate(20);
+        ->paginate(50);
 
         return responseJson(StudentResource::collection($students->items()), '', 200, getPaginates($students));
     }
 
     public function getFormData()
     {
-        $academicYears = AcademicYear::where('is_active', true)->latest()->get();
+        $academicYears = AcademicYear::where('is_active', true)->get();
         $educationStages = \App\Models\EducationStage::all();
 
         return responseJson([
@@ -179,6 +179,37 @@ class StudentController extends Controller
             }
             return responseJson(['errors' => $errors], __('admin.validation_error'), 422);
         } catch (\Exception $e) {
+            return responseJson([], $e->getMessage(), 500);
+        }
+    }
+    public function bulkUpdateScore(Request $request)
+    {
+        $request->validate([
+            'students' => 'required|array',
+            'students.*.id' => 'required|exists:students,id',
+            'students.*.total_score' => 'required|numeric',
+            'students.*.is_passed' => 'required|boolean',
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            foreach ($request->students as $studentData) {
+                $student = Student::find($studentData['id']);
+                $enrollment = $student->currentEnrollment;
+
+                if ($enrollment) {
+                    $enrollment->update([
+                        'total_score' => $studentData['total_score'],
+                        'is_passed' => $studentData['is_passed'],
+                    ]);
+                }
+            }
+
+            DB::commit();
+            return responseJson([], __('admin.updated_successfully'), 200);
+        } catch (\Exception $e) {
+            DB::rollback();
             return responseJson([], $e->getMessage(), 500);
         }
     }

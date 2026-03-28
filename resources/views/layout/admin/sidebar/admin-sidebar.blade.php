@@ -155,7 +155,7 @@
         <a href="{{ route('admin.page.students') }}"
            class="side-menu__item {{ request()->routeIs('admin.page.students') ? 'active' : '' }}">
             <i class="bi bi-people-fill side-menu__icon"></i>
-            <span class="side-menu__label">{{ __('admin.students') ?? 'الطلاب' }}</span>
+            <span class="side-menu__label">{{ 'الطلاب' }}</span>
         </a>
     </li>
     <!-- End::students -->
@@ -185,7 +185,7 @@
         <a href="{{ route('admin.page.galleries') }}"
            class="side-menu__item {{ request()->routeIs('admin.page.galleries') ? 'active' : '' }}">
             <i class="bi bi-images side-menu__icon"></i>
-            <span class="side-menu__label">{{ __('global.gallery') }}</span>
+            <span class="side-menu__label">المعرض</span>
         </a>
     </li>
     <!-- End::gallery -->
@@ -195,7 +195,7 @@
         <a href="{{ route('admin.page.videos') }}"
            class="side-menu__item {{ request()->routeIs('admin.page.videos') ? 'active' : '' }}">
             <i class="bi bi-camera-video side-menu__icon"></i>
-            <span class="side-menu__label">{{ __('global.video') }}</span>
+            <span class="side-menu__label">الفيديوهات</span>
         </a>
     </li>
     <!-- End::video -->

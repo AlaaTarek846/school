@@ -87,6 +87,32 @@
                             </div>
                         </div>
 
+                        <!-- Files Section -->
+                        <div class="col-12 mt-4" v-if="item.files && item.files.length > 0">
+                            <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                                <div class="card-header bg-light border-0 py-3">
+                                    <h6 class="mb-0 fw-bold text-dark">
+                                        <i class="bi bi-paperclip me-2"></i> {{ $t('translation.Answer Files') }}
+                                    </h6>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="list-group list-group-flush">
+                                        <a v-for="(file, index) in item.files" :key="file.id" :href="'/storage/' + file.pdf" target="_blank" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3 border-bottom border-light">
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar avatar-sm bg-primary-transparent text-primary rounded-circle me-3">
+                                                    <i class="bi bi-file-earmark-pdf-fill"></i>
+                                                </div>
+                                                <div class="fw-bold">{{ $t('translation.File') }} {{ index + 1 }}</div>
+                                            </div>
+                                            <span class="btn btn-sm btn-primary-light rounded-pill px-3 shadow-sm">
+                                                <i class="bi bi-download me-1"></i> {{ $t('translation.Download') }}
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Notes Section -->
                         <div class="col-12 mt-4" v-if="item.notes">
                             <div class="alert alert-light border-0 shadow-sm rounded-3">

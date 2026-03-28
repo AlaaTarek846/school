@@ -21,13 +21,12 @@ class StudentExamAnswerController extends Controller
     {
         $query = StudentExamAnswer::with([
             'student',
-            'exam',
-            'exam.subject',
-            'exam.academicYear',
-            'exam.semester',
-            'exam.educationStage',
+            'exam' => function ($q) {
+                return $q->with(['subject','academicYear','semester','educationStage']);
+            },
             'educationStage',
-            'schoolClass'
+            'schoolClass',
+            'files'
         ]);
 
         if ($request->filled('search')) {
@@ -58,7 +57,7 @@ class StudentExamAnswerController extends Controller
         }
 
         $data = $query->latest()->paginate(10);
-        
+
         return responseJson($data->items(), '', 200, getPaginates($data));
     }
 
@@ -70,7 +69,7 @@ class StudentExamAnswerController extends Controller
         ]);
 
         $answer = StudentExamAnswer::with('exam')->findOrFail($id);
-        
+
         if ($request->answer_score > $answer->exam->total_score) {
             return responseJson([], 'The score cannot exceed the exam total score (' . $answer->exam->total_score . ')', 422);
         }

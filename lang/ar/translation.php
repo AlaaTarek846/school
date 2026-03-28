@@ -8,7 +8,7 @@ return [
     'welcome_student' => 'أهلاً بك يا',
     'student_portal' => 'بوابة الطالب',
     'Invalid credentials' => 'بيانات الاعتماد غير صالحة',
-    'My Courses' => 'كورساتي',
+    'My Courses' => 'المواد الدراسية',
     'Fees' => 'المصاريف',
     'Schedule' => 'الجدول',
     'Logout' => 'تسجيل الخروج',
@@ -131,4 +131,5 @@ return [
     'No results found' => 'لا توجد نتائج',
     'Class' => 'الصف',
     'Pending' => 'قيد الانتظار',
+    'Answer Files' => 'ملفات الإجابة',
 ];

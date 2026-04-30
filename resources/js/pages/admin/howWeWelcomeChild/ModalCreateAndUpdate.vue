@@ -25,34 +25,34 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 mt-3">
-                            <label class="form-label">{{ $t('global.image') }} (500 * 300)</label>
-                            <div class="row img-div-position">
-                                <div class="col-12 text-end">
-                                    <button type="button" class="btn btn-danger btn-sm" @click="removeImage" v-if="imageUpload">
-                                        {{ $t('global.deleteImage') }}
-                                    </button>
-                                </div>
-                                <div class="col-md-12 mt-3 d-flex flex-wrap flex-fill h-100">
-                                    <div class="btn btn-outline-light waves-effect" style="width: 100%; height:90%">
-                                        <span v-if="!imageUpload" style="margin-top:35%;">
-                                            <br><i class="bi bi-cloud-upload fs-40" style="font-size: 85px;"></i>
-                                            <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
-                                        </span>
-                                        <input type="file" @change="previewImage" accept="image/*">
-                                        <div id="container-images-welcome" class="row justify-content-center h-100"></div>
-                                        <div v-if="imageUpload" class="row justify-content-center h-100">
-                                            <figure class="col-3" v-if="imageUpload.url">
-                                                <img :src="imageUpload.url" class="img-fluid rounded h-100 w-100 m-1" />
-                                            </figure>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 my-1" v-if="v$.image.$error">
-                                        <span class="text-danger">{{ $t('validation.fieldRequired') }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="col-md-12 mt-3">-->
+<!--                            <label class="form-label">{{ $t('global.image') }} (500 * 300)</label>-->
+<!--                            <div class="row img-div-position">-->
+<!--                                <div class="col-12 text-end">-->
+<!--                                    <button type="button" class="btn btn-danger btn-sm" @click="removeImage" v-if="imageUpload">-->
+<!--                                        {{ $t('global.deleteImage') }}-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-12 mt-3 d-flex flex-wrap flex-fill h-100">-->
+<!--                                    <div class="btn btn-outline-light waves-effect" style="width: 100%; height:90%">-->
+<!--                                        <span v-if="!imageUpload" style="margin-top:35%;">-->
+<!--                                            <br><i class="bi bi-cloud-upload fs-40" style="font-size: 85px;"></i>-->
+<!--                                            <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>-->
+<!--                                        </span>-->
+<!--                                        <input type="file" @change="previewImage" accept="image/*">-->
+<!--                                        <div id="container-images-welcome" class="row justify-content-center h-100"></div>-->
+<!--                                        <div v-if="imageUpload" class="row justify-content-center h-100">-->
+<!--                                            <figure class="col-3" v-if="imageUpload.url">-->
+<!--                                                <img :src="imageUpload.url" class="img-fluid rounded h-100 w-100 m-1" />-->
+<!--                                            </figure>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-12 my-1" v-if="v$.image.$error">-->
+<!--                                        <span class="text-danger">{{ $t('validation.fieldRequired') }}</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                     </div>
                 </div>
@@ -114,7 +114,7 @@ const rules = computed(() => {
         title_en: { required },
         description_ar: { required },
         description_en: { required },
-        image: { required: requiredIf(() => props.type === 'create' && !imageUpload.value) }
+        // image: { required: requiredIf(() => props.type === 'create' && !imageUpload.value) }
     };
 });
 
@@ -133,8 +133,8 @@ watch(() => props.dataRow, (newVal) => {
         state.title_en = newVal.title_en;
         state.description_ar = newVal.description_ar;
         state.description_en = newVal.description_en;
-        imageUpload.value = newVal.image ? { url: newVal.image } : '';
-        state.image = newVal.image;
+        // imageUpload.value = newVal.image ? { url: newVal.image } : '';
+        // state.image = newVal.image;
     } else {
         resetForm();
     }
@@ -145,12 +145,12 @@ const resetForm = () => {
     state.title_en = '';
     state.description_ar = '';
     state.description_en = '';
-    state.image = null;
-    imageFile.value = null;
-    imageUpload.value = '';
+    // state.image = null;
+    // imageFile.value = null;
+    // imageUpload.value = '';
     v$.value.$reset();
-    let container = document.querySelector("#container-images-welcome");
-    if(container) container.innerHTML = "";
+    // let container = document.querySelector("#container-images-welcome");
+    // if(container) container.innerHTML = "";
 };
 
 const previewImage = (e) => {
@@ -196,10 +196,10 @@ const submit = async () => {
     formData.append('title_en', state.title_en);
     formData.append('description_ar', state.description_ar);
     formData.append('description_en', state.description_en);
-    
-    if (imageFile.value) {
-        formData.append('image', imageFile.value);
-    }
+
+    // if (imageFile.value) {
+    //     formData.append('image', imageFile.value);
+    // }
 
     if (props.type === 'create') {
         adminApi.post('how-we-welcome-child', formData)

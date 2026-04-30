@@ -19,7 +19,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">{{$t('global.image')}}</th>
+<!--                                <th scope="col">{{$t('global.image')}}</th>-->
                                 <th scope="col">{{$t('label.title')}}</th>
                                 <th scope="col">{{$t('global.actions')}}</th>
                             </tr>
@@ -27,13 +27,13 @@
                             <tbody v-if="data && data.length > 0">
                             <tr v-for="(item,index) in data" :key="item.id">
                                 <td>{{index + 1}}</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm me-2">
-                                            <img :src="item.image" alt="img" class="rounded-circle">
-                                        </div>
-                                    </div>
-                                </td>
+<!--                                <td>-->
+<!--                                    <div class="d-flex align-items-center">-->
+<!--                                        <div class="avatar avatar-sm me-2">-->
+<!--                                            <img :src="item.image" alt="img" class="rounded-circle">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </td>-->
                                 <td>{{ item.title_ar }} / {{ item.title_en }}</td>
                                 <td>
                                     <div class="hstack gap-2 fs-15">

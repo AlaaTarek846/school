@@ -4,7 +4,7 @@
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">
-                        كيف يستقبل الطفل
+                        القيم الجوهرية
                     </div>
                     <div class="prism-toggle">
                         <button @click="openModal" class="btn btn-primary ripple btn-wave waves-effect waves-light">

@@ -36,6 +36,9 @@ import AcademicYears from "./pages/admin/academicYear/index.vue";
 import Exams from "./pages/admin/exams/index.vue";
 import ExamAnswers from "./pages/admin/exam_answers/index.vue";
 import StudentDashboard from "./pages/student/dashboard/index.vue";
+import achievements from "./pages/admin/achievement/index.vue";
+import schoolPride from "./pages/admin/schoolPride/index.vue";
+import achievementSections from "./pages/admin/achievementSection/index.vue";
 
 function Components(app) {
     app.component(`login`, Login);
@@ -76,6 +79,9 @@ function Components(app) {
     app.component(`students`, students);
     app.component(`student-transfer-page`, studentTransferPage);
     app.component(`student-dashboard`, StudentDashboard);
+    app.component(`achievements`, achievements);
+    app.component(`achievement-section-page`, achievementSections);
+    app.component(`school-prides`, schoolPride);
 }
 
 export default Components;

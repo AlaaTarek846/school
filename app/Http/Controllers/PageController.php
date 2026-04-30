@@ -140,19 +140,32 @@ class PageController extends BaseController
         ]);
     }
 
+    // Why Choose Galaa schools
+    public function whyChooseGalaa()
+    {
+        $why_choose_us = \App\Models\WhyChooseUs::with(['details'])->first();
+        $campus_tour = \App\Models\CampusTour::first();
+        $testimonials = \App\Models\Testimonial::where('status', 1)->latest()->get();
+
+        return $this->view('why-choose-galaa', [
+            'page_title' => 'Why Choose Galaa schools',
+            'why_choose_us' => $why_choose_us,
+            'campus_tour' => $campus_tour,
+            'testimonials' => $testimonials,
+        ]);
+    }
+
     // About page
     public function about()
     {
-        $one_about = OneAbout::with(['details', 'firstPhoto'])->first();
-        $why_choose_us = WhyChooseUs::with(['details'])->first();
-        $welcome_child = HowWeWelcomeChild::get();
-        $campus_tour = CampusTour::first();
-        $testimonials = Testimonial::where('status', 1)->latest()->get();
+        $one_about = \App\Models\OneAbout::with(['details', 'firstPhoto'])->first();
+        $welcome_child = \App\Models\HowWeWelcomeChild::get();
+        $campus_tour = \App\Models\CampusTour::first();
+        $testimonials = \App\Models\Testimonial::where('status', 1)->latest()->get();
 
         return $this->view('about', [
             'page_title' => 'About Page Template',
             'one_about' => $one_about,
-            'why_choose_us' => $why_choose_us,
             'welcome_child' => $welcome_child,
             'campus_tour' => $campus_tour,
             'testimonials' => $testimonials,

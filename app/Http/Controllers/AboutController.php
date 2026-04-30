@@ -16,10 +16,12 @@ class AboutController extends BaseController
         ]);
     }
 
-    // homepage two
-    public function howWeWelcomeTheChild(){
-        return $this->view('how-we-welcome-the-child', [
-            'page_title' => 'How we welcome the child'
+    // Core Values
+    public function coreValues(){
+        $core_values = \App\Models\HowWeWelcomeChild::get();
+        return $this->view('core-values', [
+            'page_title' => 'Core Values',
+            'core_values' => $core_values
         ]);
     }
 

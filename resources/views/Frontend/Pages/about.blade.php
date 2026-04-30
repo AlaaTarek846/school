@@ -4,8 +4,8 @@
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
         'image' => 'breadcrumb.jpg',
-        'title' => __('About Al-Galaa Kobery School'),
-        'page' => __('About')
+        'title' => __('School Experience'),
+        'page' => __('Experience')
     ])
 
     <!-- about university -->
@@ -53,84 +53,42 @@
     </section>
     <!-- about university end -->
 
-    <!-- history -->
-    <div class="rts-history">
-        <div class="container">
-            <div class="row g-5 justify-content-md-center justify-content-start align-items-center">
-                <div class="col-lg-6 col-md-11">
-                    <div class="rts-history-image">
-                        @if($why_choose_us->image)
-                            <img src="{{ $why_choose_us->image }}" alt="history">
-                        @else
-                        <img src="{{asset('assets/images/about/history.jpg')}}" alt="history">
-                        @endif
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-11">
-                    <div class="rts-history-section" style="word-wrap: break-word;">
-                        <h4 class="rts-section-title mb--40">{{ app()->getLocale() == 'ar' ? $why_choose_us->title_ar : $why_choose_us->title_en }}</h4>
-                        <p>
-                            {!! app()->getLocale() == 'ar' ? $why_choose_us->description_ar : $why_choose_us->description_en !!}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- history end-->
-
-    <!-- funfact -->
-   <div class="rts-funfact rts-section-padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 ">
-                    <div class="rts-funfact-wrapper">
-                        @foreach($why_choose_us->details as $detail)
-                        <div class="single-cta-item" style="word-wrap: break-word;">
-                            <h2 class="single-cta-item__title">{{ $detail->count }}%</h2>
-                            <p>{!! app()->getLocale() == 'ar' ? $detail->title : $detail->title !!}</p>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- funfact end -->
+    <!-- history removed -->
+    <!-- funfact removed -->
 
 
     <!-- mission -->
-    <section class="rts-mission">
-        <div class="container">
-            <div class="row justify-content-center rt-center">
-                <div class="rts-section mb--50">
-                    <h2 class="rts-section-title">{{ __('How does the child receive') }}</h2>
-                </div>
-            </div>
-            <!-- mission -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="rts-timeline-container d-flex flex-column">
-                        <div class="rts-timeline-line-gradient"></div>
-                        @foreach($welcome_child as $index => $item)
-                        <div class="timeline-row {{ $index % 2 == 0 ? 'left' : 'right' }}">
-                            <div class="timeline-dot"></div>
-                            <div class="single-timeline-item">
-                                <h5 class="timeline-title">{{ app()->getLocale() == 'ar' ? $item->title_ar : $item->title_en }}</h5>
-                                <div class="timeline-desc">
-                                    {!! app()->getLocale() == 'ar' ? $item->description_ar : $item->description_en !!}
-                                </div>
-                                @if($item->image)
-                                    <img src="{{asset($item->image)}}" alt="mission">
-                                @endif
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+{{--    <section class="rts-mission">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row justify-content-center rt-center">--}}
+{{--                <div class="rts-section mb--50">--}}
+{{--                    <h2 class="rts-section-title">{{ __('How does the child receive') }}</h2>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <!-- mission -->--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-lg-12">--}}
+{{--                    <div class="rts-timeline-container d-flex flex-column">--}}
+{{--                        <div class="rts-timeline-line-gradient"></div>--}}
+{{--                        @foreach($welcome_child as $index => $item)--}}
+{{--                        <div class="timeline-row {{ $index % 2 == 0 ? 'left' : 'right' }}">--}}
+{{--                            <div class="timeline-dot"></div>--}}
+{{--                            <div class="single-timeline-item">--}}
+{{--                                <h5 class="timeline-title">{{ app()->getLocale() == 'ar' ? $item->title_ar : $item->title_en }}</h5>--}}
+{{--                                <div class="timeline-desc">--}}
+{{--                                    {!! app()->getLocale() == 'ar' ? $item->description_ar : $item->description_en !!}--}}
+{{--                                </div>--}}
+{{--                                @if($item->image)--}}
+{{--                                    <img src="{{asset($item->image)}}" alt="mission">--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
     <!-- mission end-->
 
     @include($components . 'campus-tour', ['class' => 'rts-section-padding', 'campus_tour' => $campus_tour])

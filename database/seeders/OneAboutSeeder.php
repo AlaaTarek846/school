@@ -24,8 +24,8 @@ class OneAboutSeeder extends Seeder
 
         // Create the main OneAbout record
         $oneAbout = OneAbout::create([
-            'title_ar' => 'عن المدرسة',
-            'title_en' => 'About the School',
+            'title_ar' => 'تجربة المدرسة',
+            'title_en' => 'School Experience',
             'description_ar' => 'مرحبًا بكم في مدرسة كوبري الجلاء، حيث يلتقي العلم بالإلهام، وتُقدَّر رحلة كل طالب التعليمية. تأسست مدرستنا عام 1988، وقد كانت على مدار 36 عامًا صرحًا للتعليم المتميز والابتكار وخدمة المجتمع.',
             'description_en' => 'Welcome to Kobery El Galaa School, where knowledge meets inspiration and every student’s educational journey is valued. Established in 1988, our school has been a cornerstone of excellence in education, innovation, and community service for 36 years.',
             'title_color_ar' => 'يونيبيكس',

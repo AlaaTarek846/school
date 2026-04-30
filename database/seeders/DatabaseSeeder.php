@@ -34,6 +34,9 @@ class DatabaseSeeder extends Seeder
             TeamSeeder::class,
             StudentSeeder::class,
             ExamSeeder::class,
+            AchievementSectionSeeder::class,
+            AchievementSeeder::class,
+            SchoolPrideSeeder::class,
         ]);
     }
 }

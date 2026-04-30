@@ -131,8 +131,10 @@
     },
     "global": {
         "gallery": "Gallery",
+        "section": "section",
         "video": "Video",
         "link": "Link",
+        "text": "text",
         "actions": "Actions",
         "save": "Save",
         "success": "Success",

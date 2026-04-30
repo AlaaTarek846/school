@@ -9964,7 +9964,6 @@ input[type="password"],
 input[type="email"],
 input[type="number"],
 input[type="tel"],
-input[type="date"],
 textarea {
     font-size: var(--p-s);
     font-weight: 400;
@@ -10192,7 +10191,6 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 input[type="number"]:focus,
-input[type="date"]:focus,
 input[type="tel"]:focus,
 textarea:focus {
     border-color: var(--rt-primary);
@@ -16717,7 +16715,7 @@ body.index-sc h6 {
     }
 }
 .header.v__6 .navigation__menu ul {
-    gap: 35px;
+    gap: 50px;
 }
 .header.v__6 .navigation__menu ul .navigation__menu--item.has-arrow::before {
     color: var(--rt-heading);
@@ -16838,7 +16836,7 @@ body.index-sc h6 {
 .navigation__menu ul {
     display: flex;
     max-width: max-content;
-    gap: 35px;
+    gap: 50px;
     position: relative;
     padding: 0;
     margin: 0;
@@ -16852,7 +16850,7 @@ body.index-sc h6 {
 }
 .navigation__menu--item__link {
     position: relative;
-    font-size: 14px;
+    font-size: 15px;
     font-family: var(--font-primary);
     font-weight: 500;
     text-transform: uppercase;
@@ -18016,7 +18014,6 @@ body.index-sc h6 {
     display: inline-block;
     top: -130px;
     left: 110px;
-    right: unset;
 }
 @media screen and (max-width: 992px) {
     .banner__wrapper--right {

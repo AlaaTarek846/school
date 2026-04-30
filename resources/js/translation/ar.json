@@ -163,6 +163,7 @@
         "country_en": "البلد بالانجليزي",
         "country_ar": "البلد بالعربي",
         "challenge_en": "التحدي بالانجليزي",
+        "Reset": "تحديث",
         "challenge_ar": "التحدي بالعربي",
         "overview_ar": "نظرة عامة بالعربي",
         "overview_en": "نظرة عامة بالانجليزي",
@@ -1438,6 +1439,31 @@
         "accountInfo": "بيانات الحساب",
         "academic_info": "التوزيع الأكاديمي",
         "personal_info": "البيانات الشخصية",
-        "location_info": "بيانات الموقع والحالة"
+        "location_info": "بيانات الموقع والحالة",
+        "student_transfer": "نقل الطلاب",
+        "transfer_selected": "نقل الطلاب المحددين",
+        "select_target": "اختر الوجهة المنقول إليها",
+        "transfer_success": "تم نقل الطلاب بنجاح",
+        "total_score": "المجموع الكلي",
+        "select": "اختار",
+        "pending": "قيد الانتظار"
+    },
+    "dashboard": {
+        "total_students": "إجمالي الطلاب",
+        "active_students": "الطلاب النشطين",
+        "total_classes": "إجمالي الفصول",
+        "total_subjects": "إجمالي المواد",
+        "total_exams": "إجمالي الامتحانات",
+        "gender_distribution": "توزيع الجنسين",
+        "stage_distribution": "الطلاب حسب المرحلة التعليمية",
+        "content_stats": "إحصائيات المحتوى",
+        "recent_enrollments": "آخر الطلاب المسجلين",
+        "articles": "المقالات",
+        "services": "الخدمات",
+        "male": "ذكر",
+        "female": "أنثى",
+        "school_classes": "الفصول الدراسية",
+        "subjects": "المواد",
+        "exams_count": "عدد الامتحانات"
     }
 }

@@ -1,24 +1,17 @@
 @extends('layout.admin.master')
 
-@section('title',"الرئيسية")
+@section('title', 'نقل الطلاب')
 
-{{--@section('css')--}}
-
-{{--@endsection --}}
 @section('content')
     <div class="main-content app-content">
         <div class="container-fluid">
-
             <!-- Page Header -->
-            @include('layout.admin.partials.breadcrumb',['page' => 'الرئيسية'])
+            @include('layout.admin.partials.breadcrumb',['page' => 'نقل الطلاب'])
             <!-- Page Header Close -->
 
-            <!-- Start::row-1 -->
             <div class="app">
-                <dashboard />
+                <student-transfer-page></student-transfer-page>
             </div>
-            <!--End::row-1 -->
-
         </div>
     </div>
 @endsection
@@ -26,5 +19,3 @@
 @push('scripts')
     @vite(['resources/js/app.js'])
 @endpush
-
-

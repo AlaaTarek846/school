@@ -31,7 +31,7 @@ class StudentSeeder extends Seeder
         }
 
         Student::factory()
-            ->count(500)
+            ->count(100)
             ->create()
             ->each(function ($student) use ($academicYears, $semesters, $stages, $classes) {
                 $stage = $stages->random();
@@ -41,7 +41,12 @@ class StudentSeeder extends Seeder
 
                 $year = $academicYears;
                 $yearSemesters = $semesters->where('academic_year_id', $year->id);
-                $semester = $yearSemesters->isEmpty() ? $semesters->random() : $yearSemesters->random();
+
+                $collection = $yearSemesters->isEmpty() ? collect($semesters) : collect($yearSemesters);
+                $oddItems = $collection->filter(fn($item) => $item->id % 2 != 0);
+                $semester = $oddItems->isNotEmpty()
+                    ? $oddItems->random()
+                    : null; // أو أي default value
 
                 StudentEnrollment::create([
                     'student_id' => $student->id,

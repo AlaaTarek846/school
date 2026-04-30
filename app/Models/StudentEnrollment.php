@@ -15,6 +15,7 @@ class StudentEnrollment extends Model
         'is_passed',
         'total_score',
         'is_default',
+        'is_completed'
     ];
 
     protected function casts(): array

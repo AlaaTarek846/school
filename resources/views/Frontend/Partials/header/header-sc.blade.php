@@ -30,6 +30,7 @@
                                                         <span>{{ app()->getLocale() == 'en' ? 'AR' : 'EN' }}</span>
                                                    </a>
                                               </div>
+                                              
                                         </div>
                                    </div>
                               </div>

@@ -9966,7 +9966,6 @@ input[type=password],
 input[type=email],
 input[type=number],
 input[type=tel],
-input[type=date],
 textarea {
   font-size: var(--p-s);
   font-weight: 400;
@@ -16415,7 +16414,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
   }
 }
 .header.v__6 .navigation__menu ul {
-  gap: 35px;
+  gap: 50px;
 }
 .header.v__6 .navigation__menu ul .navigation__menu--item.has-arrow::before {
   color: var(--rt-heading);
@@ -16533,7 +16532,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
 .navigation__menu ul {
   display: flex;
   max-width: max-content;
-  gap: 35px;
+  gap: 50px;
   position: relative;
   padding: 0;
   margin: 0;
@@ -16547,7 +16546,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
 }
 .navigation__menu--item__link {
   position: relative;
-  font-size: 14px;
+  font-size: 15px;
   font-family: var(--font-primary);
   font-weight: 500;
   text-transform: uppercase;

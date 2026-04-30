@@ -202,6 +202,7 @@ class StudentController extends Controller
                     $enrollment->update([
                         'total_score' => $studentData['total_score'],
                         'is_passed' => $studentData['is_passed'],
+                        'is_completed' => 1
                     ]);
                 }
             }

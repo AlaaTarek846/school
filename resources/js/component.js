@@ -31,6 +31,7 @@ import PrincipalMessage from "./pages/admin/principalMessage/index.vue";
 import SchoolDisciplinePolicy from "./pages/admin/schoolDisciplinePolicy/index.vue";
 import QualityAssuranceFile from "./pages/admin/qualityAssuranceFile/index.vue";
 import students from "./pages/admin/students/index.vue";
+import studentTransferPage from "./pages/admin/students/Transfer.vue";
 import AcademicYears from "./pages/admin/academicYear/index.vue";
 import Exams from "./pages/admin/exams/index.vue";
 import ExamAnswers from "./pages/admin/exam_answers/index.vue";
@@ -73,6 +74,7 @@ function Components(app) {
     app.component(`school-discipline-policy`, SchoolDisciplinePolicy);
     app.component(`quality-assurance-file`, QualityAssuranceFile);
     app.component(`students`, students);
+    app.component(`student-transfer-page`, studentTransferPage);
     app.component(`student-dashboard`, StudentDashboard);
 }
 

@@ -80,8 +80,10 @@ class StudentAuthController extends BaseController
             'email' => 'nullable|email|unique:students,email,' . $student->id,
             'governorate' => 'nullable|string',
             'city' => 'nullable|string',
+            'address' => 'nullable|string',
+            'birth_day' => 'nullable|date',
         ]);
-
+ 
         $student->update([
             'username' => $request->username,
             'password' => Hash::make($request->password),
@@ -90,6 +92,8 @@ class StudentAuthController extends BaseController
             'email' => $request->email,
             'governorate' => $request->governorate,
             'city' => $request->city,
+            'address' => $request->address,
+            'birth_day' => $request->birth_day,
             'is_completed' => true,
         ]);
 

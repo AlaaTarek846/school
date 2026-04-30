@@ -47,9 +47,9 @@
                         <div class="d-flex justify-content-center gap-2 mb-3">
                             <span class="badge bg-light text-dark rounded-pill px-3">{{ __('translation.Full Semester') }}</span>
                         </div>
-                        <button class="btn btn-outline-primary rounded-pill w-100 mt-2">
-                            {{ __('translation.View Details') }}
-                        </button>
+{{--                        <button class="btn btn-outline-primary rounded-pill w-100 mt-2">--}}
+{{--                            {{ __('translation.View Details') }}--}}
+{{--                        </button>--}}
                     </div>
                 </div>
             </div>

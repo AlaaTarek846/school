@@ -16890,7 +16890,7 @@ body.index-sc h6 {
 .navigation__menu--item .sub__style {
     position: absolute;
     top: 100%;
-    min-width: 200px;
+    min-width: 250px;
     background: var(--rt-white);
     z-index: 1024;
     display: inline-block;

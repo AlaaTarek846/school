@@ -9964,6 +9964,7 @@ input[type="password"],
 input[type="email"],
 input[type="number"],
 input[type="tel"],
+input[type="date"],
 textarea {
     font-size: var(--p-s);
     font-weight: 400;
@@ -10191,6 +10192,7 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 input[type="number"]:focus,
+input[type="date"]:focus,
 input[type="tel"]:focus,
 textarea:focus {
     border-color: var(--rt-primary);
@@ -16890,7 +16892,7 @@ body.index-sc h6 {
 .navigation__menu--item .sub__style {
     position: absolute;
     top: 100%;
-    min-width: 200px;
+    min-width: 250px;
     background: var(--rt-white);
     z-index: 1024;
     display: inline-block;

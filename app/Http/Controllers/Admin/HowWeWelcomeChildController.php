@@ -24,9 +24,9 @@ class HowWeWelcomeChildController extends Controller
     public function store(\App\Http\Requests\Admin\HowWeWelcomeChildRequest $request)
     {
         $data = $request->validated();
-        if ($request->hasFile('image')) {
-            $data['image'] = saveFile($request->image, 'how_we_welcome_child');
-        }
+//        if ($request->hasFile('image')) {
+//            $data['image'] = saveFile($request->image, 'how_we_welcome_child');
+//        }
         \App\Models\HowWeWelcomeChild::create($data);
         return responseJson([], 'Added Successfully', 200);
     }
@@ -36,12 +36,12 @@ class HowWeWelcomeChildController extends Controller
         $record = \App\Models\HowWeWelcomeChild::findOrFail($id);
         $data = $request->validated();
 
-        if ($request->hasFile('image')) {
-            if ($record->image) {
-                unlink_image_by_path($record->image);
-            }
-            $data['image'] = saveFile($request->image, 'how_we_welcome_child');
-        }
+//        if ($request->hasFile('image')) {
+//            if ($record->image) {
+//                unlink_image_by_path($record->image);
+//            }
+//            $data['image'] = saveFile($request->image, 'how_we_welcome_child');
+//        }
 
         $record->update($data);
         return responseJson([], 'Updated Successfully', 200);

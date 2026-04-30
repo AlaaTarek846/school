@@ -1,0 +1,25 @@
+{
+  "node_modules/vue-tel-input/dist/index-z9l8C72U.js": {
+    "file": "assets/index-z9l8C72U-Bx4tQYau.js",
+    "name": "index-z9l8C72U",
+    "src": "node_modules/vue-tel-input/dist/index-z9l8C72U.js",
+    "isDynamicEntry": true
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-BYWffp7T.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-CdIKbmND.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "node_modules/vue-tel-input/dist/index-z9l8C72U.js"
+    ],
+    "css": [
+      "assets/app-DSBAmuld.css"
+    ]
+  }
+}

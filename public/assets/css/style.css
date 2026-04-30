@@ -9966,6 +9966,7 @@ input[type=password],
 input[type=email],
 input[type=number],
 input[type=tel],
+input[type=date],
 textarea {
   font-size: var(--p-s);
   font-weight: 400;
@@ -16586,7 +16587,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
 .navigation__menu--item .sub__style {
   position: absolute;
   top: 100%;
-  min-width: 200px;
+  min-width: 250px;
   background: var(--rt-white);
   z-index: 1024;
   display: inline-block;

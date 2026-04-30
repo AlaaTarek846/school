@@ -39,5 +39,9 @@ class EducationStage extends Model
         return $this->hasMany(Exam::class);
     }
 
+    public function enrollments()
+    {
+        return $this->hasMany(StudentEnrollment::class, 'education_stage_id');
+    }
 
 }

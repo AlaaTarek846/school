@@ -131,8 +131,10 @@
     },
     "global": {
         "gallery": "Gallery",
+        "section": "section",
         "video": "Video",
         "link": "Link",
+        "text": "text",
         "actions": "Actions",
         "save": "Save",
         "success": "Success",
@@ -1395,6 +1397,31 @@
         "accountInfo": "Account Information",
         "academic_info": "Academic Placement",
         "personal_info": "Personal Details",
-        "location_info": "Location & Status"
+        "location_info": "Location & Status",
+        "student_transfer": "Student Transfer",
+        "transfer_selected": "Transfer Selected Students",
+        "select_target": "Select Target Destination",
+        "transfer_success": "Students transferred successfully",
+        "total_score": "Total Score",
+        "select": "Select",
+        "pending": "Pending"
+    },
+    "dashboard": {
+        "total_students": "Total Students",
+        "active_students": "Active Students",
+        "total_classes": "Total Classes",
+        "total_subjects": "Total Subjects",
+        "total_exams": "Total Exams",
+        "gender_distribution": "Gender Distribution",
+        "stage_distribution": "Students by Education Stage",
+        "content_stats": "Content Statistics",
+        "recent_enrollments": "Recent Enrollments",
+        "articles": "Articles",
+        "services": "Services",
+        "male": "Male",
+        "female": "Female",
+        "school_classes": "School Classes",
+        "subjects": "Subjects",
+        "exams_count": "Exams Count"
     }
 }

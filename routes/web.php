@@ -22,8 +22,12 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubscribeController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\StudentRegistrationController;
+use App\Http\Controllers\Admin\StudentTransferController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TwoAboutController;
+use App\Http\Controllers\Admin\AchievementController;
+use App\Http\Controllers\Admin\AchievementSectionController;
+use App\Http\Controllers\Admin\SchoolPrideController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PageController;
@@ -113,8 +117,14 @@ Route::prefix('api')->group(function () {
         Route::put('students/{student}/update-score', [\App\Http\Controllers\Admin\StudentController::class, 'updateScore']);
         Route::post('students/bulk-update-score', [\App\Http\Controllers\Admin\StudentController::class, 'bulkUpdateScore']);
         Route::apiResource('students', \App\Http\Controllers\Admin\StudentController::class);
+        Route::get('students-transfer-data', [StudentTransferController::class, 'getStudents']);
+        Route::post('students-transfer-execute', [StudentTransferController::class, 'executeTransfer']);
         Route::apiResource('teams', TeamController::class);
-
+        Route::get('get-achievement-sections', [AchievementController::class, 'getSections']);
+        Route::apiResource('achievements', AchievementController::class);
+        Route::apiResource('achievement-sections', AchievementSectionController::class);
+        Route::apiResource('school-prides', SchoolPrideController::class)->only(['index', 'update']);
+        Route::get('dashboard-stats', [DashboardController::class, 'getStats']);
     });
 
 });
@@ -160,7 +170,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('career-applications', [CareerApplicationController::class, 'indexPage'])->name('career-applications');
             Route::get('student-registrations', [StudentRegistrationController::class, 'indexPage'])->name('student-registrations');
             Route::get('students', [\App\Http\Controllers\Admin\StudentController::class, 'indexPage'])->name('students');
+            Route::get('students-transfer', [StudentTransferController::class, 'indexPage'])->name('students-transfer');
             Route::get('teams', [TeamController::class, 'indexPage'])->name('teams');
+            Route::get('achievements', [AchievementController::class, 'indexPage'])->name('achievements');
+            Route::get('achievement-sections', [AchievementSectionController::class, 'indexPage'])->name('achievement-sections');
+            Route::get('school-prides', [SchoolPrideController::class, 'indexPage'])->name('school-prides');
         });
 
         // logout
@@ -187,6 +201,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('primary-school', 'primarySchool')->name('primary-school');
     Route::get('middle-school', 'middleSchool')->name('middle-school');
     Route::get('about', 'about')->name('about');
+    Route::get('why-choose-galaa', 'whyChooseGalaa')->name('why-choose-galaa');
     Route::get('academic-area', 'academicArea')->name('academic-area');
     Route::get('academic', 'academic')->name('academic');
     Route::get('admission', 'admission')->name('admission');
@@ -218,7 +233,7 @@ Route::controller(PageController::class)->group(function () {
 
 Route::controller(AboutController::class)->group(function () {
     Route::get('principal-message', 'principalMessage')->name('principal-message');
-    Route::get('how-we-welcome-the-child', 'howWeWelcomeTheChild')->name('how-we-welcome-the-child');
+    Route::get('core-values', 'coreValues')->name('core-values');
     Route::get('school-discipline-policy', 'schoolDisciplinePolicy')->name('school-discipline-policy');
     Route::get('parents-meeting', 'parentsMeeting')->name('parents-meeting');
 });
@@ -235,6 +250,8 @@ Route::controller(SchoolController::class)->group(function () {
     Route::get('videos', 'videos')->name('videos');
     Route::get('api/videos', 'getVideos')->name('api.videos');
     Route::get('tuition-fees', 'tuitionFees')->name('tuition-fees');
+    Route::get('galaa-stages', 'galaaStages')->name('galaa-stages');
+    Route::get('reviews', 'reviews')->name('reviews');
     Route::get('school-facilities', 'schoolFacilities')->name('school-facilities');
     Route::get('student-info', 'studentInfo')->name('student-info');
 });

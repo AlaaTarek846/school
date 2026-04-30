@@ -64,6 +64,13 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-6">
+                                         <div class="single-input-item">
+                                             <label for="birth_day" class="form-label fw-bold">{{ __('Date of Birth') }}</label>
+                                             <input type="date" id="birth_day" name="birth_day" class="form-control py-3 rounded-3" value="{{ old('birth_day', $student->birth_day) }}">
+                                         </div>
+                                     </div>
+
                                     <h5 class="form-title mb-0 border-bottom pb-2 mt-5 text-primary">{{ __('translation.Contact Info') }}</h5>
 
                                     <div class="col-md-6">
@@ -80,20 +87,28 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <div class="single-input-item">
-                                            <label for="governorate" class="form-label fw-bold">{{ __('translation.Governorate') }}</label>
-                                            <input type="text" id="governorate" name="governorate" class="form-control py-3 rounded-3" placeholder="{{ __('translation.Governorate') }}" value="{{ old('governorate', $student->governorate) }}">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="single-input-item">
-                                            <label for="city" class="form-label fw-bold">{{ __('translation.City') }}</label>
-                                            <input type="text" id="city" name="city" class="form-control py-3 rounded-3" placeholder="{{ __('translation.City') }}" value="{{ old('city', $student->city) }}">
-                                        </div>
-                                    </div>
-                                </div>
+                                     <div class="col-md-6">
+                                         <div class="single-input-item">
+                                             <label for="governorate" class="form-label fw-bold">{{ __('Governorate') }}</label>
+                                             <input type="text" id="governorate" name="governorate" class="form-control py-3 rounded-3" placeholder="{{ __('Governorate') }}" value="{{ old('governorate', $student->governorate) }}">
+                                         </div>
+                                     </div>
+                                     
+                                     <div class="col-md-6">
+                                         <div class="single-input-item">
+                                             <label for="city" class="form-label fw-bold">{{ __('City') }}</label>
+                                             <input type="text" id="city" name="city" class="form-control py-3 rounded-3" placeholder="{{ __('City') }}" value="{{ old('city', $student->city) }}">
+                                         </div>
+                                     </div>
+
+                                     <div class="col-md-12">
+                                         <div class="single-input-item">
+                                             <label for="address" class="form-label fw-bold">{{ __('Address') }}</label>
+                                             <input type="text" id="address" name="address" class="form-control py-3 rounded-3" placeholder="{{ __('Address') }}" value="{{ old('address', $student->address) }}">
+                                         </div>
+                                     </div>
+
+                                 </div>
 
                                 <div class="mt-5 pt-3">
                                     <button type="submit" class="rts-theme-btn primary with-arrow w-100 py-3 rounded-3 justify-content-center">

@@ -1,6 +1,6 @@
 @extends('layout.admin.master')
 
-@section('title', __('translation.main'))
+@section('title',"الرئيسية")
 
 {{--@section('css')--}}
 
@@ -10,7 +10,7 @@
         <div class="container-fluid">
 
             <!-- Page Header -->
-            @include('layout.admin.partials.breadcrumb',['page' => __('translation.main')])
+            @include('layout.admin.partials.breadcrumb',['page' => 'الرئيسية'])
             <!-- Page Header Close -->
 
             <!-- Start::row-1 -->
@@ -25,7 +25,6 @@
 
 @push('scripts')
     @vite(['resources/js/app.js'])
-    <script src="{{ asset('dashboard/js/crm-dashboard.js') }}"></script>
 @endpush
 
 

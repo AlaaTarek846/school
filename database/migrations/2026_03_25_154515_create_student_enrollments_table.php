@@ -18,9 +18,10 @@ return new class extends Migration
             $table->foreignId('semester_id')->constrained('semesters')->cascadeOnDelete();
             $table->foreignId('education_stage_id')->constrained('education_stages')->cascadeOnDelete();
             $table->foreignId('school_class_id')->constrained('school_classes')->cascadeOnDelete();
-            $table->boolean('is_passed')->default(false);
+            $table->boolean('is_passed')->default(true);
             $table->decimal('total_score', 5, 2)->default(0);
             $table->boolean('is_default')->default(true);
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }

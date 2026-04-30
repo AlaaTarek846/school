@@ -6,6 +6,8 @@ use App\Models\Gallery;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
+use App\Models\Achievement;
+use App\Models\SchoolPride;
 use App\Models\QualityAssuranceFile;
 use App\Models\Fee;
 
@@ -40,8 +42,16 @@ class SchoolController extends BaseController
     // مسيرة النجاح والتفوق
     public function journeyOfSuccessAndExcellence()
     {
+        $achievementSections = \App\Models\AchievementSection::with('achievements')->get();
+        $prides = SchoolPride::all();
+        $leftPride = $prides->where('card_type', 'left')->first();
+        $rightPride = $prides->where('card_type', 'right')->first();
+
         return $this->view('journey-of-success-and-excellence', [
             'page_title' => 'journey-of-success-and-excellence',
+            'achievementSections' => $achievementSections,
+            'leftPride' => $leftPride,
+            'rightPride' => $rightPride,
         ]);
     }
 
@@ -116,6 +126,26 @@ class SchoolController extends BaseController
         return $this->view('tuition-fees', [
             'page_title' => 'tuition-fees',
             'fee' => $fee
+        ]);
+    }
+
+    // المراحل التعليمية
+    public function galaaStages()
+    {
+        $stages = \App\Models\EducationStage::all();
+        return $this->view('galaa-stages', [
+            'page_title' => 'galaa-stages',
+            'stages' => $stages
+        ]);
+    }
+
+    // آراء أولياء الأمور
+    public function reviews()
+    {
+        $testimonials = \App\Models\Testimonial::where('status', 1)->with('media')->latest()->get();
+        return $this->view('reviews', [
+            'page_title' => 'reviews',
+            'testimonials' => $testimonials
         ]);
     }
 

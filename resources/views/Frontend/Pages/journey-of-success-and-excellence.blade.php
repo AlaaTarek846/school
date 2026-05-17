@@ -3,7 +3,7 @@
     @include($header . 'transparent-header-v5')
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
-        'image' => 'breadcrumb.jpg',
+        'image' => 'breadcrumb.webp',
         'title' => __('Journey of Success and Excellence'),
         'page' => __('Journey of Success and Excellence')
     ])

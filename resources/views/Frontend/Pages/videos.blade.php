@@ -3,7 +3,7 @@
     @include($header . 'transparent-header-v5')
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
-        'image' => 'breadcrumb.jpg',
+        'image' => 'breadcrumb.webp',
         'title' => __('Videos'),
         'page' => __('Videos')
     ])
@@ -50,24 +50,24 @@
                         let html = '';
                         response.data.forEach(function(item) {
                             let videoContent = '';
-                            
+
                             if (item.link) {
                                 let videoId = getYouTubeId(item.link);
                                 let embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : item.link;
                                 videoContent = `
-                                    <iframe 
-                                        src="${embedUrl}" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    <iframe
+                                        src="${embedUrl}"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
                                     </iframe>
                                 `;
                             } else if (item.video) {
                                 videoContent = `
-                                    <video 
-                                        src="/${item.video}" 
-                                        controls 
+                                    <video
+                                        src="/${item.video}"
+                                        controls
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
                                     </video>
                                 `;

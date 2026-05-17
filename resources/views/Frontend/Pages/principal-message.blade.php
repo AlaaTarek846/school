@@ -3,7 +3,7 @@
     @include($header . 'transparent-header-v5')
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
-        'image' => 'breadcrumb.jpg',
+        'image' => 'breadcrumb.webp',
         'title' => (app()->getLocale() == 'ar' ? $principal_message->title_ar : $principal_message->title_en),
         'page' => __('About')
     ])

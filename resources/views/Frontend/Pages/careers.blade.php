@@ -5,7 +5,7 @@
 
     @include($elements . 'breadcrumb', [
         'class' => 'breadcrumb-height breadcumb-bg',
-        'image' => 'breadcrumb.jpg',
+        'image' => 'breadcrumb.webp',
         'title' => __('Apply to school'),
         'page' => __('Apply Admission')
     ])

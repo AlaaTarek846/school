@@ -5,39 +5,57 @@
       <div class="col-xl-12">
         <loader v-if="loading" />
         <div class="card custom-card">
-          <div class="card-header justify-content-between">
-            <div class="d-flex flex-wrap gap-3 align-items-center w-100">
-              <div class="d-flex gap-2">
-                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#area-model">
+          <div class="card-header border-bottom-0 pb-0">
+            <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center w-100">
+              <div class="d-flex gap-2 align-items-center">
+                <button @click="showModelCreate" class="btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#area-model">
                   <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}
                 </button>
-                <button class="btn btn-sm btn-success-light" data-bs-toggle="modal" data-bs-target="#import-model">
-                  <i class="ri-upload-2-line me-1 fw-semibold align-middle"></i>{{ $t('admin.import_excel') }}
+                <button class="btn btn-sm btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#import-model">
+                  <i class="ri-file-excel-line me-1 fw-semibold align-middle"></i>{{ $t('admin.import_excel') }}
                 </button>
-                <button v-if="selectedIds.length > 0" class="btn btn-sm btn-info-light animate__animated animate__fadeIn" data-bs-toggle="modal" data-bs-target="#bulk-score-model">
+                <a href="/api/students/export-template" target="_blank" class="btn btn-sm btn-outline-secondary shadow-sm">
+                  <i class="ri-download-2-line me-1 fw-semibold align-middle"></i>تحميل قالب Excel
+                </a>
+                <button v-if="selectedIds.length > 0" class="btn btn-sm btn-info animate__animated animate__fadeIn shadow-sm" data-bs-toggle="modal" data-bs-target="#bulk-score-model">
                   <i class="ri-clipboard-line me-1 fw-semibold align-middle"></i>{{ $t('translation.bulk_manage_score') }}
-                  <span class="badge bg-info ms-1">{{ selectedIds.length }}</span>
+                  <span class="badge bg-white text-info ms-1">{{ selectedIds.length }}</span>
                 </button>
               </div>
+            </div>
+          </div>
 
-              <div class="flex-fill">
-                <input type="text" class="form-control form-control-sm" :placeholder="$t('global.Search') + '...'" v-model="search.searchKey">
+          <!-- Enhanced Filter & Search Bar -->
+          <div class="card-body border-bottom bg-light-subtle py-3">
+            <div class="row g-2 align-items-center">
+              <div class="col-md-4 col-sm-12">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text bg-white border-end-0"><i class="ri-search-line text-muted"></i></span>
+                  <input type="text" class="form-control border-start-0 ps-0" :placeholder="$t('global.Search') + ' (الاسم، الكود، البريد)...'" v-model="search.searchKey">
+                  <button v-if="search.searchKey" class="btn btn-outline-secondary border-start-0" type="button" @click="search.searchKey = ''"><i class="ri-close-line"></i></button>
+                </div>
               </div>
 
-              <div style="min-width: 150px;">
-                <select class="form-control form-control-sm" v-model="selectedStage" @change="handleStageChange">
-                  <option value="">{{ $t('admin.education_stage') }} ({{ $t('global.all') }})</option>
+              <div class="col-md-3 col-sm-6">
+                <select class="form-select form-select-sm" v-model="selectedStage" @change="handleStageChange">
+                  <option value="">كل المراحل الدراسية</option>
                   <option v-for="stage in educationStages" :key="stage.id" :value="stage.id">
                     {{ $i18n.locale == 'ar' ? stage.title_ar : stage.title_en }}
                   </option>
                 </select>
               </div>
 
-              <div style="min-width: 150px;" v-if="selectedStage">
-                <select class="form-control form-control-sm" v-model="selectedClass" @change="handleClassChange">
-                  <option value="">{{ $t('admin.school_class') }} ({{ $t('global.all') }})</option>
+              <div class="col-md-3 col-sm-6">
+                <select class="form-select form-select-sm" v-model="selectedClass" @change="handleClassChange" :disabled="!selectedStage">
+                  <option value="">كل الصفوف الدراسية</option>
                   <option v-for="cls in schoolClasses" :key="cls.id" :value="cls.id">{{ cls.name }}</option>
                 </select>
+              </div>
+
+              <div class="col-md-2 col-sm-12 d-flex gap-1">
+                <button class="btn btn-sm btn-light border w-100" @click="resetFilters" title="إعادة ضبط الفلاتر">
+                  <i class="ri-refresh-line me-1"></i> إعادة ضبط
+                </button>
               </div>
             </div>
           </div>
@@ -263,11 +281,27 @@ export default {
       filterColumns.value.columns = filters;
     };
 
+    const resetFilters = () => {
+      selectedStage.value = '';
+      selectedClass.value = '';
+      schoolClasses.value = [];
+      search.value.searchKey = '';
+      filterColumns.value.columns = [
+        {
+          searchType: 'where',
+          opreator: '=',
+          column: 'is_active',
+          value: '',
+        }
+      ];
+      getData();
+    };
+
     return {
       getData, loading, data, dataPaginate, type, dataRow, modalShow, pagePaginate,
       search, filterColumns, deleteData, showEditMode, showModelCreate,
       educationStages, schoolClasses, selectedStage, selectedClass,
-      handleStageChange, handleClassChange,
+      handleStageChange, handleClassChange, resetFilters,
       selectedIds, selectedStudents, isAllSelected, toggleSelectAll, handleBulkUpdated
     };
   }

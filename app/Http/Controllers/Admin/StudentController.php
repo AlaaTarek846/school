@@ -64,6 +64,9 @@ class StudentController extends Controller
             DB::beginTransaction();
 
             $studentData = Arr::except($request->validated(), ['academic_year_id', 'semester_id', 'education_stage_id', 'school_class_id']);
+            if (empty($studentData['username'])) {
+                $studentData['username'] = 'std_' . $studentData['code'];
+            }
             $studentData['password'] = bcrypt($request->password ?? '12345678');
             $student = Student::create($studentData);
 
@@ -162,6 +165,28 @@ class StudentController extends Controller
 
         return responseJson(new StudentResource($student), 'Score updated successfully', 200);
     }
+    public function exportTemplate()
+    {
+        return Excel::download(new \App\Exports\StudentsTemplateExport, 'students_import_template.xlsx');
+    }
+
+    public function validateImport(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv',
+        ]);
+
+        try {
+            $import = new StudentsImport(true);
+            Excel::import($import, $request->file('file'));
+            $summary = $import->getValidationSummary();
+
+            return responseJson($summary, 'Validation completed', 200);
+        } catch (\Exception $e) {
+            return responseJson([], $e->getMessage(), 500);
+        }
+    }
+
     public function import(Request $request)
     {
         $request->validate([
@@ -169,15 +194,15 @@ class StudentController extends Controller
         ]);
 
         try {
-            Excel::import(new StudentsImport, $request->file('file'));
-            return responseJson([], __('admin.imported_successfully'), 200);
-        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
-            $failures = $e->failures();
-            $errors = [];
-            foreach ($failures as $failure) {
-                $errors[] = __('admin.row') . ' ' . $failure->row() . ': ' . implode(', ', $failure->errors());
+            $import = new StudentsImport(false);
+            Excel::import($import, $request->file('file'));
+            $summary = $import->getValidationSummary();
+
+            if ($summary['invalid_count'] > 0) {
+                return responseJson($summary, __('admin.validation_error'), 422);
             }
-            return responseJson(['errors' => $errors], __('admin.validation_error'), 422);
+
+            return responseJson($summary, __('admin.imported_successfully'), 200);
         } catch (\Exception $e) {
             return responseJson([], $e->getMessage(), 500);
         }

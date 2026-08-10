@@ -113,6 +113,8 @@ Route::prefix('api')->group(function () {
         Route::get('students/form-data', [\App\Http\Controllers\Admin\StudentController::class, 'getFormData']);
         Route::get('students/get-semesters/{academicYearId}', [\App\Http\Controllers\Admin\StudentController::class, 'getSemesters']);
         Route::get('students/get-classes/{educationStageId}', [\App\Http\Controllers\Admin\StudentController::class, 'getClasses']);
+        Route::get('students/export-template', [\App\Http\Controllers\Admin\StudentController::class, 'exportTemplate']);
+        Route::post('students/validate-import', [\App\Http\Controllers\Admin\StudentController::class, 'validateImport']);
         Route::post('students/import', [\App\Http\Controllers\Admin\StudentController::class, 'import']);
         Route::put('students/{student}/update-score', [\App\Http\Controllers\Admin\StudentController::class, 'updateScore']);
         Route::post('students/bulk-update-score', [\App\Http\Controllers\Admin\StudentController::class, 'bulkUpdateScore']);

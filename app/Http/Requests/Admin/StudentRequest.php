@@ -18,7 +18,7 @@ class StudentRequest extends FormRequest
 
         return [
             'name' => 'required|string|max:255',
-            'username' => ['required', 'string', 'max:255', Rule::unique('students', 'username')->ignore($studentId)],
+            'username' => ['nullable', 'string', 'max:255', Rule::unique('students', 'username')->ignore($studentId)],
             'code' => ['required', 'integer', Rule::unique('students', 'code')->ignore($studentId)],
             'email' => ['nullable', 'email', Rule::unique('students', 'email')->ignore($studentId)],
             'password' => $studentId ? 'nullable|min:8' : 'required|min:8',

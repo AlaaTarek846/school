@@ -189,12 +189,12 @@
     </section>
     <!-- campus life end -->
     <!-- team -->
-    <section class="rts__section rts__light rts-section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="rts__section--wrapper">
-                    <h2 class="rts__section--title">{{ __('Our Teachers') }}</h2>
-                    <div class="rts__section--link">
+{{--    <section class="rts__section rts__light rts-section-padding">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <div class="rts__section--wrapper">--}}
+{{--                    <h2 class="rts__section--title">{{ __('Our Teachers') }}</h2>--}}
+{{--                    <div class="rts__section--link">--}}
 {{--                        <a href="{{ route('faculty') }}" class="rts-nbg-btn btn-arrow">{{ __('View All Teachers') }}<span>--}}
 {{--                                @if(app()->getLocale() == 'ar')--}}
 {{--                                    <i class="fa-sharp fa-regular fa-arrow-left"></i>--}}
@@ -203,34 +203,34 @@
 {{--                                @endif--}}
 {{--                        </span>--}}
 {{--                        </a>--}}
-                    </div>
-                </div>
-            </div>
-            <!-- team member area -->
-            <div class="row g-5">
-                @foreach($teams as $team)
-                <!-- single team -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="rts__single--member">
-                        <div class="rts__single--member--thumb">
-                                <img src="{{ $team->media ? asset($team->media->url) : asset('assets/images/speaker/teacher__1.jpg') }}" onerror="{{asset('assets/images/research/03.jpg')}}" alt="">
-                        </div>
-                        <div class="rts__single--member--meta">
-                            <h5 class="rts__single--member--meta--title">
-                                {{ $team->name }}
-                            </h5>
-                            <span class="rts__single--member--meta--designation">
-                                {{ __($team->job) }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- single team end -->
-                @endforeach
-            </div>
-            <!-- team member area end -->
-        </div>
-    </section>
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <!-- team member area -->--}}
+{{--            <div class="row g-5">--}}
+{{--                @foreach($teams as $team)--}}
+{{--                <!-- single team -->--}}
+{{--                <div class="col-lg-3 col-md-6 col-sm-6">--}}
+{{--                    <div class="rts__single--member">--}}
+{{--                        <div class="rts__single--member--thumb">--}}
+{{--                                <img src="{{ $team->media ? asset($team->media->url) : asset('assets/images/speaker/teacher__1.jpg') }}" onerror="{{asset('assets/images/research/03.jpg')}}" alt="">--}}
+{{--                        </div>--}}
+{{--                        <div class="rts__single--member--meta">--}}
+{{--                            <h5 class="rts__single--member--meta--title">--}}
+{{--                                {{ $team->name }}--}}
+{{--                            </h5>--}}
+{{--                            <span class="rts__single--member--meta--designation">--}}
+{{--                                {{ __($team->job) }}--}}
+{{--                            </span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- single team end -->--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--            <!-- team member area end -->--}}
+{{--        </div>--}}
+{{--    </section>--}}
     <!-- team end -->
     <!-- student feedback -->
     <section class="rts__section rts-section-padding rts__primary__bg">

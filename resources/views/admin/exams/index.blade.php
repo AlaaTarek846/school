@@ -1,13 +1,13 @@
 @extends('layout.admin.master')
 
-@section('title', 'إدارة الامتحانات')
+@section('title', 'إدارة الواجبات')
 
 @section('content')
     <div class="main-content app-content">
         <div class="container-fluid">
 
             <!-- Page Header -->
-            @include('layout.admin.partials.breadcrumb',['page' => 'إدارة الامتحانات'])
+            @include('layout.admin.partials.breadcrumb',['page' => 'إدارة الواجبات'])
             <!-- Page Header Close -->
 
             <!-- Start::row-1 -->

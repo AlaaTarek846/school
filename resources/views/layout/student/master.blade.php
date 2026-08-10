@@ -195,13 +195,13 @@
 
             <a href="{{ route('student.exams') }}" class="nav-link {{ request()->routeIs('student.exams') ? 'active' : '' }}">
                 <i class="fas fa-file-alt"></i>
-                <span>{{ __('translation.Exams') }}</span>
+                <span>{{ __('translation.Assignments') }}</span>
             </a>
 
-            <a href="{{ route('student.exams.results') }}" class="nav-link {{ request()->routeIs('student.exams.results') ? 'active' : '' }}">
-                <i class="fas fa-poll"></i>
-                <span>{{ __('translation.Exam Results') }}</span>
-            </a>
+{{--            <a href="{{ route('student.exams.results') }}" class="nav-link {{ request()->routeIs('student.exams.results') ? 'active' : '' }}">--}}
+{{--                <i class="fas fa-poll"></i>--}}
+{{--                <span>{{ __('translation.Exam Results') }}</span>--}}
+{{--            </a>--}}
 
             <div class="mt-auto pb-4">
                  <a href="{{ route('student.logout') }}" class="nav-link logout-btn">

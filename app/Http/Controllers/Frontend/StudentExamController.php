@@ -26,7 +26,7 @@ class StudentExamController extends Controller
             return redirect()->route('student.dashboard')->with('error', 'No active enrollment found.');
         }
 
-        $academicYears = AcademicYear::where('is_active', '=', 1)->latest()->get();
+        $academicYears = AcademicYear::where('is_active', '=', 1)->latest()->take(1)->get();
         $semesters = Semester::where('academic_year_id', '=', $enrollment->academic_year_id)->get();
         $subjects = $enrollment->educationStage->subjects;
 
@@ -75,6 +75,28 @@ class StudentExamController extends Controller
         });
 
         return responseJson($exams->items(), '', 200, getPaginates($exams));
+    }
+
+    public function downloadFile(Exam $exam)
+    {
+        $student = Auth::guard('student')->user();
+        $classIds = $student->enrollments->pluck('school_class_id')->toArray();
+
+        $belongs = $exam->classes()->whereIn('class_id', $classIds)->exists();
+        if (!$belongs) {
+            abort(404);
+        }
+
+        $now = Carbon::now();
+        if ($exam->start_date && $exam->end_date && !$now->between($exam->start_date, $exam->end_date)) {
+            return responseJson([], __('translation.File is not available yet'), 403);
+        }
+
+        if (!$exam->pdf || !Storage::disk('public')->exists($exam->pdf)) {
+            abort(404);
+        }
+
+        return Storage::disk('public')->response($exam->pdf);
     }
 
     public function uploadAnswer(Request $request)

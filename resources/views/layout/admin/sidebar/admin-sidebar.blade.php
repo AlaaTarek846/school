@@ -57,13 +57,13 @@
      <li class="slide has-sub {{ request()->routeIs('admin.page.exams') || request()->routeIs('admin.page.exam-answers') ? 'active open' : '' }}">
          <a href="javascript:void(0);" class="side-menu__item {{ request()->routeIs('admin.page.exams') || request()->routeIs('admin.page.exam-answers') ? 'active' : '' }}">
              <i class="bi bi-journal-check side-menu__icon"></i>
-             <span class="side-menu__label">الامتحانات والنتائج</span>
+             <span class="side-menu__label">الواجبات</span>
              <i class="fe fe-chevron-right side-menu__angle"></i>
          </a>
          <ul class="slide-menu child1">
-             <li class="slide side-menu__label1"><a href="javascript:void(0)">الامتحانات والنتائج</a></li>
-             <li class="slide"><a href="{{ route('admin.page.exams') }}" class="side-menu__item {{ request()->routeIs('admin.page.exams') ? 'active' : '' }}">إدارة الامتحانات</a></li>
-             <li class="slide"><a href="{{ route('admin.page.exam-answers') }}" class="side-menu__item {{ request()->routeIs('admin.page.exam-answers') ? 'active' : '' }}">إجابات الطلاب</a></li>
+             <li class="slide side-menu__label1"><a href="javascript:void(0)">الواجبات</a></li>
+             <li class="slide"><a href="{{ route('admin.page.exams') }}" class="side-menu__item {{ request()->routeIs('admin.page.exams') ? 'active' : '' }}">إدارة الواجبات</a></li>
+{{--             <li class="slide"><a href="{{ route('admin.page.exam-answers') }}" class="side-menu__item {{ request()->routeIs('admin.page.exam-answers') ? 'active' : '' }}">إجابات الطلاب</a></li>--}}
          </ul>
      </li>
 

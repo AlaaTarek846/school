@@ -37,7 +37,12 @@ class StudentController extends Controller
 
     public function getFormData()
     {
-        $academicYears = AcademicYear::where('is_active', true)->get();
+        $academicYears = AcademicYear::where('is_active', true)
+            ->orderByDesc('id')
+            ->take(2)
+            ->get()
+            ->reverse()
+            ->values();
         $educationStages = \App\Models\EducationStage::all();
 
         return responseJson([

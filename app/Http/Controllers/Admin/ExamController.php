@@ -80,8 +80,6 @@ class ExamController extends Controller
                     'subject_id' => $examData['subject_id'],
                     'start_date' => $data['start_date'] ?? null,
                     'end_date' => $data['end_date'] ?? null,
-                    'total_score' => $examData['total_score'],
-                    'pass_score' => $examData['pass_score'],
                     'notes' => $examData['notes'] ?? null,
                     'pdf' => $pdfPath,
                 ]);
@@ -124,8 +122,6 @@ class ExamController extends Controller
                     'title_ar' => $examInfo['title_ar'],
                     'title_en' => $examInfo['title_en'],
                     'subject_id' => $examInfo['subject_id'],
-                    'total_score' => $examInfo['total_score'],
-                    'pass_score' => $examInfo['pass_score'],
                     'notes' => $examInfo['notes'] ?? null,
                 ]);
 

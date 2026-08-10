@@ -1,6 +1,6 @@
 @extends('layout.student.master')
 
-@section('title', __('translation.Exams'))
+@section('title', __('translation.Assignments'))
 
 @section('content')
 <div class="container-fluid py-4">
@@ -11,8 +11,8 @@
                 <div class="card-body p-4 position-relative">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h2 class="fw-bold mb-1"><i class="fas fa-file-alt me-2"></i> {{ __('translation.Exams') }}</h2>
-                            <p class="mb-0 text-white-50">{{ __('View and manage your academic exams') }}</p>
+                            <h2 class="fw-bold mb-1"><i class="fas fa-file-alt me-2"></i> {{ __('translation.Assignments') }}</h2>
+                            <p class="mb-0 text-white-50">{{ __('translation.View and manage your assignments') }}</p>
                         </div>
                     </div>
                     <!-- Decorative Circle -->
@@ -37,12 +37,10 @@
                     <form id="filterForm">
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-muted">{{ __('translation.Academic Year') }}</label>
-                            <select name="academic_year_id" class="form-select border-0 bg-light rounded-3 p-2 shadow-none">
-                                <option value="">{{ __('translation.All Years') }}</option>
-                                @foreach($academicYears as $year)
-                                    <option value="{{ $year->id }}" {{ $enrollment->academic_year_id == $year->id ? 'selected' : '' }}>{{ $year->name }}</option>
-                                @endforeach
-                            </select>
+                            @if($academicYears->count() > 0)
+                                <input type="text" class="form-control border-0 bg-light rounded-3 p-2 shadow-none" value="{{ $academicYears->first()->name }}" disabled>
+                                <input type="hidden" name="academic_year_id" value="{{ $academicYears->first()->id }}">
+                            @endif
                         </div>
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-muted">{{ __('translation.Semester') }}</label>
@@ -85,7 +83,7 @@
                 <!-- Data will be loaded via AJAX -->
                 <div class="col-12 text-center py-5" id="loader">
                     <div class="spinner-border text-primary" role="status"></div>
-                    <p class="mt-2 text-muted">{{ __('translation.Loading exams...') }}</p>
+                    <p class="mt-2 text-muted">{{ __('translation.Loading assignments...') }}</p>
                 </div>
             </div>
 
@@ -101,7 +99,7 @@
         <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
             <div class="modal-header bg-primary text-white border-0 py-3">
                 <h5 class="modal-title fw-bold" id="examModalLabel">
-                    <i class="fas fa-info-circle me-2"></i> {{ __('translation.Exam Details') }}
+                    <i class="fas fa-info-circle me-2"></i> {{ __('translation.Assignment Details') }}
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -141,7 +139,7 @@ $(document).ready(function() {
                 let html = '';
 
                 if (!exams || exams.length === 0) {
-                    html = '<div class="col-12 text-center py-5 exam-card-item"><div class="text-muted"><i class="fas fa-folder-open fa-3x mb-3"></i><p>{{ __("translation.No exams found") }}</p></div></div>';
+                    html = '<div class="col-12 text-center py-5 exam-card-item"><div class="text-muted"><i class="fas fa-folder-open fa-3x mb-3"></i><p>{{ __("translation.No assignments found") }}</p></div></div>';
                 } else {
                     exams.forEach(exam => {
                         let statusClass = '';
@@ -159,8 +157,9 @@ $(document).ready(function() {
                         }
 
                         let submittedHtml = '';
-                        if (exam.student_answers && exam.student_answers.length > 0) {
-                            submittedHtml = `<span class="badge bg-info-subtle text-info rounded-pill px-3 py-1 small ms-2 animate__animated animate__pulse animate__infinite"><i class="fas fa-check-circle me-1"></i> {{ __('translation.Submitted') }}</span>`;
+                        let fileUrl = exam.pdf ? "{{ route('student.api.assignment-file', ':id') }}".replace(':id', exam.id) : '';
+                        if (exam.is_available && exam.pdf) {
+                            submittedHtml = `<span class="badge bg-info-subtle text-info rounded-pill px-3 py-1 small ms-2"><i class="fas fa-paperclip me-1"></i> {{ __('translation.Assignment File') }}</span>`;
                         }
 
                         let locale = "{{ app()->getLocale() }}";
@@ -187,7 +186,7 @@ $(document).ready(function() {
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-3">
                                                 <li><a class="dropdown-item py-2 view-exam" href="#" data-id="${exam.id}"><i class="fas fa-eye me-2 text-primary"></i> {{ __('translation.View Details') }}</a></li>
-                                                ${exam.pdf ? `<li><a class="dropdown-item py-2" href="/storage/${exam.pdf}" target="_blank"><i class="fas fa-download me-2 text-success"></i> {{ __('translation.Download Exam') }}</a></li>` : ''}
+                                                ${(exam.is_available && exam.pdf) ? `<li><a class="dropdown-item py-2" href="${fileUrl}" target="_blank"><i class="fas fa-download me-2 text-success"></i> {{ __('translation.Download Assignment') }}</a></li>` : ''}
                                             </ul>
                                         </div>
                                     </div>
@@ -204,10 +203,10 @@ $(document).ready(function() {
                                         <button class="btn btn-primary-light flex-grow-1 border-0 rounded-pill py-2 small fw-bold view-exam" data-id="${exam.id}">
                                             {{ __('translation.View Details') }}
                                         </button>
-                                        ${(exam.is_available && (!exam.student_answers || exam.student_answers.length === 0)) ? `
-                                        <button class="btn btn-success flex-grow-1 border-0 rounded-pill py-2 small fw-bold upload-btn" data-id="${exam.id}">
-                                            <i class="fas fa-upload me-1"></i> {{ __('translation.Upload Answer') }}
-                                        </button>
+                                        ${(exam.is_available && exam.pdf) ? `
+                                        <a href="${fileUrl}" target="_blank" class="btn btn-success flex-grow-1 border-0 rounded-pill py-2 small fw-bold">
+                                            <i class="fas fa-download me-1"></i> {{ __('translation.Download Assignment') }}
+                                        </a>
                                         ` : ''}
                                     </div>
                                 </div>
@@ -282,20 +281,49 @@ $(document).ready(function() {
         let title = locale === 'ar' ? exam.title_ar : exam.title_en;
         let subjectName = locale === 'ar' ? (exam.subject ? exam.subject.title_ar : '') : (exam.subject ? exam.subject.title_en : '');
         let notes = exam.notes || "{{ __('translation.No notes provided') }}";
+        let fileUrl = exam.pdf ? "{{ route('student.api.assignment-file', ':id') }}".replace(':id', exam.id) : '';
 
-        let answersHtml = '';
-        if(exam.student_answers && exam.student_answers.length > 0) {
-            answersHtml = '<div class="mt-4"><h6 class="fw-bold mb-3"><i class="fas fa-history me-2"></i> {{ __("translation.Your Submissions") }}</h6><div class="list-group rounded-3">';
-            exam.student_answers[0].files.forEach((file, index) => {
-                answersHtml += `
-                <div class="list-group-item d-flex justify-content-between align-items-center py-3 border-light">
-                    <span class="small"><i class="fas fa-file-pdf me-2 text-danger"></i> {{ __("translation.File") }} ${index + 1}</span>
-                    <a href="/storage/${file.pdf}" target="_blank" class="btn btn-sm btn-outline-primary border-0 rounded-pill px-3 fw-bold">
-                        <i class="fas fa-download me-1"></i> {{ __('translation.Download') }}
-                    </a>
-                </div>`;
-            });
-            answersHtml += '</div></div>';
+        let fileHtml = '';
+        if (exam.pdf && exam.is_available) {
+            let ext = exam.pdf.split('.').pop().toLowerCase();
+            if (fileUrl) {
+                if (['mp4', 'mpeg', 'avi', 'mov', 'webm', 'mkv'].includes(ext)) {
+                    fileHtml = `
+                    <video controls class="w-100 rounded-3 mb-3" style="max-height: 260px;">
+                        <source src="${fileUrl}">
+                    </video>
+                    <a href="${fileUrl}" target="_blank" class="btn btn-success w-100 rounded-pill py-2 fw-bold">
+                        <i class="fas fa-download me-2"></i> {{ __('translation.Download Assignment') }}
+                    </a>`;
+                } else if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'].includes(ext)) {
+                    fileHtml = `
+                    <img src="${fileUrl}" alt="{{ __('translation.Assignment File') }}" class="img-fluid rounded-3 mb-3" style="max-height: 260px; object-fit: contain; width: 100%;">
+                    <a href="${fileUrl}" target="_blank" class="btn btn-success w-100 rounded-pill py-2 fw-bold">
+                        <i class="fas fa-download me-2"></i> {{ __('translation.Download Assignment') }}
+                    </a>`;
+                } else {
+                    fileHtml = `
+                    <div class="text-center py-4 mb-3 bg-white rounded-3">
+                        <i class="fas fa-file-pdf fa-4x text-danger opacity-50 mb-2"></i>
+                        <p class="small text-muted mb-0">{{ __('translation.Assignment File') }}</p>
+                    </div>
+                    <a href="${fileUrl}" target="_blank" class="btn btn-success w-100 rounded-pill py-2 fw-bold">
+                        <i class="fas fa-download me-2"></i> {{ __('translation.Download Assignment') }}
+                    </a>`;
+                }
+            }
+        } else if (exam.pdf) {
+            fileHtml = `
+            <div class="text-center py-5">
+                <i class="fas fa-lock fa-3x text-muted opacity-25 mb-2"></i>
+                <p class="text-muted small mb-0">{{ __('translation.File is not available yet') }}</p>
+            </div>`;
+        } else {
+            fileHtml = `
+            <div class="text-center py-5">
+                <i class="fas fa-file-alt fa-3x text-muted opacity-25 mb-2"></i>
+                <p class="text-muted small mb-0">{{ __('translation.No file attached') }}</p>
+            </div>`;
         }
 
         let body = `
@@ -319,18 +347,6 @@ $(document).ready(function() {
                                 <p class="fw-bold mb-0">${exam.end_date}</p>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="p-2 bg-light rounded-3">
-                                <p class="text-muted mb-0">{{ __('translation.Total Score') }}</p>
-                                <p class="fw-bold mb-0 text-success">${exam.total_score}</p>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="p-2 bg-light rounded-3">
-                                <p class="text-muted mb-0">{{ __('translation.Pass Score') }}</p>
-                                <p class="fw-bold mb-0 text-primary">${exam.pass_score}</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="mb-4">
@@ -339,111 +355,16 @@ $(document).ready(function() {
                 </div>
             </div>
             <div class="col-md-6">
-                ${(exam.is_available && (!exam.student_answers || exam.student_answers.length === 0)) ? `
-                <div class="card border-primary border-dashed bg-primary-subtle rounded-4 h-100 p-4 text-center">
+                <div class="card border-0 bg-light rounded-4 h-100 p-4">
                     <div class="my-auto">
-                        <div class="mb-3">
-                            <i class="fas fa-cloud-upload-alt fa-3x text-primary opacity-50"></i>
-                        </div>
-                        <h6 class="fw-bold text-primary mb-2">{{ __('translation.Upload Answer') }}</h6>
-                        <p class="small text-muted mb-4">{{ __('translation.Upload your exam answer files here') }}</p>
-                        <form id="uploadForm" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="exam_id" value="${exam.id}">
-                            <input type="file" name="files[]" id="examFiles" class="d-none" multiple accept=".pdf,.doc,.docx,.jpg,.png,.jpeg">
-                            <label for="examFiles" class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm mb-3">
-                                <i class="fas fa-folder-open me-2"></i> {{ __('translation.Choose Files') }}
-                            </label>
-                            <div id="fileList" class="mb-3 small text-start"></div>
-                            <button type="submit" class="btn btn-success w-100 rounded-pill py-2 fw-bold d-none" id="submitUpload">
-                                <i class="fas fa-paper-plane me-2"></i> {{ __('translation.Submit') }}
-                            </button>
-                        </form>
+                        <h6 class="fw-bold text-dark mb-3"><i class="fas fa-paperclip me-2 text-primary"></i> {{ __('translation.Assignment File') }}</h6>
+                        ${fileHtml}
                     </div>
                 </div>
-                ` : `
-                <div class="card border-0 bg-light rounded-4 h-100 p-4 text-center">
-                    <div class="my-auto">
-                        <div class="mb-3">
-                            <i class="fas fa-${(exam.student_answers && exam.student_answers.length > 0) ? 'check-circle text-success' : 'lock text-muted'} fa-3x opacity-50"></i>
-                        </div>
-                        <h6 class="fw-bold text-dark mb-2">
-                            ${(exam.student_answers && exam.student_answers.length > 0) ? "{{ __('translation.Already Submitted') }}" : "{{ __('translation.Upload Locked') }}"}
-                        </h6>
-                        <p class="small text-muted mb-0">
-                            ${(exam.student_answers && exam.student_answers.length > 0) ? "{{ __('translation.You have already submitted an answer for this exam') }}" : (exam.is_past ? "{{ __('translation.This exam has ended') }}" : "{{ __('translation.This exam has not started yet') }}")}
-                        </p>
-                        ${answersHtml}
-                    </div>
-                </div>
-                `}
             </div>
         </div>`;
         $('#modalBody').html(body);
         $('#examModal').modal('show');
-
-        $('#examFiles').off('change').on('change', function() {
-            let files = this.files;
-            let html = '';
-            if(files.length > 0) {
-                html = '<ul class="list-group list-group-flush">';
-                for(let i=0; i<files.length; i++) {
-                    html += `<li class="list-group-item bg-transparent px-0 border-light"><i class="fas fa-file-alt text-primary me-2"></i> ${files[i].name} <span class="text-muted small">(${(files[i].size / 1024).toFixed(1)} KB)</span></li>`;
-                }
-                html += '</ul>';
-                $('#submitUpload').removeClass('d-none');
-            } else {
-                $('#submitUpload').addClass('d-none');
-            }
-            $('#fileList').html(html);
-        });
-
-        $('#uploadForm').off('submit').on('submit', function(e) {
-            e.preventDefault();
-            let btn = $(this).find('button[type="submit"]');
-            btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2"></span> {{ __("translation.Uploading...") }}');
-
-            let formData = new FormData(this);
-
-            $.ajax({
-                url: "{{ route('student.api.exams.upload') }}",
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: "{{ __('translation.Success') }}",
-                        text: response.message,
-                        confirmButtonColor: '#3f51b5',
-                        confirmButtonText: "{{ __('translation.OK') }}"
-                    });
-                    $('#examModal').modal('hide');
-                    loadExams(currentPage);
-                },
-                error: function(xhr) {
-                    let errors = xhr.responseJSON.errors;
-                    let msg = xhr.responseJSON.message || "{{ __('translation.Upload failed') }}";
-                    if(errors) {
-                        msg = Object.values(errors).flat().join('\n');
-                    }
-                    Swal.fire({
-                        icon: 'error',
-                        title: "{{ __('translation.Error') }}",
-                        text: msg,
-                        confirmButtonColor: '#f50057',
-                        confirmButtonText: "{{ __('translation.OK') }}"
-                    });
-                    btn.prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i> {{ __("translation.Submit") }}');
-                }
-            });
-        });
-    });
-
-    $(document).on('click', '.upload-btn', function(e) {
-        e.preventDefault();
-        $(this).siblings('button.view-exam').click();
     });
 });
 </script>
@@ -457,10 +378,6 @@ $(document).ready(function() {
 .hover-lift:hover {
     transform: translateY(-5px);
     box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important;
-}
-.upload-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 [dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {

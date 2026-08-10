@@ -32,37 +32,24 @@
                         <div class="rts-application-form">
                             <form action="{{ route('student.complete_profile.post') }}" method="POST">
                                 @csrf
-                                
+
                                 <div class="row g-4">
                                     <h5 class="form-title mb-0 border-bottom pb-2 mt-4 text-primary">{{ __('translation.Account Info') }}</h5>
-                                    
+
                                     <div class="col-md-6">
                                         <div class="single-input-item">
                                             <label for="username" class="form-label fw-bold">{{ __('Username') }} <span class="text-danger">*</span></label>
                                             <input type="text" id="username" name="username" class="form-control py-3 rounded-3" placeholder="{{ __('Username') }}" required value="{{ old('username', $student->username) }}">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-md-6">
                                         <div class="single-input-item">
                                             <label for="email" class="form-label fw-bold">{{ __('Email') }}</label>
                                             <input type="email" id="email" name="email" class="form-control py-3 rounded-3" placeholder="{{ __('Email') }}" value="{{ old('email', $student->email) }}">
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="single-input-item">
-                                            <label for="password" class="form-label fw-bold">{{ __('New Password') }} <span class="text-danger">*</span></label>
-                                            <input type="password" id="password" name="password" class="form-control py-3 rounded-3" placeholder="{{ __('New Password') }}" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="single-input-item">
-                                            <label for="password_confirmation" class="form-label fw-bold">{{ __('translation.Confirmation Password') }} <span class="text-danger">*</span></label>
-                                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control py-3 rounded-3" placeholder="{{ __('translation.Confirmation Password') }}" required>
-                                        </div>
-                                    </div>
+
 
                                     <div class="col-md-6">
                                          <div class="single-input-item">
@@ -79,7 +66,7 @@
                                             <input type="text" id="phone_1" name="phone_1" class="form-control py-3 rounded-3" placeholder="{{ __('translation.Phone 1') }}" required value="{{ old('phone_1', $student->phone_1) }}">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-md-6">
                                         <div class="single-input-item">
                                             <label for="phone_2" class="form-label fw-bold">{{ __('translation.Phone 2') }}</label>
@@ -93,7 +80,7 @@
                                              <input type="text" id="governorate" name="governorate" class="form-control py-3 rounded-3" placeholder="{{ __('Governorate') }}" value="{{ old('governorate', $student->governorate) }}">
                                          </div>
                                      </div>
-                                     
+
                                      <div class="col-md-6">
                                          <div class="single-input-item">
                                              <label for="city" class="form-label fw-bold">{{ __('City') }}</label>

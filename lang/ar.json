@@ -158,7 +158,7 @@
     "Remember to tailor the section names to fit the specific needs and structure of your university website.": "تذكر تخصيص أسماء الأقسام لتناسب الاحتياجات والهيكل المحدد لموقع جامعتك.",
     "About Our University unipix": "حول جامعة يونيبيكس",
     "At University Unipix, we believe in the transformative power of education and the boundless potential within every individual. Established in 1971, we have been dedicated to fostering intellectual curiosity, academic excellence, and a vibrant campus community.": "في جامعة يونيبيكس، نؤمن بالقوة التحويلية للتعليم والإمكانات اللامحدودة داخل كل فرد. تأسست في عام 1971، ونحن مكرسون لتعزيز الفضول الفكري والتميز الأكاديمي ومجتمع الحرم الجامعي النابض بالحياة.",
-    "EST. 1971": "تأسست عام 1988",
+    "EST. 1971": "تأسست عام 1952",
     "University Overview": "نظرة عامة على الجامعة",
     "undergraduate & graduate students": "طلاب البكالوريوس والدراسات العليا",
     "Unipix University Faculty & Staff": "أعضاء هيئة التدريس والموظفون في جامعة يونيبيكس",
@@ -340,5 +340,8 @@
     "Larose de Lisieux Stages": "مراحل مدرسه كوبري الجلاء التعليمية",
     "Primary Stage": "المرحلة الابتدائية",
     "Preparatory Stage": "المرحلة الإعدادية",
-    "Secondary Stage": "المرحلة الثانوية"
+    "Secondary Stage": "المرحلة الثانوية",
+    "al-galaa-schools" : "مدارس الجلاء",
+    "al-galaa-school-established" : "تأسست مدارس كبرى الجلاء في عام 1965"
+
 }

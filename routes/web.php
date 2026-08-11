@@ -110,6 +110,7 @@ Route::prefix('api')->group(function () {
         Route::apiResource('exam-answers', \App\Http\Controllers\Admin\StudentExamAnswerController::class)->only(['index', 'update']);
 
         Route::apiResource('fees', \App\Http\Controllers\Admin\FeeController::class);
+        Route::apiResource('parents-meetings', \App\Http\Controllers\Admin\ParentsMeetingController::class);
         Route::get('students/form-data', [\App\Http\Controllers\Admin\StudentController::class, 'getFormData']);
         Route::get('students/get-semesters/{academicYearId}', [\App\Http\Controllers\Admin\StudentController::class, 'getSemesters']);
         Route::get('students/get-classes/{educationStageId}', [\App\Http\Controllers\Admin\StudentController::class, 'getClasses']);
@@ -168,6 +169,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('exams', [\App\Http\Controllers\Admin\ExamController::class, 'indexPage'])->name('exams');
     Route::get('exam-answers', [\App\Http\Controllers\Admin\StudentExamAnswerController::class, 'indexPage'])->name('exam-answers');
     Route::get('fees', [\App\Http\Controllers\Admin\FeeController::class, 'indexPage'])->name('fees');
+    Route::get('parents-meetings', [\App\Http\Controllers\Admin\ParentsMeetingController::class, 'indexPage'])->name('parents-meetings');
             Route::get('contact-messages', [ContactMessageController::class, 'indexPage'])->name('contact-messages');
             Route::get('subscribes', [SubscribeController::class, 'indexPage'])->name('subscribes');
             Route::get('career-applications', [CareerApplicationController::class, 'indexPage'])->name('career-applications');

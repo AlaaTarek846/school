@@ -36,7 +36,16 @@ class SettingController extends Controller
 
     public function update(SettingRequest $request, Setting $setting)
     {
-        $setting->update(Arr::except($request->validated(),['translations']));
+        $data = Arr::except($request->validated(), ['translations', 'logo']);
+
+        if ($request->hasFile('logo')) {
+            if ($setting->logo) {
+                unlink_image_by_path($setting->logo);
+            }
+            $data['logo'] = saveFile($request->file('logo'), 'settings');
+        }
+
+        $setting->update($data);
         return responseJson([],'Updated Successfully',200);
     }
 

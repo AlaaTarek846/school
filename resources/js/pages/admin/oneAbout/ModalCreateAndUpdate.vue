@@ -44,70 +44,7 @@
                           </error-message>
                         </template>
                       </div>
-                        <h4 class="my-2">التفاصيل</h4>
-                        <div class="row border p-2 mb-2" v-for="(detail, index) in submitData.data.details" :key="index">
-                          <div class="col-md-6 mt-1" v-for="lang in languages">
-                            <label class="form-label">{{ $t('label.title') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                            <input type="text" class="form-control form-control-lg"  v-model="submitData.data.details[index][`title_${lang}`]"
-                                   :class="{ 'is-invalid': v$.details.$each.$response.$data[index][`title_${lang}`].$error || errors[`details[${index}][title_${lang}]`],
-                                    'is-valid': !v$.details.$each.$response.$data[index][`title_${lang}`].$invalid && !errors[`details[${index}][title_${lang}]`] }">
-                            <div class="invalid-feedback">
-                                <span v-if="v$.details.$each.$response.$data[index][`title_${lang}`].required.$invalid">{{
-                                    $t('global.ThisFieldIsRequired') }}<br />
-                                </span>
-                            </div>
-                            <template v-if="errors[`details[${index}][title_${lang}]`]">
-                              <error-message v-for="(errorMessage, index) in errors[`details[${index}][title_${lang}]`]" :key="index">
-                                {{ errorMessage }}
-                              </error-message>
-                            </template>
-                          </div>
-
-                          <div class="col-md-6 mt-1">
-                              <label class="form-label">العدد</label>
-                              <input type="number" class="form-control form-control-lg" v-model="submitData.data.details[index].count"
-                                     :class="{ 'is-invalid': v$.details.$each.$response.$data[index].count.$error || errors[`details[${index}][count]`],
-                                      'is-valid': !v$.details.$each.$response.$data[index].count.$invalid && !errors[`details[${index}][count]`] }">
-                                <div class="invalid-feedback">
-                                    <span v-if="v$.details.$each.$response.$data[index].count.required.$invalid">{{
-                                        $t('global.ThisFieldIsRequired') }}<br />
-                                    </span>
-                                     <span v-if="v$.details.$each.$response.$data[index].count.integer.$invalid">{{
-                                        $t('validation.MustBeInteger') }}<br />
-                                    </span>
-                                </div>
-                          </div>
-
-                          <div class="col-md-6 mt-1">
-                              <label class="form-label">صورة</label>
-                              <input class="form-control" type="file" @change="previewDetailImage($event, index)" accept="image/*">
-                              <div :id="`container-images-${index}`" class="row justify-content-center mt-2">
-                                  <figure class="col-3" v-if="submitData.data.details[index].image && typeof submitData.data.details[index].image == 'string'">
-                                    <img :src="submitData.data.details[index].image" class="img-fluid rounded h-100 w-100 m-1 bg-dark" />
-                                  </figure>
-                              </div>
-                          </div>
-
-
-                          <div class="col-md-12 mt-2 text-end">
-<!--                            <button-->
-<!--                                type="button" class="btn btn-danger btn-sm mx-1"-->
-<!--                                @click="removeSize(index)"-->
-<!--                                :title="$t('global.Delete')"-->
-<!--                                v-if="submitData.data.details.length > 1"-->
-<!--                            >-->
-<!--                              <i class="ri-delete-bin-line"></i>-->
-<!--                            </button>-->
-<!--                            <button-->
-<!--                                type="button" class="btn btn-success btn-sm"-->
-<!--                                :title="$t('global.addLine')"-->
-<!--                                v-if="(submitData.data.details.length - 1) == index"-->
-<!--                                @click="addSizeDetail"-->
-<!--                            >-->
-<!--                              <i class="ri-add-line"></i>-->
-<!--                            </button>-->
-                          </div>
-                        </div>
+                        <!-- تفاصيل مخفية من الإضافة والتعديل -->
                         <div class="col-md-12 mt-3">
                           <label class="form-label">صورة  (850 * 528)</label>
                           <div class="row img-div-position">
@@ -250,25 +187,10 @@
     submitData.data.title_en = '';
     submitData.data.status = true;
     submitData.data.first_photo = '';
-    submitData.data.details = [{}];
+    submitData.data.details = [];
     if(languages.value.length == 0){
         languages.value = store.state.lang.languages;
     }
-    let langSize = {};
-    languages.value.forEach((el)=>{
-        let title = `title_${el}`;
-        submitData.data.details[0][title] = '';
-        langSize[title] = {minLength: minLength(1),maxLength:maxLength(200), required};
-     });
-    submitData.data.details[0].count = 0;
-    submitData.data.details[0].image = '';
-
-    langValidation2.value = {
-        $each: helpers.forEach({
-          ...langSize,
-          count: {required, integer}
-        })
-    };
     is_disabled.value = false;
     loading.value = false;
     errors.value = [];
@@ -293,15 +215,6 @@
               submitData.data.title_en = l.title_en;
               submitData.data.title_ar = l.title_ar;
               submitData.data.details = [];
-              l.details.forEach((el,index) => {
-                submitData.data.details.push({});
-                languages.value.forEach((n)=>{
-                  let title = `title_${n}`;
-                  submitData.data.details[index][title] = el[title];
-                });
-                submitData.data.details[index].count = el.count;
-                submitData.data.details[index].image = el.image;
-              });
             })
             .catch((err) => {
               console.log(err);
@@ -335,9 +248,6 @@
       title_en: {minLength: minLength(1),maxLength:maxLength(100),required,},
       description_ar: {minLength: minLength(1),required,},
       description_en: {minLength: minLength(1),required,},
-      details: {
-        ...langValidation2.value,
-      },
       first_photo: {required: requiredIf( (value) => {
           return props.type == 'create' || !imageUpload.value;
         })
@@ -360,17 +270,6 @@
       if(submitData.data.first_photo) {
         formData.append('first_photo', submitData.data.first_photo);
       }
-      submitData.data.details.forEach((el,index)=>{
-        languages.value.forEach((e)=>{
-          formData.append(`details[${index}][title_${e}]`, submitData.data.details[index][`title_${e}`]);
-        });
-        formData.append(`details[${index}][count]`, submitData.data.details[index].count);
-        if(submitData.data.details[index].image && typeof submitData.data.details[index].image != 'string'){
-            formData.append(`details[${index}][image]`, submitData.data.details[index].image);
-        } else if (submitData.data.details[index].image && typeof submitData.data.details[index].image == 'string') {
-             formData.append(`details[${index}][old_image]`, submitData.data.details[index].image);
-        }
-      });
 
       if (props.type !== 'edit') {
         if (!v$.value.$error) {

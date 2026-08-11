@@ -148,20 +148,35 @@
                           </error-message>
                         </template>
                       </div>
-                      <div class="col-md-6 mt-3" v-if="submitData.data.ar" v-for="lang in languages">
-                        <label class="form-label">{{ $t('label.description') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                        <textarea
-                            class="form-control summernote"
-                            rows="4"
-                            v-model.trim="v$[`address_${lang}`].$model"
-                            :class="{'is-invalid': v$[`address_${lang}`].$error ||errors[`address_${lang}`],
-                                    'is-valid':!v$[`address_${lang}`].$invalid && !errors[`address_${lang}`]}">
-                            </textarea>
-                        <template v-if="errors[`address_${lang}`]">
-                          <error-message v-for="(errorMessage, index) in errors[`address_${lang}`]" :key="index">
-                            {{ errorMessage }}
-                          </error-message>
-                        </template>
+
+                      <div class="col-md-12 mt-3">
+                        <label class="form-label">اللوجو / صورة الوجه (500 × 500)</label>
+                        <div class="row img-div-position">
+                          <div class="col-12 text-end">
+                            <button type="button" class="btn btn-danger btn-sm" @click="removeImage" v-if="imageUpload">
+                              {{ $t('global.deleteImage') }}
+                            </button>
+                          </div>
+                          <div class="col-md-12 mt-3 d-flex flex-wrap flex-fill h-100">
+                            <div class="btn btn-outline-light waves-effect" style="width: 100%; height:90%">
+                              <span v-if="!imageUpload" style="margin-top:35%;">
+                                <br><i class="bi bi-cloud-upload fs-40" style="font-size: 85px;"></i>
+                              </span>
+                              <input type="file" @change="previewImage" accept="image/*">
+                              <div id="container-images-setting-logo" class="row justify-content-center h-100"></div>
+                              <div v-if="imageUpload" class="row justify-content-center h-100">
+                                <figure class="col-3" v-if="imageUpload.url">
+                                  <img :src="imageUpload.url" class="img-fluid rounded h-100 w-100 m-1" />
+                                </figure>
+                              </div>
+                            </div>
+                            <template v-if="errors[`logo`]">
+                              <error-message v-for="(errorMessage, index) in errors[`logo`]" :key="index">
+                                {{ errorMessage }}
+                              </error-message>
+                            </template>
+                          </div>
+                        </div>
                       </div>
                     </div>
                 </div>
@@ -217,6 +232,7 @@
   const store = useStore();
   const id = ref(null);
   const imageUpload = ref('');
+  const logoFile = ref(null);
 
   onMounted(()=>{
     languages.value = store.state.lang.languages;
@@ -226,6 +242,10 @@
     is_disabled.value = false;
     loading.value = false;
     errors.value = [];
+    imageUpload.value = '';
+    logoFile.value = null;
+    let container = document.querySelector('#container-images-setting-logo');
+    if (container) container.innerHTML = '';
   }
   function resetModal() {
     defaultData();
@@ -247,6 +267,7 @@
               submitData.data.map = `${l.map}`;
               submitData.data.address_ar = l.address_ar;
               submitData.data.address_en = l.address_en;
+              imageUpload.value = l.logo ? { url: l.logo } : '';
             })
             .catch((err) => {
               console.log(err);
@@ -261,6 +282,38 @@
     defaultData();
     nextTick(() => { v$.value.$reset() });
   }
+
+  function previewImage(e) {
+    let container = document.querySelector('#container-images-setting-logo');
+    if (container) container.innerHTML = '';
+    imageUpload.value = '';
+
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      logoFile.value = file;
+
+      let reader = new FileReader();
+      let figure = document.createElement('figure');
+      figure.className = 'col-3';
+
+      reader.onload = () => {
+        let img = document.createElement('img');
+        img.className = 'img-fluid rounded h-100 w-100 m-1';
+        img.setAttribute('src', reader.result);
+        figure.appendChild(img);
+      };
+      if (container) container.appendChild(figure);
+      reader.readAsDataURL(file);
+    }
+  }
+
+  function removeImage() {
+    imageUpload.value = '';
+    logoFile.value = null;
+    let container = document.querySelector('#container-images-setting-logo');
+    if (container) container.innerHTML = '';
+  }
+
   //start design
   const submitData =  reactive({
     data:{
@@ -271,6 +324,8 @@
       facebook: '',
       linkedin: '',
       map: '',
+      address_ar: '',
+      address_en: '',
     }
   });
 
@@ -305,6 +360,9 @@
       formData.append(`twitter`, submitData.data.twitter);
       formData.append(`instagram`, submitData.data.instagram);
       formData.append(`linkedin`, submitData.data.linkedin);
+      if (logoFile.value) {
+        formData.append('logo', logoFile.value);
+      }
       if (props.type !== 'edit') {
         if (!v$.value.$error) {
           is_disabled.value = false;
@@ -364,14 +422,15 @@
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  width: 200px;
-  height: 50px;
+  width: 100%;
+  min-height: 180px;
   text-align: center;
   line-height: 34px;
   margin: auto;
+  background-color: #e9e9e9;
 }
 
-input[type="file"] {
+.waves-effect input[type="file"] {
   position: absolute;
   top: 0;
   right: 0;
@@ -385,9 +444,4 @@ input[type="file"] {
   filter: alpha(opacity=0);
   opacity: 0;
 }
-
-.waves-effect[data-v-d8970579] {
-  background-color: #e9e9e9;
-}
-
 </style>

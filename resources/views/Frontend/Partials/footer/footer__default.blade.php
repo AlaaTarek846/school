@@ -6,7 +6,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="footer__widget">
                     <div class="footer__widget--logo">
-                        <a href="index"><img src="{{asset('assets/images/logo/logo-color.png')}}" style="height: 155px" alt="logo"></a>
+                        <a href="{{ route('index') }}"><img src="{{ $shareSetting?->logo_url ?? asset('assets/images/logo/logo-color.png') }}" style="height: 155px" alt="logo"></a>
                     </div>
                     <p class="footer__widget--description">
                         {{ __('We are committed to providing a nurturing and innovative educational environment that empowers our students to achieve their full potential.') }}

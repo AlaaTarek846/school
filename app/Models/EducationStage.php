@@ -34,6 +34,11 @@ class EducationStage extends Model
         return $this->hasMany(FeeDetail::class);
     }
 
+    public function parentsMeetingDetails()
+    {
+        return $this->hasMany(ParentsMeetingDetail::class);
+    }
+
     public function exams()
     {
         return $this->hasMany(Exam::class);

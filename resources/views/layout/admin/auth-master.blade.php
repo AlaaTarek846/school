@@ -15,7 +15,7 @@
     <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('dashboard/images/brand-logos/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{ $shareSetting?->logo_url ?? asset('dashboard/images/brand-logos/favicon.ico') }}" type="image/x-icon">
 
     <!-- Main Theme Js -->
     <script src="{{asset('dashboard/js/authentication-main.js')}}"></script>

@@ -3,13 +3,14 @@
 
     <!-- Start::main-sidebar-header -->
     <div class="main-sidebar-header">
+        @php $adminLogo = $shareSetting?->logo_url ?? asset('assets/images/logo/logo-color.png'); @endphp
         <a href="{{route('admin.dashboard')}}" class="header-logo">
-            <img src="{{asset('assets/images/logo/logo-color.png')}}" alt="logo" class="desktop-logo">
-            <img src="{{asset('assets/images/logo/logo-color.png')}}" alt="logo" class="toggle-logo">
-            <img src="{{asset('assets/images/logo/logo-color.png')}}" alt="logo" class="desktop-dark">
-            <img src="{{asset('assets/images/logo/logo-color.png')}}" alt="logo" class="toggle-dark">
-            <img src="{{asset('assets/images/logo/logo-color.png')}}" alt="logo" class="desktop-white">
-            <img src="{{asset('assets/images/logo/logo-color.png')}}" alt="logo" class="toggle-white">
+            <img src="{{ $adminLogo }}" alt="logo" class="desktop-logo">
+            <img src="{{ $adminLogo }}" alt="logo" class="toggle-logo">
+            <img src="{{ $adminLogo }}" alt="logo" class="desktop-dark">
+            <img src="{{ $adminLogo }}" alt="logo" class="toggle-dark">
+            <img src="{{ $adminLogo }}" alt="logo" class="desktop-white">
+            <img src="{{ $adminLogo }}" alt="logo" class="toggle-white">
         </a>
     </div>
     <!-- End::main-sidebar-header -->

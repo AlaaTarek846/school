@@ -49,7 +49,7 @@
     <!-- history end-->
 
     <!-- funfact (Restored & Enhanced) -->
-   <div class="rts-funfact rts-section-padding" style="background: linear-gradient(135deg, #2b3a8e 0%, #1a2a6c 100%); color: #fff;">
+   {{-- <div class="rts-funfact rts-section-padding" style="background: linear-gradient(135deg, #2b3a8e 0%, #1a2a6c 100%); color: #fff;">
         <div class="container">
             <div class="row justify-content-center mb--50">
                 <div class="col-lg-8 text-center">
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- funfact end -->
 
     <!-- Features Section -->

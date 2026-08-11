@@ -33,21 +33,21 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-lg-5 col-xl-4 col-md-11">
-                    <div class="rts-about-details">
-                        @foreach($one_about->details as $index => $detail)
-                        <div class="single-about-info">
-                            <div class="content">
-                                <h3 class="title">{{ $detail->count }}</h3>
-                                <img src="{{asset('assets/images/icon/'.(11+$index).'.svg')}}" alt="">
-                            </div>
-                            <div class="desc">
-                                <p>{{ app()->getLocale() == 'ar' ? $detail->title_ar : $detail->title_en }}</p>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
+{{--                <div class="col-lg-5 col-xl-4 col-md-11">--}}
+{{--                    <div class="rts-about-details">--}}
+{{--                        @foreach($one_about->details as $index => $detail)--}}
+{{--                        <div class="single-about-info">--}}
+{{--                            <div class="content">--}}
+{{--                                <h3 class="title">{{ $detail->count }}</h3>--}}
+{{--                                <img src="{{asset('assets/images/icon/'.(11+$index).'.svg')}}" alt="">--}}
+{{--                            </div>--}}
+{{--                            <div class="desc">--}}
+{{--                                <p>{{ app()->getLocale() == 'ar' ? $detail->title_ar : $detail->title_en }}</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>

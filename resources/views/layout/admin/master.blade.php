@@ -9,7 +9,7 @@
         <title>@yield('title')</title>
 
         <!-- Favicon -->
-        <link rel="icon" href="{{asset('dashboard/images/brand-logos/favicon.svg')}}" type="image/x-icon">
+        <link rel="icon" href="{{ $shareSetting?->logo_url ?? asset('dashboard/images/brand-logos/favicon.svg') }}" type="image/x-icon">
 
         <!-- Choices JS -->
         <script src="{{asset('dashboard/libs/choices.js/public/assets/scripts/choices.min.js')}}"></script>

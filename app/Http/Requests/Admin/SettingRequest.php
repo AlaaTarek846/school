@@ -31,6 +31,7 @@ class SettingRequest extends FormRequest
             "facebook" => "required|string|max:200",
             "linkedin" => "required|string|max:200",
             "map" => "required|string|max:1000",
+            "logo" => ["nullable", "image", "mimes:jpeg,png,jpg,gif,webp,svg", "max:2048"],
         ];
     }
 }

@@ -25,6 +25,7 @@
                   <thead>
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col">اللوجو</th>
                     <th scope="col">العنوان</th>
                     <th scope="col">الاميل </th>
                     <th scope="col">الموبيل </th>
@@ -34,6 +35,10 @@
                   <tbody v-if="data && data.length">
                   <tr v-for="(item,index) in data" :key="item.id">
                     <td scope="row">{{index + 1}}</td>
+                    <td>
+                      <img v-if="item.logo" :src="item.logo" alt="logo" style="height:40px;width:auto;object-fit:contain;">
+                      <span v-else>—</span>
+                    </td>
                     <td>{{item.address}}</td>
                     <td>{{item.email}}</td>
                     <td>{{item.mobile}}</td>

@@ -4,7 +4,7 @@
     <!-- inner menu area desktop start -->
     <div class="inner-main-wrapper-desk">
         <div class="thumbnail">
-            <img src="{{asset('assets/images/logo/logo-color.png')}}" alt="Unipix-university">
+            <img src="{{ $shareSetting?->logo_url ?? asset('assets/images/logo/logo-color.png') }}" alt="logo">
         </div>
         <div class="inner-content">
             <p class="disc">

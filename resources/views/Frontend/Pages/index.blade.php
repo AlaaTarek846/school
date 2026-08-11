@@ -18,8 +18,8 @@
                                <img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="cap"> {{ __('Welcome to') }}
                             </h6>
                             <h1 class="banner__content--title">
-                                {{ __('Kobery Al-Galaa') }}
-                                <span> {{ __('School') }}</span>
+{{--                                {{ __('Kobery Al-Galaa') }}--}}
+                                <span> {{ __('al-galaa-schools') }}</span>
                             </h1>
                             <div class="banner__content--circle rts__circle v__2">
                                 <svg class="spinner" viewBox="0 0 100 100">
@@ -27,7 +27,7 @@
                                         <path id="circle" d="M50,50 m-37,0a37,37 0 1,1 74,0a37,37 0 1,1 -74,0"></path>
                                     </defs>
                                     <text>
-                                        <textPath xlink:href="#circle">Kobery Al-Galaa School * Estd. 1988 * Explore Future *</textPath>
+                                        <textPath xlink:href="#circle">Kobry Al-Galaa School * Estd. 1965 * Explore Future *</textPath>
                                     </text>
                                 </svg>
                                 <div class="rts__circle--icon save-from-hidden">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="banner__content--description">
-                                <p>{{ __('Empowering students for a bright future through excellence in education and character building.') }}
+                                <p>{{ __('al-galaa-school-established') }}
                                 </p>
                                 <a href="{{ route('contact') }}" class="rts-theme-btn btn-arrow">{{ __('Contact Us') }}
                                     <span>
@@ -122,7 +122,7 @@
                 <div class="col-lg-5 col-md-6">
                     <div class="rts__section--wrapper v__2">
                         <h2 class="rts__section--title"><a href="#">{{ __('Campus Life') }}</a></h2>
-                        <p class="rts__section--description">{{ __('Embark on a journey of knowledge and growth at Kobery Al-Galaa School. We nurture bright minds to contribute to our dynamic community.') }}</p>
+                        <p class="rts__section--description">{{ __('Embark on a journey of knowledge and growth at Kobry  Al-Galaa School. We nurture bright minds to contribute to our dynamic community.') }}</p>
                         <div class="campus__vector">
                             <img src="{{asset('assets/images/campus/campus__vector.svg')}}" style="transform: {{ app()->getLocale() == 'ar'? 'rotate3d(-1, 72, 0, 169deg);':'unset' }};" alt="">
                         </div>
@@ -203,6 +203,7 @@
 {{--                                @endif--}}
 {{--                        </span>--}}
 {{--                        </a>--}}
+
 {{--                    </div>--}}
 {{--                </div>--}}
 {{--            </div>--}}
@@ -215,6 +216,7 @@
 {{--                        <div class="rts__single--member--thumb">--}}
 {{--                                <img src="{{ $team->media ? asset($team->media->url) : asset('assets/images/speaker/teacher__1.jpg') }}" onerror="{{asset('assets/images/research/03.jpg')}}" alt="">--}}
 {{--                        </div>--}}
+
 {{--                        <div class="rts__single--member--meta">--}}
 {{--                            <h5 class="rts__single--member--meta--title">--}}
 {{--                                {{ $team->name }}--}}
@@ -223,6 +225,7 @@
 {{--                                {{ __($team->job) }}--}}
 {{--                            </span>--}}
 {{--                        </div>--}}
+
 {{--                    </div>--}}
 {{--                </div>--}}
 {{--                <!-- single team end -->--}}

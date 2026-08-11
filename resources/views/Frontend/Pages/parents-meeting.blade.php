@@ -16,66 +16,106 @@
                 <div class="col-12">
                     <div class="admission-content-top">
 
-                        <div class="application-deadline">
-                            <h3 class="rts-section-title">{{ __('Parents Meeting') }}</h3>
-                            <div class="application-deadline__content">
-                                <div class="application-deadline__content--table">
-                                    <table class="table">
-                                        <thead class="table-theme">
-                                        <tr>
-                                            <td>{{ __('Day') }}</td>
-                                            <td>{{ __('Class') }}</td>
-                                            <td>{{ __('Time') }}</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>{{ __('Sunday') }}
-                                            </td>
-                                            <td>
-                                                K.GI B
-                                            </br>
-                                                K.GII B
-                                            </td>
+                        @php
+                            $dayLabels = [
+                                'saturday' => 'Saturday',
+                                'sunday' => 'Sunday',
+                                'monday' => 'Monday',
+                                'tuesday' => 'Tuesday',
+                                'wednesday' => 'Wednesday',
+                                'thursday' => 'Thursday',
+                            ];
+                        @endphp
 
-                                            <td >{{ __('am') }} :10:5  9:45</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('Monday') }}</td>
-                                            <td>
-                                                K.GI A
-                                                </br>
-                                                K.GII D
-                                            </td>
-                                            <td >{{ __('am') }} :10:5  9:45</td>
+                        @forelse($meetingsData as $data)
+                            @php
+                                $meeting = $data['meeting'];
+                                $schedule = $data['schedule'];
+                            @endphp
 
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('Tuesday') }}</td>
-                                            <td>
-                                                K.GI / D
-                                                </br>
-                                                K.GII / C
-                                            </td>
-                                            <td >{{ __('am') }} :10:5  9:45</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('Wednesday') }}</td>
-                                            <td>
-                                                K.GI / C
-                                                </br>
-                                                K.GII /A
-                                            </td>
-                                            <td >{{ __('am') }} :10:5  9:45</td>
-
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
+                            <div class="application-deadline {{ !$loop->first ? 'mt--60' : '' }}">
+                                <h3 class="rts-section-title">
+                                    {{ app()->getLocale() == 'ar' ? $meeting->title_ar : $meeting->title_en }}
+                                </h3>
+                                <div class="application-deadline__content">
+                                    <div class="application-deadline__content--table">
+                                        <table class="table">
+                                            <thead class="table-theme">
+                                            <tr>
+                                                <td>{{ __('Day') }}</td>
+                                                <td>{{ __('Class') }}</td>
+                                                <td>{{ __('Time') }}</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @forelse($schedule as $day => $items)
+                                                <tr>
+                                                    <td>{{ __($dayLabels[$day] ?? ucfirst($day)) }}</td>
+                                                    <td>
+                                                        @foreach($items as $item)
+                                                            {{ $item['stage'] }}@if(!$loop->last)<br>@endif
+                                                        @endforeach
+                                                    </td>
+                                                    <td>
+                                                        @if($meeting->is_general_time)
+                                                            {{ \Illuminate\Support\Str::substr($meeting->time_from, 0, 5) }}
+                                                            -
+                                                            {{ \Illuminate\Support\Str::substr($meeting->time_to, 0, 5) }}
+                                                        @else
+                                                            @foreach($items as $item)
+                                                                {{ \Illuminate\Support\Str::substr($item['time_from'], 0, 5) }}
+                                                                -
+                                                                {{ \Illuminate\Support\Str::substr($item['time_to'], 0, 5) }}@if(!$loop->last)<br>@endif
+                                                            @endforeach
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="3" class="text-center">
+                                                        {{ app()->getLocale() == 'ar' ? 'لا يوجد بيانات' : 'No data available' }}
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                            @if((app()->getLocale() == 'ar' && $meeting->note_ar) || (app()->getLocale() == 'en' && $meeting->note_en))
+                                <div class="payment-schedule mt--40 text-center" style="background: #f8f9fa; padding: 30px; border-radius: 10px; border: 1px dashed #2b3a8e;">
+                                    <div style="font-size: 1.2rem; font-weight: 500; white-space: pre-line; color: #2b3a8e;">
+                                        {{ app()->getLocale() == 'ar' ? $meeting->note_ar : $meeting->note_en }}
+                                    </div>
+                                </div>
+                            @endif
+                        @empty
+                            <div class="application-deadline">
+                                <h3 class="rts-section-title">{{ __('Parents Meeting') }}</h3>
+                                <div class="application-deadline__content">
+                                    <div class="application-deadline__content--table">
+                                        <table class="table">
+                                            <thead class="table-theme">
+                                            <tr>
+                                                <td>{{ __('Day') }}</td>
+                                                <td>{{ __('Class') }}</td>
+                                                <td>{{ __('Time') }}</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="3" class="text-center">
+                                                    {{ app()->getLocale() == 'ar' ? 'لا يوجد بيانات' : 'No data available' }}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforelse
+
                     </div>
                 </div>
             </div>

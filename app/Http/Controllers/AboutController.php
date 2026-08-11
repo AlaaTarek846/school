@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
+use App\Models\ParentsMeeting;
 use App\Models\PrincipalMessage;
 use App\Models\SchoolDisciplinePolicy;
 
@@ -37,8 +38,49 @@ class AboutController extends BaseController
     // homepage four
 
     public function parentsMeeting(){
+        $meetings = ParentsMeeting::with('details.educationStage')->oldest()->get();
+        $dayOrder = ['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday'];
+        $meetingsData = [];
+
+        foreach ($meetings as $meeting) {
+            $schedule = [];
+
+            foreach ($dayOrder as $day) {
+                $schedule[$day] = [];
+            }
+
+            foreach ($meeting->details as $detail) {
+                $stageTitle = app()->getLocale() === 'ar'
+                    ? ($detail->educationStage->title_ar ?? '')
+                    : ($detail->educationStage->title_en ?? '');
+
+                $timeFrom = $meeting->is_general_time ? $meeting->time_from : $detail->time_from;
+                $timeTo = $meeting->is_general_time ? $meeting->time_to : $detail->time_to;
+
+                foreach ($detail->days ?? [] as $day) {
+                    if (!isset($schedule[$day])) {
+                        continue;
+                    }
+
+                    $schedule[$day][] = [
+                        'stage' => $stageTitle,
+                        'time_from' => $timeFrom,
+                        'time_to' => $timeTo,
+                    ];
+                }
+            }
+
+            $schedule = array_filter($schedule, fn ($items) => count($items) > 0);
+
+            $meetingsData[] = [
+                'meeting' => $meeting,
+                'schedule' => $schedule,
+            ];
+        }
+
         return $this->view('parents-meeting', [
-            'page_title' => 'parents Meeting'
+            'page_title' => 'parents Meeting',
+            'meetingsData' => $meetingsData,
         ]);
     }
 

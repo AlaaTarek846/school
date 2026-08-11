@@ -19,4 +19,13 @@ class Setting extends Model
         return app()->getLocale() === 'ar' ? $this->address_ar : $this->address_en;
     }
 
+    public function getLogoUrlAttribute(): string
+    {
+        if (!empty($this->logo)) {
+            return $this->logo;
+        }
+
+        return asset('assets/images/logo/logo-color.png');
+    }
+
 }

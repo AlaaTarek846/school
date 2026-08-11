@@ -22,6 +22,7 @@ import careerApplications from "./pages/admin/careerApplications/index.vue";
 import studentRegistrations from "./pages/admin/studentRegistrations/index.vue";
 import educationStages from "./pages/admin/educationStage/index.vue";
 import fees from "./pages/admin/fee/index.vue";
+import parentsMeetings from "./pages/admin/parentsMeeting/index.vue";
 import whyChooseUs from "./pages/admin/whyChooseUs/index.vue";
 import gallery from "./pages/admin/gallery/index.vue";
 import videos from "./pages/admin/video/index.vue";
@@ -68,6 +69,7 @@ function Components(app) {
     app.component(`exams`, Exams);
     app.component(`exam-answers-index`, ExamAnswers);
     app.component(`fees`, fees);
+    app.component(`parents-meetings`, parentsMeetings);
     app.component(`why-choose-us`, whyChooseUs);
     app.component(`galleries`, gallery);
     app.component(`videos`, videos);

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             EducationStageSeeder::class,
             AcademicYearSeeder::class,
             FeeSeeder::class,
+            ParentsMeetingSeeder::class,
             CampusTourSeeder::class,
             HowWeWelcomeChildSeeder::class,
             TestimonialSeeder::class,

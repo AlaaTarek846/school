@@ -70,7 +70,7 @@ class StudentExamAnswerController extends Controller
 
         $answer = StudentExamAnswer::with('exam')->findOrFail($id);
 
-        if ($request->answer_score > $answer->exam->total_score) {
+        if ($answer->exam->total_score > 0 && $request->answer_score > $answer->exam->total_score) {
             return responseJson([], 'The score cannot exceed the exam total score (' . $answer->exam->total_score . ')', 422);
         }
 

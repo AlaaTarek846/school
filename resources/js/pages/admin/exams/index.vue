@@ -94,8 +94,8 @@
                                 <th scope="col">العنوان</th>
                                 <th scope="col">المرحلة</th>
                                 <th scope="col">المادة</th>
+                                <th scope="col">الفصول</th>
                                 <th scope="col">السنة / الفصل</th>
-                                <th scope="col">الدرجة</th>
                                 <th scope="col">الحالة</th>
                                 <th scope="col">{{ $t("global.actions") }}</th>
                             </tr>
@@ -110,11 +110,14 @@
                                 <td>{{ item.education_stage ? item.education_stage.title_ar : '-' }}</td>
                                 <td>{{ item.subject ? item.subject.title_ar : '-' }}</td>
                                 <td>
-                                    <div>{{ item.academic_year ? item.academic_year.name : '-' }}</div>
-                                    <small class="text-info">{{ item.semester ? item.semester.title_ar : '-' }}</small>
+                                    <div v-if="item.classes && item.classes.length" class="d-flex flex-wrap gap-1">
+                                        <span v-for="cls in item.classes" :key="cls.id" class="badge bg-primary-transparent text-primary">{{ cls.name }}</span>
+                                    </div>
+                                    <span v-else class="text-muted">-</span>
                                 </td>
                                 <td>
-                                    <span class="text-success fw-bold">{{ item.pass_score }}</span> / {{ item.total_score }}
+                                    <div>{{ item.academic_year ? item.academic_year.name : '-' }}</div>
+                                    <small class="text-info">{{ item.semester ? item.semester.title_ar : '-' }}</small>
                                 </td>
                                 <td>
                                     <span :class="item.is_active ? 'text-success' : 'text-danger'">
@@ -123,8 +126,8 @@
                                 </td>
                                 <td>
                                     <div class="hstack gap-2 flex-wrap">
-                                        <a v-if="item.pdf" :href="'/storage/' + item.pdf" target="_blank" class="btn btn-sm btn-primary-light btn-icon rounded-pill" title="تحميل PDF">
-                                            <i class="ri-file-pdf-line"></i>
+                                        <a v-if="item.pdf" :href="'/storage/' + item.pdf" target="_blank" class="btn btn-sm btn-primary-light btn-icon rounded-pill" :title="item.pdf">
+                                            <i :class="getFileIcon(item.pdf)"></i>
                                         </a>
                                         <button @click="edit(item)" class="btn btn-info btn-sm rounded-pill">
                                             <i class="ri-edit-line"></i>
@@ -266,6 +269,13 @@ export default {
             } catch (error) {
                 console.error("Error fetching exams:", error);
             }
+        },
+        getFileIcon(file) {
+            const ext = file.split('.').pop().toLowerCase();
+            if (['mp4', 'mpeg', 'avi', 'mov', 'webm', 'mkv'].includes(ext)) return 'ri-video-line';
+            if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'].includes(ext)) return 'ri-image-line';
+            if (['doc', 'docx'].includes(ext)) return 'ri-file-word-line';
+            return 'ri-file-pdf-line';
         },
         openModal() {
             this.currentItem = null;

@@ -130,15 +130,39 @@ class StudentTransferController extends Controller
                     ],
                     [
                         'is_default' => true,
-                        // We don't reset scores if they exist, or maybe we should? 
-                        // Usually transfer is for a new year, so scores start at 0.
-                        // If it exists, we just make it default.
+                        'total_score' => 0,
+                        'is_passed' => false,
+                        'is_completed' => false,
                     ]
                 );
             }
 
             DB::commit();
             return responseJson([], __('admin.transferred_successfully'), 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return responseJson([], $e->getMessage(), 500);
+        }
+    }
+
+    public function deleteStudents(Request $request)
+    {
+        $request->validate([
+            'student_ids' => 'required|array',
+            'student_ids.*' => 'exists:students,id',
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            foreach ($request->student_ids as $studentId) {
+                StudentEnrollment::where('student_id', $studentId)->delete();
+            }
+
+            Student::whereIn('id', $request->student_ids)->delete();
+
+            DB::commit();
+            return responseJson([], __('admin.deleted_successfully'), 200);
         } catch (\Exception $e) {
             DB::rollback();
             return responseJson([], $e->getMessage(), 500);

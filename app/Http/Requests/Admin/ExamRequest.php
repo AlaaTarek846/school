@@ -26,10 +26,8 @@ class ExamRequest extends FormRequest
             'exams.*.subject_id' => 'required|exists:subjects,id',
             'exams.*.title_ar' => 'required|string|max:255',
             'exams.*.title_en' => 'required|string|max:255',
-            'exams.*.total_score' => 'required|integer|min:0',
-            'exams.*.pass_score' => 'required|integer|min:0|lte:exams.*.total_score',
             'exams.*.notes' => 'nullable|string',
-            'exams.*.pdf' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,png,jpg,jpeg,txt|max:10240', // 10MB
+            'exams.*.pdf' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png,gif,webp,bmp,mp4,mpeg,avi,mov,webm,mkv|max:20480', // 20MB
         ];
 
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {

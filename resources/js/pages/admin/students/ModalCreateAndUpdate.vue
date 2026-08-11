@@ -37,11 +37,8 @@
            </div>
 
            <div class="col-md-4">
-             <label class="form-label small fw-bold">{{ $t('admin.username') }} <span class="text-danger">*</span></label>
+             <label class="form-label small fw-bold">{{ $t('admin.username') }}</label>
              <input type="text" class="form-control form-control-md" v-model="v$.username.$model" :class="{'is-invalid': v$.username.$error || errors['username']}">
-             <div class="invalid-feedback">
-               <span v-if="v$.username.required.$invalid">{{ $t('validation.fieldRequired') }}</span>
-             </div>
            </div>
 
            <div class="col-md-4">
@@ -275,7 +272,7 @@ const submitData = reactive({
 const rules = computed(() => {
   return {
     name: { required },
-    username: { required },
+    username: { },
     email: { email: (val) => !val || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) },
     code: { required },
     password: {

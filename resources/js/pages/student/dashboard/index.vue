@@ -44,7 +44,7 @@
                         <div class="avatar avatar-md bg-primary-transparent text-primary rounded-3 mb-3">
                             <i class="fas fa-book-open fs-4"></i>
                         </div>
-                        <h6 class="text-muted small fw-bold mb-1">{{ $t('translation.Total Exams') }}</h6>
+                        <h6 class="text-muted small fw-bold mb-1">{{ $t('translation.Total Assignments') }}</h6>
                         <h3 class="fw-bold mb-0">{{ stats.total_exams }}</h3>
                     </div>
                     <div class="mt-3">
@@ -66,14 +66,14 @@
                         <div class="avatar avatar-md bg-success-transparent text-success rounded-3 mb-3">
                             <i class="fas fa-check-circle fs-4"></i>
                         </div>
-                        <h6 class="text-muted small fw-bold mb-1">{{ $t('translation.Exams Passed') }}</h6>
-                        <h3 class="fw-bold mb-0">{{ stats.passed_exams }}</h3>
+                        <h6 class="text-muted small fw-bold mb-1">{{ $t('translation.Completed Assignments') }}</h6>
+                        <h3 class="fw-bold mb-0">{{ stats.completed_exams }}</h3>
                     </div>
                     <div class="mt-3">
                         <div class="progress rounded-pill" style="height: 6px;">
-                            <div class="progress-bar bg-success rounded-pill" :style="{ width: getPercentage(stats.passed_exams, stats.total_exams) + '%' }"></div>
+                            <div class="progress-bar bg-success rounded-pill" :style="{ width: getPercentage(stats.completed_exams, stats.total_exams) + '%' }"></div>
                         </div>
-                        <div class="small text-success mt-1 fw-bold">{{ getPercentage(stats.passed_exams, stats.total_exams) }}%</div>
+                        <div class="small text-success mt-1 fw-bold">{{ getPercentage(stats.completed_exams, stats.total_exams) }}%</div>
                     </div>
                 </div>
             </div>
@@ -86,17 +86,17 @@
                         <i class="fas fa-times-circle display-4 text-danger"></i>
                     </div>
                     <div>
-                        <div class="avatar avatar-md bg-danger-transparent text-danger rounded-3 mb-3">
-                            <i class="fas fa-times-circle fs-4"></i>
+                        <div class="avatar avatar-md bg-warning-transparent text-warning rounded-3 mb-3">
+                            <i class="fas fa-clock fs-4"></i>
                         </div>
-                        <h6 class="text-muted small fw-bold mb-1">{{ $t('translation.Exams Failed') }}</h6>
-                        <h3 class="fw-bold mb-0">{{ stats.failed_exams }}</h3>
+                        <h6 class="text-muted small fw-bold mb-1">{{ $t('translation.Pending Assignments') }}</h6>
+                        <h3 class="fw-bold mb-0">{{ stats.pending_exams }}</h3>
                     </div>
                     <div class="mt-3">
                         <div class="progress rounded-pill" style="height: 6px;">
-                            <div class="progress-bar bg-danger rounded-pill" :style="{ width: getPercentage(stats.failed_exams, stats.total_exams) + '%' }"></div>
+                            <div class="progress-bar bg-warning rounded-pill" :style="{ width: getPercentage(stats.pending_exams, stats.total_exams) + '%' }"></div>
                         </div>
-                        <div class="small text-danger mt-1 fw-bold">{{ getPercentage(stats.failed_exams, stats.total_exams) }}%</div>
+                        <div class="small text-warning mt-1 fw-bold">{{ getPercentage(stats.pending_exams, stats.total_exams) }}%</div>
                     </div>
                 </div>
             </div>
@@ -110,33 +110,33 @@
                     </div>
                     <div>
                         <div class="avatar avatar-md bg-white-transparent text-white rounded-3 mb-3 border border-white border-opacity-25">
-                            <i class="fas fa-chart-line fs-4"></i>
+                            <i class="fas fa-chart-pie fs-4"></i>
                         </div>
-                        <h6 class="text-white-50 small fw-bold mb-1">{{ $t('translation.Average Score') }}</h6>
-                        <h3 class="fw-bold mb-1">{{ stats.average_score }}%</h3>
+                        <h6 class="text-white-50 small fw-bold mb-1">{{ $t('translation.Completion Rate') }}</h6>
+                        <h3 class="fw-bold mb-1">{{ stats.completion_rate }}%</h3>
                     </div>
                     <div class="mt-3">
                         <div class="progress bg-white-transparent rounded-pill" style="height: 6px;">
-                            <div class="progress-bar bg-white rounded-pill" :style="{ width: stats.average_score + '%' }"></div>
+                            <div class="progress-bar bg-white rounded-pill" :style="{ width: stats.completion_rate + '%' }"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Recent Results -->
+        <!-- Recent Assignments -->
         <div class="col-12">
             <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
                 <div class="card-header bg-white py-3 border-0 d-flex justify-content-between align-items-center px-4">
                     <h5 class="mb-0 fw-bold d-flex align-items-center">
-                        <i class="fas fa-history text-primary mx-2"></i> {{ $t('translation.Recent Results') }}
+                        <i class="fas fa-history text-primary mx-2"></i> {{ $t('translation.Latest Assignments') }}
                     </h5>
                 </div>
                 <div class="card-body p-0">
                     <div v-if="loading" class="text-center py-5">
                        <loader />
                     </div>
-                    <div v-else-if="stats.recent_results.length === 0" class="text-center py-5">
+                    <div v-else-if="stats.recent_assignments.length === 0" class="text-center py-5">
                         <div class="empty-state">
                             <i class="fas fa-folder-open display-1 text-muted opacity-25"></i>
                             <p class="text-muted mt-3">{{ $t('translation.No records found') }}</p>
@@ -146,42 +146,40 @@
                         <table class="table table-hover align-middle mb-0 custom-dashboard-table">
                             <thead class="bg-light">
                                 <tr>
-                                    <th class="ps-4 py-3">{{ $t('translation.Exam') }}</th>
+                                    <th class="ps-4 py-3">{{ $t('translation.Assignment') }}</th>
                                     <th class="py-3 text-center">{{ $t('translation.Subject') }}</th>
-                                    <th class="py-3 text-center">{{ $t('translation.Score') }}</th>
+                                    <th class="py-3 text-center">{{ $t('translation.File') }}</th>
                                     <th class="py-3 text-center">{{ $t('translation.Status') }}</th>
                                     <th class="pe-4 py-3 text-end">{{ $t('translation.Date') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="result in stats.recent_results" :key="result.id">
+                                <tr v-for="assignment in stats.recent_assignments" :key="assignment.id">
                                     <td class="ps-4">
-                                        <div class="fw-bold text-dark">{{ result.exam.title_ar }}</div>
-                                        <div class="small text-muted">{{ result.exam.academic_year.name }} - {{ result.exam.semester.title_ar }}</div>
+                                        <div class="fw-bold text-dark">{{ assignment.title_ar }}</div>
+                                        <div class="small text-muted">{{ assignment.academic_year ? assignment.academic_year.name : '-' }} - {{ assignment.semester ? assignment.semester.title_ar : '-' }}</div>
                                     </td>
                                     <td class="text-center">
                                        <span class="badge bg-primary-transparent text-primary rounded-pill px-3 fw-medium">
-                                           {{ result.exam.subject.title_ar }}
+                                           {{ assignment.subject ? assignment.subject.title_ar : '-' }}
                                        </span>
                                     </td>
                                     <td class="text-center">
-                                        <div class="fw-bold fs-5" :class="result.is_passed ? 'text-success' : 'text-danger'">
-                                            {{ result.answer_score }} / {{ result.exam.total_score }}
-                                        </div>
-                                        <div class="progress mt-1 mx-auto" style="height: 4px; width: 60px;">
-                                            <div class="progress-bar" :class="result.is_passed ? 'bg-success' : 'bg-danger'" :style="{ width: (result.answer_score / result.exam.total_score * 100) + '%' }"></div>
-                                        </div>
+                                        <a v-if="assignment.pdf" :href="'/storage/' + assignment.pdf" target="_blank" class="btn btn-sm btn-primary-light rounded-pill px-3">
+                                            <i :class="getFileIcon(assignment.pdf)" class="me-1"></i> {{ $t('translation.Download') }}
+                                        </a>
+                                        <span v-else class="text-muted">-</span>
                                     </td>
                                     <td class="text-center">
-                                        <span v-if="result.is_passed" class="badge bg-success-light text-success rounded-pill px-3">
-                                            <i class="fas fa-check-circle me-1"></i> {{ $t('translation.Passed') }}
+                                        <span v-if="assignment.is_completed" class="badge bg-success-light text-success rounded-pill px-3">
+                                            <i class="fas fa-check-circle me-1"></i> {{ $t('translation.Delivered') }}
                                         </span>
-                                        <span v-else class="badge bg-danger-light text-danger rounded-pill px-3">
-                                            <i class="fas fa-times-circle me-1"></i> {{ $t('translation.Failed') }}
+                                        <span v-else class="badge bg-warning-light text-warning rounded-pill px-3">
+                                            <i class="fas fa-clock me-1"></i> {{ $t('translation.Not Delivered') }}
                                         </span>
                                     </td>
                                     <td class="pe-4 text-end text-muted small">
-                                        {{ formatDate(result.created_at) }}
+                                        {{ formatDate(assignment.start_date) }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -212,10 +210,10 @@ export default {
             },
             stats: {
                 total_exams: 0,
-                passed_exams: 0,
-                failed_exams: 0,
-                average_score: 0,
-                recent_results: []
+                completed_exams: 0,
+                pending_exams: 0,
+                completion_rate: 0,
+                recent_assignments: []
             }
         };
     },
@@ -257,6 +255,13 @@ export default {
             if (!total) return 0;
             return Math.round((value / total) * 100);
         },
+        getFileIcon(file) {
+            const ext = file.split('.').pop().toLowerCase();
+            if (['mp4', 'mpeg', 'avi', 'mov', 'webm', 'mkv'].includes(ext)) return 'fas fa-video';
+            if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'].includes(ext)) return 'fas fa-image';
+            if (['doc', 'docx'].includes(ext)) return 'fas fa-file-word';
+            return 'fas fa-file-pdf';
+        },
         formatDate(dateStr) {
             if (!dateStr) return "-";
             const date = new Date(dateStr);
@@ -269,10 +274,10 @@ export default {
 <style scoped>
 .bg-primary-transparent { background-color: rgba(var(--bs-primary-rgb), 0.1); }
 .bg-success-transparent { background-color: rgba(var(--bs-success-rgb), 0.1); }
-.bg-danger-transparent { background-color: rgba(var(--bs-danger-rgb), 0.1); }
+.bg-warning-transparent { background-color: rgba(var(--bs-warning-rgb), 0.1); }
 .bg-white-transparent { background-color: rgba(255, 255, 255, 0.2); }
 .bg-success-light { background-color: #e8f5e9; }
-.bg-danger-light { background-color: #ffebee; }
+.bg-warning-light { background-color: #fff8e1; }
 .bg-gradient-info { background: linear-gradient(45deg, #0dcaf0, #0aa2c0); }
 .opacity-10 { opacity: 0.1; }
 .opacity-20 { opacity: 0.2; }

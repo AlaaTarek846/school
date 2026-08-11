@@ -71,10 +71,9 @@ class StudentAuthController extends BaseController
     public function updateProfile(Request $request)
     {
         $student = Auth::guard('student')->user();
-        
+
         $request->validate([
             'username' => 'required|string|unique:students,username,' . $student->id,
-            'password' => 'required|string|min:6|confirmed',
             'phone_1' => 'required|string',
             'phone_2' => 'nullable|string',
             'email' => 'nullable|email|unique:students,email,' . $student->id,
@@ -83,10 +82,9 @@ class StudentAuthController extends BaseController
             'address' => 'nullable|string',
             'birth_day' => 'nullable|date',
         ]);
- 
+
         $student->update([
             'username' => $request->username,
-            'password' => Hash::make($request->password),
             'phone_1' => $request->phone_1,
             'phone_2' => $request->phone_2,
             'email' => $request->email,

@@ -105,10 +105,10 @@ Route::prefix('api')->group(function () {
         Route::get('exams-semesters/{id}', [\App\Http\Controllers\Admin\ExamController::class, 'getSemesters']);
         Route::get('exams-stage-data/{id}', [\App\Http\Controllers\Admin\ExamController::class, 'getStageData']);
         Route::apiResource('exams', \App\Http\Controllers\Admin\ExamController::class);
-        
+
         Route::get('exam-answers-data', [\App\Http\Controllers\Admin\StudentExamAnswerController::class, 'getInitialData']);
         Route::apiResource('exam-answers', \App\Http\Controllers\Admin\StudentExamAnswerController::class)->only(['index', 'update']);
-        
+
         Route::apiResource('fees', \App\Http\Controllers\Admin\FeeController::class);
         Route::get('students/form-data', [\App\Http\Controllers\Admin\StudentController::class, 'getFormData']);
         Route::get('students/get-semesters/{academicYearId}', [\App\Http\Controllers\Admin\StudentController::class, 'getSemesters']);
@@ -121,6 +121,7 @@ Route::prefix('api')->group(function () {
         Route::apiResource('students', \App\Http\Controllers\Admin\StudentController::class);
         Route::get('students-transfer-data', [StudentTransferController::class, 'getStudents']);
         Route::post('students-transfer-execute', [StudentTransferController::class, 'executeTransfer']);
+        Route::post('students-transfer-delete', [StudentTransferController::class, 'deleteStudents']);
         Route::apiResource('teams', TeamController::class);
         Route::get('get-achievement-sections', [AchievementController::class, 'getSections']);
         Route::apiResource('achievements', AchievementController::class);
@@ -270,17 +271,20 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::group(['middleware' => ['student.completed']], function () {
             Route::get('dashboard', [\App\Http\Controllers\Frontend\StudentDashboardController::class, 'index'])->name('dashboard');
             Route::get('courses', [\App\Http\Controllers\Frontend\StudentCourseController::class, 'index'])->name('courses');
-            
+
             // Exams
             Route::get('exams', [\App\Http\Controllers\Frontend\StudentExamController::class, 'index'])->name('exams');
             Route::get('exam-results', [\App\Http\Controllers\Frontend\StudentExamController::class, 'results'])->name('exams.results');
-            
+
             Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
                 Route::get('exams', [\App\Http\Controllers\Frontend\StudentExamController::class, 'getExams'])->name('exams');
                 Route::get('exam-results', [\App\Http\Controllers\Frontend\StudentExamController::class, 'apiResults'])->name('exams.results');
                 Route::post('exams/upload', [\App\Http\Controllers\Frontend\StudentExamController::class, 'uploadAnswer'])->name('exams.upload');
+                Route::get('assignment-file/{exam}', [\App\Http\Controllers\Frontend\StudentExamController::class, 'downloadFile'])->name('assignment-file');
                 Route::get('dashboard-statistics', [\App\Http\Controllers\Frontend\StudentDashboardController::class, 'apiStatistics'])->name('dashboard.statistics');
             });
         });
     });
 });
+
+Route::get('run-schedule', [\App\Http\Controllers\Admin\ScheduleController::class, 'run']);

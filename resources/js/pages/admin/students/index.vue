@@ -17,10 +17,10 @@
                 <a href="/api/students/export-template" target="_blank" class="btn btn-sm btn-outline-secondary shadow-sm">
                   <i class="ri-download-2-line me-1 fw-semibold align-middle"></i>تحميل قالب Excel
                 </a>
-                <button v-if="selectedIds.length > 0" class="btn btn-sm btn-info animate__animated animate__fadeIn shadow-sm" data-bs-toggle="modal" data-bs-target="#bulk-score-model">
-                  <i class="ri-clipboard-line me-1 fw-semibold align-middle"></i>{{ $t('translation.bulk_manage_score') }}
-                  <span class="badge bg-white text-info ms-1">{{ selectedIds.length }}</span>
-                </button>
+<!--                <button v-if="selectedIds.length > 0" class="btn btn-sm btn-info animate__animated animate__fadeIn shadow-sm" data-bs-toggle="modal" data-bs-target="#bulk-score-model">-->
+<!--                  <i class="ri-clipboard-line me-1 fw-semibold align-middle"></i>{{ $t('translation.bulk_manage_score') }}-->
+<!--                  <span class="badge bg-white text-info ms-1">{{ selectedIds.length }}</span>-->
+<!--                </button>-->
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
                     <th scope="col">{{ $t('admin.gender') }}</th>
                     <th scope="col">{{ $t('admin.education_stage') }}</th>
                     <th scope="col">{{ $t('admin.school_class') }}</th>
-                    <th scope="col">{{ $t('admin.total_score') }}</th>
+<!--                    <th scope="col">{{ $t('admin.total_score') }}</th>-->
                     <th scope="col">{{ $t('admin.status') }}</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
@@ -89,9 +89,9 @@
                     <td>{{ $t('admin.' + item.gender) }}</td>
                     <td>{{item.education_stage_name}}</td>
                     <td>{{item.school_class_name}}</td>
-                    <td>
-                      <span class="fw-bold">{{item.total_score}}</span>
-                    </td>
+<!--                    <td>-->
+<!--                      <span class="fw-bold">{{item.total_score}}</span>-->
+<!--                    </td>-->
                     <td>
                       <span :class="item.is_active ? 'badge bg-success-transparent' : 'badge bg-danger-transparent'">
                         {{ item.is_active ? $t('admin.active') : $t('admin.inactive') }}
@@ -219,7 +219,7 @@ export default {
     const handleStageChange = () => {
       selectedClass.value = '';
       schoolClasses.value = [];
-      
+
       // Update filter columns
       const filters = [
         {

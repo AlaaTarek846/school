@@ -117,20 +117,12 @@
                                                 :disabled="!form.education_stage_id || stageDataLoading"
                                             />
                                         </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label class="form-label">الدرجة الكلية <span class="text-danger">*</span></label>
-                                            <input type="number" v-model="exam.total_score" class="form-control" />
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label class="form-label">درجة النجاح <span class="text-danger">*</span></label>
-                                            <input type="number" v-model="exam.pass_score" class="form-control" />
-                                        </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">ملف الامتحان</label>
-                                            <input type="file" @change="handleFileUpload($event, index)" class="form-control" />
+                                            <input type="file" @change="handleFileUpload($event, index)" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.webp,.bmp,.mp4,.mpeg,.avi,.mov,.webm,.mkv" class="form-control" />
                                             <div v-if="exam.existing_pdf" class="mt-1">
                                                 <a :href="'/storage/' + exam.existing_pdf" target="_blank" class="text-info small">
-                                                    <i class="ri-file-pdf-line"></i> عرض الملف الحالي
+                                                    <i :class="getFileIcon(exam.existing_pdf)"></i> عرض الملف الحالي
                                                 </a>
                                             </div>
                                         </div>
@@ -217,8 +209,6 @@ const form = reactive({
             subject_id: null,
             title_ar: "",
             title_en: "",
-            total_score: 0,
-            pass_score: 0,
             notes: "",
             pdf: null,
             existing_pdf: null,
@@ -242,6 +232,12 @@ const fetchInitialData = async () => {
         const response = await adminApi.get("/exams-data");
         academicYears.value = response.data.data.academic_years;
         educationStages.value = response.data.data.education_stages;
+
+        if (!props.item && academicYears.value.length > 0) {
+            const latestYear = [...academicYears.value].sort((a, b) => b.id - a.id)[0];
+            form.academic_year_id = latestYear.id;
+            await fetchSemesters();
+        }
     } catch (error) {
         console.error("Error fetching initial data:", error);
     }
@@ -286,8 +282,6 @@ const addExam = () => {
         subject_id: null,
         title_ar: "",
         title_en: "",
-        total_score: 0,
-        pass_score: 0,
         notes: "",
         pdf: null,
     });
@@ -301,6 +295,14 @@ const handleFileUpload = (event, index) => {
     form.exams[index].pdf = event.target.files[0];
 };
 
+const getFileIcon = (file) => {
+    const ext = file.split('.').pop().toLowerCase();
+    if (['mp4', 'mpeg', 'avi', 'mov', 'webm', 'mkv'].includes(ext)) return 'ri-video-line';
+    if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'].includes(ext)) return 'ri-image-line';
+    if (['doc', 'docx'].includes(ext)) return 'ri-file-word-line';
+    return 'ri-file-pdf-line';
+};
+
 const submitForm = async () => {
     const result = await v$.value.$validate();
     if (!result) {
@@ -309,8 +311,8 @@ const submitForm = async () => {
     }
 
     // Validate Exams Repeater
-    const isExamsValid = form.exams.every(exam => 
-        exam.subject_id && exam.title_ar && exam.title_en && exam.total_score >= 0 && exam.pass_score >= 0
+    const isExamsValid = form.exams.every(exam =>
+        exam.subject_id && exam.title_ar && exam.title_en
     );
 
     if (!isExamsValid) {
@@ -319,7 +321,7 @@ const submitForm = async () => {
     }
 
     loading.value = true;
-    
+
     // Use FormData for file upload
     const formData = new FormData();
     formData.append("academic_year_id", form.academic_year_id);
@@ -327,7 +329,7 @@ const submitForm = async () => {
     formData.append("education_stage_id", form.education_stage_id);
     formData.append("start_date", form.start_date);
     formData.append("end_date", form.end_date);
-    
+
     form.class_ids.forEach((id, index) => {
         formData.append(`class_ids[${index}]`, id);
     });
@@ -336,8 +338,6 @@ const submitForm = async () => {
         formData.append(`exams[${index}][subject_id]`, exam.subject_id);
         formData.append(`exams[${index}][title_ar]`, exam.title_ar);
         formData.append(`exams[${index}][title_en]`, exam.title_en);
-        formData.append(`exams[${index}][total_score]`, exam.total_score);
-        formData.append(`exams[${index}][pass_score]`, exam.pass_score);
         formData.append(`exams[${index}][notes]`, exam.notes || "");
         if (exam.pdf) {
             formData.append(`exams[${index}][pdf]`, exam.pdf);
@@ -377,23 +377,21 @@ watch(() => props.item, async (newItem) => {
     if (newItem) {
         form.academic_year_id = newItem.academic_year_id;
         form.education_stage_id = newItem.education_stage_id;
-        
+
         // Wait for dependent data
         await fetchSemesters();
         await fetchStageData();
-        
+
         form.semester_id = newItem.semester_id;
         form.start_date = newItem.start_date;
         form.end_date = newItem.end_date;
         form.class_ids = newItem.classes ? newItem.classes.map(c => c.id) : [];
-        
+
         form.exams = [
             {
                 subject_id: newItem.subject_id,
                 title_ar: newItem.title_ar,
                 title_en: newItem.title_en,
-                total_score: newItem.total_score,
-                pass_score: newItem.pass_score,
                 notes: newItem.notes,
                 pdf: null,
                 existing_pdf: newItem.pdf,
@@ -407,7 +405,7 @@ watch(() => props.item, async (newItem) => {
         form.class_ids = [];
         form.start_date = "";
         form.end_date = "";
-        form.exams = [{ subject_id: null, title_ar: "", title_en: "", total_score: 0, pass_score: 0, notes: "", pdf: null }];
+        form.exams = [{ subject_id: null, title_ar: "", title_en: "", notes: "", pdf: null }];
         v$.value.$reset();
     }
 }, { immediate: true });
@@ -416,7 +414,7 @@ const getAvailableSubjects = (currentIndex) => {
     const selectedSubjectIds = form.exams
         .map((exam, index) => index !== currentIndex ? exam.subject_id : null)
         .filter(id => id !== null);
-    
+
     return subjects.value.filter(subject => !selectedSubjectIds.includes(subject.id));
 };
 

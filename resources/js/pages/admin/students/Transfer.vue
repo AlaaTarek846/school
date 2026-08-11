@@ -10,6 +10,11 @@
               {{ $t('translation.student_transfer') }}
             </div>
             <div class="d-flex gap-2">
+                <button v-if="selectedIds.length > 0" class="btn btn-danger btn-wave" @click="deleteSelectedStudents">
+                    <i class="ri-delete-bin-line align-middle me-1"></i>
+                    {{ $t('label.delete all') }}
+                    <span class="badge bg-white text-danger ms-1">{{ selectedIds.length }}</span>
+                </button>
                 <button v-if="selectedIds.length > 0" class="btn btn-primary btn-wave" data-bs-toggle="modal" data-bs-target="#transfer-modal">
                     <i class="ri-arrow-left-right-line align-middle me-1"></i>
                     {{ $t('translation.transfer_selected') }}
@@ -75,11 +80,7 @@
                     <th scope="col">{{ $t('global.name') }}</th>
                     <th scope="col">{{ $t('admin.code') }}</th>
                     <th scope="col">{{ $t('admin.school_class') }}</th>
-                    <th v-for="sem in yearSemesters" :key="sem.id" class="text-center">
-                        {{ $i18n.locale == 'ar' ? sem.title_ar : sem.title_en }}
-                    </th>
-                    <th scope="col" class="text-center bg-light fw-bold">{{ $t('translation.total_score') }}</th>
-                    <th scope="col" class="text-center">{{ $t('admin.status') }}</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -90,33 +91,6 @@
                     <td class="fw-semibold">{{ student.name }}</td>
                     <td><span class="badge bg-outline-primary">{{ student.code }}</span></td>
                     <td>{{ student.current_class }}</td>
-                    <td v-for="score in student.semester_scores" :key="score.semester_id" class="text-center">
-                        <div v-if="score.exists && score.is_completed">
-                            <span class="d-block fw-bold text-primary">{{ score.score }}</span>
-                            <span :class="score.is_passed ? 'text-success' : 'text-danger'" style="font-size: 11px;">
-                                {{ score.is_passed ? $t('translation.pass') : $t('translation.fail') }}
-                            </span>
-                        </div>
-                        <div v-else-if="score.exists">
-                            <span class="text-muted small italic opacity-75">
-                                <i class="ri-time-line align-middle me-1"></i>
-                                {{ $t('translation.pending') }}
-                            </span>
-                        </div>
-                        <span v-else class="text-muted italic">-</span>
-                    </td>
-                    <td class="text-center bg-light">
-                        <span class="h6 mb-0 text-dark fw-bold">{{ student.total_score }}</span>
-                    </td>
-                    <td class="text-center">
-                        <span v-if="student.final_status !== null" :class="student.final_status ? 'badge bg-success' : 'badge bg-danger'">
-                            {{ student.final_status ? $t('translation.pass') : $t('translation.fail') }}
-                        </span>
-                        <span v-else class="text-muted small italic opacity-75">
-                            <i class="ri-time-line align-middle me-1"></i>
-                            {{ $t('translation.pending') }}
-                        </span>
-                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -158,7 +132,7 @@
                     {{ $t('translation.selected_students') }}: <strong>{{ selectedIds.length }}</strong>
                 </div>
             </div>
-            
+
             <form @submit.prevent="executeTransfer">
               <div class="row g-3">
                 <div class="col-12">
@@ -263,7 +237,7 @@ export default {
         const response = await adminApi.get('students/form-data');
         this.academicYears = response.data.data.academicYears;
         this.educationStages = response.data.data.educationStages;
-        
+
         // Auto-select latest year if exists
         if (this.academicYears.length > 0) {
             // Assuming latest is the one with highest ID or marked as default if exists
@@ -307,7 +281,7 @@ export default {
     },
     async fetchStudents() {
       if (!this.filters.academic_year_id || !this.filters.education_stage_id) return;
-      
+
       this.loading = true;
       this.selectedIds = [];
       try {
@@ -359,31 +333,73 @@ export default {
           this.target.school_class_id = this.targetClasses[0].id;
       }
     },
+    async deleteSelectedStudents() {
+      if (this.selectedIds.length === 0) return;
+
+      const result = await Swal.fire({
+        icon: 'warning',
+        title: this.$t('global.AreYouSure'),
+        text: this.$t('global.YouWontBeAbleToRevertThis'),
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: this.$t('global.YesDeleteIt'),
+      });
+
+      if (!result.isConfirmed) return;
+
+      this.submitting = true;
+      try {
+        await adminApi.post('students-transfer-delete', {
+          student_ids: this.selectedIds
+        });
+
+        Swal.fire(
+          this.$t('global.Deleted'),
+          this.$t('global.YourFileHasBeenDeleted'),
+          'success'
+        );
+
+        this.selectedIds = [];
+        this.fetchStudents();
+      } catch (error) {
+        console.error(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.response?.data?.message || 'Something went wrong'
+        });
+      } finally {
+        this.submitting = false;
+      }
+    },
     async executeTransfer() {
       if (this.selectedIds.length === 0) return;
-      
+
       this.submitting = true;
       try {
         await adminApi.post('students-transfer-execute', {
           student_ids: this.selectedIds,
           ...this.target
         });
-        
+
         Swal.fire({
           icon: 'success',
           title: this.$t('translation.transfer_success'),
           showConfirmButton: false,
           timer: 1500
         });
-        
+
+        this.resetFilters();
+
         // Refresh list
         this.fetchStudents();
-        
+
         // Close modal
         const modalEl = document.getElementById('transfer-modal');
         const modal = bootstrap.Modal.getInstance(modalEl);
         if (modal) modal.hide();
-        
+
       } catch (error) {
         console.error(error);
         Swal.fire({

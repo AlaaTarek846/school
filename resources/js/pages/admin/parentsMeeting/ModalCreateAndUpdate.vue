@@ -92,15 +92,16 @@
                             class="border rounded p-3 mb-3"
                         >
                             <div class="row align-items-end">
-                                <div class="col-md-10 mb-2">
+                                <div class="col-md-5 mb-2">
                                     <label class="form-label">المرحلة الدراسية <span class="text-danger">*</span></label>
                                     <select
                                         class="form-control"
                                         v-model="detail.education_stage_id"
+                                        @change="onStageChange(detail)"
                                         :class="{ 'is-invalid': detailError(index, 'education_stage_id') }"
                                     >
                                         <option value="" disabled>اختر المرحلة</option>
-                                        <option v-for="stage in educationStages" :key="stage.id" :value="stage.id">
+                                        <option v-for="stage in educationStages" :key="stage.id" :value="Number(stage.id)">
                                             {{ stage.title_ar }} / {{ stage.title_en }}
                                         </option>
                                     </select>
@@ -108,6 +109,23 @@
                                         v-if="detailError(index, 'education_stage_id')"
                                         class="invalid-feedback"
                                     >Required</div>
+                                </div>
+                                <div class="col-md-5 mb-2">
+                                    <label class="form-label">الفصل</label>
+                                    <select
+                                        class="form-control"
+                                        v-model="detail.school_class_id"
+                                        :disabled="!detail.education_stage_id"
+                                    >
+                                        <option value="">اختر الفصل (اختياري)</option>
+                                        <option
+                                            v-for="schoolClass in getStageClasses(detail.education_stage_id)"
+                                            :key="schoolClass.id"
+                                            :value="Number(schoolClass.id)"
+                                        >
+                                            {{ schoolClass.name }}
+                                        </option>
+                                    </select>
                                 </div>
                                 <div class="col-md-2 mb-2">
                                     <button
@@ -231,6 +249,7 @@ const weekDays = [
 const emptyDetail = () => ({
     _key: ++detailKey,
     education_stage_id: "",
+    school_class_id: "",
     time_from: "",
     time_to: "",
     days: [],
@@ -285,6 +304,22 @@ const fetchEducationStages = async () => {
     }
 };
 
+const getStageClasses = (stageId) => {
+    if (!stageId) return [];
+    const stage = educationStages.value.find((item) => Number(item.id) === Number(stageId));
+    return stage?.school_classes || [];
+};
+
+const onStageChange = (detail) => {
+    const classes = getStageClasses(detail.education_stage_id);
+    if (
+        detail.school_class_id &&
+        !classes.some((schoolClass) => Number(schoolClass.id) === Number(detail.school_class_id))
+    ) {
+        detail.school_class_id = "";
+    }
+};
+
 const resetForm = () => {
     form.title_ar = "";
     form.title_en = "";
@@ -314,7 +349,8 @@ watch(() => props.item, (newItem) => {
         if (newItem.details && newItem.details.length > 0) {
              const newDetails = newItem.details.map(d => ({
                 _key: ++detailKey,
-                education_stage_id: d.education_stage_id,
+                education_stage_id: d.education_stage_id ? Number(d.education_stage_id) : "",
+                school_class_id: d.school_class_id ? Number(d.school_class_id) : "",
                 time_from: normalizeTime(d.time_from),
                 time_to: normalizeTime(d.time_to),
                 days: Array.isArray(d.days) ? [...d.days] : [],
@@ -357,6 +393,7 @@ const submitForm = async () => {
             time_to: form.is_general_time ? form.time_to : null,
             details: form.details.map((d) => ({
                 education_stage_id: d.education_stage_id,
+                school_class_id: d.school_class_id || null,
                 days: d.days,
                 time_from: form.is_general_time ? null : d.time_from,
                 time_to: form.is_general_time ? null : d.time_to,

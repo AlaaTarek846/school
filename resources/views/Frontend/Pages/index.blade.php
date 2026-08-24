@@ -27,7 +27,7 @@
                                         <path id="circle" d="M50,50 m-37,0a37,37 0 1,1 74,0a37,37 0 1,1 -74,0"></path>
                                     </defs>
                                     <text>
-                                        <textPath xlink:href="#circle">Kobry Al-Galaa School * Estd. 1965 * Explore Future *</textPath>
+                                        <textPath xlink:href="#circle">Kobry Al-Galaa School * Estd. 1951 * Explore Future *</textPath>
                                     </text>
                                 </svg>
                                 <div class="rts__circle--icon save-from-hidden">
@@ -85,7 +85,7 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__1.jpeg')}});">
-                        <h5 class="rts__program--item--title">{{ __('Kindergarten') }}</h5>
+
 
 
                     </div>
@@ -93,21 +93,18 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__2.jpeg')}});">
 
-                        <h5 class="rts__program--item--title">{{ __('Primary Stage') }}</h5>
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__3.jpeg')}});">
 
-                        <h5 class="rts__program--item--title"> {{ __('Preparatory Stage') }}</h5>
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <div class="rts__program--item" style="background-image: url({{asset('assets/images/program/program__4.jpeg')}});">
 
-                        <h5 class="rts__program--item--title">{{ __('Secondary Stage') }}  </h5>
                     </div>
                 </div>
             </div>

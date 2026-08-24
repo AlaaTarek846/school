@@ -17959,7 +17959,7 @@ body.index-sc h6 {
 
 /*=========== Banner CSS ========= */
 .banner.v__1 {
-    background: var(--rt-primary-2);
+    background: linear-gradient(135deg, #e78ab2 0%, #afd9cb 50%, #4e9b77 100%);
     height: 960px;
     display: flex;
     align-items: center;

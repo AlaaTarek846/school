@@ -66,7 +66,7 @@
                             } else if (item.video) {
                                 videoContent = `
                                     <video
-                                        src="/${item.video}"
+                                        src="${item.video}"
                                         controls
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
                                     </video>

@@ -16,7 +16,7 @@ class ParentsMeetingController extends Controller
 
     public function index()
     {
-        $data = ParentsMeeting::with('details.educationStage')->latest()->paginate(10);
+        $data = ParentsMeeting::with(['details.educationStage', 'details.schoolClass'])->latest()->paginate(10);
         return responseJson($data->items(), '', 200, getPaginates($data));
     }
 

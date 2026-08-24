@@ -11,6 +11,7 @@ class ParentsMeetingDetail extends Model
     protected $fillable = [
         'parents_meeting_id',
         'education_stage_id',
+        'school_class_id',
         'time_from',
         'time_to',
         'days',
@@ -28,5 +29,10 @@ class ParentsMeetingDetail extends Model
     public function educationStage()
     {
         return $this->belongsTo(EducationStage::class);
+    }
+
+    public function schoolClass()
+    {
+        return $this->belongsTo(SchoolClass::class);
     }
 }

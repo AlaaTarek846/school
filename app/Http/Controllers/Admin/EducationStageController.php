@@ -17,9 +17,15 @@ class EducationStageController extends Controller
         return view('admin.educationStage.index');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = EducationStage::with(['subjects', 'schoolClasses'])->latest()->paginate(10);
+        $perPage = (int) $request->input('per_page', 10);
+        $perPage = $perPage > 0 ? min($perPage, 500) : 10;
+
+        $data = EducationStage::with(['subjects', 'schoolClasses'])
+            ->orderBy('id')
+            ->paginate($perPage);
+
         return responseJson($data->items(), '', 200, getPaginates($data));
     }
 

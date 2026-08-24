@@ -15,7 +15,7 @@
                     <div class="col-lg-12">
                         <div class="program-description-area" id="curriculum">
                             <div class="program-big-thumb text-lg-center" >
-                                <img src="{{asset('assets/school_facilities/fa.png')}}" alt="program">
+                                <img src="{{asset('assets/images/تجربه ٢٢.png')}}" alt="program">
                             </div>
                             <div class="program-about">
                                 <h4 class="title">{{ __('School Facilities') }} :</h4>
@@ -40,35 +40,14 @@
                                 <div class="col-lg-3 col-md-3 col-sm-6">
                                     <div class="single-cat-item">
                                         <div class="cat-thumb">
-                                            <img src="{{asset('assets/school_facilities/fa-1.jpg')}}" alt="course-thumbnail">
+                                            <img src="{{asset('assets/images/تجربه المدرسه.png')}}" alt="course-thumbnail">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-6">
                                     <div class="single-cat-item">
                                         <div class="cat-thumb">
-                                            <img src="{{asset('assets/school_facilities/fa-2.jpg')}}" alt="course-thumbnail">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6">
-                                    <div class="single-cat-item">
-                                        <div class="cat-thumb">
-                                            <img src="{{asset('assets/school_facilities/fa-3.jpg')}}" alt="course-thumbnail">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6">
-                                    <div class="single-cat-item">
-                                        <div class="cat-thumb">
-                                            <img src="{{asset('assets/school_facilities/fa-4.jpg')}}" alt="course-thumbnail">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6">
-                                    <div class="single-cat-item">
-                                        <div class="cat-thumb">
-                                            <img src="{{asset('assets/school_facilities/fa-5.jpg')}}" alt="course-thumbnail">
+                                            <img src="{{asset('assets/images/home.png')}}" alt="course-thumbnail">
                                         </div>
                                     </div>
                                 </div>

@@ -53,8 +53,7 @@
                                     <i class="fa-thin fa-clock"></i>
                                 </div>
                                 <p class="--p-l rt-regular">
-                                    {{ __('Mon-Fri') }}: 9 AM – 6 PM <br>
-                                    {{ __('Saturday') }}: 9 AM – 4 PM
+                                    {{ __('Mon-Fri') }}: 9 AM – 6 PM
                                 </p>
                             </div>
                         </div>

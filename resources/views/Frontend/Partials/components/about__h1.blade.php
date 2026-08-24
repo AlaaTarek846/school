@@ -15,7 +15,7 @@
                                         <path id="circle-2" d="M50,50 m-37,0a37,37 0 1,1 74,0a37,37 0 1,1 -74,0"></path>
                                     </defs>
                                     <text>
-                                        <textPath xlink:href="#circle-2">Kobery Al-Galaa School * Estd. 1952 * Explore Future *</textPath>
+                                        <textPath xlink:href="#circle-2"> Al-Galaa language School * Estd. 1951 * Explore Future *</textPath>
                                     </text>
                                 </svg>
                                 <div class="rts__circle--icon">

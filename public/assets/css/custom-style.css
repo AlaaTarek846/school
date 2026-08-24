@@ -801,6 +801,407 @@
     margin-bottom: 15px;
 }
 
+/* ============================================
+   Header Banner Redesign (Home v1)
+   ============================================ */
+@keyframes alFadeUp {
+    from { opacity: 0; transform: translateY(34px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes alFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+}
+
+@keyframes alPulse {
+    0%   { transform: scale(0.85); opacity: 1; }
+    100% { transform: scale(1.45); opacity: 0; }
+}
+
+.banner.v__1.al-banner {
+    height: auto;
+    min-height: 820px;
+    padding: 180px 0 90px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.al-banner__row {
+    position: relative;
+    z-index: 99;
+}
+
+/* ---------- Content side ---------- */
+.al-banner__content {
+    max-width: 560px;
+}
+
+.al-banner__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: var(--rt-white);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 26px;
+    animation: alFadeUp 0.8s 0.05s both;
+}
+
+.al-banner__badge img {
+    width: 30px;
+    height: auto;
+}
+
+.al-banner__title {
+    color: var(--rt-white);
+    font-family: var(--font-primary);
+    font-size: 62px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    animation: alFadeUp 0.8s 0.2s both;
+}
+
+[dir="rtl"] .al-banner__title {
+    text-transform: none;
+    line-height: 1.35;
+}
+
+.al-banner__desc {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 18px;
+    line-height: 1.85;
+    margin-bottom: 36px;
+    animation: alFadeUp 0.8s 0.35s both;
+}
+
+.al-banner__actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    animation: alFadeUp 0.8s 0.5s both;
+}
+
+.al-banner__actions .rts-theme-btn {
+    background: var(--rt-white);
+    color: var(--rt-primary-1);
+}
+
+.al-banner__actions .rts-theme-btn::before {
+    background: var(--rt-secondary);
+}
+
+.al-banner__actions .rts-theme-btn:hover {
+    color: var(--rt-white);
+}
+
+.al-banner__play {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    border-radius: 50%;
+    background: var(--rt-white);
+    color: var(--rt-primary-1) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.al-banner__play i {
+    font-size: 17px;
+}
+
+.al-banner__play::before {
+    content: "";
+    position: absolute;
+    inset: -9px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    animation: alPulse 2s ease-out infinite;
+}
+
+.al-banner__play:hover {
+    background: var(--rt-secondary);
+    color: var(--rt-white) !important;
+    transform: scale(1.06);
+}
+
+/* ---------- Media collage ---------- */
+.al-banner__media {
+    position: relative;
+    max-width: 520px;
+    margin-inline-start: auto;
+    padding-bottom: 40px;
+    animation: alFadeUp 1s 0.25s both;
+}
+
+/* soft glow behind images */
+.al-banner__media::before {
+    content: "";
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(255, 255, 255, 0.16), transparent);
+    top: -70px;
+    inset-inline-end: -80px;
+    pointer-events: none;
+}
+
+.al-banner__media--main {
+    margin: 0;
+    width: 76%;
+    margin-inline-start: auto;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 10px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.35);
+    position: relative;
+    z-index: 1;
+}
+
+.al-banner__media--main img,
+.al-banner__media--small img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.al-banner__media--small {
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    inset-inline-start: 0;
+    width: 46%;
+    z-index: 2;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 8px solid var(--rt-white);
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.38);
+    animation: alFloat 5s ease-in-out infinite;
+}
+
+.al-banner__circle {
+    position: absolute;
+    top: -52px;
+    inset-inline-start: 12%;
+    z-index: 3;
+}
+
+.al-banner__dots {
+    position: absolute;
+    bottom: -18px;
+    inset-inline-end: -6px;
+    width: 150px;
+    height: 96px;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.55) 2.5px, transparent 2.6px);
+    background-size: 22px 22px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1200px) {
+    .al-banner__title {
+        font-size: 52px;
+    }
+    .al-banner__media {
+        max-width: 470px;
+    }
+}
+
+@media (max-width: 992px) {
+    .banner.v__1.al-banner {
+        min-height: auto;
+        padding: 150px 0 80px;
+    }
+    .al-banner__content {
+        max-width: 640px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .al-banner__actions {
+        justify-content: center;
+    }
+    .al-banner__media {
+        margin: 30px auto 0;
+        max-width: 480px;
+    }
+}
+
+@media (max-width: 576px) {
+    .banner.v__1.al-banner {
+        padding: 130px 0 70px;
+    }
+    .al-banner__title {
+        font-size: 38px;
+    }
+    .al-banner__desc {
+        font-size: 16px;
+        margin-bottom: 28px;
+    }
+    .al-banner__badge {
+        font-size: 14px;
+        padding: 8px 18px;
+    }
+    .al-banner__play {
+        width: 54px;
+        height: 54px;
+        min-width: 54px;
+    }
+    .al-banner__circle svg {
+        height: 118px !important;
+        width: 118px !important;
+    }
+    .al-banner__circle {
+        top: -34px;
+        inset-inline-start: 4%;
+    }
+    .al-banner__media--main {
+        border-width: 7px;
+        border-radius: 24px;
+    }
+    .al-banner__media--small {
+        border-width: 6px;
+        border-radius: 18px;
+    }
+    .al-banner__dots {
+        width: 110px;
+        height: 70px;
+        background-size: 19px 19px;
+    }
+}
+
+/* ============================================
+   Values Section (Home)
+   ============================================ */
+.al-values__head {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 50px;
+}
+
+.al-values__head .rts__section--title {
+    margin-bottom: 18px;
+}
+
+[dir="rtl"] .al-values__head .rts__section--title {
+    text-transform: none;
+}
+
+.al-values__desc {
+    color: var(--rt-body);
+    font-size: 17px;
+    line-height: 1.85;
+    margin: 0;
+}
+
+.al-value-card {
+    background: var(--rt-white);
+    border-radius: 20px;
+    padding: 42px 28px 36px;
+    height: 100%;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* top accent bar */
+.al-value-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rt-primary), #e78ab2);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.35s ease;
+}
+
+.al-value-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 45px rgba(199, 29, 99, 0.12);
+    border-color: rgba(199, 29, 99, 0.25);
+}
+
+.al-value-card:hover::before {
+    transform: scaleX(1);
+}
+
+.al-value-card--icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background: rgba(199, 29, 99, 0.07);
+    color: var(--rt-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    transition: all 0.35s ease;
+}
+
+.al-value-card:hover .al-value-card--icon {
+    background: var(--rt-primary);
+    color: var(--rt-white);
+    transform: rotateY(180deg);
+}
+
+.al-value-card--title {
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--rt-heading);
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.al-value-card--text {
+    color: var(--rt-body);
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+@media (max-width: 1200px) {
+    .al-value-card {
+        padding: 36px 22px 30px;
+    }
+    .al-value-card--text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 991px) {
+    .al-value-card {
+        padding: 38px 30px;
+    }
+    .al-value-card--icon {
+        width: 68px;
+        height: 68px;
+        font-size: 26px;
+    }
+}
+
 /* Language Switcher Scroll Fix */
 .header.header__sticky.fixed .lang-switch-btn {
     color: var(--rt-heading);

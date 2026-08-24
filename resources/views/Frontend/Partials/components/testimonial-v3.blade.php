@@ -7,7 +7,7 @@
                 <div class="rts-testimonial-box">
                     <div class="testimonial-item rt-flex">
                         <div class="testimonial-item-image">
-                            <img src="{{asset('assets/images/testimonial/testimonial-big.jpg')}}" alt="testimonial thumbnail">
+                            <img src="{{asset('assets/images/testimonial/testimonial-big.png')}}" alt="testimonial thumbnail">
                         </div>
                             <div class="testimonial-item-content w-570 rt-relative">
                                     <div class="swiper swiper-data"

@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="row g-5">
+                    <div class="row g-5 justify-content-center">
                         @foreach($section->achievements as $achievement)
                         <div class="col-lg-3 col-md-6">
                             <div class="achievement-card" style="border-color: {{ $section->border_color }};">

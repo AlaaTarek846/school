@@ -19,7 +19,7 @@
                     <li><a href="{{ route('why-choose-galaa') }}">{{ __('Why Choose Galaa Schools') }}</a></li>
                     <li><a href="{{ route('core-values') }}">{{ __('Core Values') }}</a></li>
                     <li><a href="{{ route('quality-assurance-files') }}">{{ __('Quality Assurance Files') }}</a></li>
-                    <li><a href="{{ route('journey-of-success-and-excellence') }}">{{ __('Journey of Success and Excellence') }}</a></li>
+{{--                    <li><a href="{{ route('journey-of-success-and-excellence') }}">{{ __('Journey of Success and Excellence') }}</a></li>--}}
                     <li><a href="{{ route('principal-message') }}">{{ __("Principal's Message") }}</a></li>
                     <li><a href="{{ route('mission-and-vision') }}">{{ __('Mission and Vision') }}</a></li>
                     <li><a href="{{ route('school-discipline-policy') }}">{{ __('School Discipline Policy') }}</a></li>

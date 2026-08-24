@@ -5,59 +5,45 @@
 
     @include($header . 'transparent-header')
     <!-- header banner -->
-    <div class="banner v__1">
+    <div class="banner v__1 al-banner">
         <div class="container">
-            <div class="col-sm-12">
-                <div class="banner__wrapper">
-                    <div class="banner__wrapper--left">
-                        <img src="{{asset('assets/images/banner/image__1.jpg')}}" alt="">
-                    </div>
-                    <div class="banner__wrapper--middle">
-                        <div class="banner__content">
-                            <h6 class="banner__content--sub">
-                               <img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="cap"> {{ __('Welcome to') }}
-                            </h6>
-                            <h1 class="banner__content--title">
-{{--                                {{ __('Kobery Al-Galaa') }}--}}
-                                <span> {{ __('al-galaa-schools') }}</span>
-                            </h1>
-                            <div class="banner__content--circle rts__circle v__2">
-                                <svg class="spinner" viewBox="0 0 100 100">
-             <defs>
-                                        <path id="circle" d="M50,50 m-37,0a37,37 0 1,1 74,0a37,37 0 1,1 -74,0"></path>
-                                    </defs>
-                                    <text>
-                                        <textPath xlink:href="#circle">Kobry Al-Galaa School * Estd. 1951 * Explore Future *</textPath>
-                                    </text>
-                                </svg>
-                                <div class="rts__circle--icon save-from-hidden">
-                                    <a href="https://www.youtube.com/watch?v=7ahgosTZJHg" class="video-play  rts-video-btn popup-video">
-                                        <i class="fa-sharp fa-solid fa-play"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="banner__content--description">
-                                <p>{{ __('al-galaa-school-established') }}
-                                </p>
-                                <a href="{{ route('contact') }}" class="rts-theme-btn btn-arrow">{{ __('Contact Us') }}
-                                    <span>
-                                        @if(app()->getLocale() == 'ar')
-                                            <i class="fa-regular fa-arrow-left"></i>
-                                        @else
-                                            <i class="fa-regular fa-arrow-right"></i>
-                                        @endif
-                                    </span>
-                                </a>
-                            </div>
+            <div class="row align-items-center gy-4 gy-lg-0 al-banner__row">
+                <!-- banner content -->
+                <div class="col-lg-6 col-md-12 order-2 order-lg-1">
+                    <div class="al-banner__content">
+                        <span class="al-banner__badge">
+                            <img src="{{asset('assets/images/icon/e-cap.svg')}}" alt="cap">
+                            {{ __('Welcome to') }}
+                        </span>
+                        <h1 class="al-banner__title">{{ __('al-galaa-schools') }}</h1>
+                        <p class="al-banner__desc">{{ __('al-galaa-school-established') }}</p>
+                        <div class="al-banner__actions">
+                            <a href="{{ route('contact') }}" class="rts-theme-btn btn-arrow">{{ __('Contact Us') }}
+                                <span>
+                                    @if(app()->getLocale() == 'ar')
+                                        <i class="fa-regular fa-arrow-left"></i>
+                                    @else
+                                        <i class="fa-regular fa-arrow-right"></i>
+                                    @endif
+                                </span>
+                            </a>
+{{--                            <a href="https://www.youtube.com/watch?v=7ahgosTZJHg" class="video-play rts-video-btn popup-video al-banner__play" aria-label="Play intro video">--}}
+{{--                                <i class="fa-sharp fa-solid fa-play"></i>--}}
+{{--                            </a>--}}
                         </div>
                     </div>
-                    <div class="banner__wrapper--right">
-                        <img src="{{asset('assets/images/banner/image__2.jpg')}}" alt="banner right">
-                    </div>
                 </div>
-                <!-- banner animated shape -->
-                <div class="banner__wrapper--shape">
-                    <img src="{{asset('assets/images/banner/banner-svg.svg')}}" style="transform: {{ app()->getLocale() == 'ar'? 'rotate3d(-1, 72, 0, 169deg);':'unset' }};" alt="banner">
+                <!-- banner media -->
+                <div class="col-lg-6 col-md-12 order-1 order-lg-2">
+                    <div class="al-banner__media">
+                        <figure class="al-banner__media--main">
+                            <img src="{{asset('assets/images/banner/image__1.jpg')}}" alt="Al-Galaa Schools">
+                        </figure>
+                        <figure class="al-banner__media--small">
+                            <img src="{{asset('assets/images/banner/image__2.jpg')}}" alt="Al-Galaa Schools students">
+                        </figure>
+                        <span class="al-banner__dots" aria-hidden="true"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,79 +98,59 @@
 
     </section>
     <!-- program end -->
-    <!-- campus life -->
-    <section class="rts__section rts-section-padding">
+    <!-- values -->
+    <section class="rts__section rts-section-padding al-values">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-6">
-                    <div class="rts__section--wrapper v__2">
-                        <h2 class="rts__section--title"><a href="#">{{ __('Campus Life') }}</a></h2>
-                        <p class="rts__section--description">{{ __('Embark on a journey of knowledge and growth at Kobry  Al-Galaa School. We nurture bright minds to contribute to our dynamic community.') }}</p>
-                        <div class="campus__vector">
-                            <img src="{{asset('assets/images/campus/campus__vector.svg')}}" style="transform: {{ app()->getLocale() == 'ar'? 'rotate3d(-1, 72, 0, 169deg);':'unset' }};" alt="">
-                        </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="al-values__head">
+                        <h2 class="rts__section--title">{{ __('Our Values') }}</h2>
+                        <p class="al-values__desc">{{ __('At the heart of our school lies a set of core values that guide our work, inspire our students, and shape the character of every generation we teach.') }}</p>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-6">
-                    <div class="campus__life">
-                        <!-- single campus -->
-                        <div class="campus__life--single">
-                            <div class="campus__life--single--bg">
-                                <img src="{{asset('assets/images/campus/campus__life__bg__1.jpg')}}" alt="">
-                            </div>
-                            <div class="campus__life--single--flex">
-                                <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="#">{{ __('Student Activities') }}</a></h4>
-                                    <p class="campus__life--single--description">{{ __('Engaging clubs and events to foster creativity and teamwork.') }}</p>
-                                </div>
-                                <div class="campus__life--single--button">
-{{--                                    <a href="{{ route('campus-life') }}">--}}
-{{--                                        @if(app()->getLocale() == 'ar')--}}
-{{--                                            <i class="fa-sharp fa-regular fa-arrow-left"></i>--}}
-{{--                                        @else--}}
-{{--                                            <i class="fa-sharp fa-regular fa-arrow-right"></i>--}}
-{{--                                        @endif--}}
-{{--                                    </a>--}}
-                                </div>
-                            </div>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="al-value-card">
+                        <div class="al-value-card--icon">
+                            <i class="fa-solid fa-medal"></i>
                         </div>
-                        <!-- single campus end -->
-                        <!-- single campus -->
-                        <div class="campus__life--single">
-                            <div class="campus__life--single--bg">
-                                <img src="{{asset('assets/images/campus/campus__life__bg__2.jpg')}}" alt="">
-                            </div>
-                            <div class="campus__life--single--flex">
-                                <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="#">{{ __('Prestigious Institution') }}</a></h4>
-                                    <p class="campus__life--single--description">{{ __('The school is considered one of the greatest and most prestigious educational institutions in Giza Governorate') }}</p>
-                                </div>
-                                <div class="campus__life--single--button">
-                                </div>
-                            </div>
+                        <h4 class="al-value-card--title">{{ __('Educational Excellence') }}</h4>
+                        <p class="al-value-card--text">{{ __('Galaa School strives to achieve the highest standards of quality in education through distinguished educational cadres and a stimulating educational environment that ensures our students academic and skillful excellence.') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="al-value-card">
+                        <div class="al-value-card--icon">
+                            <i class="fa-solid fa-scale-balanced"></i>
                         </div>
-                        <!-- single campus end -->
-                        <!-- single campus -->
-                        <div class="campus__life--single">
-                            <div class="campus__life--single--bg">
-                                <img src="{{asset('assets/images/campus/campus__life__bg__3.jpg')}}" alt="">
-                            </div>
-                            <div class="campus__life--single--flex">
-                                <div class="campus__life--single--content">
-                                    <h4 class="campus__life--single--title"><a href="#">{{ __('Activities & Community Service') }}</a></h4>
-                                    <p class="campus__life--single--description">{{ __('The school excels in participating in all local activities and competitions, achieving advanced positions in all activities, community engagement, and environmental service') }}</p>
-                                </div>
-                                <div class="campus__life--single--button">
-                                </div>
-                            </div>
+                        <h4 class="al-value-card--title">{{ __('Integrity and Ethics') }}</h4>
+                        <p class="al-value-card--text">{{ __('At Galaa School, we believe that education precedes instruction. Therefore, we instill in our students the values of honesty, integrity, and moral responsibility towards themselves and their community.') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="al-value-card">
+                        <div class="al-value-card--icon">
+                            <i class="fa-solid fa-handshake-simple"></i>
                         </div>
-                        <!-- single campus end -->
+                        <h4 class="al-value-card--title">{{ __('Respect and Cooperation') }}</h4>
+                        <p class="al-value-card--text">{{ __('We build a school community based on mutual respect and appreciation of others, while promoting the spirit of teamwork and cooperation among students, teachers, and parents.') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="al-value-card">
+                        <div class="al-value-card--icon">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h4 class="al-value-card--title">{{ __('Innovation and Development') }}</h4>
+                        <p class="al-value-card--text">{{ __('We encourage our students to think creatively and innovate, and we keep pace with the latest technological developments in teaching methods to prepare a generation capable of facing future challenges.') }}</p>
                     </div>
                 </div>
             </div>
         </div>
+
     </section>
-    <!-- campus life end -->
+    <!-- values end -->
     <!-- team -->
 {{--    <section class="rts__section rts__light rts-section-padding">--}}
 {{--        <div class="container">--}}

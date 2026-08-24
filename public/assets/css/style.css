@@ -17613,7 +17613,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
 
 /*=========== Banner CSS ========= */
 .banner.v__1 {
-  background: linear-gradient(135deg, #e78ab2 0%, #afd9cb 50%, #4e9b77 100%);
+  background: linear-gradient(346deg, #e78ab2 0%, #4e9b77 100%);
   height: 960px;
   display: flex;
   align-items: center;
@@ -25781,7 +25781,7 @@ body.index-sc h1, body.index-sc h2, body.index-sc h3, body.index-sc h4, body.ind
 
 .contact-map {
   height: 470px;
-  filter: grayscale(1);
+  /*filter: grayscale(1);*/
 }
 
 .side-bar {

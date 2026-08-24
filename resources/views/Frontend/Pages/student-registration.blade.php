@@ -75,11 +75,11 @@
                         <div class="program-info">
                             <h5 class="mb--20">{{ __('Download Application Form') }}</h5>
                             <div class="d-grid gap-3">
-                                <a href="#" class="rts-theme-btn primary with-arrow w-100 justify-content-center">
+                                <a href="/assets/طلب-التحاق-بالمدرسة-الجلاء.pdf" download class="rts-theme-btn primary with-arrow w-100 justify-content-center">
                                     {{ __('Download Application (Arabic)') }}
                                     <span><i class="fa-thin fa-file-pdf"></i></span>
                                 </a>
-                                <a href="#" class="rts-theme-btn primary with-arrow w-100 justify-content-center">
+                                <a href="/assets/Student-Enrollment-Application-Galaa.pdf" download class="rts-theme-btn primary with-arrow w-100 justify-content-center">
                                     {{ __('Download Application (English)') }}
                                     <span><i class="fa-thin fa-file-pdf"></i></span>
                                 </a>

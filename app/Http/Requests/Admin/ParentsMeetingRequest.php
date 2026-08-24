@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\SchoolClass;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -33,6 +34,7 @@ class ParentsMeetingRequest extends FormRequest
             'is_general_time' => 'required|boolean',
             'details' => 'required|array|min:1',
             'details.*.education_stage_id' => 'required|exists:education_stages,id',
+            'details.*.school_class_id' => 'nullable|exists:school_classes,id',
             'details.*.days' => 'required|array|min:1',
             'details.*.days.*' => ['required', 'string', Rule::in($allowedDays)],
         ];
@@ -64,10 +66,33 @@ class ParentsMeetingRequest extends FormRequest
             'details.required' => 'أضف تفصيلة واحدة على الأقل',
             'details.*.education_stage_id.required' => 'المرحلة الدراسية مطلوبة',
             'details.*.education_stage_id.exists' => 'المرحلة الدراسية غير موجودة',
+            'details.*.school_class_id.exists' => 'الفصل غير موجود',
             'details.*.days.required' => 'اختر يوم واحد على الأقل',
             'details.*.time_from.required' => 'وقت البداية مطلوب لكل صف',
             'details.*.time_to.required' => 'وقت النهاية مطلوب لكل صف',
         ];
+    }
+
+    public function withValidator($validator): void
+    {
+        $validator->after(function ($validator) {
+            foreach ($this->input('details', []) as $index => $detail) {
+                if (empty($detail['school_class_id']) || empty($detail['education_stage_id'])) {
+                    continue;
+                }
+
+                $belongsToStage = SchoolClass::where('id', $detail['school_class_id'])
+                    ->where('education_stage_id', $detail['education_stage_id'])
+                    ->exists();
+
+                if (!$belongsToStage) {
+                    $validator->errors()->add(
+                        "details.$index.school_class_id",
+                        'الفصل لا ينتمي للمرحلة المختارة'
+                    );
+                }
+            }
+        });
     }
 
     protected function prepareForValidation(): void
@@ -82,6 +107,9 @@ class ParentsMeetingRequest extends FormRequest
         $details = collect($this->input('details', []))->map(function ($detail) use ($normalize) {
             $detail['education_stage_id'] = isset($detail['education_stage_id']) && $detail['education_stage_id'] !== ''
                 ? (int) $detail['education_stage_id']
+                : null;
+            $detail['school_class_id'] = isset($detail['school_class_id']) && $detail['school_class_id'] !== ''
+                ? (int) $detail['school_class_id']
                 : null;
             $detail['time_from'] = $normalize($detail['time_from'] ?? null);
             $detail['time_to'] = $normalize($detail['time_to'] ?? null);

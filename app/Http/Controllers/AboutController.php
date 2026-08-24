@@ -38,7 +38,7 @@ class AboutController extends BaseController
     // homepage four
 
     public function parentsMeeting(){
-        $meetings = ParentsMeeting::with('details.educationStage')->oldest()->get();
+        $meetings = ParentsMeeting::with(['details.educationStage', 'details.schoolClass'])->oldest()->get();
         $dayOrder = ['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday'];
         $meetingsData = [];
 
@@ -53,6 +53,10 @@ class AboutController extends BaseController
                 $stageTitle = app()->getLocale() === 'ar'
                     ? ($detail->educationStage->title_ar ?? '')
                     : ($detail->educationStage->title_en ?? '');
+
+                if ($detail->schoolClass?->name) {
+                    $stageTitle .= ' - ' . $detail->schoolClass->name;
+                }
 
                 $timeFrom = $meeting->is_general_time ? $meeting->time_from : $detail->time_from;
                 $timeTo = $meeting->is_general_time ? $meeting->time_to : $detail->time_to;

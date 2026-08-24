@@ -39,6 +39,7 @@
                                     <ul v-if="item.details && item.details.length">
                                         <li v-for="detail in item.details" :key="detail.id">
                                             {{ detail.education_stage ? detail.education_stage.title_ar : 'N/A' }}
+                                            <span v-if="detail.school_class"> — {{ detail.school_class.name }}</span>
                                             <span v-if="!item.is_general_time">
                                                 — {{ formatTimeRange(detail.time_from, detail.time_to) }}
                                             </span>

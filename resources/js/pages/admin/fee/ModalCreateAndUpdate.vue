@@ -56,7 +56,7 @@
                                     :class="{ 'is-invalid': v$.details.$each.$response.$data[index].education_stage_id.$error }"
                                 >
                                     <option value="" disabled>اختر المرحلة</option>
-                                    <option v-for="stage in educationStages" :key="stage.id" :value="stage.id">
+                                    <option v-for="stage in educationStages" :key="stage.id" :value="Number(stage.id)">
                                         {{ stage.title_ar }} / {{ stage.title_en }}
                                     </option>
                                 </select>
@@ -183,7 +183,7 @@ watch(() => props.item, (newItem) => {
              // We need to completely replace details array, but it's reactive.
              // Best to map and assign.
              const newDetails = newItem.details.map(d => ({
-                education_stage_id: d.education_stage_id,
+                education_stage_id: d.education_stage_id ? Number(d.education_stage_id) : "",
                 price: d.price
             }));
             form.details.splice(0, form.details.length, ...newDetails);

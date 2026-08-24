@@ -17,19 +17,7 @@
                 </div>
             </div>
             <div class="offcanvase__info">
-                <div class="offcanvase__info--content">
-                    <a href="callto:{{ $shareSetting->mobile ?? '' }}"><span><i class="fa-sharp fa-light fa-phone"></i></span>{{ $shareSetting->mobile ?? '' }}</a>
-                    <a href="#"><span><i class="fa-sharp fa-light fa-location-dot"></i></span>{!! $shareSetting->address ?? '' !!}</a>
-                    <div class="offcanvase__info--content--social">
-                        <p class="title">{{ __('Follow Us:') }}</p>
-                        <div class="social__links">
-                            <a href="{{ $shareSetting->facebook ?? '#' }}"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="{{ $shareSetting->instagram ?? '#' }}"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="{{ $shareSetting->linkedin ?? '#' }}"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="{{ $shareSetting->twitter ?? '#' }}"><i class="fa-brands fa-twitter"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @include($components . 'contact-info')
             </div>
         </div>
     </div>
@@ -84,19 +72,7 @@
             </ul>
         </nav>
 
-        <div class="offcanvase__info--content mt--30">
-            <a href="callto:{{ $shareSetting->mobile ?? '' }}"><span><i class="fa-sharp fa-light fa-phone"></i></span>{{ $shareSetting->mobile ?? '' }}</a>
-            <a href="#"><span><i class="fa-sharp fa-light fa-location-dot"></i></span>{!! $shareSetting->address ?? '' !!}</a>
-            <div class="offcanvase__info--content--social">
-                <p class="title">{{ __('Follow Us:') }}</p>
-                <div class="social__links">
-                    <a href="{{ $shareSetting->facebook ?? '#' }}"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="{{ $shareSetting->instagram ?? '#' }}"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="{{ $shareSetting->linkedin ?? '#' }}"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="{{ $shareSetting->twitter ?? '#' }}"><i class="fa-brands fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
+        @include($components . 'contact-info', ['class' => 'mt--30'])
     </div>
     <!-- mobile menu area end -->
 </div>

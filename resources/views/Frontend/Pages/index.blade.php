@@ -275,7 +275,7 @@
                                     <div class="rts__single--testimonial--author">
                                         <div class="rts__single--testimonial--author--meta">
                                             <div class="rts__author--img">
-                                                <img src="{{ $testimonial->media ? asset($testimonial->media->url) : asset('assets/images/testimonial/author-1.png') }}" alt="author">
+                                                <img src="{{ $testimonial->media ? asset($testimonial->media->url) : asset('assets/images/testimonial/author-1.png') }}" height="50" alt="author">
                                             </div>
                                             <div class="rts__author--info">
                                                 <h5 class="mb-0">{{ app()->getLocale() == 'ar' ? $testimonial->name_ar : $testimonial->name_en }}</h5>

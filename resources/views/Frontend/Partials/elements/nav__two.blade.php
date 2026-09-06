@@ -8,7 +8,7 @@
                 <a href="javascript:void(0);" class="navigation__menu--item__link">{{ __('About Us') }}</a>
                 <ul class="submenu sub__style">
                     <li><a href="{{ route('about') }}">{{ __('Experience') }}</a></li>
-                    <li><a href="{{ route('galaa-stages') }}">{{ __('Galaa Stages') }}</a></li>
+{{--                    <li><a href="{{ route('galaa-stages') }}">{{ __('Galaa Stages') }}</a></li>--}}
                     <li><a href="{{ route('careers') }}">{{ __('Careers') }}</a></li>
                     <li><a href="{{ route('student-registration') }}">{{ __('Student Registration') }}</a></li>
                 </ul>

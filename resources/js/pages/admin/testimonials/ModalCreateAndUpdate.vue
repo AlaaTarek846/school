@@ -13,13 +13,23 @@
                     <div class="row">
 
                       <div class="col-md-6 mb-2">
-                        <label class="form-label">الاسم</label>
+                        <label class="form-label">الاسم (عربي)</label>
                         <input type="text" class="form-control form-control-lg"  v-model="v$.name_ar.$model"
                                :class="{'is-invalid': v$.name_ar.$error || errors[`name_ar`],
                                      'is-valid': !v$[`name_ar`].$invalid && !errors[`name_ar`]}">
                         <div class="invalid-feedback">
                           <span v-if="v$[`name_ar`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
                            <span v-if="v$.name_ar.maxLength.$invalid">{{ $t('validation.NameMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 mb-2">
+                        <label class="form-label">الاسم (English)</label>
+                        <input type="text" class="form-control form-control-lg"  v-model="v$.name_en.$model"
+                               :class="{'is-invalid': v$.name_en.$error || errors[`name_en`],
+                                     'is-valid': !v$[`name_en`].$invalid && !errors[`name_en`]}">
+                        <div class="invalid-feedback">
+                           <span v-if="v$.name_en.maxLength.$invalid">{{ $t('validation.NameMustHaveAtLeast', { max: 200 }) }}<br /></span>
                         </div>
                       </div>
 
@@ -201,6 +211,7 @@
     submitData.data.status = true;
     submitData.data.image = '';
     submitData.data.name_ar = '';
+    submitData.data.name_en = '';
     submitData.data.rating = 5;
 
     submitData.data.description_ar = '';
@@ -228,7 +239,7 @@
               submitData.data.description_ar = l.description_ar;
               submitData.data.description_en = l.description_en;
               submitData.data.name_ar = l.name_ar;
-              // submitData.data.name_en = l.name_en;
+              submitData.data.name_en = l.name_en;
               submitData.data.job_ar = l.job_ar;
               submitData.data.job_en = l.job_en;
               submitData.data.status = l.status == 1;
@@ -256,7 +267,7 @@
       description_ar: '',
       description_en: '',
       name_ar: '',
-      // name_en: '',
+      name_en: '',
       job_ar: '',
       job_en: '',
       rating: 5,
@@ -266,7 +277,7 @@
   const rules = computed(() => {
     return {
       name_ar: {minLength: minLength(1),maxLength:maxLength(200),required,},
-      // name_en: {maxLength:maxLength(200)},
+      name_en: {maxLength:maxLength(200)},
       description_ar: {minLength: minLength(1),maxLength:maxLength(300),required,},
       description_en: {maxLength:maxLength(300)},
       job_ar: {maxLength:maxLength(200)},
@@ -288,7 +299,7 @@
 
       let formData = new FormData();
       formData.append('name_ar', submitData.data.name_ar);
-      // formData.append('name_en', submitData.data.name_en || '');
+      formData.append('name_en', submitData.data.name_en || '');
       formData.append('description_ar', submitData.data.description_ar);
       formData.append('description_en', submitData.data.description_en || '');
       formData.append('job_ar', submitData.data.job_ar || '');

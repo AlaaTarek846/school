@@ -23,11 +23,12 @@ class GalleryRequest extends FormRequest
     {
         if ($this->isMethod('post')) {
             return [
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+                'images' => 'required|array|min:1',
+                'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:800',
             ];
         }
         return [
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:800',
         ];
     }
 }

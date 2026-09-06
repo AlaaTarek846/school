@@ -50,9 +50,9 @@
                                                 <div class="rt-author-meta rt-flex rt-gap-20">
                                                     <div class="rt-author-img">
                                                         @if($testimonial->media->first())
-                                                            <img src="{{asset($testimonial->media->first()->url)}}" alt="author">
+                                                            <img src="{{  $testimonial->media ? asset($testimonial->media->url) : asset('assets/images/testimonial/author-1.png')  }}"  height="50" alt="author">
                                                         @else
-                                                            <img src="{{asset('assets/images/testimonial/author-1.png')}}" alt="author">
+                                                            <img src="{{asset('assets/images/testimonial/author-1.png')}}" height="50" alt="author">
                                                         @endif
                                                     </div>
                                                     <div class="rt-author-info">

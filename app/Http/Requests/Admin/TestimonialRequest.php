@@ -23,7 +23,7 @@ class TestimonialRequest extends FormRequest
     {
         return [
             "name_ar" => "required|string|max:200",
-            // "name_en" => "nullable|string|max:200", // Removed
+            "name_en" => "nullable|string|max:200",
             "description_ar" => "required|string|max:300",
             "description_en" => "nullable|string|max:300",
             "job_ar" => "nullable|string|max:200",

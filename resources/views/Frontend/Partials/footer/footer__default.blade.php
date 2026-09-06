@@ -15,7 +15,6 @@
                         <ul class="social">
                             <li class="social__link"><a href="{{ $shareSetting->facebook ?? '#' }}"><i class="fa-brands fa-facebook"></i></a></li>
                             <li class="social__link"><a href="{{ $shareSetting->instagram ?? '#' }}"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li class="social__link"><a href="{{ $shareSetting->linkedin ?? '#' }}"><i class="fa-brands fa-linkedin"></i></a></li>
                             <li class="social__link"><a href="{{ $shareSetting->twitter ?? '#' }}"><i class="fa-brands fa-twitter"></i></a></li>
                         </ul>
                     </div>

@@ -22,11 +22,11 @@ class GalleryController extends Controller
 
     public function store(GalleryRequest $request)
     {
-        $data = $request->validated();
-        if ($request->hasFile('image')) {
-            $data['image'] = saveFile($request->image, 'gallery');
+        $files = $request->file('images');
+        foreach ($files as $file) {
+            $data = ['image' => saveFile($file, 'gallery')];
+            Gallery::create($data);
         }
-        Gallery::create($data);
         return responseJson([], 'Added Successfully', 200);
     }
 

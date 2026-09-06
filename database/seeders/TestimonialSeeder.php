@@ -29,7 +29,8 @@ class TestimonialSeeder extends Seeder
             '/storage/testimonial/author-3.png'
         ];
 
-        $names = ['Sarah Jones', 'David Smith', 'Emily Wilson'];
+        $namesAr = ['سارة جونز', 'ديفيد سميث', 'إيميلي ويلسون'];
+        $namesEn = ['Sarah Jones', 'David Smith', 'Emily Wilson'];
         $jobsEn = ['Student', 'Designer', 'Developer'];
         $jobsAr = ['طالب', 'مصمم', 'مطور'];
 
@@ -38,7 +39,8 @@ class TestimonialSeeder extends Seeder
 
         foreach ($images as $index => $image) {
             $testimonial = Testimonial::create([
-                'name_ar' => $names[$index],
+                'name_ar' => $namesAr[$index],
+                'name_en' => $namesEn[$index],
                 'job_ar' => $jobsAr[$index],
                 'job_en' => $jobsEn[$index],
                 'description_ar' => $descriptionAr,
